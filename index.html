@@ -150,13 +150,14 @@
                                         <td colspan="7">
                                             <p>The values are based on core specs (excluding extensions).</p>
                                             <p>* Any RDF syntax</p>
+                                            <p>GET<sup>1</sup> is string matching to verify the claims existence, whereas GET<sup>2</sup> is object matching after dereferencing.</p>
                                         </td>
                                     </tr>
                                 </tfoot>
                                 <tbody>
-                                    <tr><th>Webmention</th><td>x-www-form-urlencoded</td><td>POST</td><td>Source, target URLs</td><td>Webmention</td><td>String matching</td><td>No</td></tr>
-                                    <tr><th>ActivityPub</th><td>JSON(-LD)</td><td>POST</td><td>Complete object</td><td>ActivityStreams 2.0</td><td>Object matching</td><td>Yes</td></tr>
-                                    <tr><th>Solid</th><td>RDF*</td><td>POST, PUT, PATCH</td><td>Unconstrained</td><td>Any</td><td>Object matching</td><td>Yes</td></tr>
+                                    <tr><th>Webmention</th><td><code>x-www-form-urlencoded</code></td><td><code>POST</td><td>Source, target URLs</td><td>Webmention</td><td><code>GET</code><sup>1</sup></td><td>No</td></tr>
+                                    <tr><th>ActivityPub</th><td><code>JSON(-LD)</code></td><td><code>POST</code></td><td>Complete object</td><td>ActivityStreams 2.0</td><td><code>GET</code><sup>2</sup> or Auth</td><td>Yes</td></tr>
+                                    <tr><th>Solid</th><td>RDF*</td><td><code>POST</code>, <code>PUT</code>, <code>PATCH</code></td><td>Unconstrained</td><td>Any</td><td><code>GET</code><sup>2</sup> or Auth</td><td>Yes</td></tr>
                                 </tbody>
                             </table>
                         </div>
