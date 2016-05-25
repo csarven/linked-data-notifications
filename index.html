@@ -130,9 +130,37 @@
                         <div datatype="rdf:HTML" property="schema:description">
                             <p>What's out here? Paragraph each.</p>
                             <p>What's in their scope?</p>
+
+
+                            <table id="comparison-of-notification-mechanisms">
+                                <caption>Comparison of notification mechanisms</caption>
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Payload type</th>
+                                        <th>HTTP methods</th>
+                                        <th>Payload content</th>
+                                        <th>Payload vocabulary</th>
+                                        <th>Claim verification</th>
+                                        <th>Authenticated requests</th>
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="7">
+                                            <p>The values are based on core specs (excluding extensions).</p>
+                                            <p>* Any RDF syntax</p>
+                                        </td>
+                                    </tr>
+                                </tfoot>
+                                <tbody>
+                                    <tr><th>Webmention</th><td>x-www-form-urlencoded</td><td>POST</td><td>Source, target URLs</td><td>Webmention</td><td>String matching</td><td>No</td></tr>
+                                    <tr><th>ActivityPub</th><td>JSON(-LD)</td><td>POST</td><td>Complete object</td><td>ActivityStreams 2.0</td><td>Object matching</td><td>Yes</td></tr>
+                                    <tr><th>Solid</th><td>RDF*</td><td>POST, PUT, PATCH</td><td>Unconstrained</td><td>Any</td><td>Object matching</td><td>Yes</td></tr>
+                                </tbody>
+                            </table>
                         </div>
                     </section>
-
 
                     <section id="solid-inbox-and-notifications" inlist="" rel="schema:hasPart" resource="#solid-inbox-and-notifications">
                         <h2 property="schema:name">Solid inboxes and notifications</h2>
