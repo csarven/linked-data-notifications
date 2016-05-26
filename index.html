@@ -122,7 +122,6 @@
                             <p>What's out here? Paragraph each.</p>
                             <p>What's in their scope?</p>
 
-
                             <table id="comparison-of-notification-mechanisms">
                                 <caption>Comparison of notification mechanisms</caption>
                                 <thead>
@@ -146,11 +145,95 @@
                                     </tr>
                                 </tfoot>
                                 <tbody>
+                                    <tr><th>Semantic Pingback</th><td>RDF*</td><td><code>POST</code></td><td>Unconstrained</td><td>Any</td><td><code>GET</code><sup>2</sup> or Auth</td><td>Yes</td></tr>
                                     <tr><th>Webmention</th><td><code>x-www-form-urlencoded</code></td><td><code>POST</code></td><td>Source, target URLs</td><td>Webmention</td><td><code>GET</code><sup>1</sup></td><td>No</td></tr>
                                     <tr><th>ActivityPub</th><td><code>JSON(-LD)</code></td><td><code>POST</code></td><td>Complete object</td><td>ActivityStreams 2.0</td><td><code>GET</code><sup>2</sup> or Auth</td><td>Yes</td></tr>
                                     <tr><th>Solid</th><td>RDF*</td><td><code>POST</code>, <code>PUT</code>, <code>PATCH</code></td><td>Unconstrained</td><td>Any</td><td><code>GET</code><sup>2</sup> or Auth</td><td>Yes</td></tr>
                                 </tbody>
                             </table>
+
+                            <section id="semantic-pingback" rel="schema:hasPart" resource="#semantic-pingback">
+                                <h3 property="schema:name">Semantic Pingback</h3>
+                                <div datatype="rdf:HTML" property="schema:description">
+                                    <p class="todo">http://www.w3.org/wiki/Pingback#Semantic_Pingback</p>
+                                </div>
+                            </section>
+
+                            <section id="webmention" rel="schema:hasPart" resource="#webmention">
+                                <h3 property="schema:name">Webmention</h3>
+                                <div datatype="rdf:HTML" property="schema:description">
+                                    <p class="todo">Discuss: Information loss</p>
+                                    <p class="todo">Historially, Webmention is based on Pingback.</p>
+                                    <p>Webmention is used to inform a receiving endpoint that <em>text</em> at the source URL includes the target URL <em>string</em>.</p>
+
+                                    <p class="todo">Reuse whatever: https://github.com/w3c/web-annotation/issues/49#issuecomment-165258326</p>
+                                    <blockquote cite="https://github.com/w3c/web-annotation/issues/49#issuecomment-165258326">
+                                        <p>"simplest thing out there (just an 'FYI you were mentioned at this URI')" - So, that's nothing more than an HTTP POST with two parameters to a reserved endpoint somewhere. Are you suggesting that's spec or discussion worthy in this day and age?</p>
+
+                                        <p>Let me put it this way, if simplicity was the only concern here, we only need to make a POST to an URL (e.g., an article which accepts notifications, i.e., POSTs) with a single parameter; source HTTP URI. That doesn't even introduce the extra step to discover the endpoint. If simplicity is truly what you are really after, there you have it.</p>
+
+                                        <p>Webmention neither gives you a simple nor a precise mechanism to make notifications. It isn't precise simply because it offloads the work to the implementer to figure out which claim(s) there may be and or actually intended for the receiver. It doesn't include the property parameter. That causes unnecessary imperative programming with non-interoperable internal logic per implementation. It would be better handled by taking the declarative approach when submitting notifications, i.e., tell exactly the source, property, target to the receiver about the claim so that it can also verify it easily. That "triple" so to speak, is part of the core data, and not some "extension" (which is a completely flawed understanding of data). I've discussed this in sufficient detail elsewhere. Please read http://csarven.ca/webmention or review Webmention issue 1 again.</p>
+
+                                        <p>In the case of Web Annotation, something like this (among many other possibilities) is what we'd like: "An annotation of a specific kind/role/motivation.. was made to this media fragment by someone on this date, with this license.. ". Webmention doesn't give you that by any stretch of the imagination.</p>
+                                    </blockquote>
+
+                                    <p class="todo">Reuse whatever: https://github.com/w3c/web-annotation/issues/49#issuecomment-165258326</p>
+
+                                    <blockquote cite="http://csarven.ca/webmention">
+                                        <p>As of <time datetime="2015-07-27" property="schema:dateModified" content="2015-07-27T00:00:00Z" datatype="xsd:dateTime">2015-07-27</time>, this <em>Webmention</em> endpoint offers a way to be more flexibile and precise about the claims than the current webmention design. The approach taken at this endpoint is intended to be a superset on how to deal with mentions i.e., making the receiver aware of a hyperlink with a relation which may be of interest.</p>
+
+                                        <p id="source-parameter">Webmention works essentially in two steps: 1) a claim is made 2) the said claim is verified, and possibly displayed. Thus, the source URL is the most essential component, regardless of whether the information for the <code>property</code> or <code>target</code> is provided. At the end of the day, the receiver makes all of the decisions on if and how to deal with the claim - in which, there is no formal specification that is globally accepted nor forced. Naturally this is a good thing. The information that is provided in the <code>POST</code> is just that, a claim. It may or may not be of interest to the receiver, and the receiver makes no promise to do anything with it. Making decisions e.g., optimization, trust, driven from the claim would be premature. Hence, decision making around optimization and trust, for instance, are best left outside of the original claim. The ability to receive only the source URL is the simplest design.</p>
+
+                                        <p>We are now free to build rest of the blocks by optionally accepting the <code>property</code> and <code>target</code> parameters:</p>
+
+                                        <p id="property-parameter">The <code>property</code> parameter indicates the type of relation between the source and the target (which is found at the source URL). Its value may be a <em>term</em> e.g., <code>u-in-reply-to</code>, a <em>IRI</em> e.g., <code>http://rdfs.org/sioc/ns#reply_of</code>, or a <em>prefixed name</em> e.g., <code>sioc:reply_of</code>. The <code>property</code> information allows us to make precise claims, i.e., mentions, and consequently 1) it gives an opportunity for the receiver to decide whether to even make a single <code>GET</code> on the source URL, 2) better narrowing down or filtering of the claim.</p>
+
+                                        <p id="target-parameter">In a similar way to the <code>property</code> information, having the <code>target</code> allows us to further narrow down on the claim i.e., we can check if we want to deal with a claim made to that particular target URL, regardless of the <code>property</code> information being present or not.</p>
+
+                                        <p>Table of possible <code>POST</code>s with interpretations:</p>
+
+                                        <table id="webmention-posts">
+                                            <caption>Webmention <code>POST</code>s using <code>source</code>, <code>property</code>, and <code>target</code></caption>
+                                            <thead>
+                                                <tr><th><code>source</code></th><th><code>property</code></th><th><code>target</code></th><th>Possible process</th></tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr><td></td><td></td><td></td><td>Show error</td></tr>
+                                                <tr><td></td><td>✔</td><td></td><td>Show error</td></tr>
+                                                <tr><td></td><td></td><td>✔</td><td>Show error</td></tr>
+                                                <tr><td></td><td>✔</td><td>✔</td><td>Show error</td></tr>
+                                                <tr><td>✔</td><td></td><td></td><td>Verify interest with that <code>source</code></td></tr>
+                                                <tr><td>✔</td><td>✔</td><td></td><td>Verify interest with that <code>source</code> and <code>property</code></td></tr>
+                                                <tr><td>✔</td><td></td><td>✔</td><td>Verify interest with that <code>source</code> and <code>target</code></td></tr>
+                                                <tr><td>✔</td><td>✔</td><td>✔</td><td>Verify <code>source</code>, <code>property</code>, <code>target</code></td></tr>
+                                            </tbody>
+                                            <tfoot>
+                                                <tr><td colspan="4">✔ indicates that the parameter is submitted.</td></tr>
+                                            </tfoot>
+                                        </table>
+
+                                        <p id="what-to-practice">What might be a good practice here? In my opinion, the sender should aim to be precise about the claim by providing all three components: source, property, and target, to the receiver. What do you think?</p>
+                                    </blockquote>
+
+
+                                    <p class="todo">Reuse whatever: https://github.com/w3c/web-annotation/issues/49#issuecomment-165379117</p>
+
+                                    <blockquote cite="http://csarven.ca/webmention">
+                                        <p>Sending more data allows at least two use cases which are prevented by the Webmention approach right from the start, but possible with Solid/ripples:</p>
+                                        <ul>
+                                            <li>duplicate any information if you want/need to (e.g., for a quicker verification process)</li>
+                                            <li>complimentary information which do not exist at source e.g., the agent that's submitting the notification is not necessarily the creator of the source, as well as including provenance level information, or even types of UIs/typographical (e.g., annotations for marginalia) suggestions in which the source may be suitable for.</li>
+                                        </ul>
+                                    </blockquote>
+                                </div>
+                            </section>
+
+                            <section id="activitypub" rel="schema:hasPart" resource="#activitypub">
+                                <h3 property="schema:name">ActivityPub</h3>
+                                <div datatype="rdf:HTML" property="schema:description">
+                                    <p class="todo">https://www.w3.org/TR/activitypub/</p>
+                                </div>
+                            </section>
                         </div>
                     </section>
 
