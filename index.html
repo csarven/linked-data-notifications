@@ -77,8 +77,7 @@
                         <div>
                             <ul rel="schema:about">
                                 <li><a href="https://en.wikipedia.org/wiki/Decentralization" resource="http://dbpedia.org/resource/Decentralization">Decentralization</a></li>
-                                <li><a href="https://en.wikipedia.org/wiki/Linked_Data" resource="http://dbpedia.org/resource/Linked_Data">Linked Data</a></li>
-                                <li><a href="https://en.wikipedia.org/wiki/Social_machine" resource="http://dbpedia.org/resource/Social_machine">Social machine</a></li>
+                                <li><a href="https://en.wikipedia.org/wiki/Semantic_Web" resource="http://dbpedia.org/resource/Semantic_Web">Semantic Web</a></li>
                                 <li><a href="https://en.wikipedia.org/wiki/Social_web" resource="http://dbpedia.org/resource/Social_web">Social web</a></li>
                             </ul>
                         </div>
@@ -94,7 +93,7 @@
                             <p>What's the benefit of the "semantic" approach?</p>
                         </div>
                     </section>
-
+<!--
                     <section id="methodology" inlist="" rel="schema:hasPart" resource="#methodology">
                         <h2 property="schema:name">Methodology</h2>
                         <div datatype="rdf:HTML" property="schema:description">
@@ -115,7 +114,7 @@
                             </section>
                         </div>
                     </section>
-
+ -->
                     <section id="related-work" inlist="" rel="schema:hasPart" resource="#related-work">
                         <h2 property="schema:name">Related Work</h2>
                         <div datatype="rdf:HTML" property="schema:description">
@@ -168,70 +167,55 @@
                             <section id="webmention" rel="schema:hasPart" resource="#webmention">
                                 <h3 property="schema:name">Webmention</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
-                                    <p class="todo">Discuss: Information loss</p>
                                     <p class="todo">Historially, Webmention is based on Pingback.</p>
 
-                                    <p>The Webmention protocol is used to notify that content at the source URL includes the target URL <em>string</em>. There are no constraints placed on the syntax of the source content, however this may effect the verification step.</p>
+                                    <p>The Webmention protocol is used to notify that content at the source URL includes the target URL <em>string</em> to the receiver of a Webmention endpoint.</p>
 
-                                    <p class="todo">Reuse whatever: https://github.com/w3c/web-annotation/issues/49#issuecomment-165258326</p>
-                                    <blockquote cite="https://github.com/w3c/web-annotation/issues/49#issuecomment-165258326">
-                                        <p>"simplest thing out there (just an 'FYI you were mentioned at this URI')" - So, that's nothing more than an HTTP POST with two parameters to a reserved endpoint somewhere. Are you suggesting that's spec or discussion worthy in this day and age?</p>
-
-                                        <p>Let me put it this way, if simplicity was the only concern here, we only need to make a POST to an URL (e.g., an article which accepts notifications, i.e., POSTs) with a single parameter; source HTTP URI. That doesn't even introduce the extra step to discover the endpoint. If simplicity is truly what you are really after, there you have it.</p>
-
-                                        <p>Webmention neither gives you a simple nor a precise mechanism to make notifications. It isn't precise simply because it offloads the work to the implementer to figure out which claim(s) there may be and or actually intended for the receiver. It doesn't include the property parameter. That causes unnecessary imperative programming with non-interoperable internal logic per implementation. It would be better handled by taking the declarative approach when submitting notifications, i.e., tell exactly the source, property, target to the receiver about the claim so that it can also verify it easily. That "triple" so to speak, is part of the core data, and not some "extension" (which is a completely flawed understanding of data). I've discussed this in sufficient detail elsewhere. Please read http://csarven.ca/webmention or review Webmention issue 1 again.</p>
-
-                                        <p>In the case of Web Annotation, something like this (among many other possibilities) is what we'd like: "An annotation of a specific kind/role/motivation.. was made to this media fragment by someone on this date, with this license.. ". Webmention doesn't give you that by any stretch of the imagination.</p>
+                                    <blockquote cite="https://www.w3.org/TR/webmention/#sender-notifies-receiver">
+                                        <p>The sender <em class="rfc2119">MUST</em> post x-www-form-urlencoded [<cite>HTML5</cite>] <code>source</code> and <code>target</code> parameters to the Webmention endpoint, where <code>source</code> is the URL of the sender's page containing a link, and <code>target</code> is the URL of the page being linked to.</p>
                                     </blockquote>
 
-                                    <p class="todo">Reuse whatever: https://github.com/w3c/web-annotation/issues/49#issuecomment-165258326</p>
+                                    <p id="webmention-urls-as-strings">There are no syntactical restrictions set on the content of the source URL (e.g., it could be plain text, HTML, JSON, or a binary file), therefore it is effectively foremost about the source URL containing the target URL as a string. The use of the term <em>link</em> in the Webmention specification <span title="facepalm">diverges</span> from the Web Architecture's definition typically used for structured syntaxes with semantic descriptions behind them. For instance, <em>links</em> in HTML can be represented as hyperlinks using the <code>a</code> element within the <code>href</code> attribute (where the purpose and the semantics of the attribute is defined in the HTML specification), or IRIs in any one of the RDF syntaxes (e.g., Turtle, HTML+RDFa, JSON-LD). However, JSON would not be as there is no globally agreed definition of any key.</p>
 
-                                    <blockquote cite="http://csarven.ca/webmention">
-                                        <p>As of <time datetime="2015-07-27" property="schema:dateModified" content="2015-07-27T00:00:00Z" datatype="xsd:dateTime">2015-07-27</time>, this <em>Webmention</em> endpoint offers a way to be more flexibile and precise about the claims than the current webmention design. The approach taken at this endpoint is intended to be a superset on how to deal with mentions i.e., making the receiver aware of a hyperlink with a relation which may be of interest.</p>
+                                    <p id="webmention-workflow">A Webmention workflow is as follows: 1) a statement (e.g., Alice's blogpost is in-reply-to Bob's blogpost) is made at a source URL, 2) Bob's Webmention endpoint is discovered (i.e., in order to receive mentions about their post), 3) Webmention is received and verified.</p>
 
-                                        <p id="source-parameter">Webmention works essentially in two steps: 1) a claim is made 2) the said claim is verified, and possibly displayed. Thus, the source URL is the most essential component, regardless of whether the information for the <code>property</code> or <code>target</code> is provided. At the end of the day, the receiver makes all of the decisions on if and how to deal with the claim - in which, there is no formal specification that is globally accepted nor forced. Naturally this is a good thing. The information that is provided in the <code>POST</code> is just that, a claim. It may or may not be of interest to the receiver, and the receiver makes no promise to do anything with it. Making decisions e.g., optimization, trust, driven from the claim would be premature. Hence, decision making around optimization and trust, for instance, are best left outside of the original claim. The ability to receive only the source URL is the simplest design.</p>
+                                    <p id="webmention-scope-and-approach"><strong>Scope and Approach</strong>: The source URL is the most essential component since it identifies the origin of the claim and where to locate it. Since the information that is provided in the <code>POST</code> is only a claim, it may or may not be of interest to the receiver, and the receiver makes no promise to do anything with it - there is no formal requirement that is globally accepted nor forced for the verification step, only a should.</p>
 
-                                        <p>We are now free to build rest of the blocks by optionally accepting the <code>property</code> and <code>target</code> parameters:</p>
+                                    <p>The target URL is used for the purpose optimisation (making it easier for the recipient to find the target URL string at the source URL.) The target URL is also used to allow third-party centralised services to help recipients without a Webmention endpoint - effectively to encourage practices that's contrary to <em>self-dogfooding</em>.</p>
 
-                                        <p id="property-parameter">The <code>property</code> parameter indicates the type of relation between the source and the target (which is found at the source URL). Its value may be a <em>term</em> e.g., <code>u-in-reply-to</code>, a <em>IRI</em> e.g., <code>http://rdfs.org/sioc/ns#reply_of</code>, or a <em>prefixed name</em> e.g., <code>sioc:reply_of</code>. The <code>property</code> information allows us to make precise claims, i.e., mentions, and consequently 1) it gives an opportunity for the receiver to decide whether to even make a single <code>GET</code> on the source URL, 2) better narrowing down or filtering of the claim.</p>
+                                    <p id="webmention-analysis"><strong>Analysis</strong>: The ability to receive <em>only</em> the source URL is the simplest design. This can be achieved by permitting <code>POST</code>s on the URLs which can receive a Webmention, thus eliminating 1) the extra step to discover an endpoint, as well as 2) submitting the <code>target</code> parameter in the <code>POST</code> request.</p>
 
-                                        <p id="target-parameter">In a similar way to the <code>property</code> information, having the <code>target</code> allows us to further narrow down on the claim i.e., we can check if we want to deal with a claim made to that particular target URL, regardless of the <code>property</code> information being present or not.</p>
+                                    <p>Webmention is adequate for plain-text and binary sources because besides string-matching they do not impose deterministic data discovery. On the other hand, for structured languages, it has inherent limitations given that:</p>
 
-                                        <p>Table of possible <code>POST</code>s with interpretations:</p>
+                                    <ul>
+                                        <li>While the creator of the content may indicate (in any convention) the type of relation between the source and target URLs at the source, it is not transmitted to the receiver endpoint. Hence, the receiver implementation <em>interprets</em> the relation (or lack of) between the source and the target. The broadest relation could be interpreted as <q>mention</q> (e.g., a hyperlink). Alternatively, the receiver looks for patterns it recognizes to consume - moving the focus from declarative to imperative programming with non-interoperable internal logic per implementation.</li>
 
-                                        <table id="webmention-posts">
-                                            <caption>Webmention <code>POST</code>s using <code>source</code>, <code>property</code>, and <code>target</code></caption>
-                                            <thead>
-                                                <tr><th><code>source</code></th><th><code>property</code></th><th><code>target</code></th><th>Possible process</th></tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr><td></td><td></td><td></td><td>Show error</td></tr>
-                                                <tr><td></td><td>✔</td><td></td><td>Show error</td></tr>
-                                                <tr><td></td><td></td><td>✔</td><td>Show error</td></tr>
-                                                <tr><td></td><td>✔</td><td>✔</td><td>Show error</td></tr>
-                                                <tr><td>✔</td><td></td><td></td><td>Verify interest with that <code>source</code></td></tr>
-                                                <tr><td>✔</td><td>✔</td><td></td><td>Verify interest with that <code>source</code> and <code>property</code></td></tr>
-                                                <tr><td>✔</td><td></td><td>✔</td><td>Verify interest with that <code>source</code> and <code>target</code></td></tr>
-                                                <tr><td>✔</td><td>✔</td><td>✔</td><td>Verify <code>source</code>, <code>property</code>, <code>target</code></td></tr>
-                                            </tbody>
-                                            <tfoot>
-                                                <tr><td colspan="4">✔ indicates that the parameter is submitted.</td></tr>
-                                            </tfoot>
-                                        </table>
+                                        <li>In the event of the source URL containing multiple mentions of the target URL, the Webmention endpoint is not informed about the particular statement but the document as a whole. Therefore, the receiver is required to process the whole document and base its verification on the existence of one of those mentions (e.g., hyperlink). This sets forth a loose verification step.</li>
+                                    </ul>
 
-                                        <p id="what-to-practice">What might be a good practice here? In my opinion, the sender should aim to be precise about the claim by providing all three components: source, property, and target, to the receiver. What do you think?</p>
-                                    </blockquote>
+                                    <p>There exists a minimal solution to the issues above for structured languages: <a href="http://csarven.ca/webmention">Webmention</a> proposes the <code>property</code> parameter to indicate the type of relation between the source and the target (which is found at the source URL). Its value may be a <em>term</em> e.g., <code>u-in-reply-to</code>, a <em>IRI</em> e.g., <code>http://rdfs.org/sioc/ns#reply_of</code>, or a <em>prefixed name</em> e.g., <code>sioc:reply_of</code>. The <code>property</code> information allows us to make precise claims, i.e., mentions, and consequently 1) it gives an opportunity for the receiver to decide whether to make a single <code>GET</code> on the source URL, 2) better narrowing down or filtering of the claim.</p>
 
+                                    <p>Table of possible <code>POST</code>s with interpretations:</p>
 
-                                    <p class="todo">Reuse whatever: https://github.com/w3c/web-annotation/issues/49#issuecomment-165379117</p>
-
-                                    <blockquote cite="http://csarven.ca/webmention">
-                                        <p>Sending more data allows at least two use cases which are prevented by the Webmention approach right from the start, but possible with Solid/ripples:</p>
-                                        <ul>
-                                            <li>duplicate any information if you want/need to (e.g., for a quicker verification process)</li>
-                                            <li>complimentary information which do not exist at source e.g., the agent that's submitting the notification is not necessarily the creator of the source, as well as including provenance level information, or even types of UIs/typographical (e.g., annotations for marginalia) suggestions in which the source may be suitable for.</li>
-                                        </ul>
-                                    </blockquote>
+                                    <table id="webmention-posts">
+                                        <caption>Webmention <code>POST</code>s using <code>source</code>, <code>property</code>, and <code>target</code></caption>
+                                        <thead>
+                                            <tr><th><code>source</code></th><th><code>property</code></th><th><code>target</code></th><th>Possible process</th></tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr><td></td><td></td><td></td><td>Show error</td></tr>
+                                            <tr><td></td><td>✔</td><td></td><td>Show error</td></tr>
+                                            <tr><td></td><td></td><td>✔</td><td>Show error</td></tr>
+                                            <tr><td></td><td>✔</td><td>✔</td><td>Show error</td></tr>
+                                            <tr><td>✔</td><td></td><td></td><td>Verify interest with that <code>source</code></td></tr>
+                                            <tr><td>✔</td><td>✔</td><td></td><td>Verify interest with that <code>source</code> and <code>property</code></td></tr>
+                                            <tr><td>✔</td><td></td><td>✔</td><td>Verify interest with that <code>source</code> and <code>target</code></td></tr>
+                                            <tr><td>✔</td><td>✔</td><td>✔</td><td>Verify <code>source</code>, <code>property</code>, <code>target</code></td></tr>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr><td colspan="4">✔ indicates that the parameter is submitted.</td></tr>
+                                        </tfoot>
+                                    </table>
                                 </div>
                             </section>
 
