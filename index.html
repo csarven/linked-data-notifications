@@ -228,6 +228,23 @@
                         </div>
                     </section>
 
+
+                    <section id="use-cases" inlist="" rel="schema:hasPart" resource="#use-cases">
+                        <h2 property="schema:name">Use cases</h2>
+                        <div datatype="rdf:HTML" property="schema:description">
+                            <p><strong>Notification discovery and reuse</strong>: applications can discover, refer to, retrieve, and display individual notifications.</p>
+
+                            <p><strong>Arbitrary data</strong>: Notifications containing any amount of information using application specific vocabularies.</p>
+
+                            <p><strong>Status updates</strong>: emergency broadcasts, weather forecasts, fitness states .. This is in contrast to notifications (or pings, activities, mentions) that are generally about a relation between A and B.</p>
+
+                            <p><strong>Authentication</strong>:</p>
+
+                            <p><strong>Notification integrity</strong>: Application discovers the requirements and constraints - the "shape" it should conform - for the notifications of the inbox.</p>
+                        </div>
+                    </section>
+
+
                     <section id="solid-inbox-and-notifications" inlist="" rel="schema:hasPart" resource="#solid-inbox-and-notifications">
                         <h2 property="schema:name">Solid inboxes and notifications</h2>
                         <div datatype="rdf:HTML" property="schema:description">
@@ -336,7 +353,7 @@
 <code>&lt;https://example.net/inbox/> solid:notification &lt;https://example.net/inbox/abc123> .</code>
 <code>&lt;https://example.net/inbox/abc123> a solid:Notification .</code>
                                         </pre>
-                                        <figcaption property="schema:name">Discovery of inbox and nofifications.</figcaption>
+                                        <figcaption property="schema:name">Discovery of inbox and notifications.</figcaption>
                                     </figure>
                                 </div>
                             </section>
@@ -466,6 +483,7 @@
                         </div>
                     </section>
 
+<!--
                     <section id="experiment" inlist="" rel="schema:hasPart" resource="#experiment">
                         <h2 property="schema:name">Experiment</h2>
                         <div datatype="rdf:HTML" property="schema:description" resource="#experiment" typeof="sio:SIO_000994 deo:Materials">
@@ -473,6 +491,7 @@
                         </div>
                     </section>
 
+ -->
                     <section id="results" inlist="" rel="schema:hasPart" resource="#results">
                         <h2 property="schema:name">Results</h2>
                         <div datatype="rdf:HTML" property="schema:description" resource="#results" typeof="deo:Results">
@@ -488,7 +507,6 @@
                             <p>The benefits are.. Prove?</p>
                             <p>Show some evidence that's reasonable.. to persuade the reader to reuse this work for further research.</p>
                             <p about="" id="future-work" rel="schema:hasPart" resource="#future-work"><span datatype="rdf:HTML" typeof="deo:FutureWork" property="schema:description" resource="#future-work">Future work..</span></p>
-
                         </div>
                     </section>
 
