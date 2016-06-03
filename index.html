@@ -236,7 +236,7 @@
 
                             <p><strong>Arbitrary data</strong>: Notifications containing any amount of information using application specific vocabularies.</p>
 
-                            <p><strong>Status updates</strong>: emergency broadcasts, weather forecasts, fitness states .. This is in contrast to notifications (or pings, activities, mentions) that are generally about a relation between A and B.</p>
+                            <p><strong>Status updates</strong>: emergency broadcasts, weather forecasts, fitness states, high score, user updates profile name .. This is in contrast to notifications (or pings, activities, mentions) that is a general interaction between A and B (which can be profiles, documents..)</p>
 
                             <p><strong>Authentication</strong>:</p>
 
@@ -267,6 +267,13 @@
                                 <h3 property="schema:name">Resource Management Considerations</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
                                     <p>This is potentially about dealing with inbox volume, paging (https://www.w3.org/TR/ldp/), filtering.</p>
+                                </div>
+                            </section>
+
+                            <section id="involved-paries-considerations" inlist="" rel="schema:hasPart" resource="#involved-paries-considerations">
+                                <h3 property="schema:name">Involved Parties Considerations</h3>
+                                <div datatype="rdf:HTML" property="schema:description">
+                                    <p>Notifications could be sent client-to-server, server-to-server. We should be clear about the intentions in our proposal. Default being a client (user-application?) sends a notification to a server.</p>
                                 </div>
                             </section>
                         </div>
@@ -493,7 +500,7 @@
 <code>&lt;> a solid:Notification , sioc:Post ;</code>
 <code>  dcterms:created "2015-12-23T16:44:21Z"^^xsd:#dateTime ;</code>
 <code>  dcterms:title "New blog post" ;</code>
-<code>  sioc:content "Lorem ipsum dolor sit amet, consectetur adipiscing elit..." ;</code>
+<code>  sioc:content "Lorem ipsum dolor sit amet.." ;</code>
 <code>  sioac:has_creator &lt;#author> .</code>
 
 <code>&lt;#author> a sioc:UserAccount ;</code>
@@ -551,9 +558,6 @@
                     <section id="references">
                         <h2>References</h2>
                         <div>
-                            <ol>
-                                <li id="ref-1"></li>
-                            </ol>
                         </div>
                     </section>
                 </div>
