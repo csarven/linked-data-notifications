@@ -249,25 +249,48 @@
                         <div datatype="rdf:HTML" property="schema:description">
                             <p>...</p>
 
+                            <section id="architectural-considerations" inlist="" rel="schema:hasPart" resource="#architectural-considerations">
+                                <h3 property="schema:name">Architectural Considerations</h3>
+                                <div datatype="rdf:HTML" property="schema:description">
+                                    <p>The Representational State Transfer (REST) is an architectural style that describes the abstract model of the Web architecture. <q cite="https:/dx.doi.org/10.1145/337180.337228">The World Wide Web has succeeded in large part because its software architecture has been designed to meet the needs of an Internet-scale distributed hypermedia system.</q> [<span class="ref">Fielding, R. T.; Taylor, R. N. (2000). "Principled design of the modern Web architecture": 407–416. doi:<a href="https:/dx.doi.org/10.1145/337180.337228">10.1145/337180.337228</a></span>]</p>
+                                </div>
+                            </section>
+
                             <section id="security-considerations" inlist="" rel="schema:hasPart" resource="#security-considerations">
                                 <h3 property="schema:name">Security Considerations</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
                                     <p>Verifying the Sender</p>
-                                    <p>..</p>
+                                    <p>Public endpoints.</p>
                                 </div>
                             </section>
 
                             <section id="authentication-considerations" inlist="" rel="schema:hasPart" resource="#security-considerations">
                                 <h3 property="schema:name">Authentication Considerations</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
-                                    <p>..</p>
+                                    <p>What's required? What's possible? Where does WebID+TLS fit in? What about HTTP Basic Auth? OAuth? Alternatives? Describe what's required and what's optional.</p>
+                                </div>
+                            </section>
+
+                            <section id="payload-considerations" inlist="" rel="schema:hasPart" resource="#payload-considerations">
+                                <h3 property="schema:name">Payload Considerations</h3>
+                                <div datatype="rdf:HTML" property="schema:description">
+                                    <p>What is a message/notification? What can it contain? Are there constraints/shapes in needs to fulfil? How does it look (vocabularies)?</p>
+                                </div>
+                            </section>
+
+                            <section id="integrity-considerations" inlist="" rel="schema:hasPart" resource="#integrity-considerations">
+                                <h3 property="schema:name">Integrity Considerations</h3>
+                                <div datatype="rdf:HTML" property="schema:description">
+                                    <p>How to know if a notification is kept intact?</p>
+                                    <p>Canonical URIs?</p>
+                                    <p>Archived?</p>
                                 </div>
                             </section>
 
                             <section id="resource-management-considerations" inlist="" rel="schema:hasPart" resource="#security-considerations">
                                 <h3 property="schema:name">Resource Management Considerations</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
-                                    <p>This is potentially about dealing with inbox volume, paging (https://www.w3.org/TR/ldp/), filtering.</p>
+                                    <p>This is about volume, paging (https://www.w3.org/TR/ldp/), filtering, moving things around?</p>
                                 </div>
                             </section>
 
