@@ -126,10 +126,8 @@
                                 <thead>
                                     <tr>
                                         <th></th>
-                                        <th>Payload type</th>
-                                        <th>HTTP methods</th>
-                                        <th>Payload content</th>
-                                        <th>Payload vocabulary</th>
+                                        <th>Delivery method</th>
+                                        <th>Request payload</th>
                                         <th>Claim verification</th>
                                         <th>Authenticated requests</th>
                                     </tr>
@@ -137,17 +135,18 @@
                                 <tfoot>
                                     <tr>
                                         <td colspan="7">
-                                            <p>The values are based on core specs (excluding extensions).</p>
-                                            <p>* Any RDF syntax</p>
-                                            <p>GET<sup>1</sup> is string matching to verify the claims existence, whereas GET<sup>2</sup> is object matching after dereferencing.</p>
+                                            <p>Information based on core specifications.</p>
+                                            <p>Semantic Pingback has an optional content-name: comment.</p>
+                                            <p>After dereferencing; GET<sup>1</sup>, string or object matching, GET<sup>2</sup>, matches the object, to verify a claim's existence.</p>
+                                            <p><sup>*</sup> Any RDF syntax</p>
                                         </td>
                                     </tr>
                                 </tfoot>
                                 <tbody>
-                                    <tr><th>Semantic Pingback</th><td>RDF*</td><td><code>POST</code></td><td>Unconstrained</td><td>Any</td><td><code>GET</code><sup>2</sup> or Auth</td><td>Yes</td></tr>
-                                    <tr><th>Webmention</th><td><code>x-www-form-urlencoded</code></td><td><code>POST</code></td><td>Source, target URLs</td><td>Webmention</td><td><code>GET</code><sup>1</sup></td><td>No</td></tr>
-                                    <tr><th>ActivityPub</th><td><code>JSON(-LD)</code></td><td><code>POST</code></td><td>Complete object</td><td>ActivityStreams 2.0</td><td><code>GET</code><sup>2</sup> or Auth</td><td>Yes</td></tr>
-                                    <tr><th>Solid</th><td>RDF*</td><td><code>POST</code>, <code>PUT</code>, <code>PATCH</code></td><td>Unconstrained</td><td>Any</td><td><code>GET</code><sup>2</sup> or Auth</td><td>Yes</td></tr>
+                                    <tr><th>Semantic Pingback</th><td>POST urlencoded</td><td>source/target content-names</td><td><code>GET</code><sup>2</sup></td><td>Yes</td></tr>
+                                    <tr><th>Webmention</th><td>POST urlencoded</td><td>source/target content-names</td><td><code>GET</code><sup>1</sup></td></tr>
+                                    <tr><th>ActivityPub</th></td><td><code>POST</code></td><td><code>JSON(-LD)</code>, Activity Streams 2.0, complete object</td><td><code>GET</code><sup>2</sup></td><td>Yes</td></tr>
+                                    <tr><th>Solid</th><td><code>POST</code>, <code>PUT</code>, <code>PATCH</code></td><td>RDF<sup>*</sup>, unconstrained vocabulary and object</td><td><code>GET</code><sup>2</sup></td><td>Yes</td></tr>
                                 </tbody>
                             </table>
 
@@ -156,6 +155,7 @@
                                 <div datatype="rdf:HTML" property="schema:description">
                                     <p class="todo">http://www.w3.org/wiki/Pingback#Semantic_Pingback</p>
                                     <p class="todo">https://aksw.github.io/SemanticPingback/</p>
+                                    <p class="todo">http://www.informatik.uni-leipzig.de/~auer/publication/SemanticPingback.pdf</p>
 
                                     <p>Semantic Pingback extends the Pingback method.</p>
                                     <blockquote cite="https://aksw.github.io/SemanticPingback/">
