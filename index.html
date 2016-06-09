@@ -68,7 +68,7 @@
                     <section id="abstract">
                         <h2>Abstract</h2>
                         <div datatype="rdf:HTML" property="schema:abstract">
-                          <p>...</p>
+                          <p>This article describes a protocol to deliver and use notifications on the Web.</p>
                         </div>
                     </section>
 
@@ -90,36 +90,17 @@
                             <p>What's the edge?</p>
                             <p>We have a problem and it requires a solution..</p>
                             <p>How is this better/different?</p>
-                            <p>What's the benefit of the "semantic" approach?</p>
+                            <p>What do we mean by "decentralised" and "semantic"? Why bother doing this?</p>
+                            <p>..</p>
                         </div>
                     </section>
-<!--
-                    <section id="methodology" inlist="" rel="schema:hasPart" resource="#methodology">
-                        <h2 property="schema:name">Methodology</h2>
-                        <div datatype="rdf:HTML" property="schema:description">
-                            <p>...</p>
 
-                            <section id="research-problem" inlist="" rel="schema:hasPart" resource="#research-problem">
-                                <h2 property="schema:name">Research Problem</h2>
-                                <div datatype="rdf:HTML" property="schema:description">
-                                    <p>...</p>
-                                </div>
-                            </section>
-
-                            <section id="hypothesis" inlist="" rel="schema:hasPart" resource="#hypothesis">
-                                <h2 property="schema:name">Hypothesis</h2>
-                                <div datatype="rdf:HTML" property="schema:description">
-                                    <p>...</p>
-                                </div>
-                            </section>
-                        </div>
-                    </section>
- -->
                     <section id="related-work" inlist="" rel="schema:hasPart" resource="#related-work">
                         <h2 property="schema:name">Related Work</h2>
                         <div datatype="rdf:HTML" property="schema:description">
-                            <p>What's out here? Paragraph each.</p>
+                            <p>What's out here?</p>
                             <p>What's in their scope?</p>
+                            <p>Mention why only Semantic Pingback, Webmention, ActivityPub, and LDP Inbox, and maybe alternatives are covered in this article.</p>
 
                             <table id="comparison-of-notification-mechanisms">
                                 <caption>Comparison of notification mechanisms</caption>
@@ -143,8 +124,8 @@
                                     </tr>
                                 </tfoot>
                                 <tbody>
-                                    <tr><th>Semantic Pingback</th><td>POST urlencoded</td><td>source/target content-names</td><td><code>GET</code><sup>2</sup></td><td>Yes</td></tr>
-                                    <tr><th>Webmention</th><td>POST urlencoded</td><td>source/target content-names</td><td><code>GET</code><sup>1</sup></td></tr>
+                                    <tr><th>Semantic Pingback</th><td>POST urlencoded</td><td>source/target key-value pair</td><td><code>GET</code><sup>2</sup></td><td>Yes</td></tr>
+                                    <tr><th>Webmention</th><td>POST urlencoded</td><td>source/target key-value pair</td><td><code>GET</code><sup>1</sup></td></tr>
                                     <tr><th>ActivityPub</th></td><td><code>POST</code></td><td><code>JSON(-LD)</code>, Activity Streams 2.0, complete object</td><td><code>GET</code><sup>2</sup></td><td>Yes</td></tr>
                                     <tr><th>Solid</th><td><code>POST</code>, <code>PUT</code>, <code>PATCH</code></td><td>RDF<sup>*</sup>, unconstrained vocabulary and object</td><td><code>GET</code><sup>2</sup></td><td>Yes</td></tr>
                                 </tbody>
@@ -168,6 +149,7 @@
                                 <h3 property="schema:name">Webmention</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
                                     <p class="todo">Historically, Webmention is based on Pingback.</p>
+                                    <p class="todo">Perhaps have a paragraph on the similarities/differences between semantic pingback and webmention somewhere.</p>
 
                                     <p>The Webmention protocol is used to notify that content at the source URL includes the target URL <em>string</em> to the receiver of a Webmention endpoint.</p>
 
@@ -177,7 +159,7 @@
 
                                     <p id="webmention-urls-as-strings">There are no syntactical restrictions set on the content of the source URL (e.g., it can be plain-text, HTML, JSON, or a binary file), therefore it is effectively foremost about the source URL containing the target URL as a string. The use of the term <em>link</em> in the Webmention specification diverges from the Web Architecture's definition typically used for structured syntaxes with semantic descriptions behind them. For instance, <em>links</em> in HTML can be represented with the anchor element (<code>a</code>), or IRIs in any one of the RDF syntaxes (e.g., Turtle, HTML+RDFa, JSON-LD). However, JSON would not be as there is no globally agreed definition of any key.</p>
 
-                                    <p id="webmention-workflow">A Webmention workflow is as follows: 1) a statement (e.g., Alice's blogpost is in-reply-to Bob's blogpost) is made at a source URL, 2) Bob's Webmention endpoint is discovered (i.e., in order to receive mentions about their post), 3) Webmention is received and verified.</p>
+                                    <p id="webmention-workflow">A Webmention workflow is as follows: 1) Alice has a blogpost in-reply-to Bob's blogpost, 2) Carl's Webmention endpoint is discovered to deliver a mention, 3) a Webmention is sent to Bob's endpoint about Alice's article.</p>
 
                                     <p id="webmention-scope-and-approach"><strong>Scope and Approach</strong>: The source URL is the most essential component since it identifies the origin of the claim and where to locate it. Since the information that is provided in the <code>POST</code> is only a claim, it may or may not be of interest to the receiver, and the receiver makes no promise to do anything with it - there is no formal requirement that is globally accepted nor forced for the verification step, only a should.</p>
 
@@ -193,7 +175,7 @@
                                         <li>In the event of the source URL containing multiple mentions of the target URL, the Webmention endpoint is not informed about the particular statement but the document as a whole. Therefore, the receiver is required to process the whole document and base its verification on the existence of one of those mentions. This sets forth a loose verification step since there is no clear way to distinguish the mentions.</li>
                                     </ul>
 
-                                    <p>In order to accommodate these inherent shortcomings of the Webmention design, <a href="http://csarven.ca/webmention">Webmention</a> proposes the <code>property</code> parameter to indicate the type of relation between the source and the target (which is found at the source URL) in the case of structured languages in e.g., HTML(+RDFa). Its value may be a <em>term</em> e.g., <code>u-in-reply-to</code>, a <em>IRI</em> e.g., <code>http://rdfs.org/sioc/ns#reply_of</code>, or a <em>prefixed name</em> e.g., <code>sioc:reply_of</code>. The <code>property</code> information allows precise claims, and consequently 1) it gives an opportunity for the receiver to decide whether to make a single <code>GET</code> on the source URL, 2) better narrowing down or filtering of a particular claim. There are some limitations on the use of text terms however as outlined here [].</p>
+                                    <p>In order to accommodate these inherent shortcomings of the Webmention design, <a href="http://csarven.ca/webmention">Webmention</a> proposes the <code>property</code> parameter to indicate the type of relation between the source and the target (which is found at the source URL) in the case of structured languages in e.g., HTML(+RDFa). Its value may be a <em>term</em> e.g., <code>u-in-reply-to</code>, a <em>IRI</em> e.g., <code>http://rdfs.org/sioc/ns#reply_of</code>, or a <em>prefixed name</em> e.g., <code>sioc:reply_of</code>. The <code>property</code> information allows precise claims, and consequently 1) it gives an opportunity for the receiver to decide whether to make a single <code>GET</code> on the source URL, 2) better narrowing down or filtering of a particular claim.</p>
 
                                     <p>Table of possible <code>POST</code>s with interpretations outlines the level of requirement and possible ways ways to process the Webmention:</p>
 
@@ -236,7 +218,7 @@
 
                             <p><strong>Arbitrary data</strong>: Notifications containing any amount of information using application specific vocabularies.</p>
 
-                            <p><strong>Status updates</strong>: emergency broadcasts, weather forecasts, fitness states, high score, user updates profile name .. This is in contrast to notifications (or pings, activities, mentions) that is a general interaction between A and B (which can be profiles, documents..)</p>
+                            <p><strong>Status updates</strong>: emergency broadcasts, weather forecasts, fitness states/updates, scores, user updates profile name .. This is in contrast to notifications (or pings, activities, mentions) that is a general interaction between A and B (which can be profiles, documents..)</p>
 
                             <p><strong>Authentication</strong>:</p>
 
@@ -281,9 +263,9 @@
                             <section id="integrity-considerations" inlist="" rel="schema:hasPart" resource="#integrity-considerations">
                                 <h3 property="schema:name">Integrity Considerations</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
-                                    <p>How to know if a notification is kept intact?</p>
+                                    <p>Persistent?</p>
+                                    <p>Permanent/Archived?</p>
                                     <p>Canonical URIs?</p>
-                                    <p>Archived?</p>
                                 </div>
                             </section>
 
@@ -291,6 +273,7 @@
                                 <h3 property="schema:name">Resource Management Considerations</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
                                     <p>This is about volume, paging (https://www.w3.org/TR/ldp/), filtering, moving things around?</p>
+                                    <p>Update and Delete operations on sent notifications</p>
                                 </div>
                             </section>
 
