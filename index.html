@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta charset="utf-8" />
         <title>Decentralised Notifications</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="stylesheet alternate" href="https://dokie.li/media/css/basic.css" media="all" title="Basic" />
-        <link rel="stylesheet" href="https://dokie.li/media/css/lncs.css" media="all" title="LNCS" />
-        <link rel="stylesheet alternate" href="https://dokie.li/media/css/acm.css" media="all" title="ACM" />
-        <link rel="stylesheet" href="https://dokie.li/media/css/do.css" media="all" />
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" media="all" />
-        <link rel="stylesheet" href="https://dokie.li/media/css/editor.css" media="all" />
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
+        <link href="https://dokie.li/media/css/basic.css" media="all" rel="stylesheet alternate" title="Basic" />
+        <link href="https://dokie.li/media/css/lncs.css" media="all" rel="stylesheet" title="LNCS" />
+        <link href="https://dokie.li/media/css/acm.css" media="all" rel="stylesheet alternate" title="ACM" />
+        <link href="https://dokie.li/media/css/do.css" media="all" rel="stylesheet" />
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" media="all" rel="stylesheet" />
+        <link href="https://dokie.li/media/css/editor.css" media="all" rel="stylesheet" />
         <script src="https://dokie.li/scripts/simplerdf.js"></script>
         <script src="https://dokie.li/scripts/medium-editor.min.js"></script>
         <script src="https://dokie.li/scripts/medium-editor-tables.min.js"></script>
@@ -90,7 +90,7 @@
                             <p>What's the edge?</p>
                             <p>We have a problem and it requires a solution..</p>
                             <p>How is this better/different?</p>
-                            <p>What do we mean by "decentralised" and "semantic"? Why bother doing this?</p>
+                            <p>Why bother doing this?</p>
                             <p>..</p>
                         </div>
                     </section>
@@ -126,7 +126,7 @@
                                 <tbody>
                                     <tr><th>Semantic Pingback</th><td>POST urlencoded</td><td>source/target key-value pair</td><td><code>GET</code><sup>2</sup></td><td>Yes</td></tr>
                                     <tr><th>Webmention</th><td>POST urlencoded</td><td>source/target key-value pair</td><td><code>GET</code><sup>1</sup></td></tr>
-                                    <tr><th>ActivityPub</th></td><td><code>POST</code></td><td><code>JSON(-LD)</code>, Activity Streams 2.0, complete object</td><td><code>GET</code><sup>2</sup></td><td>Yes</td></tr>
+                                    <tr><th>ActivityPub</th><td><code>POST</code></td><td><code>JSON(-LD)</code>, Activity Streams 2.0, complete object</td><td><code>GET</code><sup>2</sup></td><td>Yes</td></tr>
                                     <tr><th>Solid</th><td><code>POST</code>, <code>PUT</code>, <code>PATCH</code></td><td>RDF<sup>*</sup>, unconstrained vocabulary and object</td><td><code>GET</code><sup>2</sup></td><td>Yes</td></tr>
                                 </tbody>
                             </table>
@@ -154,25 +154,25 @@
                                     <p>The Webmention protocol is used to notify that content at the source URL includes the target URL <em>string</em> to the receiver of a Webmention endpoint.</p>
 
                                     <blockquote cite="https://www.w3.org/TR/webmention/#sender-notifies-receiver">
-                                        <p>The sender <em class="rfc2119">MUST</em> post x-www-form-urlencoded [<cite>HTML5</cite>] <code>source</code> and <code>target</code> parameters to the Webmention endpoint, where <code>source</code> is the URL of the sender's page containing a link, and <code>target</code> is the URL of the page being linked to.</p>
+                                        <p>The sender <em class="rfc2119">MUST</em> post <code>x-www-form-urlencoded</code> [<cite>HTML5</cite>] <code>source</code> and <code>target</code> parameters to the Webmention endpoint, where <code>source</code> is the URL of the sender's page containing a link, and <code>target</code> is the URL of the page being linked to.</p>
                                     </blockquote>
 
-                                    <p id="webmention-urls-as-strings">There are no syntactical restrictions set on the content of the source URL (e.g., it can be plain-text, HTML, JSON, or a binary file), therefore it is effectively foremost about the source URL containing the target URL as a string. The use of the term <em>link</em> in the Webmention specification diverges from the Web Architecture's definition typically used for structured syntaxes with semantic descriptions behind them. For instance, <em>links</em> in HTML can be represented with the anchor element (<code>a</code>), or IRIs in any one of the RDF syntaxes (e.g., Turtle, HTML+RDFa, JSON-LD). However, JSON would not be as there is no globally agreed definition of any key.</p>
+                                    <p id="webmention-urls-as-strings">There are no syntactical restrictions set on the content of the source URL (e.g., it can be plain-text, HTML, JSON, or a binary file), therefore it is effectively foremost about the source URL containing the target URL as a string. The use of the term <em>link</em> in the Webmention specification diverges from the Web Architecture's definition typically used for structured syntaxes with semantic descriptions behind them. For instance, <em>links</em> in HTML can be represented with the anchor element (<code>a</code>), or IRIs in any one of the RDF syntaxes, e.g., Turtle, HTML+RDFa, JSON-LD. However, JSON would not be as there is no globally agreed definition of any key.</p>
 
-                                    <p id="webmention-workflow">A Webmention workflow is as follows: 1) Alice has a blogpost in-reply-to Bob's blogpost, 2) Carl's Webmention endpoint is discovered to deliver a mention, 3) a Webmention is sent to Bob's endpoint about Alice's article.</p>
+                                    <p id="webmention-workflow">A Webmention workflow is as follows: 1) Alice has an article in-reply-to Bob's article, 2) Carl's Webmention endpoint is discovered to deliver a mention, 3) a Webmention is sent to Bob's endpoint indicating that Alice's <em>mentions</em> Bob's article.</p>
 
-                                    <p id="webmention-scope-and-approach"><strong>Scope and Approach</strong>: The source URL is the most essential component since it identifies the origin of the claim and where to locate it. Since the information that is provided in the <code>POST</code> is only a claim, it may or may not be of interest to the receiver, and the receiver makes no promise to do anything with it - there is no formal requirement that is globally accepted nor forced for the verification step, only a should.</p>
+                                    <p id="webmention-scope-and-approach"><strong>Scope and Approach</strong>: The source URL is the most essential component since it identifies the origin of the claim and where to locate it. Since the information that is provided in the <code>POST</code> is only a claim, it may or may not be of interest to the receiver, and the receiver makes no promise to do anything with it e.g., displaying.</p>
 
-                                    <p>The target URL is used for the purpose optimisation (making it easier for the recipient to find the target URL string at the source URL.) The target URL is also used to allow external (third-party) services to help site owners without a Webmention endpoint.</p>
+                                    <p>The target URL is used for the purpose optimisation, i.e., making it easier for the recipient to find the target URL string at the source URL. The target URL is also used to allow external (third-party) services to help site owners without a Webmention endpoint.</p>
 
-                                    <p id="webmention-analysis"><strong>Analysis</strong>: The ability to receive <em>only</em> the source URL is the simplest design. This can be achieved by permitting <code>POST</code>s on the URLs which can receive a Webmention - arguably more <q>RESTful</q> - thus eliminating 1) the extra step to discover an endpoint, as well as 2) submitting the <code>target</code> parameter in the <code>POST</code> request.</p>
+                                    <p id="webmention-analysis"><strong>Analysis</strong>: The ability to receive <em>only</em> the source URL is the simplest design. This can be achieved by permitting <code>POST</code>s on the URLs which can receive a Webmention - this is what is considered to be <q>RESTful</q> design - thus eliminating 1) the extra step to discover an endpoint, as well as 2) submitting the <code>target</code> parameter in the <code>POST</code> request.</p>
 
                                     <p>Webmention is adequate for plain-text and binary sources because besides string-matching they do not impose deterministic data discovery. On the other hand, for structured languages, it has inherent limitations given that:</p>
 
                                     <ul>
-                                        <li>While the creator of the content may indicate (in any convention) the type of relation between the source and target URLs at the source, it is not transmitted to the receiver's endpoint. Hence, the receiver implementation <em>interprets</em> the relation (or lack of) between the source and the target. The broadest relation could be interpreted as a generic <em>mention</em> (e.g., via a standard hyperlink). Alternatively, the receiver looks for patterns it recognizes to consume - which however changes the focus from declarative to imperative programming with non-interoperable internal logic per implementation.</li>
+                                        <li>While the creator of the content may indicate (in any convention) the type of relation between the source and target URLs at the source, it is not transmitted to the receiver's endpoint. Hence, the receiver implementation <em>interprets</em> the relation (or lack of) between the source and the target. The untyped relation by default is a <em>mention</em>. Alternatively, the receiver looks for patterns it recognizes to consume - which however changes the focus from declarative to imperative programming with non-interoperable internal logic per implementation.</li>
 
-                                        <li>In the event of the source URL containing multiple mentions of the target URL, the Webmention endpoint is not informed about the particular statement but the document as a whole. Therefore, the receiver is required to process the whole document and base its verification on the existence of one of those mentions. This sets forth a loose verification step since there is no clear way to distinguish the mentions.</li>
+                                        <li>In the event of the source URL containing multiple mentions of the target URL, the Webmention endpoint is not informed about the particular statement but the document as a whole. Therefore, the receiver is required to process the whole document and base its verification on the existence of one of those mentions. This sets forth an indeterministic verification step since there is no clear way to distinguish the received Webmention at the endpoint from multiple mentions which can exist in at the source.</li>
                                     </ul>
 
                                     <p>In order to accommodate these inherent shortcomings of the Webmention design, <a href="http://csarven.ca/webmention">Webmention</a> proposes the <code>property</code> parameter to indicate the type of relation between the source and the target (which is found at the source URL) in the case of structured languages in e.g., HTML(+RDFa). Its value may be a <em>term</em> e.g., <code>u-in-reply-to</code>, a <em>IRI</em> e.g., <code>http://rdfs.org/sioc/ns#reply_of</code>, or a <em>prefixed name</em> e.g., <code>sioc:reply_of</code>. The <code>property</code> information allows precise claims, and consequently 1) it gives an opportunity for the receiver to decide whether to make a single <code>GET</code> on the source URL, 2) better narrowing down or filtering of a particular claim.</p>
@@ -266,6 +266,8 @@
                                     <p>Persistent?</p>
                                     <p>Permanent/Archived?</p>
                                     <p>Canonical URIs?</p>
+                                    <p>License?</p>
+                                    <p>Shape</p>
                                 </div>
                             </section>
 
@@ -389,10 +391,10 @@
 
                                     <figure class="listing" id="solid-notification-discovery" rel="schema:hasPart" resource="#solid-notification-example-discovery">
                                         <pre about="#solid-notification-example-discovery" property="schema:description" typeof="fabio:Script">
-<code>&lt;https://example.org/profile> solid:inbox &lt;https://example.net/inbox/> .</code>
-<code>&lt;https://example.net/inbox/> a solid:Inbox .</code>
-<code>&lt;https://example.net/inbox/> solid:notification &lt;https://example.net/inbox/abc123> .</code>
-<code>&lt;https://example.net/inbox/abc123> a solid:Notification .</code>
+<code>&lt;https://example.org/profile&gt; solid:inbox &lt;https://example.net/inbox/&gt; .</code>
+<code>&lt;https://example.net/inbox/&gt; a solid:Inbox .</code>
+<code>&lt;https://example.net/inbox/&gt; solid:notification &lt;https://example.net/inbox/abc123&gt; .</code>
+<code>&lt;https://example.net/inbox/abc123&gt; a solid:Notification .</code>
                                         </pre>
                                         <figcaption property="schema:name">Discovery of inbox and notifications.</figcaption>
                                     </figure>
@@ -450,7 +452,7 @@
 
                                             <figure class="listing" id="solid-notification-single-statement" rel="schema:hasPart" resource="#solid-notification-example-single-statement">
                                                 <pre about="#solid-notification-example-single-statement" property="schema:description" typeof="fabio:Script">
-<code>&lt;http://example.org/profile/card#alice> :liked &lt;http://example.net/article> .</code>
+<code>&lt;http://example.org/profile/card#alice&gt; :liked &lt;http://example.net/article&gt; .</code>
                                                 </pre>
                                                 <figcaption property="schema:name">Example notification type: single statement.</figcaption>
                                             </figure>
@@ -473,11 +475,11 @@
                                             <figure class="listing" id="solid-notification-qualified-relation" rel="schema:hasPart" resource="#solid-notification-example-qualified-relation">
                                                 <pre about="#solid-notification-example-qualified-relation" property="schema:description" typeof="fabio:Script">
 <code>&lt;> a solid:Notification , as:Announce ;</code>
-<code>  as:object &lt;https://example.org/26d8c1> ;</code>
-<code>  as:target &lt;https://example.net/article#introduction> ;</code>
+<code>  as:object &lt;https://example.org/abcdef&gt; ;</code>
+<code>  as:target &lt;https://example.net/article#introduction&gt; ;</code>
 <code>  as:updated "2016-02-02T18:58:50.719Z"^^xsd:dateTime ;</code>
-<code>  as:actor &lt;http://example.com/profile/card#alice> ;</code>
-<code>  schema:license &lt;https://creativecommons.org/licenses/by/4.0/> .</code>
+<code>  as:actor &lt;http://example.com/profile/card#alice&gt; ;</code>
+<code>  schema:license &lt;https://creativecommons.org/licenses/by/4.0/&gt; .</code>
                                                 </pre>
                                                 <figcaption property="schema:name">Example notification type: qualified relation.</figcaption>
                                             </figure>
@@ -485,9 +487,9 @@
                                             <p>Semantic Pingback:</p>
                                             <figure class="listing" id="solid-notification-example-semantic-pingback" rel="schema:hasPart" resource="#solid-notification-example-semantic-pingback">
                                                 <pre about="#solid-notification-example-semantic-pingback" property="schema:description" typeof="fabio:Script">
-<code>&lt;> a solid:Notification , pingback:Request ;</code>
-<code>  pingback:source &lt;http://example.net/foo/abc123> ;</code>
-<code>  pingback:target &lt;http://example.org/article/index> .</code>
+<code>&lt;&gt; a solid:Notification , pingback:Request ;</code>
+<code>  pingback:source &lt;http://example.net/foo/abc123&gt; ;</code>
+<code>  pingback:target &lt;http://example.org/article/index&gt; .</code>
                                                 </pre>
                                                 <figcaption property="schema:name">Example notification type: Semantic Pingback.</figcaption>
                                             </figure>
@@ -504,15 +506,15 @@
 
                                             <figure class="listing" id="solid-notification-example-any-data" rel="schema:hasPart" resource="#solid-notification-example-any-data">
                                                 <pre about="#solid-notification-example-any-data" property="schema:description" typeof="fabio:Script">
-<code>&lt;> a solid:Notification , sioc:Post ;</code>
+<code>&lt;&gt; a solid:Notification , sioc:Post ;</code>
 <code>  dcterms:created "2015-12-23T16:44:21Z"^^xsd:#dateTime ;</code>
 <code>  dcterms:title "New blog post" ;</code>
 <code>  sioc:content "Lorem ipsum dolor sit amet.." ;</code>
-<code>  sioac:has_creator &lt;#author> .</code>
+<code>  sioac:has_creator &lt;#author&gt; .</code>
 
-<code>&lt;#author> a sioc:UserAccount ;</code>
-<code>  sioc:account_of &lt;../profile#me> ;</code>
-<code>  sioc:avatar &lt;../avatar.jpg> ;</code>
+<code>&lt;#author&gt; a sioc:UserAccount ;</code>
+<code>  sioc:account_of &lt;../profile#me&gt; ;</code>
+<code>  sioc:avatar &lt;../avatar.jpg&gt; ;</code>
 <code>  foaf:name "Alice" .</code>
                                                 </pre>
                                                 <figcaption property="schema:name">Example notification type: any data.</figcaption>
@@ -524,15 +526,6 @@
                         </div>
                     </section>
 
-<!--
-                    <section id="experiment" inlist="" rel="schema:hasPart" resource="#experiment">
-                        <h2 property="schema:name">Experiment</h2>
-                        <div datatype="rdf:HTML" property="schema:description" resource="#experiment" typeof="sio:SIO_000994 deo:Materials">
-                            <p>...</p>
-                        </div>
-                    </section>
-
- -->
                     <section id="results" inlist="" rel="schema:hasPart" resource="#results">
                         <h2 property="schema:name">Results</h2>
                         <div datatype="rdf:HTML" property="schema:description" resource="#results" typeof="deo:Results">
@@ -547,7 +540,7 @@
                             <p>We found a solution that is robust? efficient? working? flexible? accessible? evolvable?</p>
                             <p>The benefits are.. Prove?</p>
                             <p>Show some evidence that's reasonable.. to persuade the reader to reuse this work for further research.</p>
-                            <p about="" id="future-work" rel="schema:hasPart" resource="#future-work"><span datatype="rdf:HTML" typeof="deo:FutureWork" property="schema:description" resource="#future-work">Future work..</span></p>
+                            <p about="" id="future-work" rel="schema:hasPart" resource="#future-work"><span datatype="rdf:HTML" property="schema:description" resource="#future-work" typeof="deo:FutureWork">Future work..</span></p>
                         </div>
                     </section>
 
