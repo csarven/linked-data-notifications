@@ -394,12 +394,7 @@
                             <section id="notification-integrity" inlist="" rel="schema:hasPart" resource="#notification-integrity">
                                 <h3 property="schema:name">Notification integrity</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
-                                    <p>Adhering to the integrity rules of an inbox notification e.g., for the purpose
-                                    of a verification criteria or discovery is the responsibility of applications
-                                    which submit and verify them. An inbox may be accompanied with constraint
-                                    information e.g., by employing the <a href="https://www.w3.org/TR/shacl/">Shapes Constraint
-                                    Language</a> (<abbr title="Shapes Constraint
-                                    Language">SHACL</abbr>) or <a href="https://www.w3.org/2001/sw/wiki/ShEx">Shape Expressions</a> (<abbr title="Shapes Expressions">ShEx</abbr>).</p>
+                                    <p>Adhering to the integrity rules of an inbox notification e.g., for the purpose of a verification criteria or discovery is the responsibility of applications which submit and verify them. An inbox may be accompanied with constraint information e.g., by employing the <a href="https://www.w3.org/TR/shacl/">Shapes Constraint Language</a> (<abbr title="Shapes Constraint Language">SHACL</abbr>) or <a href="https://www.w3.org/2001/sw/wiki/ShEx">Shape Expressions</a> (<abbr title="Shapes Expressions">ShEx</abbr>).</p>
                                 </div>
                             </section>
 
@@ -407,9 +402,7 @@
                             <section id="enrichment" inlist="" rel="schema:hasPart" resource="#enrichment">
                                 <h3 property="schema:name">Enrichment</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
-                                    <p>Although providing enriched (meta)data is voluntary, provenance level data like
-                                    the date in which the request was submitted, who submitted, and its license, can
-                                    be purposed towards the verification process as well as for displaying.</p>
+                                    <p>Although providing enriched (meta)data is optional, provenance level data like the date in which the request was submitted, who submitted, and its license, can be purposed towards the verification process as well as for displaying.</p>
                                 </div>
                             </section>
 
@@ -417,13 +410,7 @@
                             <section id="authorisation" inlist="" rel="schema:hasPart" resource="#authorisation">
                                 <h3 property="schema:name">Authorisation</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
-                                    <p>The owner of the Solid inbox typically sets its ACL rules and thereby for the
-                                    notifications it contains. By default, when profile inboxes are created, inboxes
-                                    must be public append only as they are inherently private. Other types of
-                                    inboxes e.g., for blog posts, may be set to public read and append so that
-                                    applications can use a <em>follow-your-nose</em> approach to discover and display the
-                                    contents of a notification, as well as submit new notifications. Further, the
-                                    ACL settings for the inbox may determine which agents can send notifications.</p>
+                                    <p>The owner of the inbox typically sets its ACL rules and thereby for the notifications it contains. By default, when profile inboxes are created, inboxes must be public append only as they are inherently private. Other types of inboxes e.g., for blog posts, may be set to public read and append so that applications can use a <em>follow-your-nose</em> approach to discover and display the contents of a notification, as well as submit new notifications. Further, the ACL settings for the inbox may determine which agents can send notifications.</p>
                                 </div>
                             </section>
 
@@ -436,9 +423,7 @@
                                     <section id="single-statement" inlist="" rel="schema:hasPart" resource="#single-statement">
                                         <h4 property="schema:name">Single Statement</h4>
                                         <div datatype="rdf:HTML" property="schema:description">
-                                            <p>A single triple statement is the simplest notification in terms of its data
-                                            payload. It contains the most essential data which makes up a notification e.g,
-                                            Alice liked an article:</p>
+                                            <p>A single triple statement is the simplest notification in terms of its data payload. It contains the most essential data which makes up a notification e.g, Alice liked an article:</p>
 
                                             <figure class="listing" id="solid-notification-single-statement" rel="schema:hasPart" resource="#solid-notification-example-single-statement">
                                                 <pre about="#solid-notification-example-single-statement" property="schema:description" typeof="fabio:Script">
@@ -447,8 +432,7 @@
                                                 <figcaption property="schema:name">Example notification type: single statement.</figcaption>
                                             </figure>
 
-                                            <p>This approach is useful if there is a need to further extend the statement's
-                                            description or refer to it as a whole.</p>
+                                            <p>This approach is useful if there is a need to further extend the statement's description or refer to it as a whole.</p>
                                         </div>
                                     </section>
 
@@ -456,10 +440,7 @@
                                     <section id="qualified-relations" inlist="" rel="schema:hasPart" resource="#qualified-relations">
                                         <h4 property="schema:name">Qualified relations</h4>
                                         <div datatype="rdf:HTML" property="schema:description">
-                                            <p>A particular grouping of triples which describe and qualify the relations, i.e.,
-                                            the vocabulary in use typically gives meaning to the statements when consumed as
-                                            a whole. The examples below tend to refer to external resources where the body
-                                            of the content can be discovered.</p>
+                                            <p>A particular grouping of triples which describe and qualify the relations, i.e., the vocabulary in use typically gives meaning to the statements when consumed as a whole. The examples below tend to refer to external resources where the body of the content can be discovered.</p>
 
                                             <p>ActivityStreams:</p>
                                             <figure class="listing" id="solid-notification-qualified-relation" rel="schema:hasPart" resource="#solid-notification-example-qualified-relation">
@@ -490,9 +471,7 @@
                                     <section id="any-data" inlist="" rel="schema:hasPart" resource="#any-data">
                                         <h4 property="schema:name">Any data</h4>
                                         <div datatype="rdf:HTML" property="schema:description">
-                                            <p>This is typically in cases where an application may want to notify with any
-                                            information. A notification may contain the complete payload and not necessarily
-                                            refer to the origin data (external resource).</p>
+                                            <p>This is typically in cases where an application may want to notify with any information. A notification may contain the complete payload and not necessarily refer to the origin data (external resource).</p>
 
                                             <figure class="listing" id="solid-notification-example-any-data" rel="schema:hasPart" resource="#solid-notification-example-any-data">
                                                 <pre about="#solid-notification-example-any-data" property="schema:description" typeof="fabio:Script">
