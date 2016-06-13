@@ -7,6 +7,7 @@
         <link href="https://dokie.li/media/css/basic.css" media="all" rel="stylesheet alternate" title="Basic" />
         <link href="https://dokie.li/media/css/lncs.css" media="all" rel="stylesheet" title="LNCS" />
         <link href="https://dokie.li/media/css/acm.css" media="all" rel="stylesheet alternate" title="ACM" />
+        <link href="https://www.w3.org/StyleSheets/TR/2016/W3C-UD" media="all" rel="stylesheet alternate" title="W3C-UD" />
         <link href="https://dokie.li/media/css/do.css" media="all" rel="stylesheet" />
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" media="all" rel="stylesheet" />
         <link href="https://dokie.li/media/css/editor.css" media="all" rel="stylesheet" />
@@ -169,7 +170,7 @@
                                     <p>The Webmention protocol is used to notify that content at the source URL includes the target URL <em>string</em> to the receiver of a Webmention endpoint.</p>
 
                                     <blockquote cite="https://www.w3.org/TR/webmention/#sender-notifies-receiver">
-                                        <p>The sender <em class="rfc2119">MUST</em> post <code>x-www-form-urlencoded</code> [<cite>HTML5</cite>] <code>source</code> and <code>target</code> parameters to the Webmention endpoint, where <code>source</code> is the URL of the sender's page containing a link, and <code>target</code> is the URL of the page being linked to.</p>
+                                        <p>The sender <strong class="rfc2119">MUST</strong> post <code>x-www-form-urlencoded</code> [<cite>HTML5</cite>] <code>source</code> and <code>target</code> parameters to the Webmention endpoint, where <code>source</code> is the URL of the sender's page containing a link, and <code>target</code> is the URL of the page being linked to.</p>
                                     </blockquote>
 
                                     <p id="webmention-urls-as-strings">There are no syntactical restrictions set on the content of the source URL (e.g., it can be plain-text, HTML, JSON, or a binary file), therefore it is effectively foremost about the source URL containing the target URL as a string. The use of the term <em>link</em> in the Webmention specification diverges from the Web Architecture's definition typically used for structured syntaxes with semantic descriptions behind them. For instance, <em>links</em> in HTML can be represented with the anchor element (<code>a</code>), or IRIs in any one of the RDF syntaxes, e.g., Turtle, HTML+RDFa, JSON-LD. However, JSON would not be as there is no globally agreed definition of any key.</p>
@@ -303,41 +304,21 @@
                         </div>
                     </section>
 
-                    <section id="solid-inbox-and-notifications" inlist="" rel="schema:hasPart" resource="#solid-inbox-and-notifications">
-                        <h2 property="schema:name">Solid inboxes and notifications</h2>
-                        <div datatype="rdf:HTML" property="schema:description" resource="#solid-inbox-and-notifications" typeof="deo:Contribution">
-                            <p>Solid inboxes are repositories for incoming social interactions and data. A
-                            Solid inbox is an <a href="https://www.w3.org/TR/ldp/#ldpc">LDP Container</a> for Solid
-                            notifications. A resource can have one or more inboxes in order to facilitate
-                            different social interactions. For instance, user profile inboxes are typically
-                            intended to receive notifications like messages from other profiles, or
-                            application specific activities.</p>
+                    <section id="inbox-and-notifications" inlist="" rel="schema:hasPart" resource="#inbox-and-notifications">
+                        <h2 property="schema:name">Inboxes and notifications</h2>
+                        <div datatype="rdf:HTML" property="schema:description" resource="#inbox-and-notifications" typeof="deo:Contribution">
+                            <p>Inboxes are repositories for notifications. <code>ldp:Inbox</code> is a specialisation of the <a href="https://www.w3.org/TR/ldp/#ldpc">LDP Container</a> used for notifications. A resource can have one or more inboxes in order to facilitate different social interactions and notifications. For instance, user profile inboxes are typically intended to receive notifications like messages from other profiles, or application specific activities. An article may have an inbox to receive replies about it, and another inbox for a particular section in the article. Inboxes can have different access controls, as well as information for the constraints set about the notifications it can hold. The assignment and management of inboxes for resources is at the discretion of applications. For example, servers may want to create an inbox if an account also creates an identity (e.g., a WebID profile).</p>
 
-                            <p>By default, Solid servers should create an inbox if the account also creates an
-                            identity (i.e., a WebID profile). Alternative types of inboxes e.g., for
-                            documents or data fragments, may be created at the discretion of applications
-                            taking user's preferences into account.</p>
+                            <p>Notifications are intended to announce social interactions and data. A notification is an <a href="https://www.w3.org/TR/ldp/#ldpr">LDP Resource</a> which is submitted to and resides in an inbox.</p>
 
-                            <p>Solid notifications are intended to announce social interactions and data. A
-                            Solid notification is an <a href="https://www.w3.org/TR/ldp/#ldpr">LDP Resource</a> which
-                            is submitted to and resides in an Solid inbox.</p>
-
-                            <p>The contents of a notification is application specific. We derive two core
-                            principles from this:</p>
+                            <p>The contents of a notification is application specific. We derive two core principles from this:</p>
 
                             <ul>
                                 <li>a notification can contain arbitrary data</li>
                                 <li>a notification is vocabulary agnostic</li>
                             </ul>
 
-                            <p>Applications can create notifications to use any vocabulary to describe its
-                            contents in any shape and form. Multiple notifications can be contained inside a
-                            single resource or span across different resources. A single resource with
-                            multiple notifications may be suitable for <code>HTTP PATCH</code>, whereas multiple
-                            resources containing a single notification may be suitable for <code>HTTP POST</code> or
-                            <code>PUT</code>.  If different access controls are desired for inboxes and notifications,
-                            implementing a multiple notification approach with <code>HTTP POST</code> or <code>PUT</code> may be
-                            preferable.</p>
+                            <p>Applications can create notifications to use any vocabulary to describe its contents in any shape and form. Multiple notifications can be contained inside a single resource or span across different resources. A single resource with multiple notifications may be suitable for <code>HTTP PATCH</code>, whereas multiple resources containing a single notification may be suitable for <code>HTTP POST</code> or <code>PUT</code>. If different access controls are desired for inboxes and notifications, implementing a multiple notification approach with <code>HTTP POST</code> or <code>PUT</code> may be preferable.</p>
 
                             <section id="namespaces-and-document-conventions" inlist="" rel="schema:hasPart" resource="#namespaces-and-document-conventions">
                                 <h3 property="schema:name">Namespaces and document conventions</h3>
@@ -396,13 +377,7 @@
                             <section id="discovery" inlist="" rel="schema:hasPart" resource="#discovery">
                                 <h3 property="schema:name">Discovery</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
-                                    <p>An inbox container must be discoverable via the <code>solid:inbox</code> property, and
-                                    should be instances of <code>solid:Inbox</code>.  Each notification can be discovered via
-                                    <code>solid:notification</code> (or <code>ldp:contains</code> for LDP based applications) relations.
-                                    Notifications that are of LDP RDF Source should be instances of
-                                    <code>solid:Notification</code>.  Although neither <code>solid:Inbox</code> or <code>solid:Notification</code> is
-                                    ultimately required to discover inboxes or notifications, it is good practice to
-                                    instantiate resources for the purpose of data integrity and reuse. An example:</p>
+                                    <p>An inbox container <strong class="rfc2119">MUST</strong> be discoverable via the <code>solid:inbox</code> property, and should be instances of <code>solid:Inbox</code>. Each notification can be discovered via <code>solid:notification</code> (or <code>ldp:contains</code> for LDP based applications) relations. Notifications that are of LDP RDF Source should be instances of <code>solid:Notification</code>.  Although neither <code>solid:Inbox</code> or <code>solid:Notification</code> is ultimately required to discover inboxes or notifications, it is good practice to instantiate resources for the purpose of data integrity and reuse. An example:</p>
 
                                     <figure class="listing" id="solid-notification-discovery" rel="schema:hasPart" resource="#solid-notification-example-discovery">
                                         <pre about="#solid-notification-example-discovery" property="schema:description" typeof="fabio:Script">
