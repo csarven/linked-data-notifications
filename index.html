@@ -173,6 +173,8 @@
                                         <p>The sender <strong class="rfc2119">MUST</strong> post <code>x-www-form-urlencoded</code> [<cite>HTML5</cite>] <code>source</code> and <code>target</code> parameters to the Webmention endpoint, where <code>source</code> is the URL of the sender's page containing a link, and <code>target</code> is the URL of the page being linked to.</p>
                                     </blockquote>
 
+                                    <p>Webmention does not define the notion of an entity (i.e., accessible at an URL) for the mention itself. The mention is only intended for the receiver to process.</p>
+
                                     <p id="webmention-urls-as-strings">There are no syntactical restrictions set on the content of the source URL (e.g., it can be plain-text, HTML, JSON, or a binary file), therefore it is effectively foremost about the source URL containing the target URL as a string. The use of the term <em>link</em> in the Webmention specification diverges from the Web Architecture's definition typically used for structured syntaxes with semantic descriptions behind them. For instance, <em>links</em> in HTML can be represented with the anchor element (<code>a</code>), or IRIs in any one of the RDF syntaxes, e.g., Turtle, HTML+RDFa, JSON-LD. However, JSON would not be as there is no globally agreed definition of any key.</p>
 
                                     <p id="webmention-workflow">A Webmention workflow is as follows: 1) Alice has an article in-reply-to Bob's article, 2) Carl's Webmention endpoint is discovered to deliver a mention, 3) a Webmention is sent to Bob's endpoint indicating that Alice's <em>mentions</em> Bob's article.</p>
