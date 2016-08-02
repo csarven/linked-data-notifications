@@ -45,10 +45,12 @@
                     <dd><a href="http://csarven.ca/decentralised-notifications" rel="owl:sameAs">http://csarven.ca/decentralised-notifications</a></dd>
                 </dl>
 
+<!--
                 <dl id="document-inbox">
                     <dt>Notifications Inbox</dt>
                     <dd><a href="https://linkedresearch.org/inbox/temp/dn/" rel="ldp:inbox">inbox/</a></dd>
                 </dl>
+ -->
 
                 <dl id="document-published">
                     <dt>Published</dt>
@@ -133,17 +135,16 @@
                                     <tr>
                                         <td colspan="7">
                                             <p>Information based on core specifications.</p>
-                                            <p>Semantic Pingback has an optional content-name: comment.</p>
+                                            <p><sup>*</sup> JSON-LD is required, alternative RDF syntax are allowed on agreement</p>
                                             <p>After dereferencing; GET<sup>1</sup>, string or object matching, GET<sup>2</sup>, matches the object, to verify a claim's existence.</p>
-                                            <p><sup>*</sup> Any RDF syntax</p>
                                         </td>
                                     </tr>
                                 </tfoot>
                                 <tbody>
-                                    <tr><th>Semantic Pingback</th><td>POST urlencoded</td><td>source/target key-value pair</td><td><code>GET</code><sup>2</sup></td><td>Yes</td></tr>
-                                    <tr><th>Webmention</th><td>POST urlencoded</td><td>source/target key-value pair</td><td><code>GET</code><sup>1</sup></td></tr>
-                                    <tr><th>ActivityPub</th><td><code>POST</code></td><td><code>JSON(-LD)</code>, Activity Streams 2.0, complete object</td><td><code>GET</code><sup>2</sup></td><td>Yes</td></tr>
-                                    <tr><th>Linked Data Notifications</th><td><code>POST</code>, <code>PUT</code>, <code>PATCH</code></td><td>RDF<sup>*</sup>, unconstrained vocabulary and object</td><td><code>GET</code><sup>2</sup></td><td>Yes</td></tr>
+                                    <tr><th>Semantic Pingback</th><td><code>POST</code> (urlencoded)</td><td>source/target key-value pair</td><td><code>GET</code><sup>2</sup></td><td>Yes</td></tr>
+                                    <tr><th>Webmention</th><td><code>POST</code> (urlencoded)</td></td><td>source/target key-value pair</td><td><code>GET</code><sup>1</sup></td></tr>
+                                    <tr><th>ActivityPub</th><td><code>POST</code></td><td>JSON(-LD), Activity Streams 2.0, complete object</td><td><code>GET</code><sup>2</sup></td><td>Yes</td></tr>
+                                    <tr><th>Linked Data Notifications</th><td><code>POST</code></td><td>JSON-LD<sup>*</sup>, unconstrained vocabulary and data</td><td><code>GET</code><sup>2</sup></td><td>Yes</td></tr>
                                 </tbody>
                             </table>
 
