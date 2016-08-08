@@ -31,7 +31,7 @@
 
                     <ul id="author-org">
                         <li id="author-org-1"><sup>1</sup>Enterprise Information Systems Department, <a about="http://dbpedia.org/resource/University_of_Bonn" href="http://uni-bonn.de/" property="schema:name" rel="schema:url" typeof="schema:Organization">University of Bonn</a>, Bonn, Germany</li>
-                        <li id="author-org-2"><sup>2</sup>School of Informatics, <a about="http://dbpedia.org/resource/University_of_Edinburgh" href="http://www.ed.ac.uk/" property="schema:name" rel="schema:url" typeof="schema:Organization">University of Edinburgh</a>, Edinburgh, UK</li>
+                        <li id="author-org-2"><sup>2</sup>School of Informatics, <a about="http://dbpedia.org/resource/University_of_Edinburgh" href="http://inf.ed.ac.uk/" property="schema:name" rel="schema:url" typeof="schema:Organization">University of Edinburgh</a>, Edinburgh, UK</li>
                     </ul>
 
                     <ul id="author-email">
@@ -59,7 +59,7 @@
 
                 <dl id="document-modified">
                     <dt>Modified</dt>
-                    <dd><time datatype="xsd:dateTime" datetime="2016-05-01T00:00:00Z" property="schema:dateModified">2016-05-01</time></dd>
+                    <dd><time datatype="xsd:dateTime" datetime="2016-08-07T00:00:00Z" property="schema:dateModified">2016-08-07</time></dd>
                 </dl>
 
                 <dl id="document-license">
@@ -71,7 +71,7 @@
                     <section id="abstract">
                         <h2>Abstract</h2>
                         <div datatype="rdf:HTML" property="schema:abstract">
-                          <p>This article describes a protocol to deliver and use notifications on the Web.</p>
+                          <p>This article describes a protocol to facilitate exchanging messages between applications which serve as senders, receivers and/or consumers of RDF data.</p>
                         </div>
                     </section>
 
@@ -79,7 +79,7 @@
                         <h2>Keywords</h2>
                         <div>
                             <ul rel="schema:about">
-                                <li><a href="https://en.wikipedia.org/wiki/Decentralization" resource="http://dbpedia.org/resource/Decentralization">Decentralization</a></li>
+                                <li><a href="https://en.wikipedia.org/wiki/Decentralization" resource="http://dbpedia.org/resource/Decentralization">Decentralisation</a></li>
                                 <li><a href="https://en.wikipedia.org/wiki/Semantic_Web" resource="http://dbpedia.org/resource/Semantic_Web">Semantic Web</a></li>
                                 <li><a href="https://en.wikipedia.org/wiki/Social_web" resource="http://dbpedia.org/resource/Social_web">Social web</a></li>
                             </ul>
@@ -89,12 +89,10 @@
                     <section id="introduction" inlist="" rel="schema:hasPart" resource="#introduction">
                         <h2 property="schema:name">Introduction</h2>
                         <div datatype="rdf:HTML" property="schema:description">
-                            <p>...</p>
                             <p>What's the edge?</p>
                             <p>We have a problem and it requires a solution..</p>
                             <p>How is this better/different?</p>
                             <p>Why bother doing this?</p>
-                            <p>..</p>
                         </div>
                     </section>
 
@@ -104,9 +102,7 @@
                             <p>.. Given context, definition of the common terms in this space can diverge, we clarify ours here ..</p>
                             <dl>
                                 <dt>Decentralised</dt>
-                                <dd>..</dd>
                                 <dt>Inbox and Container</dt>
-                                <dd>..</dd>
                                 <dt>Notification</dt>
                                 <dd>synonym: <em>message</em></dd>
                             </dl>
@@ -142,7 +138,7 @@
                                 </tfoot>
                                 <tbody>
                                     <tr><th>Semantic Pingback</th><td><code>POST</code> (urlencoded)</td><td>source/target key-value pair</td><td><code>GET</code><sup>2</sup></td><td>Yes</td></tr>
-                                    <tr><th>Webmention</th><td><code>POST</code> (urlencoded)</td></td><td>source/target key-value pair</td><td><code>GET</code><sup>1</sup></td></tr>
+                                    <tr><th>Webmention</th><td><code>POST</code> (urlencoded)</td><td>source/target key-value pair</td><td><code>GET</code><sup>1</sup></td></tr>
                                     <tr><th>ActivityPub</th><td><code>POST</code></td><td>JSON(-LD), Activity Streams 2.0, complete object</td><td><code>GET</code><sup>2</sup></td><td>Yes</td></tr>
                                     <tr><th>Linked Data Notifications</th><td><code>POST</code></td><td>JSON-LD<sup>*</sup>, unconstrained vocabulary and data</td><td><code>GET</code><sup>2</sup></td><td>Yes</td></tr>
                                 </tbody>
@@ -242,6 +238,8 @@
                             <p><strong>Authentication</strong>:</p>
 
                             <p><strong>Notification integrity</strong>: Application discovers the requirements and constraints - the "shape" it should conform - for the notifications of the inbox.</p>
+
+                            <p><strong>Subscription</strong>: PuSH, WebSockets..</p>
                         </div>
                     </section>
 
