@@ -372,9 +372,6 @@
                         <div datatype="rdf:HTML" property="schema:description">
                             <p>The payload of the notification <em class="rfc2119">MUST</em> be a JSON-LD unless another RDF syntax has been negotiated with the receiver. To allow for a wide variety of use cases, the actual vocabulary of the payload is deliberately left to the discretion of the sender. The sender <em class="rfc2119">MUST NOT</em> assume that the receiver can fetch or infer anything additional from the payload, and thus <em class="rfc2119">MUST</em> include everything they want the receiver to know.</p>
 
-                            <!-- Commenting out for now as I think this should probably go somewhere else, eg. in suggestions for implementors, not normative text. - rhiaro
-                            <p id="rights-and-license">Senders <em class="rfc2119">SHOULD</em> include rights or license information in the payload as the notification may be reused or displayed by different consumers and environments.</p>-->
-
                             <section id="payload-examples" inlist="" rel="schema:hasPart" resource="#payload-examples">
                                 <h3 property="schema:name">Payload Examples</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
@@ -416,16 +413,6 @@
 <code>  "target": { "@id": "https://user.example/article#introduction" },</code>
 <code>  "updated": "2016-06-23T15:03:01Z"</code>
 <code>}</code>
-<!--
-<code>&lt;&gt; a as:Announce ;</code>
-<code>  as:object &lt;https://example.org/annotation-1&gt; ;</code>
-<code>  as:target &lt;https://user.example/article#introduction&gt; ;</code>
-<code>  as:updated "2016-02-02T18:58:50.719Z"^^xsd:dateTime ;</code>
-<code>  as:actor &lt;https://example.com/profile#alice&gt; ;</code>
-<code>  schema:license &lt;https://creativecommons.org/licenses/by/4.0/&gt; .</code>
-<code>&lt;https://example.org/annotation-1&gt; a as:Note ;</code>
-<code>  as:inReplyTo &lt;https://user.example/article#introduction&gt; .</code>
--->
                                                 </pre>
                                                 <figcaption property="schema:name">Example notification type: qualified relation.</figcaption>
                                             </figure>
@@ -440,11 +427,6 @@
 <code>  "http://purl.org/net/pingback/target":</code>
 <code>    { "@id": "https://user.example/article#introduction" }</code>
 <code>}</code>
-<!--
-<code>&lt;&gt; a pingback:Item ;</code>
-<code>  pingback:source &lt;https://example.org/annotation-1&gt; ;</code>
-<code>  pingback:target &lt;https://user.example/article#introduction&gt; .</code>
--->
                                                 </pre>
                                                 <figcaption property="schema:name">Example notification type: Semantic Pingback.</figcaption>
                                             </figure>
