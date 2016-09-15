@@ -309,7 +309,9 @@
                     <section id="linked-data-notifications" inlist="" rel="schema:hasPart" resource="#linked-data-notifications">
                         <h2 property="schema:name">Linked Data Notifications</h2>
                         <div datatype="rdf:HTML" property="schema:description" resource="#linked-datanotifications" typeof="deo:Contribution">
-                            <p><dfn id="ldn">Linked Data Notifications (<abbr title="Linked Data Notifications">LDN</abbr>)</dfn> is a specialized use of Linked Data Platform [<cite><a class="bibref" href="#bib-ldp">LDP</a></cite>] for sending and consuming notifications. It is not dependent on a complete implementation of LDP, but an easy-to-implement subset. LDN is a <a href="https://www.w3.org/TR/ldn">W3C Recommendation</a> [<cite><a class="bibref" href="#bib-ldn">LDN</a></cite>]</p>
+                            <p><dfn id="ldn">Linked Data Notifications (<abbr title="Linked Data Notifications">LDN</abbr>)</dfn> is a protocol that describes how servers (receivers) can have messages pushed to them by applications (senders), as well as how other applications (consumers) may retrieve those messages. Any resource can advertise a receiving endpoint (Inbox) for the messages. Messages are expressed in RDF, and can contain any data.</p>
+
+                            <p>LDN is a specialized use of Linked Data Platform [<cite><a class="bibref" href="#bib-ldp">LDP</a></cite>] for sending and consuming notifications. It is not dependent on a complete implementation of LDP, but an easy-to-implement subset. LDN is a <a href="https://www.w3.org/TR/ldn">W3C Recommendation</a> [<cite><a class="bibref" href="#bib-ldn">LDN</a></cite>]</p>
 
                             <p>The LDN protocol supports a modular approach to creating and storing data, in particular a decoupling between applications and data storage. Thus, where senders, receivers and consumers of notifications are independently implemented and run on different technology stacks, this protocol allows them to seamlessly work together.</p>
 
