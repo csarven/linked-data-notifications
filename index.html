@@ -17,7 +17,7 @@
         <script src="https://dokie.li/scripts/do.js"></script>
     </head>
 
-    <body about="" prefix="rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns# rdfs: http://www.w3.org/2000/01/rdf-schema# owl: http://www.w3.org/2002/07/owl# xsd: http://www.w3.org/2001/XMLSchema# dcterms: http://purl.org/dc/terms/ dctypes: http://purl.org/dc/dcmitype/ foaf: http://xmlns.com/foaf/0.1/ v: http://www.w3.org/2006/vcard/ns# pimspace: http://www.w3.org/ns/pim/space# cc: http://creativecommons.org/ns# skos: http://www.w3.org/2004/02/skos/core# prov: http://www.w3.org/ns/prov# qb: http://purl.org/linked-data/cube# schema: https://schema.org/ rsa: http://www.w3.org/ns/auth/rsa# cert: http://www.w3.org/ns/auth/cert# cal: http://www.w3.org/2002/12/cal/ical# wgs: http://www.w3.org/2003/01/geo/wgs84_pos# org: http://www.w3.org/ns/org# biblio: http://purl.org/net/biblio# bibo: http://purl.org/ontology/bibo/ book: http://purl.org/NET/book/vocab# ov: http://open.vocab.org/terms/ doap: http://usefulinc.com/ns/doap# dbr: http://dbpedia.org/resource/ dbp: http://dbpedia.org/property/ sio: http://semanticscience.org/resource/ opmw: http://www.opmw.org/ontology/ deo: http://purl.org/spar/deo/ doco: http://purl.org/spar/doco/ cito: http://purl.org/spar/cito/ fabio: http://purl.org/spar/fabio/ oa: http://www.w3.org/ns/oa# as: http://www.w3.org/ns/activitystreams# ldp: http://www.w3.org/ns/ldp# solid: http://www.w3.org/ns/solid/terms#" typeof="schema:CreativeWork sioc:Post prov:Entity">
+    <body about="" prefix="rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns# rdfs: http://www.w3.org/2000/01/rdf-schema# owl: http://www.w3.org/2002/07/owl# xsd: http://www.w3.org/2001/XMLSchema# dcterms: http://purl.org/dc/terms/ dctypes: http://purl.org/dc/dcmitype/ foaf: http://xmlns.com/foaf/0.1/ v: http://www.w3.org/2006/vcard/ns# pimspace: http://www.w3.org/ns/pim/space# cc: http://creativecommons.org/ns# skos: http://www.w3.org/2004/02/skos/core# prov: http://www.w3.org/ns/prov# qb: http://purl.org/linked-data/cube# schema: http://schema.org/ rsa: http://www.w3.org/ns/auth/rsa# cert: http://www.w3.org/ns/auth/cert# cal: http://www.w3.org/2002/12/cal/ical# wgs: http://www.w3.org/2003/01/geo/wgs84_pos# org: http://www.w3.org/ns/org# biblio: http://purl.org/net/biblio# bibo: http://purl.org/ontology/bibo/ book: http://purl.org/NET/book/vocab# ov: http://open.vocab.org/terms/ sioc: http://rdfs.org/sioc/ns# doap: http://usefulinc.com/ns/doap# dbr: http://dbpedia.org/resource/ dbp: http://dbpedia.org/property/ sio: http://semanticscience.org/resource/ opmw: http://www.opmw.org/ontology/ deo: http://purl.org/spar/deo/ doco: http://purl.org/spar/doco/ cito: http://purl.org/spar/cito/ fabio: http://purl.org/spar/fabio/ oa: http://www.w3.org/ns/oa# as: http://www.w3.org/ns/activitystreams# ldp: http://www.w3.org/ns/ldp# solid: http://www.w3.org/ns/solid/terms#" typeof="schema:CreativeWork sioc:Post prov:Entity">
         <main>
             <article about="" typeof="schema:Article">
                 <h1 property="schema:name">Decentralised Notifications</h1>
@@ -60,7 +60,7 @@
 
                 <dl id="document-modified">
                     <dt>Modified</dt>
-                    <dd><time datatype="xsd:dateTime" datetime="2016-08-07T00:00:00Z" property="schema:dateModified">2016-08-07</time></dd>
+                    <dd><time datatype="xsd:dateTime" datetime="2016-12-01T00:00:00Z" property="schema:dateModified">2016-12-01</time></dd>
                 </dl>
 
                 <dl id="document-license">
@@ -94,20 +94,14 @@
                             <p>We have a problem and it requires a solution..</p>
                             <p>How is this better/different?</p>
                             <p>Why bother doing this?</p>
-                        </div>
-                    </section>
 
-                    <section id="concepts" inlist="" rel="schema:hasPart" resource="#concepts">
-                        <h2 property="schema:name">Concepts</h2>
-                        <div datatype="rdf:HTML" property="schema:description">
-                            <p>.. Given context, definition of the common terms in this space can diverge, we clarify ours here ..</p>
+                            <p><strong>Terminology: </strong> .. Given context, definition of the common terms in this space can diverge, we clarify ours here ..</p>
                             <dl>
                                 <dt>Decentralised</dt>
                                 <dt>Inbox and Container</dt>
                                 <dt>Notification</dt>
                                 <dd>synonym: <em>message</em></dd>
                             </dl>
-                        </div>
                     </section>
 
                     <section id="related-work" inlist="" rel="schema:hasPart" resource="#related-work">
@@ -244,8 +238,8 @@
                         </div>
                     </section>
 
-                    <section id="design-considerations" inlist="" rel="schema:hasPart" resource="#design-considerations">
-                        <h2 property="schema:name">Design Considerations</h2>
+                    <section id="requirements-and-design-considerations" inlist="" rel="schema:hasPart" resource="#requirements-and-design-considerations">
+                        <h2 property="schema:name">Requirements and Design Considerations</h2>
                         <div datatype="rdf:HTML" property="schema:description">
                             <p>...</p>
 
@@ -255,6 +249,87 @@
                                     <p>The Representational State Transfer (REST) is an architectural style that describes the abstract model of the Web architecture. <q cite="https:/dx.doi.org/10.1145/337180.337228">The World Wide Web has succeeded in large part because its software architecture has been designed to meet the needs of an Internet-scale distributed hypermedia system.</q> [<span class="ref">Fielding, R. T.; Taylor, R. N. (2000). "Principled design of the modern Web architecture": 407–416. doi:<a href="https:/dx.doi.org/10.1145/337180.337228">10.1145/337180.337228</a></span>]</p>
                                 </div>
                             </section>
+
+                            <section id="sender-verification" inlist="" rel="schema:hasPart" resource="#sender-verification">
+                                <h4 property="schema:name">Sender Verification</h4>
+                                <div datatype="rdf:HTML" property="schema:description">
+                                    <p>Receivers <em class="rfc2119">SHOULD</em> verify the sender of the notification. For example:</p>
+                                    <ul>
+                                        <li>by having a whitelist of senders with write access to the Inbox</li>
+                                        <li>requiring authentication to enforce receiver’s knowledge of every sender</li>
+                                        <li>retrieving a copy of the notification from the sender’s domain to verify its origin</li>
+                                        <li>checking a digital signature which accompanies the notification</li>
+                                    </ul>
+                                </div>
+                            </section>
+
+                            <section id="preventing-abuse" inlist="" rel="schema:hasPart" resource="#preventing-abuse">
+                                <h4 property="schema:name">Preventing Abuse</h4>
+                                <div datatype="rdf:HTML" property="schema:description">
+                                    <p>Receivers <em class="rfc2119">SHOULD</em> use <a href="#constraints">constraints</a> to filter unwarranted notifications from being created on the server and exposed by the Inbox.</p>
+
+                                    <p>Receivers could consider implementing access control on the Inbox URL to restrict writing to a whitelist of trusted senders.</p>
+                                </div>
+                            </section>
+
+                            <div class="note" id="note-payload-verification" rel="schema:hasPart" resource="#note-payload-verification">
+                                <h4 property="schema:name">Note</h4>
+                                <div datatype="rdf:HTML" property="schema:description">
+                                    <p>Given the nature of the notification payload, consumers may want to take precautions when ascertaining the veracity of the contents. The <q>anyone can say anything about anything</q> Web principle applies here. Unless otherwise specified, there is no indication as to whether the original payload was altered by the receiver.</p>
+                                </div>
+                            </div>
+
+                            <div class="note" id="note-paging" rel="schema:hasPart" resource="#note-paging">
+                                <h4 property="schema:name">Note</h4>
+                                <div datatype="rdf:HTML" property="schema:description">
+                                    <p>This specification does not define a paging mechanism to serve the list of notifications in an Inbox. Implementations that wish to enable paging may want to use existing mechanisms to allow efficient retrievals e.g., <cite><a class="bibref" href="#bib-ldp-paging">Linked Data Platform Paging 1.0</a></cite>, <cite><a class="bibref" href="#bib-activitystreams-core">Activity Streams 2.0 Collection</a></cite>.</p>
+                                </div>
+                            </div>
+
+                            <section id="constraints" inlist="" rel="schema:hasPart" resource="#constraints">
+                                <h3 property="schema:name">Constraints</h3>
+                                <div datatype="rdf:HTML" property="schema:description">
+                                    <p>Inbox URLs can announce their own constraints (e.g., <cite><a class="bibref" href="#bib-shacl">SHACL</a></cite>, <cite><a class="bibref" href="#bib-annotation-protocol">Web Annotation Protocol</a></cite>) via an HTTP <code>Link</code> header or body of the resource with a <code>rel</code> value of <code>http://www.w3.org/ns/ldp#constrainedBy</code>. Senders should comply with constraint specifications or the receiver may reject their notification and return an appropriate <code>4xx</code> error code.</p>
+                                </div>
+                            </section>
+
+                            <section id="target-ownership" inlist="" rel="schema:hasPart" resource="#target-ownership">
+                                <h3 property="schema:name">Target Ownership</h3>
+                                <div datatype="rdf:HTML" property="schema:description">
+                                    <p>Publishers of the resources advertising an Inbox (target) should do so on a server they trust. Publishers must be aware that third-party access to headers or content could result in notifications being redirected.</p>
+                                </div>
+                            </section>
+
+                            <section id="subscribing-to-notifications" inlist="" rel="schema:hasPart" resource="#subscribing-to-notifications">
+                                <h3 property="schema:name">Subscribing to Notifications</h3>
+                                <div datatype="rdf:HTML" property="schema:description">
+                                    <p>This specification describes how consumers can read notifications from a receiver through <em>pull</em>, however consumers may want to ask to have incoming notifications or changes to Inbox’s contents pushed to them. Similarly, receivers may wish to make a request for notifications from a particular sender. This kind of subscription mechanism is left out of scope, but senders, receivers and consumers are not prohibited from making such an arrangement. Implementations that wish to enable subscribing may want to use existing mechanisms e.g., <cite><a class="bibref" href="#bib-activitypub">ActivityPub</a></cite>, <cite><a class="bibref" href="#bib-pubsub">PubSub</a></cite>, <cite><a class="bibref" href="#bib-rfc6455">The WebSocket Protocol</a></cite>, <cite><a class="bibref" href="#bib-webpush">HTTP Web Push</a></cite>.</p>
+                                </div>
+                            </section>
+
+                            <section id="activity-streams-2-0-support" inlist="" rel="schema:hasPart" resource="#activity-streams-2-0-support">
+                                <h3 property="schema:name">Activity Streams 2.0 Support</h3>
+                                <div datatype="rdf:HTML" property="schema:description">
+                                    <p>Receiver implementations that wish to support <a href="https://www.w3.org/TR/activitystreams-core/">Activity Streams 2.0 Core</a> can see <a href="https://www.w3.org/TR/social-web-protocols/#inbox-interop">Social Web Protocols - Inbox Interop</a> for Content-Type and vocabulary equivalences.</p>
+                                </div>
+                            </section>
+
+                            <section id="natural-language-content" inlist="" rel="schema:hasPart" resource="#natural-language-content">
+                                <h3 property="schema:name">Natural Language Content</h3>
+                                <div datatype="rdf:HTML" property="schema:description">
+                                    <p>Building an international base of users is important in a federated network. Some LDN interactions can return content with natural language text, such as HTML fragments, or summary fields. Providing multiple language representations of each item might not be feasible in all circumstances. Implementations are encouraged to provide means of discovering the available languages and/or negotiating the language returned, such as using the HTTP <code>Accept-Language</code> header to negotiate and select the most appropriate language representation to send for a given request.</p>
+                                </div>
+                            </section>
+
+                            <section id="authenticated-inboxes" inlist="" rel="schema:hasPart" resource="#authenticated-inboxes">
+                                <h3 property="schema:name">Authenticated Inboxes</h3>
+                                <div datatype="rdf:HTML" property="schema:description">
+                                    <p>If a receiver expects senders or consumers to authenticate, it should check the validity of their credentials before returning any other data, including other error codes. For example, the receiver should <em>not</em> first check for the existence of the inbox and return <code>404 Not Found</code> if the requester has not been verified.</p>
+                                    <p>Authentication involving token passing must be done over HTTPS.</p>
+                                </div>
+                            </section>
+
+
 
                             <section id="security-considerations" inlist="" rel="schema:hasPart" resource="#security-considerations">
                                 <h3 property="schema:name">Security Considerations</h3>
