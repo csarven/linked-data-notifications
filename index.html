@@ -73,6 +73,10 @@
                         <h2>Abstract</h2>
                         <div datatype="rdf:HTML" property="schema:abstract">
                           <p>Web notifications are traditionally conceived as ephemeral things that disappear after transport (or at least are likely to). They effect things on the receiving end, but don't themselves have identification or enable reuse. This article describes the Linked Data Notifications (LDN) protocol which specifies how to find and consume notifications, as well as sending. Notifications themselves may have any shape and are vocabulary agnostic in order to allow for use in a range of different application domains. LDN supports a modular approach to creating and storing data, in particular a decoupling between applications and data storage. Thus, where senders, receivers and consumers of notifications are independently implemented and run on different technology stacks, this protocol allows them to seamlessly work together.</p>
+
+                          <p>Note: why is it interesting or preferable to have persistent notification.. what new applications or class of applications does it enable? trust (checksum?)?</p>
+
+                          <p>Note: why is it good to have decoupling between applications and data. From an application (end-users) perspective is it better? Is there an immediate benefit for end-users? Data ownership?</p>
                         </div>
                     </section>
 
@@ -555,6 +559,16 @@
                         </div>
                     </section>
 
+                    <section id="evaluation" inlist="" rel="schema:hasPart" resource="#evaluation">
+                        <h2 property="schema:name">Evaluation</h2>
+                        <div datatype="rdf:HTML" property="schema:description">
+                            <p>What are some of the comparable features between implementations</p>
+                            <p>Number of requests to discover/send/consume</p>
+
+                            <p>Implementations are interoperable. How many implementations are out there.. over length of time... different code stacks (variations) .. different groups/people implementing (without prior knowledge).. </p>
+                        </div>
+                    </section>
+
                     <section id="conclusions" inlist="" rel="schema:hasPart" resource="#conclusions">
                         <h2 property="schema:name">Conclusions</h2>
                         <div datatype="rdf:HTML" property="schema:description" resource="#conclusions" typeof="deo:Conclusion">
@@ -583,52 +597,6 @@
                         </div>
                     </section>
 
-                    <section id="document-conventions" inlist="" rel="schema:hasPart" resource="#document-conventions">
-                        <h2 property="schema:name">Document Conventions</h2>
-                        <div datatype="rdf:HTML" property="schema:description">
-                            <p>RDF prefix conventions are used throughout this document with the following namespaces:</p>
-
-                            <table id="prefix-and-namespaces">
-                                <caption>Prefixes and namespaces</caption>
-                                <thead>
-                                    <tr>
-                                        <th>Prefix</th>
-                                        <th>Namespace</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td><code>ldp</code></td>
-                                        <td><a href="http://www.w3.org/ns/ldp">http://www.w3.org/ns/ldp#</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td><code>sioc</code></td>
-                                        <td><a href="http://rdfs.org/sioc/ns">http://rdfs.org/sioc/ns#</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td><code>foaf</code></td>
-                                        <td><a href="http://xmlns.com/foaf/0.1/">http://xmlns.com/foaf/0.1/</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td><code>pingback</code></td>
-                                        <td><a href="http://purl.org/net/pingback/">http://purl.org/net/pingback/</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td><code>as</code></td>
-                                        <td><a href="http://www.w3.org/ns/activitystreams">http://www.w3.org/ns/activitystreams#</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td><code>oa</code></td>
-                                        <td><a href="http://www.w3.org/ns/oa">http://www.w3.org/ns/oa#</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td><code>schema</code></td>
-                                        <td><a href="https://schema.org/">https://schema.org/</a></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </section>
                 </div>
             </article>
         </main>
