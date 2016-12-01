@@ -9,7 +9,7 @@
         <link href="https://dokie.li/media/css/acm.css" media="all" rel="stylesheet alternate" title="ACM" />
         <link href="https://www.w3.org/StyleSheets/TR/2016/W3C-UD" media="all" rel="stylesheet alternate" title="W3C-UD" />
         <link href="https://dokie.li/media/css/do.css" media="all" rel="stylesheet" />
-        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" media="all" rel="stylesheet" />
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" media="all" rel="stylesheet" />
         <link href="https://dokie.li/media/css/editor.css" media="all" rel="stylesheet" />
         <script src="https://dokie.li/scripts/simplerdf.js"></script>
         <script src="https://dokie.li/scripts/medium-editor.min.js"></script>
@@ -90,6 +90,14 @@
                     <section id="introduction" inlist="" rel="schema:hasPart" resource="#introduction">
                         <h2 property="schema:name">Introduction</h2>
                         <div datatype="rdf:HTML" property="schema:description">
+                            <p>Data on the Web should not be locked in to particular systems or be only readable by the applications which created it. Users should be free to switch between applications and share data between them. Applications generate notifications about activities, interactions, and new information, which may be presented to the user or processed further.</p>
+
+                            <p><dfn id="ldn">Linked Data Notifications (<abbr title="Linked Data Notifications">LDN</abbr>)</dfn> supports sharing and reuse of notifications <em>across</em> applications, regardless of how they were generated. This allows for more modular systems, which decouple data storage from the applications which display or otherwise make use of the data. The protocol is intended to allow senders, receivers and consumers of notifications, which are independently implemented and run on different technology stacks, to seamlessly work together, contributing to decentralisation of our interactions on the Web.</p>
+
+                            <p>Instead of treating notifications as ephemeral or non-persistent entities, this specification enables the notion of a notification as an individual entity with its own URI. As such, notifications can be retrieved and reused. We support a range of different application domains, social and otherwise, thus the contents of notifications are left up to applications to define. Authentication and verification of notifications is encouraged, but the mechanism to do so is at the discretion of receivers and consumers, as needs differ according to types of notification and different application domains.</p>
+
+                            <p>---</p>
+
                             <p>What's the edge?</p>
                             <p>We have a problem and it requires a solution..</p>
                             <p>How is this better/different?</p>
@@ -102,6 +110,7 @@
                                 <dt>Notification</dt>
                                 <dd>synonym: <em>message</em></dd>
                             </dl>
+                        </div>
                     </section>
 
                     <section id="related-work" inlist="" rel="schema:hasPart" resource="#related-work">
@@ -307,13 +316,6 @@
                                 </div>
                             </section>
 
-                            <section id="activity-streams-2-0-support" inlist="" rel="schema:hasPart" resource="#activity-streams-2-0-support">
-                                <h3 property="schema:name">Activity Streams 2.0 Support</h3>
-                                <div datatype="rdf:HTML" property="schema:description">
-                                    <p>Receiver implementations that wish to support <a href="https://www.w3.org/TR/activitystreams-core/">Activity Streams 2.0 Core</a> can see <a href="https://www.w3.org/TR/social-web-protocols/#inbox-interop">Social Web Protocols - Inbox Interop</a> for Content-Type and vocabulary equivalences.</p>
-                                </div>
-                            </section>
-
                             <section id="natural-language-content" inlist="" rel="schema:hasPart" resource="#natural-language-content">
                                 <h3 property="schema:name">Natural Language Content</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
@@ -372,7 +374,7 @@
                                 </div>
                             </section>
 
-                            <section id="involved-paries-considerations" inlist="" rel="schema:hasPart" resource="#involved-paries-considerations">
+                            <section id="involved-parties-considerations" inlist="" rel="schema:hasPart" resource="#involved-parties-considerations">
                                 <h3 property="schema:name">Involved Parties Considerations</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
                                     <p>Notifications could be sent client-to-server, server-to-server. We should be clear about the intentions in our proposal. Default being a client (user-application?) sends a notification to a server.</p>
