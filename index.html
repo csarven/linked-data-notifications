@@ -25,9 +25,9 @@
                 <div id="authors">
                     <dl id="author-name">
                         <dt>Authors</dt>
-                        <dd id="Sarven-Capadisli" data-editor-id="46140" inlist="" rel="bibo:authorList" resource="http://csarven.ca/#i"><span about="" rel="schema:creator schema:author"><span about="http://csarven.ca/#i" typeof="schema:Person"><a rel="schema:url" href="http://csarven.ca/"><span about="http://csarven.ca/#i" property="schema:name"><span property="schema:givenName">Sarven</span> <span property="schema:familyName">Capadisli</span></span></a></span></span><sup><a about="http://csarven.ca/#i" href="#author-org-1" rel="schema:memberOf" resource="http://dbpedia.org/resource/University_of_Bonn">1</a></sup><sup><a href="#author-email-1">✊</a></sup></dd>
+                        <dd data-editor-id="46140" id="Sarven-Capadisli" inlist="" rel="bibo:authorList" resource="http://csarven.ca/#i"><span about="" rel="schema:creator schema:author"><span about="http://csarven.ca/#i" typeof="schema:Person"><a href="http://csarven.ca/" rel="schema:url"><span about="http://csarven.ca/#i" property="schema:name"><span property="schema:givenName">Sarven</span> <span property="schema:familyName">Capadisli</span></span></a></span></span><sup><a about="http://csarven.ca/#i" href="#author-org-1" rel="schema:memberOf" resource="http://dbpedia.org/resource/University_of_Bonn">1</a></sup><sup><a href="#author-email-1">✊</a></sup></dd>
 
-                        <dd id="Amy-Guy" data-editor-id="69000" inlist="" rel="bibo:authorList" resource="http://rhiaro.co.uk/#me"><span about="" rel="schema:creator schema:author"><span about="http://rhiaro.co.uk/#me" typeof="schema:Person"><a rel="schema:url" href="http://rhiaro.co.uk/"><span about="http://rhiaro.co.uk/#me" property="schema:name"><span property="schema:givenName">Amy</span> <span property="schema:familyName">Guy</span></span></a></span></span><sup><a about="http://rhiaro.co.uk/about#me" href="#author-org-2" rel="schema:memberOf" resource="http://dbpedia.org/resource/University_of_Edinburgh">2</a></sup><sup><a href="#author-email-2">🐦</a></sup></dd>
+                        <dd data-editor-id="69000" id="Amy-Guy" inlist="" rel="bibo:authorList" resource="http://rhiaro.co.uk/#me"><span about="" rel="schema:creator schema:author"><span about="http://rhiaro.co.uk/#me" typeof="schema:Person"><a href="http://rhiaro.co.uk/" rel="schema:url"><span about="http://rhiaro.co.uk/#me" property="schema:name"><span property="schema:givenName">Amy</span> <span property="schema:familyName">Guy</span></span></a></span></span><sup><a about="http://rhiaro.co.uk/about#me" href="#author-org-2" rel="schema:memberOf" resource="http://dbpedia.org/resource/University_of_Edinburgh">2</a></sup><sup><a href="#author-email-2">🐦</a></sup></dd>
                     </dl>
 
                     <ul id="author-org">
@@ -45,13 +45,6 @@
                     <dt>Document ID</dt>
                     <dd><a href="http://csarven.ca/decentralised-notifications" rel="owl:sameAs">http://csarven.ca/decentralised-notifications</a></dd>
                 </dl>
-
-<!--
-                <dl id="document-inbox">
-                    <dt>Notifications Inbox</dt>
-                    <dd><a href="https://linkedresearch.org/inbox/temp/dn/" rel="ldp:inbox">inbox/</a></dd>
-                </dl>
- -->
 
                 <dl id="document-published">
                     <dt>Published</dt>
@@ -239,15 +232,10 @@
                         <div datatype="rdf:HTML" property="schema:description">
                             <p><strong>Notification discovery and reuse</strong>: applications can discover, refer to, retrieve, and display individual notifications.</p>
 
-                            <p><strong>Arbitrary data</strong>: Notifications containing any amount of information using application specific vocabularies.</p>
-
                             <p><strong>Status updates</strong>: emergency broadcasts, weather forecasts, fitness states/updates, scores, user updates profile name .. This is in contrast to notifications (or pings, activities, mentions) that is a general interaction between A and B (which can be profiles, documents..)</p>
 
-                            <p><strong>Authentication</strong>:</p>
-
-                            <p><strong>Notification integrity</strong>: Application discovers the requirements and constraints - the "shape" it should conform - for the notifications of the inbox.</p>
-
-                            <p><strong>Subscription</strong>: PuSH, WebSockets..</p>
+                            <p>Digital Scholarly Communication: annotations/peer-reviews, citations, sharing/bookmarking<br /></p><p>Dataset updates/changesets/transactions/logs/provenance</p>
+                            <p>Social Web: sharing, bookmarking, liking, general announcements</p>
                         </div>
                     </section>
 
@@ -259,45 +247,34 @@
                             <section id="architectural-considerations" inlist="" rel="schema:hasPart" resource="#architectural-considerations">
                                 <h3 property="schema:name">Architectural Considerations</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
-                                    <p>The Representational State Transfer (REST) is an architectural style that describes the abstract model of the Web architecture. <q cite="https:/dx.doi.org/10.1145/337180.337228">The World Wide Web has succeeded in large part because its software architecture has been designed to meet the needs of an Internet-scale distributed hypermedia system.</q> [<span class="ref">Fielding, R. T.; Taylor, R. N. (2000). "Principled design of the modern Web architecture": 407–416. doi:<a href="https:/dx.doi.org/10.1145/337180.337228">10.1145/337180.337228</a></span>]</p>
+                                    <p><strong>Compatible with REST principles</strong>: Since Linked Data follows the Representational State Transfer (REST) architectural style [Fielding, R. T.; Taylor, R. N. (2000). "Principled design of the modern Web architecture": 407–416. doi:<a href="https:/dx.doi.org/10.1145/337180.337228">10.1145/337180.337228</a>] also Linked Data Notifications should be compatible with REST to the largest extend possible. This also ensures interoperability with other standards such as for example LDP. A RESTful realization also has a number of further advantages, such as resource identification, discovery and description.<br /></p><p><br /></p>
                                 </div>
                             </section>
 
                             <section id="sender-verification" inlist="" rel="schema:hasPart" resource="#sender-verification">
-                                <h4 property="schema:name">Sender Verification</h4>
+                                <h3 property="schema:name">Sender Verification</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
-                                    <p>Receivers <em class="rfc2119">SHOULD</em> verify the sender of the notification. For example:</p>
-                                    <ul>
-                                        <li>by having a whitelist of senders with write access to the Inbox</li>
-                                        <li>requiring authentication to enforce receiver’s knowledge of every sender</li>
-                                        <li>retrieving a copy of the notification from the sender’s domain to verify its origin</li>
-                                        <li>checking a digital signature which accompanies the notification</li>
-                                    </ul>
+                                    <p>In order to establish authenticity of information receivers <em class="rfc2119">SHOULD</em> verify the sender of a notification. This can be done for example using whitelists, requiring authentication, verification through dereferencing or checking a digital signature.</p>
+
+<p>For abuse prevention, receivers <em class="rfc2119">SHOULD</em> use <a href="#constraints">constraints</a> to filter unwarranted notifications from being created on the server and exposed by the Inbox.</p>
                                 </div>
                             </section>
 
-                            <section id="preventing-abuse" inlist="" rel="schema:hasPart" resource="#preventing-abuse">
-                                <h4 property="schema:name">Preventing Abuse</h4>
+                            <section id="payload-verification" rel="schema:hasPart" resource="#payload-verification">
+                                <h3 property="schema:name">Payload Verification</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
-                                    <p>Receivers <em class="rfc2119">SHOULD</em> use <a href="#constraints">constraints</a> to filter unwarranted notifications from being created on the server and exposed by the Inbox.</p>
+                                    <p>Validity of the notification's content: Given the nature of the notification payload, consumers may want to take precautions when ascertaining the veracity of the contents. The <q>anyone can say anything about anything</q> Web principle applies here. Unless otherwise specified, there is no indication as to whether the original payload was altered by the receiver.</p>
 
-                                    <p>Receivers could consider implementing access control on the Inbox URL to restrict writing to a whitelist of trusted senders.</p>
+                                    <p>What is a message/notification? What can it contain? Are there constraints/shapes in needs to fulfil? How does it look (vocabularies)?</p>
                                 </div>
                             </section>
 
-                            <div class="note" id="note-payload-verification" rel="schema:hasPart" resource="#note-payload-verification">
-                                <h4 property="schema:name">Note</h4>
-                                <div datatype="rdf:HTML" property="schema:description">
-                                    <p>Given the nature of the notification payload, consumers may want to take precautions when ascertaining the veracity of the contents. The <q>anyone can say anything about anything</q> Web principle applies here. Unless otherwise specified, there is no indication as to whether the original payload was altered by the receiver.</p>
-                                </div>
-                            </div>
-
-                            <div class="note" id="note-paging" rel="schema:hasPart" resource="#note-paging">
-                                <h4 property="schema:name">Note</h4>
+                            <section id="paging" rel="schema:hasPart" resource="#paging">
+                                <h3 property="schema:name">Paging</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
                                     <p>This specification does not define a paging mechanism to serve the list of notifications in an Inbox. Implementations that wish to enable paging may want to use existing mechanisms to allow efficient retrievals e.g., <cite><a class="bibref" href="#bib-ldp-paging">Linked Data Platform Paging 1.0</a></cite>, <cite><a class="bibref" href="#bib-activitystreams-core">Activity Streams 2.0 Collection</a></cite>.</p>
                                 </div>
-                            </div>
+                            </section>
 
                             <section id="constraints" inlist="" rel="schema:hasPart" resource="#constraints">
                                 <h3 property="schema:name">Constraints</h3>
@@ -327,35 +304,12 @@
                                 </div>
                             </section>
 
-                            <section id="authenticated-inboxes" inlist="" rel="schema:hasPart" resource="#authenticated-inboxes">
-                                <h3 property="schema:name">Authenticated Inboxes</h3>
+                            <section id="authentication-considerations" inlist="" rel="schema:hasPart" resource="#authentication-considerations">
+                                <h3 property="schema:name">Authenticated Considerations</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
-                                    <p>If a receiver expects senders or consumers to authenticate, it should check the validity of their credentials before returning any other data, including other error codes. For example, the receiver should <em>not</em> first check for the existence of the inbox and return <code>404 Not Found</code> if the requester has not been verified.</p>
+                                    <p>If a receiver expects senders or consumers to authenticate, it should check the validity of their credentials before returning any other data, including other error codes. What's required? What's possible? Where does WebID+TLS fit in? What about HTTP Basic Auth? OAuth? Alternatives? Describe what's required and what's optional.</p>
+
                                     <p>Authentication involving token passing must be done over HTTPS.</p>
-                                </div>
-                            </section>
-
-
-
-                            <section id="security-considerations" inlist="" rel="schema:hasPart" resource="#security-considerations">
-                                <h3 property="schema:name">Security Considerations</h3>
-                                <div datatype="rdf:HTML" property="schema:description">
-                                    <p>Verifying the Sender</p>
-                                    <p>Public endpoints.</p>
-                                </div>
-                            </section>
-
-                            <section id="authentication-considerations" inlist="" rel="schema:hasPart" resource="#security-considerations">
-                                <h3 property="schema:name">Authentication Considerations</h3>
-                                <div datatype="rdf:HTML" property="schema:description">
-                                    <p>What's required? What's possible? Where does WebID+TLS fit in? What about HTTP Basic Auth? OAuth? Alternatives? Describe what's required and what's optional.</p>
-                                </div>
-                            </section>
-
-                            <section id="payload-considerations" inlist="" rel="schema:hasPart" resource="#payload-considerations">
-                                <h3 property="schema:name">Payload Considerations</h3>
-                                <div datatype="rdf:HTML" property="schema:description">
-                                    <p>What is a message/notification? What can it contain? Are there constraints/shapes in needs to fulfil? How does it look (vocabularies)?</p>
                                 </div>
                             </section>
 
