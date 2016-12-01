@@ -115,7 +115,7 @@
                         <div datatype="rdf:HTML" property="schema:description" resource="#related-work" typeof="deo:RelatedWork">
                             <p>What's out here?</p>
                             <p>What's in their scope?</p>
-                            <p>Mention why only Semantic Pingback, Webmention, ActivityPub, and LDP Inbox, and maybe alternatives are covered in this article.</p>
+                            <p>Mention why only Semantic Pingback, Webmention, and LDP Inbox, and maybe alternatives are covered in this article.</p>
 
                             <table id="comparison-of-notification-mechanisms">
                                 <caption>Comparison of notification mechanisms</caption>
@@ -140,7 +140,6 @@
                                 <tbody>
                                     <tr><th>Semantic Pingback</th><td><code>POST</code> (urlencoded)</td><td>source/target key-value pair</td><td><code>GET</code><sup>2</sup></td><td>Yes</td></tr>
                                     <tr><th>Webmention</th><td><code>POST</code> (urlencoded)</td><td>source/target key-value pair</td><td><code>GET</code><sup>1</sup></td></tr>
-                                    <tr><th>ActivityPub</th><td><code>POST</code></td><td>JSON(-LD), Activity Streams 2.0, complete object</td><td><code>GET</code><sup>2</sup></td><td>Yes</td></tr>
                                     <tr><th>Linked Data Notifications</th><td><code>POST</code></td><td>JSON-LD<sup>*</sup>, unconstrained vocabulary and data</td><td><code>GET</code><sup>2</sup></td><td>Yes</td></tr>
                                 </tbody>
                             </table>
@@ -216,13 +215,6 @@
                                     </table>
                                 </div>
                             </section>
-
-                            <section id="activitypub" rel="schema:hasPart" resource="#activitypub">
-                                <h3 property="schema:name">ActivityPub</h3>
-                                <div datatype="rdf:HTML" property="schema:description">
-                                    <p class="todo">https://www.w3.org/TR/activitypub/</p>
-                                </div>
-                            </section>
                         </div>
                     </section>
 
@@ -232,10 +224,13 @@
                         <div datatype="rdf:HTML" property="schema:description">
                             <p><strong>Notification discovery and reuse</strong>: applications can discover, refer to, retrieve, and display individual notifications.</p>
 
-                            <p><strong>Status updates</strong>: emergency broadcasts, weather forecasts, fitness states/updates, scores, user updates profile name .. This is in contrast to notifications (or pings, activities, mentions) that is a general interaction between A and B (which can be profiles, documents..)</p>
+                            <p>Digital Scholarly Communication: annotations/peer-reviews, citations, sharing/bookmarking</p>
 
-                            <p>Digital Scholarly Communication: annotations/peer-reviews, citations, sharing/bookmarking<br /></p><p>Dataset updates/changesets/transactions/logs/provenance</p>
-                            <p>Social Web: sharing, bookmarking, liking, general announcements</p>
+                            <p>Dataset updates/changesets/transactions/logs/provenance</p>
+
+                            <p>Social Web: status updates, sharing, bookmarking, liking, general announcements</p>
+
+                            <p><strong>Status updates</strong>: emergency broadcasts, weather forecasts, fitness states/updates, scores, user updates profile name .. This is in contrast to notifications (or pings, activities, mentions) that is a general interaction between A and B (which can be profiles, documents..)</p>
                         </div>
                     </section>
 
@@ -247,16 +242,18 @@
                             <section id="architectural-considerations" inlist="" rel="schema:hasPart" resource="#architectural-considerations">
                                 <h3 property="schema:name">Architectural Considerations</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
-                                    <p><strong>Compatible with REST principles</strong>: Since Linked Data follows the Representational State Transfer (REST) architectural style [Fielding, R. T.; Taylor, R. N. (2000). "Principled design of the modern Web architecture": 407–416. doi:<a href="https:/dx.doi.org/10.1145/337180.337228">10.1145/337180.337228</a>] also Linked Data Notifications should be compatible with REST to the largest extend possible. This also ensures interoperability with other standards such as for example LDP. A RESTful realization also has a number of further advantages, such as resource identification, discovery and description.<br /></p><p><br /></p>
+                                    <p><strong>Compatible with REST principles</strong>: Since Linked Data follows the Representational State Transfer (REST) architectural style [Fielding, R. T.; Taylor, R. N. (2000). "Principled design of the modern Web architecture": 407–416. doi:<a href="https:/dx.doi.org/10.1145/337180.337228">10.1145/337180.337228</a>] also Linked Data Notifications should be compatible with REST to the largest extent possible. This also ensures interoperability with other standards such as for example Linked Data Platform (LDP). A RESTful realisation also has further advantages, such as organisation of atomic resources, including their identification, discovery and description, alongside basic operations like <abbr title="Create, Read, Update, Delete">CRUD</abbr >on individual resources through HTTP methods.</p>
+
+                                    <p>Why bother saying all this? Should we contrast this?</p>
                                 </div>
                             </section>
 
                             <section id="sender-verification" inlist="" rel="schema:hasPart" resource="#sender-verification">
                                 <h3 property="schema:name">Sender Verification</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
-                                    <p>In order to establish authenticity of information receivers <em class="rfc2119">SHOULD</em> verify the sender of a notification. This can be done for example using whitelists, requiring authentication, verification through dereferencing or checking a digital signature.</p>
+                                    <p>In order to establish authenticity of information receivers <em class="rfc2119">SHOULD</em> verify the sender of a notification. This can be done for example using whitelists, requiring authentication, verification through dereferencing an authoritative resource, or checking a digital signature.</p>
 
-<p>For abuse prevention, receivers <em class="rfc2119">SHOULD</em> use <a href="#constraints">constraints</a> to filter unwarranted notifications from being created on the server and exposed by the Inbox.</p>
+                                    <p>For abuse prevention, receivers <em class="rfc2119">SHOULD</em> use <a href="#constraints">constraints</a> to filter unwarranted notifications from being created on the server and exposed by the Inbox.</p>
                                 </div>
                             </section>
 
@@ -344,6 +341,12 @@
                     <section id="linked-data-notifications" inlist="" rel="schema:hasPart" resource="#linked-data-notifications">
                         <h2 property="schema:name">Linked Data Notifications</h2>
                         <div datatype="rdf:HTML" property="schema:description" resource="#linked-datanotifications" typeof="deo:Contribution">
+                            <figure id="figure-linked-data-notifications-overview" rel="schema:hasPart" resource="#figure-linked-data-notifications-overview">
+                                <object data="linked-data-notifications-overview.svg" height="200" rel="schema:image" type="image/svg+xml" width="420"></object>
+
+                                <figcaption property="schema:name">Overview of Linked Data Notifications</figcaption>
+                            </figure>
+
                             <p><dfn id="ldn">Linked Data Notifications (<abbr title="Linked Data Notifications">LDN</abbr>)</dfn> is a protocol that describes how servers (receivers) can have messages pushed to them by applications (senders), as well as how other applications (consumers) may retrieve those messages. Any resource can advertise a receiving endpoint (Inbox) for the messages. Messages are expressed in RDF, and can contain any data.</p>
 
                             <p>LDN is a specialized use of Linked Data Platform [<cite><a class="bibref" href="#bib-ldp">LDP</a></cite>] for sending and consuming notifications. It is not dependent on a complete implementation of LDP, but an easy-to-implement subset. LDN is a <a href="https://www.w3.org/TR/ldn">W3C Recommendation</a> [<cite><a class="bibref" href="#bib-ldn">LDN</a></cite>]</p>
@@ -402,105 +405,11 @@
                                 <li>a notification can contain arbitrary data</li>
                                 <li>a notification is vocabulary agnostic</li>
                             </ul>
-                        </div>
-                    </section>
 
-                    <section id="payload" inlist="" rel="schema:hasPart" resource="#payload">
-                        <h2 property="schema:name">Payload</h2>
-                        <div datatype="rdf:HTML" property="schema:description">
-                            <p>The payload of the notification <em class="rfc2119">MUST</em> be a JSON-LD unless another RDF syntax has been negotiated with the receiver. To allow for a wide variety of use cases, the actual vocabulary of the payload is deliberately left to the discretion of the sender. The sender <em class="rfc2119">MUST NOT</em> assume that the receiver can fetch or infer anything additional from the payload, and thus <em class="rfc2119">MUST</em> include everything they want the receiver to know.</p>
-
-                            <section id="payload-examples" inlist="" rel="schema:hasPart" resource="#payload-examples">
-                                <h3 property="schema:name">Payload Examples</h3>
+                            <section id="example-notifications" inlist="" rel="schema:hasPart" resource="#example-notifications">
+                                <h2 property="schema:name">Example Notifications</h2>
                                 <div datatype="rdf:HTML" property="schema:description">
-                                    <p><em>This section is non-normative.</em> Here are some examples of notification content:</p>
-
-                                    <section id="single-statement" inlist="" rel="schema:hasPart" resource="#single-statement">
-                                        <h4 property="schema:name">Single Statement</h4>
-                                        <div datatype="rdf:HTML" property="schema:description">
-                                            <p>A single triple statement is the simplest notification in terms of its data payload. It contains the most essential data which makes up a notification e.g, A note is a reply to an article:</p>
-
-                                            <figure class="listing example selected" id="notification-single-statement-json-ld" rel="schema:hasPart" resource="#notification-single-statement-json-ld">
-                                                <pre about="#notification-single-statement-turtle" property="schema:description" typeof="fabio:Script">
-<code>{</code>
-<code>  "<span class="hljs-attribute">@context</span>": <span class="hljs-value"><span class="hljs-string">"https://www.w3.org/ns/activitystreams"</span></span>,</code>
-<code>  "<span class="hljs-attribute">@id</span>": <span class="hljs-value"><span class="hljs-string">"https://example.org/note"</span></span>,</code>
-<code>  "<span class="hljs-attribute">inReplyTo</span>": <span class="hljs-value"><span class="hljs-string">"https://example.net/article"</span></span></code>
-<code>}</code>
-                                                </pre>
-                                                <figcaption property="schema:name">Example notification type: single statement in JSON-LD</figcaption>
-                                            </figure>
-
-                                            <p>This approach is useful if there is a need to further extend the statement's description or refer to it as a whole.</p>
-                                        </div>
-                                    </section>
-
-                                    <section id="qualified-relations" inlist="" rel="schema:hasPart" resource="#qualified-relations">
-                                        <h4 property="schema:name">Qualified relations</h4>
-                                        <div datatype="rdf:HTML" property="schema:description">
-                                            <p>A particular grouping of triples which describe and qualify the relations, i.e., the vocabulary in use typically gives meaning to the statements when consumed as a whole. The examples below tend to refer to external resources where the body of the content can be discovered.</p>
-
-                                            <p>ActivityStreams 2.0:</p>
-                                            <figure class="listing example" id="notification-qualified-relation" rel="schema:hasPart" resource="#notification-qualified-relation">
-                                                <pre about="#notification-qualified-relation" property="schema:description" typeof="fabio:Script">
-<code>{</code>
-<code>  "@context": "http://www.w3.org/ns/activitystreams",</code>
-<code>  "@type": "Announce",</code>
-<code>  "actor": { "@id": "https://example.org/profile#alice" },</code>
-<code>  "object": { "@id": "https://example.org/annotation-1" },</code>
-<code>  "target": { "@id": "https://user.example/article#introduction" },</code>
-<code>  "updated": "2016-06-23T15:03:01Z"</code>
-<code>}</code>
-                                                </pre>
-                                                <figcaption property="schema:name">Example notification type: qualified relation.</figcaption>
-                                            </figure>
-
-                                            <p>Semantic Pingback:</p>
-                                            <figure class="listing example" id="notification-semantic-pingback" rel="schema:hasPart" resource="#notification-semantic-pingback">
-                                                <pre about="#notification-semantic-pingback" property="schema:description" typeof="fabio:Script">
-<code>{</code>
-<code>  "@type": "http://purl.org/net/pingback/Item",</code>
-<code>  "http://purl.org/net/pingback/source":</code>
-<code>    { "@id": "https://example.org/annotation-1" },</code>
-<code>  "http://purl.org/net/pingback/target":</code>
-<code>    { "@id": "https://user.example/article#introduction" }</code>
-<code>}</code>
-                                                </pre>
-                                                <figcaption property="schema:name">Example notification type: Semantic Pingback.</figcaption>
-                                            </figure>
-                                        </div>
-                                    </section>
-
-
-                                    <section id="any-data" inlist="" rel="schema:hasPart" resource="#any-data">
-                                        <h4 property="schema:name">Any data</h4>
-                                        <div datatype="rdf:HTML" property="schema:description">
-                                            <p>This is typically in cases where an application may want to create a notification containing arbitrary information. A notification may contain the complete payload and not necessarily refer to the origin data (external resource).</p>
-
-                                            <figure class="listing example" id="notification-any-data" rel="schema:hasPart" resource="#notification-any-data">
-                                                <pre about="#notification-any-data" property="schema:description" typeof="fabio:Script">
-<code>{</code>
-<code>  "@context": [</code>
-<code>    { "sioc": "http://rdfs.org/sioc/ns#" },</code>
-<code>    { "foaf": "http://xmlns.com/foaf/0.1/" }</code>
-<code>  ],</code>
-<code>  "@type": "sioc:Comment",</code>
-<code>  "sioc:reply_of": { "@id": "https://user.example/article" },</code>
-<code>  "sioc:created_at": "2015-12-23T16:44:21Z",</code>
-<code>  "sioc:content" : "This is a great article!",</code>
-<code>  "sioc:has_creator": {</code>
-<code>    "@id": "https://example.org/profile/",</code>
-<code>    "@type": "sioc:UserAccount",</code>
-<code>    "sioc:account_of": { "@id": "https://example.org/profile#alice" },</code>
-<code>    "sioc:avatar": { "@id": "https://example.org/profile/avatar.png" },</code>
-<code>    "foaf:name": "Alice"</code>
-<code>  }</code>
-<code>}</code>
-                                                </pre>
-                                                <figcaption property="schema:name">Example notification type: any data.</figcaption>
-                                            </figure>
-                                        </div>
-                                    </section>
+                                    <p>Based on use cases..</p>
                                 </div>
                             </section>
                         </div>
