@@ -191,30 +191,6 @@
 
                                         <li>In the event of the source URL containing multiple mentions of the target URL, the Webmention endpoint is not informed about the particular statement but the document as a whole. Therefore, the receiver is required to process the whole document and base its verification on the existence of one of those mentions. This sets forth an indeterministic verification step since there is no clear way to distinguish the received Webmention at the endpoint from multiple mentions which can exist in at the source.</li>
                                     </ul>
-
-                                    <p>In order to accommodate these inherent shortcomings of the Webmention design, <a href="http://csarven.ca/webmention">Webmention</a> proposes the <code>property</code> parameter to indicate the type of relation between the source and the target (which is found at the source URL) in the case of structured languages in e.g., HTML(+RDFa). Its value may be a <em>term</em> e.g., <code>u-in-reply-to</code>, a <em>IRI</em> e.g., <code>http://rdfs.org/sioc/ns#reply_of</code>, or a <em>prefixed name</em> e.g., <code>sioc:reply_of</code>. The <code>property</code> information allows precise claims, and consequently 1) it gives an opportunity for the receiver to decide whether to make a single <code>GET</code> on the source URL, 2) better narrowing down or filtering of a particular claim.</p>
-
-                                    <p>Table of possible <code>POST</code>s with interpretations outlines the level of requirement and possible ways to process the Webmention:</p>
-
-                                    <table id="webmention-posts">
-                                        <caption>Webmention <code>POST</code>s using <code>source</code>, <code>property</code>, and <code>target</code></caption>
-                                        <thead>
-                                            <tr><th><code>source</code></th><th><code>property</code></th><th><code>target</code></th><th>Possible process</th></tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr><td></td><td></td><td></td><td>Show error</td></tr>
-                                            <tr><td></td><td>✔</td><td></td><td>Show error</td></tr>
-                                            <tr><td></td><td></td><td>✔</td><td>Show error</td></tr>
-                                            <tr><td></td><td>✔</td><td>✔</td><td>Show error</td></tr>
-                                            <tr><td>✔</td><td></td><td></td><td>Verify interest with that <code>source</code></td></tr>
-                                            <tr><td>✔</td><td>✔</td><td></td><td>Verify interest with that <code>source</code> and <code>property</code></td></tr>
-                                            <tr><td>✔</td><td></td><td>✔</td><td>Verify interest with that <code>source</code> and <code>target</code></td></tr>
-                                            <tr><td>✔</td><td>✔</td><td>✔</td><td>Verify <code>source</code>, <code>property</code>, <code>target</code></td></tr>
-                                        </tbody>
-                                        <tfoot>
-                                            <tr><td colspan="4">✔ indicates that the parameter is submitted.</td></tr>
-                                        </tfoot>
-                                    </table>
                                 </div>
                             </section>
                         </div>
