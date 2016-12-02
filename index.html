@@ -80,7 +80,7 @@
                         <div>
                             <ul rel="schema:about">
                                 <li><a href="https://en.wikipedia.org/wiki/Decentralization" resource="http://dbpedia.org/resource/Decentralization">Decentralisation</a></li>
-                                <li><a href="https://en.wikipedia.org/wiki/Semantic_Web" resource="http://dbpedia.org/resource/Semantic_Web">Semantic Web</a></li>
+                                <li><a href="https://en.wikipedia.org/wiki/Linked_Data" resource="http://dbpedia.org/resource/Linked_Data">Linked_Data</a></li>
                                 <li><a href="https://en.wikipedia.org/wiki/Social_web" resource="http://dbpedia.org/resource/Social_web">Social web</a></li>
                             </ul>
                         </div>
@@ -214,32 +214,32 @@
                     <section id="requirements-and-design-considerations" inlist="" rel="schema:hasPart" resource="#requirements-and-design-considerations">
                         <h2 property="schema:name">Requirements and Design Considerations</h2>
                         <div datatype="rdf:HTML" property="schema:description">
-                            <p>...</p>
+                            <p>Note: Doublecheck to make sure that this whole section is expressed in term's of what's desired or to be considered, and not say so much about what's done.</p>
 
                             <section id="architectural-considerations" inlist="" rel="schema:hasPart" resource="#architectural-considerations">
                                 <h3 property="schema:name">Architectural Considerations</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
                                     <p><strong>Compatible with REST principles</strong>: Since Linked Data follows the Representational State Transfer (REST) architectural style [Fielding, R. T.; Taylor, R. N. (2000). "Principled design of the modern Web architecture": 407–416. doi:<a href="https:/dx.doi.org/10.1145/337180.337228">10.1145/337180.337228</a>] also Linked Data Notifications should be compatible with REST to the largest extent possible. This also ensures interoperability with other standards such as for example Linked Data Platform (LDP). A RESTful realisation also has further advantages, such as organisation of atomic resources, including their identification, discovery and description, alongside basic operations like <abbr title="Create, Read, Update, Delete">CRUD</abbr >on individual resources through HTTP methods.</p>
-
-                                    <p>Why bother saying all this? Should we contrast this?</p>
                                 </div>
                             </section>
 
                             <section id="sender-verification" inlist="" rel="schema:hasPart" resource="#sender-verification">
                                 <h3 property="schema:name">Sender Verification</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
-                                    <p>In order to establish authenticity of information receivers <em class="rfc2119">SHOULD</em> verify the sender of a notification. This can be done for example using whitelists, requiring authentication, verification through dereferencing an authoritative resource, or checking a digital signature.</p>
+                                    <p>In order to establish authenticity of information receivers should verify the sender of a notification. This can be done for example using whitelists, requiring authentication, verification through dereferencing an authoritative resource, or checking a digital signature.</p>
 
-                                    <p>For abuse prevention, receivers <em class="rfc2119">SHOULD</em> use <a href="#constraints">constraints</a> to filter unwarranted notifications from being created on the server and exposed by the Inbox.</p>
+                                    <p>For abuse prevention, servers receiving the notifications should set and advertise constraints to filter unwarranted notifications from being created on the server and exposed for consumption.</p>
                                 </div>
                             </section>
 
-                            <section id="payload-verification" rel="schema:hasPart" resource="#payload-verification">
-                                <h3 property="schema:name">Payload Verification</h3>
+                            <section id="notification-verification-and-validation" rel="schema:hasPart" resource="#notification-verification-and-validation">
+                                <h3 property="schema:name">Notification Verification and Validity</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
-                                    <p>Validity of the notification's content: Given the nature of the notification payload, consumers may want to take precautions when ascertaining the veracity of the contents. The <q>anyone can say anything about anything</q> Web principle applies here. Unless otherwise specified, there is no indication as to whether the original payload was altered by the receiver.</p>
-
                                     <p>What is a message/notification? What can it contain? Are there constraints/shapes in needs to fulfil? How does it look (vocabularies)?</p>
+
+                                    <p><strong>Verification</strong>: If a notification makes describes third-party (external) resources, fetching and processing their descriptions may be one way to verify their existence.</p>
+
+                                    <p><strong>Validation</strong>: Given the nature of the notification payload, consumers may want to take precautions when ascertaining the veracity of the contents. The <q>anyone can say anything about anything</q> Web principle applies here. Unless otherwise specified, there is no indication as to whether the original payload was altered by the receiver.</p>
                                 </div>
                             </section>
 
