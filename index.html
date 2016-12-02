@@ -243,13 +243,6 @@
                                 </div>
                             </section>
 
-                            <section id="paging" rel="schema:hasPart" resource="#paging">
-                                <h3 property="schema:name">Paging</h3>
-                                <div datatype="rdf:HTML" property="schema:description">
-                                    <p>This specification does not define a paging mechanism to serve the list of notifications in an Inbox. Implementations that wish to enable paging may want to use existing mechanisms to allow efficient retrievals e.g., <cite><a class="bibref" href="#bib-ldp-paging">Linked Data Platform Paging 1.0</a></cite>, <cite><a class="bibref" href="#bib-activitystreams-core">Activity Streams 2.0 Collection</a></cite>.</p>
-                                </div>
-                            </section>
-
                             <section id="constraints" inlist="" rel="schema:hasPart" resource="#constraints">
                                 <h3 property="schema:name">Constraints</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
@@ -303,6 +296,8 @@
                                 <div datatype="rdf:HTML" property="schema:description">
                                     <p>This is about volume, paging (https://www.w3.org/TR/ldp/), filtering, moving things around?</p>
                                     <p>Update and Delete operations on sent notifications</p>
+
+                                    <p>In order to organise and manage large amount of notifications over time, mechanisms should be in place to break representations into multiple paged responses. This would allow efficient retrievals of the contents of an inbox.</p>
                                 </div>
                             </section>
 
@@ -310,6 +305,8 @@
                                 <h3 property="schema:name">Involved Parties Considerations</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
                                     <p>Notifications could be sent client-to-server, server-to-server. We should be clear about the intentions in our proposal. Default being a client (user-application?) sends a notification to a server.</p>
+
+                                    <p>NOte: is this section necessary or meaningful?</p>
                                 </div>
                             </section>
                         </div>
@@ -406,11 +403,13 @@
 
                     <section id="evaluation" inlist="" rel="schema:hasPart" resource="#evaluation">
                         <h2 property="schema:name">Evaluation</h2>
-                        <div datatype="rdf:HTML" property="schema:description">
+                        <div datatype="rdf:HTML" property="schema:description" resource="#evaluation" typeof="deo:Evaluation">
                             <p>What are some of the comparable features between implementations</p>
                             <p>Number of requests to discover/send/consume</p>
 
                             <p>Implementations are interoperable. How many implementations are out there.. over length of time... different code stacks (variations) .. different groups/people implementing (without prior knowledge).. </p>
+
+                            <p>Note: Mention W3C LDN here?</p>
                         </div>
                     </section>
 
