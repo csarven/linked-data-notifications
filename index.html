@@ -269,24 +269,10 @@ Relate to DWBPs somewhere: https://www.w3.org/TR/dwbp-ucr/ and https://www.w3.or
                                 </div>
                             </section>
 
-                            <section id="target-ownership" inlist="" rel="schema:hasPart" resource="#target-ownership">
-                                <h3 property="schema:name">Target Ownership</h3>
-                                <div datatype="rdf:HTML" property="schema:description">
-                                    <p>Publishers of the resources advertising an Inbox (target) should do so on a server they trust. Publishers must be aware that third-party access to headers or content could result in notifications being redirected.</p>
-                                </div>
-                            </section>
-
                             <section id="subscribing-to-notifications" inlist="" rel="schema:hasPart" resource="#subscribing-to-notifications">
                                 <h3 property="schema:name">Subscribing to Notifications</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
                                     <p>This specification describes how consumers can read notifications from a receiver through <em>pull</em>, however consumers may want to ask to have incoming notifications or changes to Inbox’s contents pushed to them. Similarly, receivers may wish to make a request for notifications from a particular sender. This kind of subscription mechanism is left out of scope, but senders, receivers and consumers are not prohibited from making such an arrangement. Implementations that wish to enable subscribing may want to use existing mechanisms e.g., <cite><a class="bibref" href="#bib-activitypub">ActivityPub</a></cite>, <cite><a class="bibref" href="#bib-pubsub">PubSub</a></cite>, <cite><a class="bibref" href="#bib-rfc6455">The WebSocket Protocol</a></cite>, <cite><a class="bibref" href="#bib-webpush">HTTP Web Push</a></cite>.</p>
-                                </div>
-                            </section>
-
-                            <section id="natural-language-content" inlist="" rel="schema:hasPart" resource="#natural-language-content">
-                                <h3 property="schema:name">Natural Language Content</h3>
-                                <div datatype="rdf:HTML" property="schema:description">
-                                    <p>Building an international base of users is important in a federated network. Some LDN interactions can return content with natural language text, such as HTML fragments, or summary fields. Providing multiple language representations of each item might not be feasible in all circumstances. Implementations are encouraged to provide means of discovering the available languages and/or negotiating the language returned, such as using the HTTP <code>Accept-Language</code> header to negotiate and select the most appropriate language representation to send for a given request.</p>
                                 </div>
                             </section>
 
@@ -439,7 +425,14 @@ Relate to DWBPs somewhere: https://www.w3.org/TR/dwbp-ucr/ and https://www.w3.or
                             <p>We found a solution that is robust? efficient? working? flexible? accessible? evolvable?</p>
                             <p>The benefits are.. Prove?</p>
                             <p>Show some evidence that's reasonable.. to persuade the reader to reuse this work for further research.</p>
-                            <p about="" id="future-work" rel="schema:hasPart" resource="#future-work"><span datatype="rdf:HTML" property="schema:description" resource="#future-work" typeof="deo:FutureWork">Future work..</span></p>
+
+                            <p>Note: How about a discussion here?</p>
+
+                            <p><strong>Target ownership</strong>: Publishers of the resources advertising an Inbox (target) should do so on a server they trust. Publishers must be aware that third-party access to headers or content could result in notifications being redirected.</p>
+
+                            <p><strong>Natural Language Content</strong>: Building an international base of users is important in a federated network. Some LDN interactions can return content with natural language text, such as HTML fragments, or summary fields. Providing multiple language representations of each item might not be feasible in all circumstances. Implementations are encouraged to provide means of discovering the available languages and/or negotiating the language returned, such as using the HTTP <code>Accept-Language</code> header to negotiate and select the most appropriate language representation to send for a given request.</p>
+
+                            <p>Note: Future work?</p>
                         </div>
                     </section>
 
