@@ -252,7 +252,7 @@ Relate to DWBPs somewhere: https://www.w3.org/TR/dwbp-ucr/ and https://www.w3.or
                             <section id="notification-verification-and-validation" rel="schema:hasPart" resource="#notification-verification-and-validation">
                                 <h3 property="schema:name">Notification Verification and Validity</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
-                                    <p>What is a message/notification? What can it contain? Are there constraints/shapes in needs to fulfil? How does it look (vocabularies)?</p>
+                                    <p>What is a message/notification? What can it contain?</p>
 
                                     <p><strong>Verification</strong>: If a notification makes describes third-party (external) resources, fetching and processing their descriptions may be one way to verify their existence.</p>
 
@@ -260,10 +260,12 @@ Relate to DWBPs somewhere: https://www.w3.org/TR/dwbp-ucr/ and https://www.w3.or
                                 </div>
                             </section>
 
-                            <section id="constraints" inlist="" rel="schema:hasPart" resource="#constraints">
-                                <h3 property="schema:name">Constraints</h3>
+                            <section id="notification-constraints" inlist="" rel="schema:hasPart" resource="#notification-constraints">
+                                <h3 property="schema:name">Notification Constraints</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
-                                    <p>Inbox URLs can announce their own constraints (e.g., <cite><a class="bibref" href="#bib-shacl">SHACL</a></cite>, <cite><a class="bibref" href="#bib-annotation-protocol">Web Annotation Protocol</a></cite>) via an HTTP <code>Link</code> header or body of the resource with a <code>rel</code> value of <code>http://www.w3.org/ns/ldp#constrainedBy</code>. Senders should comply with constraint specifications or the receiver may reject their notification and return an appropriate <code>4xx</code> error code.</p>
+                                    <p>Setting constraints on notification data shape is motivated with the purpose of attaining application and data integrity. For <em>application integrity</em>, some of the common reasons for this is to minimise maintenance complexity, and to generate conforming data for optimal reuse. For <em>data integrity</em>, constraints makes it possible to store and serve data as intended, as well as optimal reuse by different conforming applications, and play a key role in accuracy and consistency in data's life-cycle.</p>
+
+                                    <p>If the notification constraints are advertised as structured descriptions, generation and consumption of the notifications can be better automated by applications. Inboxes could announce their own constraints using existing data shapes like with <cite><a href="#">SHACL</a></cite> or other recommendations.</p>
                                 </div>
                             </section>
 
