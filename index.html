@@ -88,26 +88,46 @@
                     <section id="introduction" inlist="" rel="schema:hasPart" resource="#introduction">
                         <h2 property="schema:name">Introduction</h2>
                         <div datatype="rdf:HTML" property="schema:description">
-                            <p>Data on the Web should not be locked in to particular systems or be only readable by the applications which created it. Users should be free to switch between applications and share data between them. Applications generate notifications about activities, interactions, and new information, which may be presented to the user or processed further.</p>
+                            <p about="" id="problem" rel="schema:hasPart"><span about="#problem" property="schema:description" typeof="deo:Problem">Web notifications are traditionally conceived as ephemeral things that disappear after transport (or at least are likely to). They effect things on the receiving end, but don't themselves have identification or enable reuse. Hence, the process of creating and storing data is closely coupled with applications and storage mechanisms. Such system architectures limit applications to behave in a centralised manner where the data is subject to being part of an  information silo.</span></p>
+
+                            <p about="" id="motivation" rel="schema:hasPart"><span about="#motivation" property="schema:description" typeof="deo:Motivation">We content that the data on the Web should not be locked in to particular systems or be only readable by the applications which created it. Users should be free to switch between applications and share data between them. This is one of the aspirations for enabling decentralised applications on the Web, and data reuse. </span></p>
+
+The notion of a notification as an individual entity with its own URI is usually .
+
+For instance, applications generate notifications about activities, interactions, and new information, which may be presented to the user or processed further.
 
                             <p><dfn id="ldn">Linked Data Notifications (<abbr title="Linked Data Notifications">LDN</abbr>)</dfn> supports sharing and reuse of notifications <em>across</em> applications, regardless of how they were generated. This allows for more modular systems, which decouple data storage from the applications which display or otherwise make use of the data. The protocol is intended to allow senders, receivers and consumers of notifications, which are independently implemented and run on different technology stacks, to seamlessly work together, contributing to decentralisation of our interactions on the Web.</p>
 
-                            <p>Instead of treating notifications as ephemeral or non-persistent entities, this specification enables the notion of a notification as an individual entity with its own URI. As such, notifications can be retrieved and reused. We support a range of different application domains, social and otherwise, thus the contents of notifications are left up to applications to define. Authentication and verification of notifications is encouraged, but the mechanism to do so is at the discretion of receivers and consumers, as needs differ according to types of notification and different application domains.</p>
+<p>LDN is modular and extensible and it relies as much as possible on existing W3C standards and protocols.</p>
 
-                            <p>---</p>
+Different applications using the same data; not being locked to a particular application to consume the data
+
+<p>We support a range of different application domains, social and otherwise, thus the contents of notifications are left up to applications to define..</p>
+
+Relate to DWBPs somewhere: https://www.w3.org/TR/dwbp-ucr/ and https://www.w3.org/TR/dwbp/
+
 
                             <p>What's the edge?</p>
                             <p>We have a problem and it requires a solution..</p>
                             <p>How is this better/different?</p>
                             <p>Why bother doing this?</p>
 
-                            <p><strong>Terminology: </strong> .. Given context, definition of the common terms in this space can diverge, we clarify ours here ..</p>
-                            <dl>
-                                <dt>Decentralised</dt>
-                                <dt>Inbox and Container</dt>
-                                <dt>Notification</dt>
-                                <dd>synonym: <em>message</em></dd>
-                            </dl>
+                            <div about="" id="concept-scheme" rel="schema:hasPart" resource="#concept-scheme">
+                                <p resource="#concept-scheme" typeof="skos:ConceptScheme"><span property="skos:prefLabel">The terms we use throughout this article are subject to different interpretations (given communities and trends), hence here we provide some context for ours to help the reader.</span></p>
+
+                                <dl rel="skos:hasTopConcept">
+                                    <dt about="#concept-decentralisation" id="concept-decentralisation" property="skos:prefLabel" rel="skos:topConceptOf" resource="#concept-scheme" typeof="skos:Concept">Decentralisation</dt>
+                                    <dd about="#concept-decentralisation" property="skos:definition">Data and applications which use native Web technologies and standards</dd>
+
+                                    <dt about="#concept-inbox" id="concept-inbox" property="skos:prefLabel" rel="skos:topConceptOf" resource="#concept-scheme" typeof="skos:Concept">Inbox</dt>
+                                    <dd about="#concept-inbox" property="skos:definition">A container (or a directory) which is used to store and serve a collection of notifications</dd>
+
+                                    <dt about="#concept-notification" id="concept-notification" property="skos:prefLabel" rel="skos:topConceptOf" resource="#concept-scheme" typeof="skos:Concept">Notification</dt>
+                                    <dd about="#concept-notification" property="skos:definition">A message (in the form of RDF) that is sent, identified, discovered, and consumed</dd>
+                                </dl>
+                            </div>
+
+                            <p>In the remainder of this article we cover: Related Work, Use Cases, Requirements and Design Considerations, the Linked Data Notifications Protocol, Results, Evaluation, and Conclusions. Welcome welcome feedback on this article in the form of a Linked Data Notification to https://linkedresearch.org/inbox/.</p>
                         </div>
                     </section>
 
@@ -315,7 +335,7 @@
 
                     <section id="linked-data-notifications" inlist="" rel="schema:hasPart" resource="#linked-data-notifications">
                         <h2 property="schema:name">Linked Data Notifications</h2>
-                        <div datatype="rdf:HTML" property="schema:description" resource="#linked-datanotifications" typeof="deo:Contribution">
+                        <div datatype="rdf:HTML" property="schema:description" resource="#linked-data-notifications" typeof="deo:Contribution">
                             <p>Note: Mention W3C LDN here?</p>
 
                             <p><dfn id="ldn">Linked Data Notifications (<abbr title="Linked Data Notifications">LDN</abbr>)</dfn> is a protocol that describes how servers (receivers) can have messages pushed to them by applications (senders), as well as how other applications (consumers) may retrieve those messages. Any resource can advertise a receiving endpoint (Inbox) for the messages. Messages are expressed in RDF, and can contain any data.</p>
@@ -398,7 +418,7 @@
                     <section id="results" inlist="" rel="schema:hasPart" resource="#results">
                         <h2 property="schema:name">Results</h2>
                         <div datatype="rdf:HTML" property="schema:description" resource="#results" typeof="deo:Results">
-                            <p>In this article, ...</p>
+                            <p>Note: Should this section be combined with Evaluation?</p>
                         </div>
                     </section>
 
