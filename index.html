@@ -243,9 +243,9 @@
                             <section id="notification-verification-and-validation" rel="schema:hasPart" resource="#notification-verification-and-validation">
                                 <h3 property="schema:name">Notification Verification and Validity</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
-                                    <p><strong>Verification</strong>: If a notification makes describes third-party (external) resources, fetching and processing their descriptions may be one way to verify their existence.</p>
+                                    <p><strong>Verification</strong>: If a notification refers to or describes third-party (external) resources, fetching and processing their descriptions may be one way to verify their existence.</p>
 
-                                    <p><strong>Validation</strong>: Given the nature of the notification payload, consumers may want to take precautions when ascertaining the veracity of the contents. The <q>anyone can say anything about anything</q> Web principle applies here. Unless otherwise specified, there is no indication as to whether the original payload was altered by the receiver.</p>
+                                    <p><strong>Validation</strong>: Given the nature of the notification payload, consumers may want to take precautions when ascertaining the veracity of the contents. The <q>anyone can say anything about anything</q> Web principle applies here. Unless otherwise specified (e.g., through HTTP headers, or updating the notification content), there may be no indication as to whether the original payload was altered by the receiver.</p>
                                 </div>
                             </section>
 
