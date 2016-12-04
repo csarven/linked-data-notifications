@@ -84,46 +84,30 @@
                     <section id="introduction" inlist="" rel="schema:hasPart" resource="#introduction">
                         <h2 property="schema:name">Introduction</h2>
                         <div datatype="rdf:HTML" property="schema:description">
-                            <p about="" id="problem" rel="schema:hasPart"><span about="#problem" property="schema:description" typeof="deo:Problem">Web notifications are traditionally conceived as ephemeral things that disappear after transport (or at least are likely to). They effect things on the receiving end, but don't themselves have identification or enable reuse. Hence, the process of creating and storing data is closely coupled with applications and storage mechanisms. Such system architectures limit applications to behave in a centralised manner where the data is subject to being part of an  information silo.</span></p>
+                            <p about="" id="problem" rel="schema:hasPart">Notifications are sent over the Web for a variety of purposes, including social applications. <span class="todo">put some specific, vivid examples here</span> The notification data may be displayed to a human to acknowledge, or used to trigger some other application-specific process (or both). This data is arbitrary and typically only usable by the application which generated it in the first place. Current efforts towards <em>re-decentralising</em> the Web [cite, cite] are moving towards architectures in which data storage is decoupled from application logic, freeing end users to switch between applications, or to let multiple applications operate over the same data. So far, notifications are considered to be ephemeral resources which may disappear after transport, and thus are excluded from being reusable data.</p>
+                            
+                            <p>We contend that notification data should no more be locked into particular systems than other user data, and designed the protocol <em>Linked Data Notifications (LDN)</em> to support sharing and reuse of notifications <em>across</em> applications, regardless of how they were generated or what their contents are. Specifying this architecture as a formal protocol is intended to allow applications which generate and make use of notifications, which are independently implemented and run on different technology stacks, to seamlessly work together. LDN contributes to decentralisation of our interactions on the Web, as well as encouraging generation and consumption of Linked Data.</p>
 
-                            <p about="" id="motivation" rel="schema:hasPart"><span about="#motivation" property="schema:description" typeof="deo:Motivation">We content that the data on the Web should not be locked in to particular systems or be only readable by the applications which created it. Users should be free to switch between applications and share data between them. This is one of the aspirations for enabling decentralised applications on the Web, and data reuse. </span></p>
+                            <p>We build on existing W3C standards and Linked Data principles. In particular, storage of notifications is compatible with Linked Data Platform servers, notifications are identified by URIs, and notification contents must be available as JSON-LD.</p>
 
-The notion of a notification as an individual entity with its own URI is usually .
-
-For instance, applications generate notifications about activities, interactions, and new information, which may be presented to the user or processed further.
-
-                            <p><dfn id="ldn">Linked Data Notifications (<abbr title="Linked Data Notifications">LDN</abbr>)</dfn> supports sharing and reuse of notifications <em>across</em> applications, regardless of how they were generated. This allows for more modular systems, which decouple data storage from the applications which display or otherwise make use of the data. The protocol is intended to allow senders, receivers and consumers of notifications, which are independently implemented and run on different technology stacks, to seamlessly work together, contributing to decentralisation of our interactions on the Web.</p>
-
-<p>LDN is modular and extensible and it relies as much as possible on existing W3C standards and protocols.</p>
-
-Different applications using the same data; not being locked to a particular application to consume the data
-
-<p>We support a range of different application domains, social and otherwise, thus the contents of notifications are left up to applications to define..</p>
-
-Relate to DWBPs somewhere: https://www.w3.org/TR/dwbp-ucr/ and https://www.w3.org/TR/dwbp/
-
-
-                            <p>What's the edge?</p>
-                            <p>We have a problem and it requires a solution..</p>
-                            <p>How is this better/different?</p>
-                            <p>Why bother doing this?</p>
+                            <p>In this article we present user cases for decentralised notifications from the Social Web domain, and describe the requirements which guided the development of the protocol. We discuss related work in terms of predecessors to this work, comparisons with current alternative approaches, as well as complimentary protocols which make work alongside LDN. We summarise the protocol itself, and then go into detail about specific architectural considerations that were made. We built a test suite which can be used to confirm that implementations conform with the specification, and we describe the independant implementations which interoperate with each other so far.</p>
 
                             <div about="" id="concept-scheme" rel="schema:hasPart" resource="#concept-scheme">
-                                <p resource="#concept-scheme" typeof="skos:ConceptScheme"><span property="skos:prefLabel">The terms we use throughout this article are subject to different interpretations (given communities and trends), hence here we provide some context for ours to help the reader.</span></p>
+                                <p resource="#concept-scheme" typeof="skos:ConceptScheme"><span property="skos:prefLabel">We use some terms throughout which may be subject to different interpretations by different communities, so we provide some definitions here.</span></p>
 
                                 <dl rel="skos:hasTopConcept">
                                     <dt about="#concept-decentralisation" id="concept-decentralisation" property="skos:prefLabel" rel="skos:topConceptOf" resource="#concept-scheme" typeof="skos:Concept">Decentralisation</dt>
-                                    <dd about="#concept-decentralisation" property="skos:definition">Data and applications which use native Web technologies and standards</dd>
+                                    <dd about="#concept-decentralisation" property="skos:definition">Data and applications are loosely coupled, and users are empowered to choose where their data is stored or held. We focus on Web-based decentralisation, where content is transported over HTTP, and resources are identified with URIs.</dd>
 
                                     <dt about="#concept-inbox" id="concept-inbox" property="skos:prefLabel" rel="skos:topConceptOf" resource="#concept-scheme" typeof="skos:Concept">Inbox</dt>
-                                    <dd about="#concept-inbox" property="skos:definition">A container (or a directory) which is used to store and serve a collection of notifications</dd>
+                                    <dd about="#concept-inbox" property="skos:definition">A container or directory which is used to store and serve a collection of notifications.</dd>
 
                                     <dt about="#concept-notification" id="concept-notification" property="skos:prefLabel" rel="skos:topConceptOf" resource="#concept-scheme" typeof="skos:Concept">Notification</dt>
-                                    <dd about="#concept-notification" property="skos:definition">A message (in the form of RDF) that is sent, identified, discovered, and consumed</dd>
+                                    <dd about="#concept-notification" property="skos:definition">A resource with a unique identifier, and some contents. We assume the contents to be RDF.</dd>
                                 </dl>
                             </div>
 
-                            <p>In the remainder of this article we cover: Related Work, Use Cases, Requirements and Design Considerations, the Linked Data Notifications Protocol, Results, Evaluation, and Conclusions. Welcome welcome feedback on this article in the form of a Linked Data Notification to https://linkedresearch.org/inbox/.</p>
+                            <p>Welcome welcome feedback on this article in the form of a Linked Data Notification to https://linkedresearch.org/inbox/</p>
                         </div>
                     </section>
 
