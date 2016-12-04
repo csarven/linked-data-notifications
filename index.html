@@ -68,7 +68,7 @@
                     <section id="abstract">
                         <h2>Abstract</h2>
                         <div datatype="rdf:HTML" property="schema:abstract">
-                          <p>Notifications are sent over the Web for a variety of purposes, including social applications. The data contained within a notification is arbitrary, and typically only usable by the application which generated it in the first place. In the spirit of Linked Data, we propose that notifications should be reusable by multiple applications. This provides end users more freedom to switch between the online tools they use, as well as generating greater value when notifications from different sources can be used in combination. Through separating out the concepts of <em>senders</em>, <em>receivers</em> and <em>consumers</em> of notifications, and leveraging Linked Data principles of shared vocabularies and URIs for resources, the Linked Data Notifications (LDN) protocol meets this goal. In this article we describe the protocol, which is a Candidate Recommendation of the W3C (see <a href="https://www.w3.org/TR/ldn/">https://www.w3.org/TR/ldn/</a>), situate it alongside related initiatives, and discuss additional considerations arising from architectures such as this which decouple applications from data storage. We evaluate the protocol's effectiveness through multiple, independent implementations which pass a suite of formal tests and can be demonstrated interoperating with each other. The canonical URI of this article is http://csarven.ca/linked-data-notifications</p>
+                          <p>Notifications are sent over the Web for a variety of purposes, including social applications. The data contained within a notification is arbitrary, and typically only usable by the application which generated it in the first place. In the spirit of Linked Data, we propose that notifications should be reusable by multiple applications. This provides end users more freedom to switch between the online tools they use, as well as generating greater value when notifications from different sources can be used in combination. Through separating out the concepts of <em>senders</em>, <em>receivers</em> and <em>consumers</em> of notifications, and leveraging Linked Data principles of shared vocabularies and URIs for resources, the Linked Data Notifications (LDN) protocol meets this goal. In this article we describe the protocol, which is a Candidate Recommendation of the W3C (<a href="https://www.w3.org/TR/ldn/">https://www.w3.org/TR/ldn/</a>), situate it alongside related initiatives, and discuss additional considerations arising from architectures such as this which decouple applications from data storage. We evaluate the protocol's effectiveness through multiple, independent implementations which pass a suite of formal tests and can be demonstrated interoperating with each other. The canonical URI of this article is http://csarven.ca/linked-data-notifications</p>
                         </div>
                     </section>
 
@@ -93,7 +93,7 @@
 
                             <p>We build on existing W3C standards and Linked Data principles. In particular, storage of notifications is compatible with <cite>Linked Data Platform</cite> servers, notifications are identified by HTTP URIs, and notification contents must be available as JSON-LD (and optionally negotiated for the other formats). LDN is a Candidate <a href="https://www.w3.org/TR/ldn/">Recommendation</a> of the W3C, and incorporated in <cite><a href="https://www.w3.org/TR/activitypub/">ActivityPub</a></cite>, a W3C Candidate Recommendation for decentralised social networking protocol based upon the <cite>ActivityStreams 2.0</cite> data format.</p>
 
-                            <p>In this article we present user cases for decentralised notifications from the Social Web domain, and describe the requirements which guided the development of the protocol. We discuss related work in terms of predecessors to this work, comparisons with current alternative approaches, as well as complimentary protocols which make work alongside LDN. We summarise the protocol itself, and then go into detail about specific architectural considerations that were made. We built a test suite which can be used to confirm that implementations conform with the specification, and we describe the independent implementations which interoperate with each other so far.</p>
+                            <p>In this article we present user cases for decentralised notifications from the Social Web domain, and describe the requirements which guided the development of the protocol. We discuss related work in terms of predecessors to this work, comparisons with current alternative approaches, as well as complimentary protocols which can work alongside LDN. We summarise the protocol itself, and then go into detail about specific architectural considerations that were made. We built a test suite which can be used to confirm that implementations conform with the specification, and we describe the independent implementations which interoperate with each other so far.</p>
 
                             <div about="" id="concept-scheme" rel="schema:hasPart" resource="#concept-scheme">
                                 <p resource="#concept-scheme" typeof="skos:ConceptScheme"><span property="skos:prefLabel">We use some terms throughout which may be subject to different interpretations by different communities, so we provide some definitions here.</span></p>
@@ -222,14 +222,12 @@
                     <section id="requirements-and-design-considerations" inlist="" rel="schema:hasPart" resource="#requirements-and-design-considerations">
                         <h2 property="schema:name">Requirements and Design Considerations</h2>
                         <div datatype="rdf:HTML" property="schema:description">
-                            <p>Note: Doublecheck to make sure that this whole section is expressed in term's of what's desired or to be considered, and not say so much about what's done.</p>
-
-                            <p>Note: is this or an earlier place good to introduce general concepts on inbox/notification so that we can reuse it below?</p>
+                            <p>In this section we discuss some considerations for a Web notification protocol that conforms to the Linked Data design principles, as well as best practices for applications. We use the considerations towards establishing normative requirements for the protocol; what to be expected from the core for interoperable application behaviour, as well as notification data exchange. The LDN protocol will refer to existing specifications in favour of keeping the protocol design simple and modular for reuse.</p>
 
                             <section id="architectural-considerations" inlist="" rel="schema:hasPart" resource="#architectural-considerations">
                                 <h3 property="schema:name">Architectural Considerations</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
-                                    <p><strong>Compatible with REST principles</strong>: Since Linked Data follows the Representational State Transfer (REST) architectural style [Fielding, R. T.; Taylor, R. N. (2000). "Principled design of the modern Web architecture": 407–416. doi:<a href="https:/dx.doi.org/10.1145/337180.337228">10.1145/337180.337228</a>] also Linked Data Notifications should be compatible with REST to the largest extent possible. This also ensures interoperability with other standards such as for example Linked Data Platform (LDP). A RESTful realisation also has further advantages, such as organisation of atomic resources, including their identification, discovery and description, alongside basic operations like <abbr title="Create, Read, Update, Delete">CRUD</abbr> on individual resources through HTTP methods.</p>
+                                    <p><strong>Compatible with REST principles</strong>: Since Linked Data follows the Representational State Transfer (REST) architectural style [<a class="ref" href=""></a>] also Linked Data Notifications should be compatible with REST to the largest extent possible. This also ensures interoperability with other standards such as for example <cite>Linked Data Platform</cite> (LDP). A RESTful realisation also has further advantages, such as organisation of atomic resources, including their identification, discovery and description, alongside basic operations like <abbr title="Create, Read, Update, Delete">CRUD</abbr> on individual resources through HTTP methods.</p>
                                 </div>
                             </section>
 
@@ -245,8 +243,6 @@
                             <section id="notification-verification-and-validation" rel="schema:hasPart" resource="#notification-verification-and-validation">
                                 <h3 property="schema:name">Notification Verification and Validity</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
-                                    <p>What is a message/notification? What can it contain?</p>
-
                                     <p><strong>Verification</strong>: If a notification makes describes third-party (external) resources, fetching and processing their descriptions may be one way to verify their existence.</p>
 
                                     <p><strong>Validation</strong>: Given the nature of the notification payload, consumers may want to take precautions when ascertaining the veracity of the contents. The <q>anyone can say anything about anything</q> Web principle applies here. Unless otherwise specified, there is no indication as to whether the original payload was altered by the receiver.</p>
@@ -270,7 +266,7 @@
                             </section>
 
                             <section id="authentication-considerations" inlist="" rel="schema:hasPart" resource="#authentication-considerations">
-                                <h3 property="schema:name">Authenticated Considerations</h3>
+                                <h3 property="schema:name">Authentication Considerations</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
                                     <p>If a receiver expects senders or consumers to authenticate, it should check the validity of their credentials before returning any other data, including other error codes. What's required? What's possible? Where does WebID+TLS fit in? What about HTTP Basic Auth? OAuth? Alternatives? Describe what's required and what's optional.</p>
 
@@ -304,7 +300,7 @@
                                 <div datatype="rdf:HTML" property="schema:description">
                                     <p>Notifications could be sent client-to-server, server-to-server. We should be clear about the intentions in our proposal. Default being a client (user-application?) sends a notification to a server.</p>
 
-                                    <p>NOte: is this section necessary or meaningful?</p>
+                                    <p>Note: is this section necessary or meaningful?</p>
                                 </div>
                             </section>
                         </div>
@@ -459,6 +455,10 @@
                     <section id="references">
                         <h2>References</h2>
                         <div>
+                            <ol>
+                                <li id="">Fielding, R. T.: Architectural Styles and
+the Design of Network-based Software Architectures, Representational State Transfer (REST), PhD thesis, University of California, 2000, <a rel="schema:citation" href="http://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm">http://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm</a></li>
+                            </ol>
                         </div>
                     </section>
                 </div>
