@@ -322,6 +322,22 @@ Relate to DWBPs somewhere: https://www.w3.org/TR/dwbp-ucr/ and https://www.w3.or
                         <div datatype="rdf:HTML" property="schema:description" resource="#linked-data-notifications" typeof="deo:Contribution">
                             <p>Note: Mention W3C LDN here?</p>
 
+
+                            <p>Inboxes are repositories for notifications.</p>
+
+                            <p>Notifications are intended to announce social interactions and data.</p>
+
+                            <p>The contents of a notification is application specific. We derive two core principles from this:</p>
+
+                            <ul>
+                                <li>a notification can contain arbitrary data</li>
+                                <li>a notification is vocabulary agnostic</li>
+                            </ul>
+
+                            <p>Notifications are resources with their own URIs... (not ephemeral)</p>
+
+                            <p>---</p>
+
                             <p><dfn id="ldn">Linked Data Notifications (<abbr title="Linked Data Notifications">LDN</abbr>)</dfn> is a protocol that describes how servers (receivers) can have messages pushed to them by applications (senders), as well as how other applications (consumers) may retrieve those messages. Any resource can advertise a receiving endpoint (Inbox) for the messages. Messages are expressed in RDF, and can contain any data.</p>
 
                             <p>LDN is a specialized use of Linked Data Platform [<cite><a class="bibref" href="#bib-ldp">LDP</a></cite>] for sending and consuming notifications. It is not dependent on a complete implementation of LDP, but an easy-to-implement subset. LDN is a <a href="https://www.w3.org/TR/ldn">W3C Recommendation</a> [<cite><a class="bibref" href="#bib-ldn">LDN</a></cite>]</p>
@@ -377,21 +393,26 @@ Relate to DWBPs somewhere: https://www.w3.org/TR/dwbp-ucr/ and https://www.w3.or
                                 </div>
                             </section>
 
-                            <p>Inboxes are repositories for notifications.</p>
+                            <section id="serialisation" inlist="" rel="schema:hasPart" resource="#serlisation">
+                                <h3 property="schema:name">Serialisation</h3>
+                                <div datatype="rdf:HTML" property="schema:description">
+                                    <p>While the ability for applications to generate payload, conduct <em>content negotiation</em>, and consume content in all W3C RDF serializations, has advantages to be flexible, it can be costly to support across applications. From the perspective of the protocol's design, there are some considerations to take into account, for example:</p>
 
-                            <p>Notifications are intended to announce social interactions and data.</p>
+                                    <ul>
+                                        <li>application interoperability</li>
+                                        <li>maintenance of the RDF parsers and serialisation libraries</li>
+                                        <li>complexity of their inclusion in applications</li>
+                                        <li>run-time efficiency</li>
+                                    </ul>
 
-                            <p>The contents of a notification is application specific. We derive two core principles from this:</p>
+                                    <p>With the goal of enabling simple yet interoperable application creation, LDN requires applications to speak and understand the JSON-LD syntax — for looking at the contents of Inbox as well as individual notifications. Applications are permitted to optionally negotiate different RDF serialisations among themselves.</p>
 
-                            <ul>
-                                <li>a notification can contain arbitrary data</li>
-                                <li>a notification is vocabulary agnostic</li>
-                            </ul>
-
-                            <p>Notifications are resources with their own URIs... (not ephemeral)</p>
+                                    <p>The rationale for this is that, if all applications can work with one serialisation, then they are interoperable. Applications that are capable of or wish to handle different serialisations are able to coexist in this ecosystem nevertheless. The benefit to making JSON-LD is that it provides the lowest barrier for applications to communicate. While the same can be said for any RDF serialisation, JSON-LD is arguably more convenient to work with than the other serialisations in client-side implementations.</p>
+                                </div>
+                            </section>
 
                             <section id="example-notifications" inlist="" rel="schema:hasPart" resource="#example-notifications">
-                                <h2 property="schema:name">Example Notifications</h2>
+                                <h3 property="schema:name">Example Notifications</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
                                     <p>Based on use cases..</p>
                                 </div>
