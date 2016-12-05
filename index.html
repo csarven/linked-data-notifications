@@ -122,7 +122,7 @@
                                 <h3 property="schema:name">Notification mechanisms</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
                                     
-                                    <p>Here we review previous and ongoing efforts towards delivering notifications in a decentralised manner. Since many systems which make use of notifications operate either in a completely centralised way, or are decentralised only in the sense that different instances of the <em>same</em> codebase need to interoperate, there appears to be limited work to review. We focus primarily on the wellknown mechanisms <em>Semantic Pingback</em> and <em>Webmention</em>, both of which are derived from blogging-era <em>Pingback</em>. We also touch upon several mechanisms specifically designed for notifications regarding Linked Data resources or sets.</p>
+                                    <p>Here we review previous and ongoing efforts towards delivering notifications in a decentralised manner. Since many systems which make use of notifications operate either in a completely centralised way, or are decentralised only in the sense that different instances of the <em>same</em> codebase need to interoperate, there appears to be limited work to review. We focus primarily on the well known mechanisms <em>Semantic Pingback</em> and <em>Webmention</em>, both of which are derived from blogging-era <em>Pingback</em>. We also touch upon several mechanisms specifically designed for notifications regarding Linked Data resources or sets.</p>
                                     
                                     <table id="comparison-of-notification-mechanisms">
                                         <caption>Comparison of notification mechanisms</caption>
@@ -150,10 +150,6 @@
                                             <tr><th>Linked Data Notifications</th><td><code>POST</code></td><td>JSON-LD<sup>*</sup>, unconstrained vocabulary and data</td><td><code>GET</code><sup>2</sup></td><td>Yes</td></tr>
                                         </tbody>
                                     </table>
-                                    
-                                    
-                                    
-                                    
 
                                     <section id="semantic-pingback" rel="schema:hasPart" resource="#semantic-pingback">
                                         <h4 property="schema:name">Semantic Pingback</h4>
@@ -224,7 +220,7 @@
                                     <section id="resourcesync-framework" rel="schema:hasPart" resource="#resourcesync-framework">
                                         <h4 property="schema:name">ResourceSync Framework</h4>
                                         <div datatype="rdf:HTML" property="schema:description">
-                                            <<p class="todo">http://www.openarchives.org/rs/notification/1.0/notification , http://www.openarchives.org/rs/notification/1.0/framework_notification</p>
+                                            <p>The ResourceSync specification introduces a pull-based synchronization framework where a source server can implement to allow destination servers to remain synchronized with its evolving resources. It uses the PubSubHubbub transport protocol to publish and subscribe. It is based on the Sitemap format which is XML-based [<a class="ref" href="http://www.openarchives.org/rs/notification/1.0/notification"></a>].</p>
                                         </div>
                                     </section>
 
@@ -510,6 +506,8 @@
                         <div>
                             <ol>
                                 <li id="">Fielding, R. T.: <cite>Architectural Styles and the Design of Network-based Software Architectures</cite>. Doctoral dissertation, University of California, Irvine, 2000, <a rel="schema:citation" href="http://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm">http://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm</a></li>
+
+                                <li id="">Klein, M., Van de Sompel, H., Warner, S., Klyne, G., Haslhofer, B., Nelson, M., Lagoze, C., Sanderson, R.: ResourceSync Framework Specification - Change Notification, 2016, <a href="http://www.openarchives.org/rs/notification/1.0/notification">http://www.openarchives.org/rs/notification/1.0/notification</a></li>
                             </ol>
                         </div>
                     </section>
