@@ -117,13 +117,13 @@
                     <section id="related-work" inlist="" rel="schema:hasPart" resource="#related-work">
                         <h2 property="schema:name">Related Work</h2>
                         <div datatype="rdf:HTML" property="schema:description" resource="#related-work" typeof="deo:RelatedWork">
-                            <p>What's out here?</p>
-                            <p>What's in their scope?</p>
-                            <p>Mention why only Semantic Pingback, Webmention, and LDP Inbox, and maybe alternatives are covered in this article.</p>
 
                             <section id="notification-mechanisms" rel="schema:hasPart" resource="#notification-mechanisms">
                                 <h3 property="schema:name">Notification mechanisms</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
+                                    
+                                    <p>Here we review previous and ongoing efforts towards delivering notifications in a decentralised manner. Since many systems which make use of notifications operate either in a completely centralised way, or are decentralised only in the sense that different instances of the <em>same</em> codebase need to interoperate, there appears to be limited work to review. We focus primarily on the wellknown mechanisms <em>Semantic Pingback</em> and <em>Webmention</em>, both of which are derived from blogging-era <em>Pingback</em>. We also touch upon several mechanisms specifically designed for notifications regarding Linked Data resources or sets.</p>
+                                    
                                     <table id="comparison-of-notification-mechanisms">
                                         <caption>Comparison of notification mechanisms</caption>
                                         <thead>
@@ -150,11 +150,10 @@
                                             <tr><th>Linked Data Notifications</th><td><code>POST</code></td><td>JSON-LD<sup>*</sup>, unconstrained vocabulary and data</td><td><code>GET</code><sup>2</sup></td><td>Yes</td></tr>
                                         </tbody>
                                     </table>
-
-                                    <p class="todo">http://www.w3.org/TR/prov-aq/#provenance-pingback</p>
-                                    <p class="todo">http://www.openarchives.org/rs/notification/1.0/notification , http://www.openarchives.org/rs/notification/1.0/framework_notification</p>
-                                    <p class="todo">http://eprints.cs.univie.ac.at/142/1/haslhoferPopitsch09_dsNotify.pdf</p>
-                                    <p class="todo">http://ceur-ws.org/Vol-1435/NoISE2015_paper_3.pdf</p>
+                                    
+                                    
+                                    
+                                    
 
                                     <section id="semantic-pingback" rel="schema:hasPart" resource="#semantic-pingback">
                                         <h4 property="schema:name">Semantic Pingback</h4>
@@ -201,9 +200,42 @@
                                         </div>
                                     </section>
 
-                                    <p>The information sent by the notification generally follow two forms: 1) relation between referring and referenced URLs, and 2) unspecified statements. Semantic Pingback and Webmention both follow the first form, and are also known as <cite>linkbacks</cite>, the suite of protocols that essentially allows Web documents to manually and automatically link to or mention one another.</p>
+                                    <section id="provenance-pingback" rel="schema:hasPart" resource="#provenance-pingback">
+                                        <h4 property="schema:name">Provenance Pingback</h4>
+                                        <div datatype="rdf:HTML" property="schema:description">
+                                            <p class="todo">http://www.w3.org/TR/prov-aq/#provenance-pingback</p>
+                                        </div>
+                                    </section>
 
-                                    <p>In contrast, Linked Data Notifications follows the second form where the notification content can accommodate any information. Hence, statements in the form "A in some unknown way relates to B" (1), but they can also state "C has a specific relation to D, as well as E" (2).</p>
+                                    <section id="dsnotify" rel="schema:hasPart" resource="#dsnotify">
+                                        <h4 property="schema:name">DSNotify</h4>
+                                        <div datatype="rdf:HTML" property="schema:description">
+                                            <p class="todo">http://eprints.cs.univie.ac.at/142/1/haslhoferPopitsch09_dsNotify.pdf</p>
+                                        </div>
+                                    </section>
+
+                                    <section id="sparqlPuSH" rel="schema:hasPart" resource="#sparqlPuSH">
+                                        <h4 property="schema:name">sparqlPuSH</h4>
+                                        <div datatype="rdf:HTML" property="schema:description">
+                                            <p class="todo">http://ceur-ws.org/Vol-1435/NoISE2015_paper_3.pdf</p>
+                                        </div>
+                                    </section>
+
+                                    <section id="resourcesync-framework" rel="schema:hasPart" resource="#resourcesync-framework">
+                                        <h4 property="schema:name">ResourceSync Framework</h4>
+                                        <div datatype="rdf:HTML" property="schema:description">
+                                            <<p class="todo">http://www.openarchives.org/rs/notification/1.0/notification , http://www.openarchives.org/rs/notification/1.0/framework_notification</p>
+                                        </div>
+                                    </section>
+
+                                    <section id="summary" rel="schema:hasPart" resource="#summary">
+                                        <h4 property="schema:name">Summary</h4>
+                                        <div datatype="rdf:HTML" property="schema:description">
+                                            <p>The information sent by the notification generally follow two forms: 1) relation between referring and referenced URLs, and 2) unspecified statements. Semantic Pingback and Webmention both follow the first form, and are also known as <cite>linkbacks</cite>, the suite of protocols that essentially allows Web documents to manually and automatically link to or mention one another.</p>
+
+                                            <p>In contrast, Linked Data Notifications follows the second form where the notification content can accommodate any information. Hence, statements in the form "A in some unknown way relates to B" (1), but they can also state "C has a specific relation to D, as well as E" (2). <span class="todo">(put this in main conclusions, not here)</span></p>
+                                        </div>
+                                    </section>
                                 </div>
                             </section>
 
@@ -213,6 +245,7 @@
                                     <ul>
                                         <li>ActivityPub</li>
                                         <li>Annotations</li>
+                                        <li>WebSub</li>
                                         <li>Solid..?</li>
                                     </ul>
                                 </div>
