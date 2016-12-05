@@ -159,15 +159,20 @@
                                     <section id="semantic-pingback" rel="schema:hasPart" resource="#semantic-pingback">
                                         <h4 property="schema:name">Semantic Pingback</h4>
                                         <div datatype="rdf:HTML" property="schema:description">
+
+                                            <p>Pingback is a protocol for notifying a resource (the target) when another resource (the source) publishes a link to it. Semantic Pingback [x] builds on the original Pingback method [x] in three ways:</p>
+                                            <ul>
+                                                <li>The sending client can discover potential targets through parsing source documents as as RDF (rather than just HTML).</li>
+                                                <li>The receiving server has a specified way to handle incoming pingback data in the context of a knowledgebase represented as a graph.</li>
+                                                <li>The XML-RCP transport mechanism is replaced by a <code>x-www-formencoded</code> request with two parameters (<code>source</code> and <code>target</code>).</li>
+                                            </ul>
+                                            
+                                            <p>Semantic Pingback additionally defines an RDF data model so that requests and servers can be represented in RDF knowledgebases. Although not required, this makes it possible to publish URIs for individual pingback requests, inside a pingback <code>Container</code>.</p>
+
                                             <p class="todo">http://www.w3.org/wiki/Pingback#Semantic_Pingback</p>
                                             <p class="todo">https://aksw.github.io/SemanticPingback/</p>
                                             <p class="todo">http://www.informatik.uni-leipzig.de/~auer/publication/SemanticPingback.pdf</p>
                                             <p class="todo">http://events.linkeddata.org/ldow2016/papers/LDOW2016_paper_02.pdf -- StructuredFeedback</p>
-
-                                            <p>Semantic Pingback extends the Pingback method.</p>
-                                            <blockquote cite="https://aksw.github.io/SemanticPingback/">
-                                                <p>It is based on the advertising of an RPC service for propagating typed RDF links between Data Web resources. It is downwards compatible with conventional Pingback implementations, thus allowing to connect and interlink resources on the Social Web with resources on the Data Web.</p>
-                                            </blockquote>
                                         </div>
                                     </section>
 
@@ -248,6 +253,7 @@
                                         <li>Annotations</li>
                                         <li>WebSub</li>
                                         <li>Solid..?</li>
+                                        <li>Webhooks</li>
                                     </ul>
                                 </div>
                             </section>
