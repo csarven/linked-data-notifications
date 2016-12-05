@@ -209,14 +209,14 @@
                                     <section id="provenance-pingback" rel="schema:hasPart" resource="#provenance-pingback">
                                         <h4 property="schema:name">Provenance Pingback</h4>
                                         <div datatype="rdf:HTML" property="schema:description">
-                                            <p>The <cite>Provenance Pingback</cite> mechanism is used by third-party consumers of a resource to inform their owners about how and where it is used. The publisher of a resource advertises a pingback URL in its HTTP Link header containing the <code>http://www.w3.org/ns/prov#pingback</code> relation, where pingbacks can be received. Consumers make HTTP POST requests to the pingback URL with a list of URIs where additional provenance information may be retrieved [<a href="http://www.w3.org/TR/prov-aq/#provenance-pingback"></a>].</p>
+                                            <p>The <cite>Provenance Pingback</cite> mechanism is useful for third-party consumers of a resource to inform that resource's owner about how and where the resource is used. The publisher of a resource advertises a pingback URL in its HTTP Link header containing the pingback relation, where pingbacks can be received. Consumers make HTTP POST requests to the pingback URL with a list of URIs where additional provenance information may be retrieved [<a href="http://www.w3.org/TR/prov-aq/#provenance-pingback"></a>].</p>
                                         </div>
                                     </section>
 
                                     <section id="dsnotify" rel="schema:hasPart" resource="#dsnotify">
                                         <h4 property="schema:name">DSNotify</h4>
                                         <div datatype="rdf:HTML" property="schema:description">
-                                            <p>With the premise of preserving link integrity between Linked Open Data resources, DSNotify is an application that detects broken links and assists the data source in fixing and updating them [<a href="">http://eprints.cs.univie.ac.at/142/1/haslhoferPopitsch09_dsNotify.pdf</a>].</p>
+                                            <p>With the premise of preserving link integrity between Linked Open Data resources, <a href="http://www.cibiv.at/~niko/dsnotify/">DSNotify</a> is a change detection framework for broken links, and assists data source in fixing them. Applications can either subscribe to DSNotify for event notifications which implements an XML-RPC interface, applications can query DSNotify's HTTP interface for certain resources [<a href="">http://eprints.cs.univie.ac.at/142/1/haslhoferPopitsch09_dsNotify.pdf</a>].</p>
                                         </div>
                                     </section>
 
