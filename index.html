@@ -465,6 +465,20 @@
                                 <h3 property="schema:name">Example Notifications</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
                                     <p>Based on use cases..</p>
+
+                                    <figure class="listing example" id="notification-qualified-relation" rel="schema:hasPart" resource="#notification-qualified-relation">
+                                        <pre about="#notification-qualified-relation" property="schema:description" typeof="fabio:Script"><code>{</code>
+<code>  "@context": "https://www.w3.org/ns/activitystreams",</code>
+<code>  "@id": "",</code>
+<code>  "@type": "Announce",</code>
+<code>  "actor": "https://rhiaro.co.uk/#me",</code>
+<code>  "object": "http://example.net/note",</code>
+<code>  "target": "http://example.org/article",</code>
+<code>  "updated": "2016-06-28T19:56:20.114Z"</code>
+<code>}</code></pre>
+                                        <figcaption property="schema:name">An announcement of one resource to another, including a date and actor, described using the ActivityStreams 2.0 vocabulary.</figcaption>
+                                    </figure>
+
                                 </div>
                             </section>
                         </div>
