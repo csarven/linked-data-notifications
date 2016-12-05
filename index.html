@@ -93,7 +93,7 @@
 
                             <p>We build on existing W3C standards and Linked Data principles. In particular, storage of notifications is compatible with <cite>Linked Data Platform</cite> servers, notifications are identified by HTTP URIs, and notification contents must be available as JSON-LD (and optionally negotiated for the other formats). LDN is a Candidate <a href="https://www.w3.org/TR/ldn/">Recommendation</a> of the W3C, and incorporated in <cite><a href="https://www.w3.org/TR/activitypub/">ActivityPub</a></cite>, a W3C Candidate Recommendation for decentralised social networking protocol based upon the <cite>ActivityStreams 2.0</cite> data format.</p>
 
-                            <p>In this article we present user cases for decentralised notifications from the Social Web domain, and describe the requirements which guided the development of the protocol. We discuss related work in terms of predecessors to this work, comparisons with current alternative approaches, as well as complimentary protocols which can work alongside LDN. We summarise the protocol itself, and then go into detail about specific architectural considerations that were made. We built a test suite which can be used to confirm that implementations conform with the specification, and we describe the independent implementations which interoperate with each other so far.</p>
+                            <p>In this article we present user cases for decentralised notifications from the Social Web domain, and describe the requirements which guided the development of the protocol. We discuss related work in terms of predecessors to this work, comparisons with current alternative approaches, as well as complementary protocols which can work alongside LDN. We summarise the protocol itself, and then go into detail about specific architectural considerations that were made. We built a test suite which can be used to confirm that implementations conform with the specification, and we describe the independent implementations which interoperate with each other so far.</p>
 
                             <div about="" id="concept-scheme" rel="schema:hasPart" resource="#concept-scheme">
                                 <p resource="#concept-scheme" typeof="skos:ConceptScheme"><span property="skos:prefLabel">We use some terms throughout which may be subject to different interpretations by different communities, so we provide some definitions here.</span></p>
@@ -121,86 +121,102 @@
                             <p>What's in their scope?</p>
                             <p>Mention why only Semantic Pingback, Webmention, and LDP Inbox, and maybe alternatives are covered in this article.</p>
 
-                            <table id="comparison-of-notification-mechanisms">
-                                <caption>Comparison of notification mechanisms</caption>
-                                <thead>
-                                    <tr>
-                                        <th></th>
-                                        <th>Delivery method</th>
-                                        <th>Request payload</th>
-                                        <th>Claim verification</th>
-                                        <th>Authenticated requests</th>
-                                    </tr>
-                                </thead>
-                                <tfoot>
-                                    <tr>
-                                        <td colspan="7">
-                                            <p>Information based on core specifications.</p>
-                                            <p><sup>*</sup> JSON-LD is required, alternative RDF syntax are allowed on agreement</p>
-                                            <p>After dereferencing; GET<sup>1</sup>, string or object matching, GET<sup>2</sup>, matches the object, to verify a claim's existence.</p>
-                                        </td>
-                                    </tr>
-                                </tfoot>
-                                <tbody>
-                                    <tr><th>Semantic Pingback</th><td><code>POST</code> (urlencoded)</td><td>source/target key-value pair</td><td><code>GET</code><sup>2</sup></td><td>Yes</td></tr>
-                                    <tr><th>Webmention</th><td><code>POST</code> (urlencoded)</td><td>source/target key-value pair</td><td><code>GET</code><sup>1</sup></td></tr>
-                                    <tr><th>Linked Data Notifications</th><td><code>POST</code></td><td>JSON-LD<sup>*</sup>, unconstrained vocabulary and data</td><td><code>GET</code><sup>2</sup></td><td>Yes</td></tr>
-                                </tbody>
-                            </table>
-
-                            <p class="todo">http://www.w3.org/TR/prov-aq/#provenance-pingback</p>
-                            <p class="todo">http://www.openarchives.org/rs/notification/1.0/notification , http://www.openarchives.org/rs/notification/1.0/framework_notification</p>
-                            <p class="todo">http://eprints.cs.univie.ac.at/142/1/haslhoferPopitsch09_dsNotify.pdf</p>
-                            <p class="todo">http://ceur-ws.org/Vol-1435/NoISE2015_paper_3.pdf</p>
-
-                            <section id="semantic-pingback" rel="schema:hasPart" resource="#semantic-pingback">
-                                <h3 property="schema:name">Semantic Pingback</h3>
+                            <section id="notification-mechanisms" rel="schema:hasPart" resource="#notification-mechanisms">
+                                <h3 property="schema:name">Notification mechanisms</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
-                                    <p class="todo">http://www.w3.org/wiki/Pingback#Semantic_Pingback</p>
-                                    <p class="todo">https://aksw.github.io/SemanticPingback/</p>
-                                    <p class="todo">http://www.informatik.uni-leipzig.de/~auer/publication/SemanticPingback.pdf</p>
-                                    <p class="todo">http://events.linkeddata.org/ldow2016/papers/LDOW2016_paper_02.pdf -- StructuredFeedback</p>
+                                    <table id="comparison-of-notification-mechanisms">
+                                        <caption>Comparison of notification mechanisms</caption>
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th>Delivery method</th>
+                                                <th>Request payload</th>
+                                                <th>Claim verification</th>
+                                                <th>Authenticated requests</th>
+                                            </tr>
+                                        </thead>
+                                        <tfoot>
+                                            <tr>
+                                                <td colspan="7">
+                                                    <p>Information based on core specifications.</p>
+                                                    <p><sup>*</sup> JSON-LD is required, alternative RDF syntax are allowed on agreement</p>
+                                                    <p>After dereferencing; GET<sup>1</sup>, string or object matching, GET<sup>2</sup>, matches the object, to verify a claim's existence.</p>
+                                                </td>
+                                            </tr>
+                                        </tfoot>
+                                        <tbody>
+                                            <tr><th>Semantic Pingback</th><td><code>POST</code> (urlencoded)</td><td>source/target key-value pair</td><td><code>GET</code><sup>2</sup></td><td>Yes</td></tr>
+                                            <tr><th>Webmention</th><td><code>POST</code> (urlencoded)</td><td>source/target key-value pair</td><td><code>GET</code><sup>1</sup></td></tr>
+                                            <tr><th>Linked Data Notifications</th><td><code>POST</code></td><td>JSON-LD<sup>*</sup>, unconstrained vocabulary and data</td><td><code>GET</code><sup>2</sup></td><td>Yes</td></tr>
+                                        </tbody>
+                                    </table>
 
-                                    <p>Semantic Pingback extends the Pingback method.</p>
-                                    <blockquote cite="https://aksw.github.io/SemanticPingback/">
-                                        <p>It is based on the advertising of an RPC service for propagating typed RDF links between Data Web resources. It is downwards compatible with conventional Pingback implementations, thus allowing to connect and interlink resources on the Social Web with resources on the Data Web.</p>
-                                    </blockquote>
+                                    <p class="todo">http://www.w3.org/TR/prov-aq/#provenance-pingback</p>
+                                    <p class="todo">http://www.openarchives.org/rs/notification/1.0/notification , http://www.openarchives.org/rs/notification/1.0/framework_notification</p>
+                                    <p class="todo">http://eprints.cs.univie.ac.at/142/1/haslhoferPopitsch09_dsNotify.pdf</p>
+                                    <p class="todo">http://ceur-ws.org/Vol-1435/NoISE2015_paper_3.pdf</p>
+
+                                    <section id="semantic-pingback" rel="schema:hasPart" resource="#semantic-pingback">
+                                        <h4 property="schema:name">Semantic Pingback</h4>
+                                        <div datatype="rdf:HTML" property="schema:description">
+                                            <p class="todo">http://www.w3.org/wiki/Pingback#Semantic_Pingback</p>
+                                            <p class="todo">https://aksw.github.io/SemanticPingback/</p>
+                                            <p class="todo">http://www.informatik.uni-leipzig.de/~auer/publication/SemanticPingback.pdf</p>
+                                            <p class="todo">http://events.linkeddata.org/ldow2016/papers/LDOW2016_paper_02.pdf -- StructuredFeedback</p>
+
+                                            <p>Semantic Pingback extends the Pingback method.</p>
+                                            <blockquote cite="https://aksw.github.io/SemanticPingback/">
+                                                <p>It is based on the advertising of an RPC service for propagating typed RDF links between Data Web resources. It is downwards compatible with conventional Pingback implementations, thus allowing to connect and interlink resources on the Social Web with resources on the Data Web.</p>
+                                            </blockquote>
+                                        </div>
+                                    </section>
+
+                                    <section id="webmention" rel="schema:hasPart" resource="#webmention">
+                                        <h4 property="schema:name">Webmention</h4>
+                                        <div datatype="rdf:HTML" property="schema:description">
+                                            <p class="todo">Historically, Webmention is based on Pingback.</p>
+                                            <p class="todo">Perhaps have a paragraph on the similarities/differences between semantic pingback and webmention somewhere.</p>
+
+                                            <p>The Webmention protocol is used to notify that content at the source URL includes the target URL <em>string</em> to the receiver of a Webmention endpoint.</p>
+
+                                            <blockquote cite="https://www.w3.org/TR/webmention/#sender-notifies-receiver">
+                                                <p>The sender <strong class="rfc2119">MUST</strong> post <code>x-www-form-urlencoded</code> [<cite>HTML5</cite>] <code>source</code> and <code>target</code> parameters to the Webmention endpoint, where <code>source</code> is the URL of the sender's page containing a link, and <code>target</code> is the URL of the page being linked to.</p>
+                                            </blockquote>
+
+                                            <p>Webmention does not define the notion of an entity that is accessible at an URL for the mention itself. The mention is only intended for the receiver to process. There are no syntactical restrictions set on the content of the source URL, e.g., it can be plain-text, HTML, JSON, or a binary file, therefore it is effectively foremost about the source URL containing the target URL as a string.</p>
+
+                                            <p id="webmention-workflow">A Webmention workflow is as follows: 1) Alice has an article in-reply-to Bob's article, 2) Bob's Webmention endpoint is discovered to deliver a mention, 3) a Webmention is sent to Bob's endpoint indicating that Alice's <em>mentions</em> Bob's article.</p>
+
+                                            <p id="webmention-scope-and-approach"><strong>Scope and Approach</strong>: The <em>source</em> URL is the most essential component since it identifies the origin of the claim and where to locate it. Since the information that is provided in the <code>POST</code> is only a claim, it may or may not be of interest to the receiver, and the receiver makes no promise to do anything with it e.g., displaying.</p>
+
+                                            <p>The <em>target</em> URL is used for the purpose of optimisation, i.e., making it easier for the recipient to find the target URL string at the source URL. The target URL is also used to allow external (third-party) services to help site owners without a Webmention endpoint.</p>
+
+                                            <p id="webmention-analysis"><strong>Analysis</strong>: Verification of Webmention claims in source formats that's in plain-text or binary are ambiguous due to unspecified characteristic of where an URL string starts and ends. Hence, exact matching the string URL is not deterministic as there may be partial matches which are false positives. For structured formats like HTML and JSON, it has inherent limitations given that:</p>
+
+                                            <ul>
+                                                <li>While the content at source may indicate (in any convention or serialisation format) the type of relation between the source and target URLs, the information about the relation is not transmitted to the receiver's endpoint. Hence, the receiver implementation <em>interprets</em> the relation (or lack of) between the source and the target. The untyped relation is interpreted as a generic <em>mention</em> by default.</li>
+
+                                                <li>If the source URL contains multiple mentions of the target URL, the Webmention endpoint is not informed about the particular instance. Therefore, the receiver is required to process the whole document and base its verification on the existence of one of those mentions. This sets forth an indeterministic verification step since there is no clear way to distinguish the received Webmention at the endpoint from multiple mentions which can exist at the source.</li>
+                                            </ul>
+                                        </div>
+                                    </section>
+
+                                    <p>The information sent by the notification generally follow two forms: 1) relation between referring and referenced URLs, and 2) unspecified statements. Semantic Pingback and Webmention both follow the first form, and are also known as <cite>linkbacks</cite>, the suite of protocols that essentially allows Web documents to manually and automatically link to or mention one another.</p>
+
+                                    <p>In contrast, Linked Data Notifications follows the second form where the notification content can accommodate any information. Hence, statements in the form "A in some unknown way relates to B" (1), but they can also state "C has a specific relation to D, as well as E" (2).</p>
                                 </div>
                             </section>
 
-                            <section id="webmention" rel="schema:hasPart" resource="#webmention">
-                                <h3 property="schema:name">Webmention</h3>
+                            <section id="complementary-protocols" rel="schema:hasPart" resource="#complementary-protocols">
+                                <h3 property="schema:name">Complementary protocols</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
-                                    <p class="todo">Historically, Webmention is based on Pingback.</p>
-                                    <p class="todo">Perhaps have a paragraph on the similarities/differences between semantic pingback and webmention somewhere.</p>
-
-                                    <p>The Webmention protocol is used to notify that content at the source URL includes the target URL <em>string</em> to the receiver of a Webmention endpoint.</p>
-
-                                    <blockquote cite="https://www.w3.org/TR/webmention/#sender-notifies-receiver">
-                                        <p>The sender <strong class="rfc2119">MUST</strong> post <code>x-www-form-urlencoded</code> [<cite>HTML5</cite>] <code>source</code> and <code>target</code> parameters to the Webmention endpoint, where <code>source</code> is the URL of the sender's page containing a link, and <code>target</code> is the URL of the page being linked to.</p>
-                                    </blockquote>
-
-                                    <p>Webmention does not define the notion of an entity that is accessible at an URL for the mention itself. The mention is only intended for the receiver to process. There are no syntactical restrictions set on the content of the source URL, e.g., it can be plain-text, HTML, JSON, or a binary file, therefore it is effectively foremost about the source URL containing the target URL as a string.</p>
-
-                                    <p id="webmention-workflow">A Webmention workflow is as follows: 1) Alice has an article in-reply-to Bob's article, 2) Bob's Webmention endpoint is discovered to deliver a mention, 3) a Webmention is sent to Bob's endpoint indicating that Alice's <em>mentions</em> Bob's article.</p>
-
-                                    <p id="webmention-scope-and-approach"><strong>Scope and Approach</strong>: The <em>source</em> URL is the most essential component since it identifies the origin of the claim and where to locate it. Since the information that is provided in the <code>POST</code> is only a claim, it may or may not be of interest to the receiver, and the receiver makes no promise to do anything with it e.g., displaying.</p>
-
-                                    <p>The <em>target</em> URL is used for the purpose of optimisation, i.e., making it easier for the recipient to find the target URL string at the source URL. The target URL is also used to allow external (third-party) services to help site owners without a Webmention endpoint.</p>
-
-                                    <p id="webmention-analysis"><strong>Analysis</strong>: Verification of Webmention claims in source formats that's in plain-text or binary are ambiguous due to unspecified characteristic of where an URL string starts and ends. Hence, exact matching the string URL is not deterministic as there may be partial matches which are false positives. For structured formats like HTML and JSON, it has inherent limitations given that:</p>
-
                                     <ul>
-                                        <li>While the content at source may indicate (in any convention or serialisation format) the type of relation between the source and target URLs, the information about the relation is not transmitted to the receiver's endpoint. Hence, the receiver implementation <em>interprets</em> the relation (or lack of) between the source and the target. The untyped relation is interpreted as a generic <em>mention</em> by default.</li>
-
-                                        <li>If the source URL contains multiple mentions of the target URL, the Webmention endpoint is not informed about the particular instance. Therefore, the receiver is required to process the whole document and base its verification on the existence of one of those mentions. This sets forth an indeterministic verification step since there is no clear way to distinguish the received Webmention at the endpoint from multiple mentions which can exist at the source.</li>
+                                        <li>ActivityPub</li>
+                                        <li>Annotations</li>
+                                        <li>Solid..?</li>
                                     </ul>
                                 </div>
                             </section>
-
-                            <p>The information sent by the notification generally follow two forms: 1) relation between referring and referenced URLs, and 2) unspecified statements. Semantic Pingback and Webmention both follow the first form, and are also known as <cite>linkbacks</cite>, the suite of protocols that essentially allows Web documents to manually and automatically link to or mention one another.</p>
-
-                            <p>In contrast, Linked Data Notifications follows the second form where the notification content can accommodate any information. Hence, statements in the form "A in some unknown way relates to B" (1), but they can also state "C has a specific relation to D, as well as E" (2).</p>
                         </div>
                     </section>
 
