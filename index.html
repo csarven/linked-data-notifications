@@ -260,10 +260,12 @@
                                 </div>
                             </section>
 
-                            <section id="subscribing-to-notifications" inlist="" rel="schema:hasPart" resource="#subscribing-to-notifications">
-                                <h3 property="schema:name">Subscribing to Notifications</h3>
+                            <section id="pushing-and-pulling-notifications" inlist="" rel="schema:hasPart" resource="#pushing-and-pulling-notifications">
+                                <h3 property="schema:name">Pushing and Pulling Notifications</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
-                                    <p>This specification describes how consumers can read notifications from a receiver through <em>pull</em>, however consumers may want to ask to have incoming notifications or changes to Inbox’s contents pushed to them. Similarly, receivers may wish to make a request for notifications from a particular sender. This kind of subscription mechanism is left out of scope, but senders, receivers and consumers are not prohibited from making such an arrangement. Implementations that wish to enable subscribing may want to use existing mechanisms e.g., <cite><a class="bibref" href="#bib-activitypub">ActivityPub</a></cite>, <cite><a class="bibref" href="#bib-pubsub">PubSub</a></cite>, <cite><a class="bibref" href="#bib-rfc6455">The WebSocket Protocol</a></cite>, <cite><a class="bibref" href="#bib-webpush">HTTP Web Push</a></cite>.</p>
+                                    <p>Applications can either ask to have incoming notifications be pushed to them or they can actively pull notifications from servers. Both of the mechanisms are specified with existing implementations in the wild. Typically where one is preferable over another depends on application environments and the type of arrangement between senders, receivers, and consumers.</p>
+
+                                    <p class="todo">This is a bit boring</p>
                                 </div>
                             </section>
 
