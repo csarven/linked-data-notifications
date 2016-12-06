@@ -310,7 +310,7 @@
                                     <section id="dsnotify" rel="schema:hasPart" resource="#dsnotify">
                                         <h4 property="schema:name">DSNotify</h4>
                                         <div datatype="rdf:HTML" property="schema:description">
-                                            <p>With the premise of preserving link integrity between Linked Open Data resources, <cite><a href="http://www.cibiv.at/~niko/dsnotify/">DSNotify</a></cite> is a change detection framework for broken links, and assists data source in fixing them. Applications can either subscribe to DSNotify for event notifications which implements an XML-RPC interface, applications can query DSNotify's HTTP interface for certain resources [<a href="">http://eprints.cs.univie.ac.at/142/1/haslhoferPopitsch09_dsNotify.pdf</a>].</p>
+                                            <p><cite><a href="http://www.cibiv.at/~niko/dsnotify/">DSNotify</a></cite> is a centralised service which crawls Linked Datasets and tracks changes to links (create, remove, move, update) with the specific use case of preserving link integrity between Linked Open Data resources. Applications can query a DSNotify instance, or subscribe for updates. Notifications of changes are delivered to subscribers in the form of a specific XML payload [<a href="">http://eprints.cs.univie.ac.at/81/1/2010_WWW_DSNotify.pdf</a>].</p>
                                         </div>
                                     </section>
 
@@ -333,7 +333,9 @@
                                         <div datatype="rdf:HTML" property="schema:description">
                                             <p>The contents of a notification is one of either: 1) URLs, indicating relations between Web resources, or 2) a 'fat ping' containing a blob of information. Semantic Pingback, Webmention, and Provenance Pingback follow the first form, and are also known as <cite>linkbacks</cite>, the suite of protocols that essentially allows Web documents to manually and automatically link to or mention one another. This has the advantage that the verification mechanism is tightly specified (the URL of the target must appear in the content of the source), but the disadvantage that notifications are only available for the use case of a link being published on the Web.</p>
 
-                                            <p>In contrast, Linked Data Notifications follows the second form where the notification content can accommodate any information. Hence, statements in the form "A in some unknown way relates to B" (1), but they can also state "C has a specific relation to D, as well as E" (2). <span class="todo">(put this in main conclusions, not here)</span></p>
+                                            <p>DSNotify, .., use the second form, but in each case, due to each mechanism's focussed use case, the payload is restricted to a particular vocabulary.</p>
+
+                                            <p>In treating notifications as any other Linked Data resources, LDN follows the second approach but without constraint on the contained information. As such LDN can cover the uses cases of "A refers to B" (1), as well as "C has a specific relation to D, as well as E" and "The weather is fine today". <span class="todo">(put this in main conclusions, not here)</span></p>
                                         </div>
                                     </section>
                                 </div>
