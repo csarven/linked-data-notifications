@@ -236,32 +236,6 @@
                                     
                                     <p>Here we review previous and ongoing efforts towards delivering notifications in a decentralised manner. Since many systems which make use of notifications operate either in a completely centralised way, or are decentralised only in the sense that different instances of the <em>same</em> codebase need to interoperate, there appears to be limited work to review. We focus primarily on the well known mechanisms <em>Semantic Pingback</em> and <em>Webmention</em>, both of which are derived from blogging-era <em>Pingback</em>. We also touch upon several mechanisms specifically designed for notifications regarding Linked Data resources or sets.</p>
                                     
-                                    <table id="comparison-of-notification-mechanisms">
-                                        <caption>Comparison of notification mechanisms</caption>
-                                        <thead>
-                                            <tr>
-                                                <th></th>
-                                                <th>Delivery method</th>
-                                                <th>Request payload</th>
-                                                <th>Claim verification</th>
-                                                <th>Authenticated requests</th>
-                                            </tr>
-                                        </thead>
-                                        <tfoot>
-                                            <tr>
-                                                <td colspan="7">
-                                                    <p>Information based on core specifications.</p>
-                                                    <p><sup>*</sup> JSON-LD is required, alternative RDF syntax are allowed on agreement</p>
-                                                    <p>After dereferencing; GET<sup>1</sup>, string or object matching, GET<sup>2</sup>, matches the object, to verify a claim's existence.</p>
-                                                </td>
-                                            </tr>
-                                        </tfoot>
-                                        <tbody>
-                                            <tr><th>Semantic Pingback</th><td><code>POST</code> (urlencoded)</td><td>source/target key-value pair</td><td><code>GET</code><sup>2</sup></td><td>Yes</td></tr>
-                                            <tr><th>Webmention</th><td><code>POST</code> (urlencoded)</td><td>source/target key-value pair</td><td><code>GET</code><sup>1</sup></td></tr>
-                                            <tr><th>Linked Data Notifications</th><td><code>POST</code></td><td>JSON-LD<sup>*</sup>, unconstrained vocabulary and data</td><td><code>GET</code><sup>2</sup></td><td>Yes</td></tr>
-                                        </tbody>
-                                    </table>
 
                                     <section id="semantic-pingback" rel="schema:hasPart" resource="#semantic-pingback">
                                         <h4 property="schema:name">Semantic Pingback</h4>
@@ -335,7 +309,7 @@
 
                                             <p>DSNotify, sparqlPuSH, and ResourceSync use the second form, but in each case, due to each mechanism's focussed use case, the payload is restricted to a particular vocabulary.</p>
 
-                                            <p>In treating notifications as any other Linked Data resources, LDN follows the second approach but without constraint on the contained information. As such LDN can cover the uses cases of "A refers to B" (1), as well as "C has a specific relation to D, as well as E" and "The weather is fine today". <span class="todo">(put this in main conclusions, not here)</span></p>
+                                            
                                         </div>
                                     </section>
                                 </div>
@@ -511,23 +485,50 @@
                         </div>
                     </section>
 
-                    <section id="results" inlist="" rel="schema:hasPart" resource="#results">
-                        <h2 property="schema:name">Results</h2>
+                    <section id="implementation-and-evaluation" inlist="" rel="schema:hasPart" resource="#implementation-and-evaluation">
+                        <h2 property="schema:name">Implementation and evaluation</h2>
                         <div datatype="rdf:HTML" property="schema:description" resource="#results" typeof="deo:Results">
-                            <p>Note: Should this section be combined with Evaluation?</p>
-                        </div>
-                    </section>
-
-                    <section id="evaluation" inlist="" rel="schema:hasPart" resource="#evaluation">
-                        <h2 property="schema:name">Evaluation</h2>
-                        <div datatype="rdf:HTML" property="schema:description" resource="#evaluation" typeof="deo:Evaluation">
+                            
                             <p>What are some of the comparable features between implementations</p>
                             <p>Number of requests to discover/send/consume</p>
 
                             <p>Implementations are interoperable. How many implementations are out there.. over length of time... different code stacks (variations) .. different groups/people implementing (without prior knowledge).. </p>
-
-                            <p>Note: Mention W3C LDN here?</p>
                         </div>
+
+                        <section id="comparision-with-related-work" inlist="" rel="schema:hasPart" resource="#comparison-with-related-work">
+                            <h3 property="schema:name">Comparison with related work</h2>
+                            <div datatype="rdf:HTML" property="schema:description" resource="#evaluation" typeof="deo:Evaluation">
+
+                                <table id="comparison-of-notification-mechanisms">
+                                    <caption>Comparison of notification mechanisms</caption>
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>Delivery method</th>
+                                            <th>Request payload</th>
+                                            <th>Claim verification</th>
+                                            <th>Authenticated requests</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="7">
+                                                <p>Information based on core specifications.</p>
+                                                <p><sup>*</sup> JSON-LD is required, alternative RDF syntax are allowed on agreement</p>
+                                                <p>After dereferencing; GET<sup>1</sup>, string or object matching, GET<sup>2</sup>, matches the object, to verify a claim's existence.</p>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                        <tr><th>Semantic Pingback</th><td><code>POST</code> (urlencoded)</td><td>source/target key-value pair</td><td><code>GET</code><sup>2</sup></td><td>Yes</td></tr>
+                                        <tr><th>Webmention</th><td><code>POST</code> (urlencoded)</td><td>source/target key-value pair</td><td><code>GET</code><sup>1</sup></td></tr>
+                                        <tr><th>Linked Data Notifications</th><td><code>POST</code></td><td>JSON-LD<sup>*</sup>, unconstrained vocabulary and data</td><td><code>GET</code><sup>2</sup></td><td>Yes</td></tr>
+                                    </tbody>
+                                </table>
+
+                                <p>In treating notifications as any other Linked Data resources, LDN follows the second approach but without constraint on the contained information. As such LDN can cover the uses cases of "A refers to B" (1), as well as "C has a specific relation to D, as well as E" and "The weather is fine today". </p>
+                            </div>
+                        </section>
                     </section>
 
                     <section id="conclusions" inlist="" rel="schema:hasPart" resource="#conclusions">
