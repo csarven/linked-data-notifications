@@ -179,30 +179,18 @@
                                     <section id="webmention" rel="schema:hasPart" resource="#webmention">
                                         <h4 property="schema:name">Webmention</h4>
                                         <div datatype="rdf:HTML" property="schema:description">
-                                            <p class="todo">Historically, Webmention is based on Pingback.</p>
-                                            <p class="todo">Perhaps have a paragraph on the similarities/differences between semantic pingback and webmention somewhere.</p>
 
-                                            <p>The Webmention protocol is used to notify that content at the source URL includes the target URL <em>string</em> to the receiver of a Webmention endpoint.</p>
-
-                                            <blockquote cite="https://www.w3.org/TR/webmention/#sender-notifies-receiver">
-                                                <p>The sender <strong class="rfc2119">MUST</strong> post <code>x-www-form-urlencoded</code> [<cite>HTML5</cite>] <code>source</code> and <code>target</code> parameters to the Webmention endpoint, where <code>source</code> is the URL of the sender's page containing a link, and <code>target</code> is the URL of the page being linked to.</p>
-                                            </blockquote>
-
-                                            <p>Webmention does not define the notion of an entity that is accessible at an URL for the mention itself. The mention is only intended for the receiver to process. There are no syntactical restrictions set on the content of the source URL, e.g., it can be plain-text, HTML, JSON, or a binary file, therefore it is effectively foremost about the source URL containing the target URL as a string.</p>
-
-                                            <p id="webmention-workflow">A Webmention workflow is as follows: 1) Alice has an article in-reply-to Bob's article, 2) Bob's Webmention endpoint is discovered to deliver a mention, 3) a Webmention is sent to Bob's endpoint indicating that Alice's <em>mentions</em> Bob's article.</p>
-
-                                            <p id="webmention-scope-and-approach"><strong>Scope and Approach</strong>: The <em>source</em> URL is the most essential component since it identifies the origin of the claim and where to locate it. Since the information that is provided in the <code>POST</code> is only a claim, it may or may not be of interest to the receiver, and the receiver makes no promise to do anything with it e.g., displaying.</p>
-
-                                            <p>The <em>target</em> URL is used for the purpose of optimisation, i.e., making it easier for the recipient to find the target URL string at the source URL. The target URL is also used to allow external (third-party) services to help site owners without a Webmention endpoint.</p>
-
-                                            <p id="webmention-analysis"><strong>Analysis</strong>: Verification of Webmention claims in source formats that's in plain-text or binary are ambiguous due to unspecified characteristic of where an URL string starts and ends. Hence, exact matching the string URL is not deterministic as there may be partial matches which are false positives. For structured formats like HTML and JSON, it has inherent limitations given that:</p>
+                                            <p>Similarly to Pingback, the Webmention protocol is used to notify a target resource owner that content at the source URL includes the target URL. Webmention updates Pingback in the following ways:</p>
 
                                             <ul>
-                                                <li>While the content at source may indicate (in any convention or serialisation format) the type of relation between the source and target URLs, the information about the relation is not transmitted to the receiver's endpoint. Hence, the receiver implementation <em>interprets</em> the relation (or lack of) between the source and the target. The untyped relation is interpreted as a generic <em>mention</em> by default.</li>
-
-                                                <li>If the source URL contains multiple mentions of the target URL, the Webmention endpoint is not informed about the particular instance. Therefore, the receiver is required to process the whole document and base its verification on the existence of one of those mentions. This sets forth an indeterministic verification step since there is no clear way to distinguish the received Webmention at the endpoint from multiple mentions which can exist at the source.</li>
+                                                <li>The XML-RPC transport mechanism is replaced by a <code>x-www-formencoded</code> request with two parameters (<code>source</code> and <code>target</code>).</li>
+                                                <li>The <code>X-Pingback</code> HTTP header is replaced by a <code>Link</code> header with a <code>rel</code> value of <code>webmention</code>. If no <code>Link</code> header is found, senders may proceed to search the target body for an HTML <code>link</code> element or <code>a</code> element, with the same <code>rel</code> value.</li>
                                             </ul>
+
+                                            <p>Beyond verifying that the source truly contains the URL of the target, Webmention does not specify any behaviour by the receiving server (Webmention endpoint), and it is left up to the receiver to determine the semantics of the relation(s) between the source and target. It is not expected that "mentions" are retrievable once they have been sent.</p>
+
+                                            <p>Webmention senders and receivers have been independently implemented as part of libraries, into blogging platforms such as Wordpress and Known, and as part of several personal websites or blogs [https://webmention.net/implementation-reports/summary/].</p>
+
                                         </div>
                                     </section>
 
