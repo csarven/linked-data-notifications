@@ -234,84 +234,38 @@
                                 <h3 property="schema:name">Notification mechanisms</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
                                     
-                                    <p>Here we review previous and ongoing efforts towards delivering notifications in a decentralised manner. Since many systems which make use of notifications operate either in a completely centralised way, or are decentralised only in the sense that different instances of the <em>same</em> codebase need to interoperate, there appears to be limited work to review. We focus primarily on the well known mechanisms <em>Semantic Pingback</em> and <em>Webmention</em>, both of which are derived from blogging-era <em>Pingback</em>. We also touch upon several mechanisms specifically designed for notifications regarding Linked Data resources or sets.</p>
+                                    <p>Here we review previous and ongoing efforts towards delivering notifications in a decentralised manner. Since many systems which make use of notifications operate either in a completely centralised way, or are decentralised only in the sense that different instances of the <em>same</em> codebase need to interoperate, there appears to be limited work to review.</p>
+
+                                    <p>The contents of a notification is one of either: 1) URLs, indicating relations between Web resources, or 2) a 'fat ping' containing a blob of information. Semantic Pingback, Webmention, and Provenance Pingback follow the first form, and are also known as <cite>linkbacks</cite>, the suite of protocols that essentially allows Web documents to manually and automatically link to or mention one another. This has the advantage that a verification mechanism can be tightly specified (the URL of the target must appear in the content of the source), but the disadvantage that notifications are only available for the use case of a link being published on the Web.</p>
+
+                                    <p id="semantic-pingback">Pingback [<a href="http://www.hixie.ch/specs/pingback/pingback"></a>] is a protocol for notifying a resource (the target) when another resource (the source) publishes a link to it. Upon receipt of a pingback request, the receiving server must verify that the source truly links to the target. <strong>Semantic Pingback</strong> [<a href="http://www.informatik.uni-leipzig.de/~auer/publication/SemanticPingback.pdf"></a>, <a href="https://www.w3.org/wiki/index.php?title=Pingback&oldid=57876"></a>, <a href="https://aksw.github.io/SemanticPingback/"></a>] builds on the original Pingback mechanism in several ways:</p>
+
+                                    <ul>
+                                        <li>The XML-RPC transport mechanism is superseded by a <code>x-www-formencoded</code> request with two parameters (<code>source</code> and <code>target</code>).</li>
+                                        <li>The sending client can discover potential targets through parsing source documents as as RDF (rather than just HTML).</li>
+                                        <li>Discovery of the Pingback server of a target may be through an RDF resource, via the predicates <code>&lt;http://purl.org/net/pingback/to&gt;</code> (for a server which handles form-encoded requests) or <code>&lt;http://purl.org/net/pingback/service&gt;</code> (for a server that handles XML-RPC requests).</li>
+                                        <li>Specific ways are defined for the receiving server to handle incoming pingback data in order to add the source data to an RDF knowledge base.</li>
+                                    </ul>
                                     
+                                    <p>Semantic Pingback additionally defines an RDF data model so that requests and servers can be represented in RDF knowledge bases. Although not required, this makes it possible to publish URIs for individual pingback requests, inside a pingback <code>Container</code>. Semantic Pingback was implemented into OntoWiki [http://www.semantic-web-journal.net/sites/default/files/swj201_4.pdf] and as part of the <em>Structured Feedback</em> suite of tools [http://events.linkeddata.org/ldow2016/papers/LDOW2016_paper_02.pdf]</p>
 
-                                    <section id="semantic-pingback" rel="schema:hasPart" resource="#semantic-pingback">
-                                        <h4 property="schema:name">Semantic Pingback</h4>
-                                        <div datatype="rdf:HTML" property="schema:description">
-                                            <p>Pingback [http://www.hixie.ch/specs/pingback/pingback] is a protocol for notifying a resource (the target) when another resource (the source) publishes a link to it. Upon receipt of a pingback request, the receiving server must verify that the source truly links to the target. Semantic Pingback [http://www.informatik.uni-leipzig.de/~auer/publication/SemanticPingback.pdf, https://www.w3.org/wiki/index.php?title=Pingback&oldid=57876, https://aksw.github.io/SemanticPingback/] builds on the original Pingback mechanism in several ways:</p>
+                                    <p id="webmention">Similarly to Pingback, the <strong>Webmention</strong> protocol [<a href="https://www.w3.org/TR/webmention"></a>] is used to notify a target resource owner that content at the source URL includes the target URL. Webmention updates Pingback in the following ways:</p>
 
-                                            <ul>
-                                                <li>The XML-RPC transport mechanism is superseded by a <code>x-www-formencoded</code> request with two parameters (<code>source</code> and <code>target</code>).</li>
-                                                <li>The sending client can discover potential targets through parsing source documents as as RDF (rather than just HTML).</li>
-                                                <li>Discovery of the Pingback server of a target may be through an RDF resource, via the predicates <code>&lt;http://purl.org/net/pingback/to&gt;</code> (for a server which handles form-encoded requests) or <code>&lt;http://purl.org/net/pingback/service&gt;</code> (for a server that handles XML-RPC requests).</li>
-                                                <li>Specific ways are defined for the receiving server to handle incoming pingback data in order to add the source data to an RDF knowledge base.</li>
-                                            </ul>
-                                            
-                                            <p>Semantic Pingback additionally defines an RDF data model so that requests and servers can be represented in RDF knowledge bases. Although not required, this makes it possible to publish URIs for individual pingback requests, inside a pingback <code>Container</code>.</p>
+                                    <ul>
+                                        <li>The XML-RPC transport mechanism is replaced by a <code>x-www-formencoded</code> request with two parameters (<code>source</code> and <code>target</code>).</li>
+                                        <li>The <code>X-Pingback</code> HTTP header is replaced by a <code>Link</code> header with a <code>rel</code> value of <code>webmention</code>. If no <code>Link</code> header is found, senders may proceed to search the target body for an HTML <code>link</code> element or <code>a</code> element, with the same <code>rel</code> value.</li>
+                                    </ul>
 
-                                            <p>Semantic Pingback was implemented into OntoWiki [http://www.semantic-web-journal.net/sites/default/files/swj201_4.pdf] and as part of the <em>Structured Feedback</em> suite of tools [http://events.linkeddata.org/ldow2016/papers/LDOW2016_paper_02.pdf]
+                                    <p>Beyond verifying that the source truly contains the URL of the target, Webmention does not specify any behaviour by the receiving server (Webmention endpoint), and it is left up to the receiver to determine the semantics of the relation(s) between the source and target. It is not expected that "mentions" are retrievable once they have been sent. Webmention senders and receivers have been independently implemented as part of libraries, into blogging platforms such as Wordpress and Known, and as part of several personal websites or blogs [https://webmention.net/implementation-reports/summary/].</p>
 
+                                    <p id="provenance-pingback">A <strong>Provenance Pingback</strong> endpoint is advertised through an HTTP Link header with a rel value of <code>http://www.w3.org/ns/prov#pingback</code>, and accepts a list of URIs for provenance records describing uses of the resource [<a href="http://www.w3.org/TR/prov-aq/#provenance-pingback"></a>]. Provenance Pingback does not specify any further behaviour by the receiving server, but the contents of the URIs listed in the notification body are well-defined.</p>
+
+                                    <p>There are also notification mechanisms which send more information than just URLs in the notification body; due to each mechanism's focused use case, the payload is restricted to a particular vocabulary.</p>
+                                    
+                                    <p><strong>DSNotify</strong> is a centralised service which crawls Linked Datasets and tracks changes to links (create, remove, move, update) with the specific use case of preserving link integrity between Linked Open Data resources. Notifications of changes are delivered to subscribers in the form of a specific XML payload [<a href="http://eprints.cs.univie.ac.at/81/1/2010_WWW_DSNotify.pdf"></a>, <a href="http://www.cibiv.at/~niko/dsnotify/"></a>]. Alternatively, with the <strong>sparqlPuSH</strong> service, users may indicate specific updates to a dataset they are interested in via a SPARQL query. The query is run periodically by the service, and the results are converted to an XML feed, which is sent to a PubSubHubbub hub to which the user can subscribe [<a href="http://ceur-ws.org/Vol-699/Paper6.pdf"></a>]. The <strong>ResourceSync Change Notification</strong> specification also sends update notifications via a PubSubHubbub hub, this time with an XML payload based on the Sitemap format [<a class="ref" href="http://www.openarchives.org/rs/notification/1.0/notification"></a>].</p>
                                         </div>
                                     </section>
 
-                                    <section id="webmention" rel="schema:hasPart" resource="#webmention">
-                                        <h4 property="schema:name">Webmention</h4>
-                                        <div datatype="rdf:HTML" property="schema:description">
-
-                                            <p>Similarly to Pingback, the Webmention protocol is used to notify a target resource owner that content at the source URL includes the target URL. Webmention updates Pingback in the following ways:</p>
-
-                                            <ul>
-                                                <li>The XML-RPC transport mechanism is replaced by a <code>x-www-formencoded</code> request with two parameters (<code>source</code> and <code>target</code>).</li>
-                                                <li>The <code>X-Pingback</code> HTTP header is replaced by a <code>Link</code> header with a <code>rel</code> value of <code>webmention</code>. If no <code>Link</code> header is found, senders may proceed to search the target body for an HTML <code>link</code> element or <code>a</code> element, with the same <code>rel</code> value.</li>
-                                            </ul>
-
-                                            <p>Beyond verifying that the source truly contains the URL of the target, Webmention does not specify any behaviour by the receiving server (Webmention endpoint), and it is left up to the receiver to determine the semantics of the relation(s) between the source and target. It is not expected that "mentions" are retrievable once they have been sent.</p>
-
-                                            <p>Webmention senders and receivers have been independently implemented as part of libraries, into blogging platforms such as Wordpress and Known, and as part of several personal websites or blogs [https://webmention.net/implementation-reports/summary/].</p>
-
-                                        </div>
-                                    </section>
-
-                                    <section id="provenance-pingback" rel="schema:hasPart" resource="#provenance-pingback">
-                                        <h4 property="schema:name">Provenance Pingback</h4>
-                                        <div datatype="rdf:HTML" property="schema:description">
-                                            <p>A <cite>Provenance Pingback</cite> endpoint is advertised through an HTTP Link header with a rel value of <code>http://www.w3.org/ns/prov#pingback</code>, and accepts a list of URIs for provenance records describing uses of the resource [<a href="http://www.w3.org/TR/prov-aq/#provenance-pingback"></a>]. Provenance Pingback does not specify any further behaviour by the receiving server, but the contents of the URIs listed in the notification body are well-defined.</p>
-                                        </div>
-                                    </section>
-
-                                    <section id="dsnotify" rel="schema:hasPart" resource="#dsnotify">
-                                        <h4 property="schema:name">DSNotify</h4>
-                                        <div datatype="rdf:HTML" property="schema:description">
-                                            <p><cite><a href="http://www.cibiv.at/~niko/dsnotify/">DSNotify</a></cite> is a centralised service which crawls Linked Datasets and tracks changes to links (create, remove, move, update) with the specific use case of preserving link integrity between Linked Open Data resources. Applications can query a DSNotify instance, or subscribe for updates. Notifications of changes are delivered to subscribers in the form of a specific XML payload [<a href="">http://eprints.cs.univie.ac.at/81/1/2010_WWW_DSNotify.pdf</a>].</p>
-                                        </div>
-                                    </section>
-
-                                    <section id="sparqlpush" rel="schema:hasPart" resource="#sparqlpush">
-                                        <h4 property="schema:name">sparqlPuSH</h4>
-                                        <div datatype="rdf:HTML" property="schema:description">
-                                            <p>The results of SPARQL queries are converted to an XML feed in order to be sent as notifications by the <cite>sparqlPuSH</cite> service, via the PubSubHubbub protocol. Users register with a sparqlPuSH implementation to get notified when data related to a query of their interest changes [<a href="http://ceur-ws.org/Vol-699/Paper6.pdf"></a>].</p>
-                                        </div>
-                                    </section>
-
-                                    <section id="resourcesync-framework-change-notification" rel="schema:hasPart" resource="#resourcesync-framework-change-notification">
-                                        <h4 property="schema:name">ResourceSync Framework</h4>
-                                        <div datatype="rdf:HTML" property="schema:description">
-                                            <p>The <cite>ResourceSync Change Notification</cite> specification informs subscribers to a source about when the source has been updated, via sending an XML payload (based on the Sitemap format) to a PubSubHubbub hub [<a class="ref" href="http://www.openarchives.org/rs/notification/1.0/notification"></a>].</p>
-                                        </div>
-                                    </section>
-
-                                    <section id="summary" rel="schema:hasPart" resource="#summary">
-                                        <h4 property="schema:name">Summary</h4>
-                                        <div datatype="rdf:HTML" property="schema:description">
-                                            <p>The contents of a notification is one of either: 1) URLs, indicating relations between Web resources, or 2) a 'fat ping' containing a blob of information. Semantic Pingback, Webmention, and Provenance Pingback follow the first form, and are also known as <cite>linkbacks</cite>, the suite of protocols that essentially allows Web documents to manually and automatically link to or mention one another. This has the advantage that the verification mechanism is tightly specified (the URL of the target must appear in the content of the source), but the disadvantage that notifications are only available for the use case of a link being published on the Web.</p>
-
-                                            <p>DSNotify, sparqlPuSH, and ResourceSync use the second form, but in each case, due to each mechanism's focussed use case, the payload is restricted to a particular vocabulary.</p>
-
-                                            
-                                        </div>
-                                    </section>
                                 </div>
                             </section>
 
