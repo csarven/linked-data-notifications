@@ -98,7 +98,7 @@
 
                             <p>We build on existing W3C standards and Linked Data principles. In particular, storage of notifications is compatible with <cite>Linked Data Platform</cite> servers, notifications are identified by HTTP URIs, and notification contents must be available as JSON-LD (and optionally negotiated for the other formats). LDN is a Candidate <a href="https://www.w3.org/TR/ldn/">Recommendation</a> of the W3C, and incorporated in <cite><a href="https://www.w3.org/TR/activitypub/">ActivityPub</a></cite>, a W3C Candidate Recommendation for decentralised social networking protocol based upon the <cite>ActivityStreams 2.0</cite> data format.</p>
 
-                            <p>In this article we present user cases for decentralised notifications from the Social Web domain, and describe the requirements which guided the development of the protocol. We discuss related work in terms of predecessors to this work, comparisons with current alternative approaches, as well as complementary protocols which can work alongside LDN. We summarise the protocol itself, and then go into detail about specific architectural considerations that were made. We built a test suite which can be used to confirm that implementations conform with the specification, and we describe the independent implementations which interoperate with each other so far.</p>
+                            <p>In this article we present use cases for decentralised notifications from the Social Web domain, and describe the requirements which guided the development of the protocol. We discuss related work in terms of predecessors to this work, comparisons with current alternative approaches, as well as complementary protocols which can work alongside LDN. We summarise the protocol itself, and then go into detail about specific architectural considerations that were made. We built a test suite which can be used to confirm that implementations conform with the specification, and we describe the independent implementations which interoperate with each other so far.</p>
 
                             <div about="" id="concept-scheme" rel="schema:hasPart" resource="#concept-scheme">
                                 <p resource="#concept-scheme" typeof="skos:ConceptScheme"><span property="skos:prefLabel">We use some terms throughout which may be subject to different interpretations by different communities, so we provide some definitions here.</span></p>
@@ -116,6 +116,112 @@
                             </div>
 
                             <p>Welcome welcome feedback on this article in the form of a Linked Data Notification to https://linkedresearch.org/inbox/</p>
+                        </div>
+                    </section>          
+
+                    <section id="use-cases" inlist="" rel="schema:hasPart" resource="#use-cases">
+                        <h2 property="schema:name">Use cases</h2>
+                        <div datatype="rdf:HTML" property="schema:description">
+                            <p><strong>Notification discovery and reuse</strong>: applications can discover, refer to, retrieve, and display individual notifications.</p>
+
+                            <p>Digital Scholarly Communication: annotations/peer-reviews, citations, sharing/bookmarking</p>
+
+                            <p>Dataset updates/changesets/transactions/logs/provenance</p>
+
+                            <p>Social Web: status updates, sharing, bookmarking, liking, general announcements</p>
+
+                            <p><strong>Status updates</strong>: emergency broadcasts, weather forecasts, fitness states/updates, scores, user updates profile name .. This is in contrast to notifications (or pings, activities, mentions) that is a general interaction between A and B (which can be profiles, documents..)</p>
+
+                            <p>scientific observations</p>
+                        </div>
+                    </section>
+
+                    <section id="requirements-and-design-considerations" inlist="" rel="schema:hasPart" resource="#requirements-and-design-considerations">
+                        <h2 property="schema:name">Requirements and Design Considerations</h2>
+                        <div datatype="rdf:HTML" property="schema:description">
+                            <p>In this section we discuss some considerations for a Web notification protocol that conforms to the Linked Data design principles, as well as best practices for applications. We use the considerations towards establishing normative requirements for the protocol; what to be expected from the core for interoperable application behaviour, as well as notification data exchange. The LDN protocol will refer to existing specifications in favour of keeping the protocol design simple and modular for reuse.</p>
+
+                            <section id="architectural-considerations" inlist="" rel="schema:hasPart" resource="#architectural-considerations">
+                                <h3 property="schema:name">Architectural Considerations</h3>
+                                <div datatype="rdf:HTML" property="schema:description">
+                                    <p>As Linked Data encourages the use of <cite>Representational State Transfer</cite> (REST) architectural style [<a class="ref" href=""></a>] also Linked Data Notifications should be compatible with REST to the largest extent possible. This also ensures interoperability with other standards such as for example <cite>Linked Data Platform</cite> (LDP). A RESTful realisation also has further advantages, such as organisation of atomic resources, including identification of units of information, their discovery and description, as well as basic operations like <abbr title="Create, Read, Update, Delete">CRUD</abbr> on individual resources through HTTP methods.</p>
+                                </div>
+                            </section>
+
+                            <section id="sender-verification" inlist="" rel="schema:hasPart" resource="#sender-verification">
+                                <h3 property="schema:name">Sender Verification</h3>
+                                <div datatype="rdf:HTML" property="schema:description">
+                                    <p>In order to establish authenticity of information receivers should verify the sender of a notification. This can be done for example using whitelists, requiring authentication, verification through dereferencing an authoritative resource, or checking a digital signature.</p>
+
+                                    <p>For abuse prevention, servers receiving the notifications should set and advertise constraints to filter unwarranted notifications from being created on the server and exposed for consumption.</p>
+                                </div>
+                            </section>
+
+                            <section id="notification-verification-and-validation" rel="schema:hasPart" resource="#notification-verification-and-validation">
+                                <h3 property="schema:name">Notification Verification and Validity</h3>
+                                <div datatype="rdf:HTML" property="schema:description">
+                                    <p><strong>Verification</strong>: If a notification refers to or describes third-party (external) resources, fetching and processing their descriptions may be one way to verify their existence.</p>
+
+                                    <p><strong>Validation</strong>: Given the nature of the notification payload, consumers may want to take precautions when ascertaining the veracity of the contents. The <q>anyone can say anything about anything</q> Web principle applies here. Unless otherwise specified (e.g., through HTTP headers, or updating the notification content), there may be no indication as to whether the original payload was altered by the receiver.</p>
+                                </div>
+                            </section>
+
+                            <section id="notification-constraints" inlist="" rel="schema:hasPart" resource="#notification-constraints">
+                                <h3 property="schema:name">Notification Constraints</h3>
+                                <div datatype="rdf:HTML" property="schema:description">
+                                    <p>Setting constraints on notification data shape is motivated with the purpose of attaining application and data integrity. For <em>application integrity</em>, some of the common reasons for this is to minimise maintenance complexity, and to generate conforming data for optimal reuse. For <em>data integrity</em>, constraints makes it possible to store and serve data as intended, as well as optimal reuse by different conforming applications, and play a key role in accuracy and consistency in data's life-cycle.</p>
+
+                                    <p>If the notification constraints are advertised as structured descriptions, generation and consumption of the notifications can be better automated by applications. Inboxes could announce their own constraints using existing data shapes like with <cite><a href="#">SHACL</a></cite> or other recommendations.</p>
+                                </div>
+                            </section>
+
+                            <section id="pushing-and-pulling-notifications" inlist="" rel="schema:hasPart" resource="#pushing-and-pulling-notifications">
+                                <h3 property="schema:name">Pushing and Pulling Notifications</h3>
+                                <div datatype="rdf:HTML" property="schema:description">
+                                    <p>Applications can either ask to have incoming notifications be pushed to them or they can actively pull notifications from servers. Both of the mechanisms are specified with existing implementations in the wild. Typically where one is preferable over another depends on application environments and the type of arrangement between senders, receivers, and consumers.</p>
+
+                                    <p class="todo">This is a bit boring</p>
+                                </div>
+                            </section>
+
+                            <section id="authentication-considerations" inlist="" rel="schema:hasPart" resource="#authentication-considerations">
+                                <h3 property="schema:name">Authentication Considerations</h3>
+                                <div datatype="rdf:HTML" property="schema:description">
+                                    <p>If a receiver expects senders or consumers to authenticate, it should check the validity of their credentials before returning any other data, including other error codes. What's required? What's possible? Where does WebID+TLS fit in? What about HTTP Basic Auth? OAuth? Alternatives? Describe what's required and what's optional.</p>
+
+                                    <p>Authentication involving token passing must be done over HTTPS.</p>
+                                </div>
+                            </section>
+
+                            <section id="integrity-considerations" inlist="" rel="schema:hasPart" resource="#integrity-considerations">
+                                <h3 property="schema:name">Integrity Considerations</h3>
+                                <div datatype="rdf:HTML" property="schema:description">
+                                    <p>Persistent?</p>
+                                    <p>Permanent/Archived?</p>
+                                    <p>Canonical URIs?</p>
+                                    <p>License?</p>
+                                    <p>Shape</p>
+                                </div>
+                            </section>
+
+                            <section id="resource-management-considerations" inlist="" rel="schema:hasPart" resource="#security-considerations">
+                                <h3 property="schema:name">Resource Management Considerations</h3>
+                                <div datatype="rdf:HTML" property="schema:description">
+                                    <p>This is about volume, paging (https://www.w3.org/TR/ldp/), filtering, moving things around?</p>
+                                    <p>Update and Delete operations on sent notifications</p>
+
+                                    <p>In order to organise and manage large amount of notifications in an inbox over time, mechanisms should be in place to break representations into multiple paged responses that may be easier to consume by applications.</p>
+                                </div>
+                            </section>
+
+                            <section id="involved-parties-considerations" inlist="" rel="schema:hasPart" resource="#involved-parties-considerations">
+                                <h3 property="schema:name">Involved Parties Considerations</h3>
+                                <div datatype="rdf:HTML" property="schema:description">
+                                    <p>Notifications could be sent client-to-server, server-to-server. We should be clear about the intentions in our proposal. Default being a client (user-application?) sends a notification to a server.</p>
+
+                                    <p>Note: is this section necessary or meaningful?</p>
+                                </div>
+                            </section>
                         </div>
                     </section>
 
@@ -244,112 +350,6 @@
                                         <li>Solid..?</li>
                                         <li>Webhooks</li>
                                     </ul>
-                                </div>
-                            </section>
-                        </div>
-                    </section>
-
-                    <section id="use-cases" inlist="" rel="schema:hasPart" resource="#use-cases">
-                        <h2 property="schema:name">Use cases</h2>
-                        <div datatype="rdf:HTML" property="schema:description">
-                            <p><strong>Notification discovery and reuse</strong>: applications can discover, refer to, retrieve, and display individual notifications.</p>
-
-                            <p>Digital Scholarly Communication: annotations/peer-reviews, citations, sharing/bookmarking</p>
-
-                            <p>Dataset updates/changesets/transactions/logs/provenance</p>
-
-                            <p>Social Web: status updates, sharing, bookmarking, liking, general announcements</p>
-
-                            <p><strong>Status updates</strong>: emergency broadcasts, weather forecasts, fitness states/updates, scores, user updates profile name .. This is in contrast to notifications (or pings, activities, mentions) that is a general interaction between A and B (which can be profiles, documents..)</p>
-
-                            <p>scientific observations</p>
-                        </div>
-                    </section>
-
-                    <section id="requirements-and-design-considerations" inlist="" rel="schema:hasPart" resource="#requirements-and-design-considerations">
-                        <h2 property="schema:name">Requirements and Design Considerations</h2>
-                        <div datatype="rdf:HTML" property="schema:description">
-                            <p>In this section we discuss some considerations for a Web notification protocol that conforms to the Linked Data design principles, as well as best practices for applications. We use the considerations towards establishing normative requirements for the protocol; what to be expected from the core for interoperable application behaviour, as well as notification data exchange. The LDN protocol will refer to existing specifications in favour of keeping the protocol design simple and modular for reuse.</p>
-
-                            <section id="architectural-considerations" inlist="" rel="schema:hasPart" resource="#architectural-considerations">
-                                <h3 property="schema:name">Architectural Considerations</h3>
-                                <div datatype="rdf:HTML" property="schema:description">
-                                    <p>As Linked Data encourages the use of <cite>Representational State Transfer</cite> (REST) architectural style [<a class="ref" href=""></a>] also Linked Data Notifications should be compatible with REST to the largest extent possible. This also ensures interoperability with other standards such as for example <cite>Linked Data Platform</cite> (LDP). A RESTful realisation also has further advantages, such as organisation of atomic resources, including identification of units of information, their discovery and description, as well as basic operations like <abbr title="Create, Read, Update, Delete">CRUD</abbr> on individual resources through HTTP methods.</p>
-                                </div>
-                            </section>
-
-                            <section id="sender-verification" inlist="" rel="schema:hasPart" resource="#sender-verification">
-                                <h3 property="schema:name">Sender Verification</h3>
-                                <div datatype="rdf:HTML" property="schema:description">
-                                    <p>In order to establish authenticity of information receivers should verify the sender of a notification. This can be done for example using whitelists, requiring authentication, verification through dereferencing an authoritative resource, or checking a digital signature.</p>
-
-                                    <p>For abuse prevention, servers receiving the notifications should set and advertise constraints to filter unwarranted notifications from being created on the server and exposed for consumption.</p>
-                                </div>
-                            </section>
-
-                            <section id="notification-verification-and-validation" rel="schema:hasPart" resource="#notification-verification-and-validation">
-                                <h3 property="schema:name">Notification Verification and Validity</h3>
-                                <div datatype="rdf:HTML" property="schema:description">
-                                    <p><strong>Verification</strong>: If a notification refers to or describes third-party (external) resources, fetching and processing their descriptions may be one way to verify their existence.</p>
-
-                                    <p><strong>Validation</strong>: Given the nature of the notification payload, consumers may want to take precautions when ascertaining the veracity of the contents. The <q>anyone can say anything about anything</q> Web principle applies here. Unless otherwise specified (e.g., through HTTP headers, or updating the notification content), there may be no indication as to whether the original payload was altered by the receiver.</p>
-                                </div>
-                            </section>
-
-                            <section id="notification-constraints" inlist="" rel="schema:hasPart" resource="#notification-constraints">
-                                <h3 property="schema:name">Notification Constraints</h3>
-                                <div datatype="rdf:HTML" property="schema:description">
-                                    <p>Setting constraints on notification data shape is motivated with the purpose of attaining application and data integrity. For <em>application integrity</em>, some of the common reasons for this is to minimise maintenance complexity, and to generate conforming data for optimal reuse. For <em>data integrity</em>, constraints makes it possible to store and serve data as intended, as well as optimal reuse by different conforming applications, and play a key role in accuracy and consistency in data's life-cycle.</p>
-
-                                    <p>If the notification constraints are advertised as structured descriptions, generation and consumption of the notifications can be better automated by applications. Inboxes could announce their own constraints using existing data shapes like with <cite><a href="#">SHACL</a></cite> or other recommendations.</p>
-                                </div>
-                            </section>
-
-                            <section id="pushing-and-pulling-notifications" inlist="" rel="schema:hasPart" resource="#pushing-and-pulling-notifications">
-                                <h3 property="schema:name">Pushing and Pulling Notifications</h3>
-                                <div datatype="rdf:HTML" property="schema:description">
-                                    <p>Applications can either ask to have incoming notifications be pushed to them or they can actively pull notifications from servers. Both of the mechanisms are specified with existing implementations in the wild. Typically where one is preferable over another depends on application environments and the type of arrangement between senders, receivers, and consumers.</p>
-
-                                    <p class="todo">This is a bit boring</p>
-                                </div>
-                            </section>
-
-                            <section id="authentication-considerations" inlist="" rel="schema:hasPart" resource="#authentication-considerations">
-                                <h3 property="schema:name">Authentication Considerations</h3>
-                                <div datatype="rdf:HTML" property="schema:description">
-                                    <p>If a receiver expects senders or consumers to authenticate, it should check the validity of their credentials before returning any other data, including other error codes. What's required? What's possible? Where does WebID+TLS fit in? What about HTTP Basic Auth? OAuth? Alternatives? Describe what's required and what's optional.</p>
-
-                                    <p>Authentication involving token passing must be done over HTTPS.</p>
-                                </div>
-                            </section>
-
-                            <section id="integrity-considerations" inlist="" rel="schema:hasPart" resource="#integrity-considerations">
-                                <h3 property="schema:name">Integrity Considerations</h3>
-                                <div datatype="rdf:HTML" property="schema:description">
-                                    <p>Persistent?</p>
-                                    <p>Permanent/Archived?</p>
-                                    <p>Canonical URIs?</p>
-                                    <p>License?</p>
-                                    <p>Shape</p>
-                                </div>
-                            </section>
-
-                            <section id="resource-management-considerations" inlist="" rel="schema:hasPart" resource="#security-considerations">
-                                <h3 property="schema:name">Resource Management Considerations</h3>
-                                <div datatype="rdf:HTML" property="schema:description">
-                                    <p>This is about volume, paging (https://www.w3.org/TR/ldp/), filtering, moving things around?</p>
-                                    <p>Update and Delete operations on sent notifications</p>
-
-                                    <p>In order to organise and manage large amount of notifications in an inbox over time, mechanisms should be in place to break representations into multiple paged responses that may be easier to consume by applications.</p>
-                                </div>
-                            </section>
-
-                            <section id="involved-parties-considerations" inlist="" rel="schema:hasPart" resource="#involved-parties-considerations">
-                                <h3 property="schema:name">Involved Parties Considerations</h3>
-                                <div datatype="rdf:HTML" property="schema:description">
-                                    <p>Notifications could be sent client-to-server, server-to-server. We should be clear about the intentions in our proposal. Default being a client (user-application?) sends a notification to a server.</p>
-
-                                    <p>Note: is this section necessary or meaningful?</p>
                                 </div>
                             </section>
                         </div>
