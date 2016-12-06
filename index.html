@@ -92,7 +92,7 @@
                     <section id="introduction" inlist="" rel="schema:hasPart" resource="#introduction">
                         <h2 property="schema:name">Introduction</h2>
                         <div datatype="rdf:HTML" property="schema:description">
-                            <p about="" id="problem" rel="schema:hasPart">Notifications are sent over the Web for a variety of purposes, including social applications. <span class="todo">put some specific, vivid examples here</span> The notification data may be displayed to a human to acknowledge, or used to trigger some other application-specific process (or both). This data is arbitrary and typically only usable by the application which generated it in the first place. Current efforts towards <em>re-decentralising</em> the Web [cite, cite] are moving towards architectures in which data storage is decoupled from application logic, freeing end users to switch between applications, or to let multiple applications operate over the same data. So far, notifications are considered to be ephemeral resources which may disappear after transport, and thus are excluded from being reusable data.</p>
+                            <p about="" id="problem" rel="schema:hasPart">Notifications are sent over the Web for a variety of purposes, including social applications. <span class="todo">put some specific, vivid examples here</span> The notification data may be displayed to a human to acknowledge, or used to trigger some other application-specific process (or both). This data is arbitrary and typically only usable by the application which generated it in the first place. Current efforts towards <em>re-decentralising</em> the Web [http://crosscloud.org/2016/www-mansour-pdf.pdf, http://www.semantic-web-journal.net/sites/default/files/swj201_4.pdf, https://unhosted.org/, cite] are moving towards architectures in which data storage is decoupled from application logic, freeing end users to switch between applications, or to let multiple applications operate over the same data. So far, notifications are considered to be ephemeral resources which may disappear after transport, and thus are excluded from being reusable data.</p>
 
                             <p>We contend that notification data should no more be locked into particular systems than other user data, and designed the protocol <em>Linked Data Notifications (LDN)</em> to support sharing and reuse of notifications <em>across</em> applications, regardless of how they were generated or what their contents are. Specifying this architecture as a formal protocol is intended to allow applications which generate and make use of notifications, which are independently implemented and run on different technology stacks, to seamlessly work together. LDN contributes to decentralisation of our interactions on the Web, as well as encouraging generation and consumption of Linked Data.</p>
 
@@ -160,20 +160,19 @@
                                     <section id="semantic-pingback" rel="schema:hasPart" resource="#semantic-pingback">
                                         <h4 property="schema:name">Semantic Pingback</h4>
                                         <div datatype="rdf:HTML" property="schema:description">
-                                            <p>Pingback is a protocol for notifying a resource (the target) when another resource (the source) publishes a link to it. Semantic Pingback [x] builds on the original Pingback method [x] in three ways:</p>
+                                            <p>Pingback [http://www.hixie.ch/specs/pingback/pingback] is a protocol for notifying a resource (the target) when another resource (the source) publishes a link to it. Upon receipt of a pingback request, the receiving server must verify that the source truly links to the target. Semantic Pingback [http://www.informatik.uni-leipzig.de/~auer/publication/SemanticPingback.pdf, https://www.w3.org/wiki/index.php?title=Pingback&oldid=57876, https://aksw.github.io/SemanticPingback/] builds on the original Pingback mechanism in several ways:</p>
 
                                             <ul>
+                                                <li>The XML-RPC transport mechanism is superseded by a <code>x-www-formencoded</code> request with two parameters (<code>source</code> and <code>target</code>).</li>
                                                 <li>The sending client can discover potential targets through parsing source documents as as RDF (rather than just HTML).</li>
-                                                <li>The receiving server has a specified way to handle incoming pingback data in the context of a knowledge base represented as a graph.</li>
-                                                <li>The XML-RPC transport mechanism is replaced by a <code>x-www-formencoded</code> request with two parameters (<code>source</code> and <code>target</code>).</li>
+                                                <li>Discovery of the Pingback server of a target may be through an RDF resource, via the predicates <code>&lt;http://purl.org/net/pingback/to&gt;</code> (for a server which handles form-encoded requests) or <code>&lt;http://purl.org/net/pingback/service&gt;</code> (for a server that handles XML-RPC requests).</li>
+                                                <li>Specific ways are defined for the receiving server to handle incoming pingback data in order to add the source data to an RDF knowledge base.</li>
                                             </ul>
                                             
                                             <p>Semantic Pingback additionally defines an RDF data model so that requests and servers can be represented in RDF knowledge bases. Although not required, this makes it possible to publish URIs for individual pingback requests, inside a pingback <code>Container</code>.</p>
 
-                                            <p class="todo">http://www.w3.org/wiki/Pingback#Semantic_Pingback</p>
-                                            <p class="todo">https://aksw.github.io/SemanticPingback/</p>
-                                            <p class="todo">http://www.informatik.uni-leipzig.de/~auer/publication/SemanticPingback.pdf</p>
-                                            <p class="todo">http://events.linkeddata.org/ldow2016/papers/LDOW2016_paper_02.pdf -- StructuredFeedback</p>
+                                            <p>Semantic Pingback was implemented into OntoWiki [http://www.semantic-web-journal.net/sites/default/files/swj201_4.pdf] and as part of the <em>Structured Feedback</em> suite of tools [http://events.linkeddata.org/ldow2016/papers/LDOW2016_paper_02.pdf]
+
                                         </div>
                                     </section>
 
