@@ -247,8 +247,6 @@
                                     <p>There are also notification mechanisms which send more information than just URLs in the notification body; due to each mechanism's focused use case, the payload is restricted to a particular vocabulary.</p>
                                     
                                     <p><strong>DSNotify</strong> is a centralised service which crawls Linked Datasets and tracks changes to links (create, remove, move, update) with the specific use case of preserving link integrity between Linked Open Data resources. Notifications of changes are delivered to subscribers in the form of a specific XML payload [<a href="http://eprints.cs.univie.ac.at/81/1/2010_WWW_DSNotify.pdf"></a>, <a href="http://www.cibiv.at/~niko/dsnotify/"></a>]. Alternatively, with the <strong>sparqlPuSH</strong> service, users may indicate specific updates to a dataset they are interested in via a SPARQL query. The query is run periodically by the service, and the results are converted to an XML feed, which is sent to a PubSubHubbub hub to which the user can subscribe [<a href="http://ceur-ws.org/Vol-699/Paper6.pdf"></a>]. The <strong>ResourceSync Change Notification</strong> specification also sends update notifications via a PubSubHubbub hub, this time with an XML payload based on the Sitemap format [<a class="ref" href="http://www.openarchives.org/rs/notification/1.0/notification"></a>].</p>
-                                        </div>
-                                    </section>
 
                                 </div>
                             </section>
