@@ -144,10 +144,35 @@
                             <section id="architectural-considerations" inlist="" rel="schema:hasPart" resource="#architectural-considerations">
                                 <h3 property="schema:name">Architectural Considerations</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
-                                    <p>We propose a RESTful architecture [<a class="ref" href=""></a>], in the same way as the Linked Data Platform (LDP) specification [<a class="ref" href=""></a>]. This is well suited for notifications, as REST involves organisation of atomic resources, their discovery and description, and a lightweight API for creating, reading, updating, and deleting them [<a href="http://ws-rest.org/2011/proc/a5-page.pdf">LD&amp;REST</a>].</p>
+                                    <p>We propose a RESTful architecture [<a class="ref" href=""></a>], in the same way as the Linked Data Platform (LDP) specification [<a class="ref" href=""></a>]. This is well suited for notifications, as REST involves organisation of atomic resources, their discovery and description, and a lightweight API for creating, reading, updating, and deleting them [<a href="http://ws-rest.org/2011/proc/a5-page.pdf">LD&amp;REST</a>]. As such, notifications are considered resources in their own right, with their own dereferencable URIs.</p>
                                     <p>A further advantage of this is that existing LDP servers can be used to store notifications, as new notifications can be created in a <code>Container</code> in exactly the same way as any other resource.</p>
                                     <p>In order to encourage modularity of applications, it is important to differentiate between different classes of implementation of the protocol. Two parties are involved in the creation of a notification: a <em>sender</em> which has deemed it necessary to generate notification data, and a <em>receiver</em> which stores the created resource. For notifications to be reused, we also have the role of a <em>consumer</em>, which reads the data of the notification and repurposes it to some end.</p>
                                     <p>A piece of software can of course play two or all three of these roles; the important part is that it need not. A consuming application can read and use notification data without being concerned about ever sending or storing notifications itself.</p>
+                                </div>
+                            </section>
+
+                            <section id="notification-contents" rel="schema:hasPart" resource="#notification-contents">
+                                <h3 property="schema:name">Notification contents</h3>
+                                <div datatype="rdf:HTML" property="schema:description">
+
+                                    <p>Linked Data applications can benefit from domain-driven designs; that is, working to be small and focussed on a particular purpose, rather than generic or catch-all. We do not purport to be able to design a notifications ontology which is appropriate for every domain, and so we consider the contents of a notification to be <em>application specific</em>. We derive two core principles from this:</p>
+
+                                    <ul>
+                                        <li>a notification can contain arbitrary data</li>
+                                        <li>a notification is vocabulary agnostic</li>
+                                    </ul>
+
+                                    <p>Interoperability between different applications occurs through vocabulary reuse, and shared understanding of terms. This is in accordance with Linked Data principles in general. The practical upshot of this is that a calendar application which consumes event invitations which use the <em>vCalendar</em> (? is this right?) vocabulary is likely to completely ignore notifications containing scientific experiment results in the <em><a href="http://aksw.org/Projects/MEX.html">MEX</a></em> vocabulary, even if it finds them all stored in the same place. For two independent applications operating in the <em>same</em> domain, a shared understanding of appropriate vocabulary terms is assumed.</p>
+
+                                </div>
+                            </section>
+
+                            <section id="notification-constraints" inlist="" rel="schema:hasPart" resource="#notification-constraints">
+                                <h3 property="schema:name">Notification Constraints</h3>
+                                <div datatype="rdf:HTML" property="schema:description">
+                                    <p>Setting constraints on notification data shape is motivated with the purpose of attaining application and data integrity. For <em>application integrity</em>, some of the common reasons for this is to minimise maintenance complexity, and to generate conforming data for optimal reuse. For <em>data integrity</em>, constraints makes it possible to store and serve data as intended, as well as optimal reuse by different conforming applications, and play a key role in accuracy and consistency in data's life-cycle.</p>
+
+                                    <p>If the notification constraints are advertised as structured descriptions, generation and consumption of the notifications can be better automated by applications. Inboxes could announce their own constraints using existing data shapes like with <cite><a href="#">SHACL</a></cite> or other recommendations.</p>
                                 </div>
                             </section>
 
@@ -160,41 +185,12 @@
                                 </div>
                             </section>
 
-                            <section id="notification-contents" rel="schema:hasPart" resource="#notification-contents">
-                                <h3 property="schema:name">Notification contents</h3>
-                                <div datatype="rdf:HTML" property="schema:description">
-                                    <p>Inboxes are repositories for notifications.</p>
-
-                                    <p>Notifications are intended to announce social interactions and data.</p>
-
-                                    <p>The contents of a notification is application specific. We derive two core principles from this:</p>
-
-                                    <ul>
-                                        <li>a notification can contain arbitrary data</li>
-                                        <li>a notification is vocabulary agnostic</li>
-                                    </ul>
-
-                                    <p>Notifications are resources with their own URIs... (not ephemeral)</p>
-
-                                    <p>Interoperability between different applications occurs through shared vocabularies. Just like in all linked data applications. According to linked dpata principles, we encourage vocabulary reuse.</p>
-                                </div>
-                            </section>
-
                             <section id="notification-verification-and-validation" rel="schema:hasPart" resource="#notification-verification-and-validation">
                                 <h3 property="schema:name">Notification Verification and Validity</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
                                     <p><strong>Verification</strong>: If a notification refers to or describes third-party (external) resources, fetching and processing their descriptions may be one way to verify their existence.</p>
 
                                     <p><strong>Validation</strong>: Given the nature of the notification payload, consumers may want to take precautions when ascertaining the veracity of the contents. The <q>anyone can say anything about anything</q> Web principle applies here. Unless otherwise specified (e.g., through HTTP headers, or updating the notification content), there may be no indication as to whether the original payload was altered by the receiver.</p>
-                                </div>
-                            </section>
-
-                            <section id="notification-constraints" inlist="" rel="schema:hasPart" resource="#notification-constraints">
-                                <h3 property="schema:name">Notification Constraints</h3>
-                                <div datatype="rdf:HTML" property="schema:description">
-                                    <p>Setting constraints on notification data shape is motivated with the purpose of attaining application and data integrity. For <em>application integrity</em>, some of the common reasons for this is to minimise maintenance complexity, and to generate conforming data for optimal reuse. For <em>data integrity</em>, constraints makes it possible to store and serve data as intended, as well as optimal reuse by different conforming applications, and play a key role in accuracy and consistency in data's life-cycle.</p>
-
-                                    <p>If the notification constraints are advertised as structured descriptions, generation and consumption of the notifications can be better automated by applications. Inboxes could announce their own constraints using existing data shapes like with <cite><a href="#">SHACL</a></cite> or other recommendations.</p>
                                 </div>
                             </section>
 
