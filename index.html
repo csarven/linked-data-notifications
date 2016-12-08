@@ -179,27 +179,21 @@
                                 <h3 property="schema:name">Content Constraints</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
 
-                                    <p>A possible filtering mechanism is by rejecting notifications which do not match a specific pattern in their contents, or the <em>shape</em> of the graph. For example, if the owner of a receiving service knows the finite set of applications with which they expect to use their notifications, the receiving service can be configured with certain constraints which optimise for these cases.</p>
+                                    <p>A possible filtering mechanism is by rejecting notifications which do not match a specific pattern in their contents, or the <em>shape</em> of the graph. For example, if the owner of a receiving service knows the finite set of applications with which they expect to use their notifications, the receiving service can be configured with certain constraints which optimise for these cases. This can also be implemented as an anti-spam or abuse prevention measure.</p>
 
                                     <p>If the notification constraints are advertised by the receiving service as structured descriptions, generation and consumption of the notifications can be better automated by applications. A possible specification for doing so is <cite><a href="#">SHACL</a></cite>. Since the options for doing this are subject to ongoing development, we consider it too early to specify a particular mechanism as part of the notifications protocol.</p>
                                 </div>
                             </section>
 
-                            <section id="sender-verification" inlist="" rel="schema:hasPart" resource="#sender-verification">
-                                <h3 property="schema:name">Sender Verification</h3>
+                            <section id="verification-and-validation" rel="schema:hasPart" resource="#verification-and-validation">
+                                <h3 property="schema:name">Verification and Validation</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
-                                    <p>In order to establish authenticity of information receivers should verify the sender of a notification. This can be done for example using whitelists, requiring authentication, verification through dereferencing an authoritative resource, or checking a digital signature.</p>
 
-                                    <p>For abuse prevention, servers receiving the notifications should set and advertise constraints to filter unwarranted notifications from being created on the server and exposed for consumption.</p>
-                                </div>
-                            </section>
+                                    <p>Receivers may wish to filter notifications by verifying the sender, through for example a whitelist or a web of trust. This would require an authentication mechanism. There are many options, including through clientside certificates (such as WebID+TLS), token-based (such as OAuth 2.0), or digital signatures. Different mechanisms are appropriate for different applications, so it is again beyond the scope of our notifications protocol to specify one in particular.</p>
 
-                            <section id="notification-verification-and-validation" rel="schema:hasPart" resource="#notification-verification-and-validation">
-                                <h3 property="schema:name">Notification Verification and Validity</h3>
-                                <div datatype="rdf:HTML" property="schema:description">
-                                    <p><strong>Verification</strong>: If a notification refers to or describes third-party (external) resources, fetching and processing their descriptions may be one way to verify their existence.</p>
+                                    <p>As <q>anyone can say anything about anything</q> another option is to dereference any external resources referred to in the notification contents, and cross-check against authoritative sources. (Similarly to how Semantic Pingback and Webmention require fetching and parsing of the source URL to verify existence of the target link).</p>
 
-                                    <p><strong>Validation</strong>: Given the nature of the notification payload, consumers may want to take precautions when ascertaining the veracity of the contents. The <q>anyone can say anything about anything</q> Web principle applies here. Unless otherwise specified (e.g., through HTTP headers, or updating the notification content), there may be no indication as to whether the original payload was altered by the receiver.</p>
+                                    <p>A receiver which expects senders or consumers to authenticate comes with additional security considerations. For example, it should check the validity of their credentials before returning any other data, including other error codes, and authentication involving token passing must be done over HTTPS.</p>
                                 </div>
                             </section>
 
@@ -209,15 +203,6 @@
                                     <p>Applications can either ask to have incoming notifications be pushed to them or they can actively pull notifications from servers. Both of the mechanisms are specified with existing implementations in the wild. Typically where one is preferable over another depends on application environments and the type of arrangement between senders, receivers, and consumers.</p>
 
                                     <p class="todo">This is a bit boring</p>
-                                </div>
-                            </section>
-
-                            <section id="authentication-considerations" inlist="" rel="schema:hasPart" resource="#authentication-considerations">
-                                <h3 property="schema:name">Authentication Considerations</h3>
-                                <div datatype="rdf:HTML" property="schema:description">
-                                    <p>If a receiver expects senders or consumers to authenticate, it should check the validity of their credentials before returning any other data, including other error codes. What's required? What's possible? Where does WebID+TLS fit in? What about HTTP Basic Auth? OAuth? Alternatives? Describe what's required and what's optional.</p>
-
-                                    <p>Authentication involving token passing must be done over HTTPS.</p>
                                 </div>
                             </section>
 
