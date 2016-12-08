@@ -167,12 +167,21 @@
                                 </div>
                             </section>
 
-                            <section id="notification-constraints" inlist="" rel="schema:hasPart" resource="#notification-constraints">
-                                <h3 property="schema:name">Notification Constraints</h3>
+                            <section id="notification-filtering" inlist="" rel="schema:hasPart" resource="#notification-filtering">
+                                <h3 property="schema:name">Notification Filtering</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
-                                    <p>Setting constraints on notification data shape is motivated with the purpose of attaining application and data integrity. For <em>application integrity</em>, some of the common reasons for this is to minimise maintenance complexity, and to generate conforming data for optimal reuse. For <em>data integrity</em>, constraints makes it possible to store and serve data as intended, as well as optimal reuse by different conforming applications, and play a key role in accuracy and consistency in data's life-cycle.</p>
+                                    <p>It should be possible for receiving software to enforce restrictions on the notifications that are acceptable. This could be useful as an anti-spam measure, a security protection, or with the purpose of attaining application and data integrity.</p>
+                                    <p>There are many possible criteria by which a receiver could choose to accept or reject incoming notifications, and we consider selecting one (or more) to be an application-specific implementation detail. It is important to enable such security considerations, so the notifications protocol must leave space for such extensions.</p>
+                                </div>
+                            </section>
 
-                                    <p>If the notification constraints are advertised as structured descriptions, generation and consumption of the notifications can be better automated by applications. Inboxes could announce their own constraints using existing data shapes like with <cite><a href="#">SHACL</a></cite> or other recommendations.</p>
+                            <section id="content-constraints" inlist="" rel="schema:hasPart" resource="#content-constraints">
+                                <h3 property="schema:name">Content Constraints</h3>
+                                <div datatype="rdf:HTML" property="schema:description">
+
+                                    <p>A possible filtering mechanism is by rejecting notifications which do not match a specific pattern in their contents, or the <em>shape</em> of the graph. For example, if the owner of a receiving service knows the finite set of applications with which they expect to use their notifications, the receiving service can be configured with certain constraints which optimise for these cases.</p>
+
+                                    <p>If the notification constraints are advertised by the receiving service as structured descriptions, generation and consumption of the notifications can be better automated by applications. A possible specification for doing so is <cite><a href="#">SHACL</a></cite>. Since the options for doing this are subject to ongoing development, we consider it too early to specify a particular mechanism as part of the notifications protocol.</p>
                                 </div>
                             </section>
 
