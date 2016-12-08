@@ -144,7 +144,8 @@
                             <section id="architectural-considerations" inlist="" rel="schema:hasPart" resource="#architectural-considerations">
                                 <h3 property="schema:name">Architectural Considerations</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
-                                    <p>As Linked Data encourages the use of <cite>Representational State Transfer</cite> (REST) architectural style [<a class="ref" href=""></a>] also Linked Data Notifications should be compatible with REST to the largest extent possible. This also ensures interoperability with other standards such as for example <cite>Linked Data Platform</cite> (LDP). A RESTful realisation also has further advantages, such as organisation of atomic resources, including identification of units of information, their discovery and description, as well as basic operations like <abbr title="Create, Read, Update, Delete">CRUD</abbr> on individual resources through HTTP methods.</p>
+                                    <p>LDN follows a RESTful architecture [<a class="ref" href=""></a>], in the same way as the Linked Data Platform (LDP) specification [<a class="ref" href=""></a>]. This is well suited for notifications, as REST involves organisation of atomic resources, their discovery and description, and a lightweight API for creating, reading, updating, and deleting them [<a href="http://ws-rest.org/2011/proc/a5-page.pdf">LD&amp;REST</a>].</p>
+                                    <p>A further advantage of this is that existing LDP servers can be used to store notifications, as new notifications can be created in a <code>Container</code> in exactly the same way as any other resource.</p>
                                 </div>
                             </section>
 
