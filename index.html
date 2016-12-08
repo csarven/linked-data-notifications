@@ -157,6 +157,26 @@
                                 </div>
                             </section>
 
+                            <section id="notification-contents" rel="schema:hasPart" resource="#notification-contents">
+                                <h3 property="schema:name">Notification contents</h3>
+                                <div datatype="rdf:HTML" property="schema:description">
+                                    <p>Inboxes are repositories for notifications.</p>
+
+                                    <p>Notifications are intended to announce social interactions and data.</p>
+
+                                    <p>The contents of a notification is application specific. We derive two core principles from this:</p>
+
+                                    <ul>
+                                        <li>a notification can contain arbitrary data</li>
+                                        <li>a notification is vocabulary agnostic</li>
+                                    </ul>
+
+                                    <p>Notifications are resources with their own URIs... (not ephemeral)</p>
+
+                                    <p>Interoperability between different applications occurs through shared vocabularies. Just like in all linked data applications. According to linked dpata principles, we encourage vocabulary reuse.</p>
+                                </div>
+                            </section>
+
                             <section id="notification-verification-and-validation" rel="schema:hasPart" resource="#notification-verification-and-validation">
                                 <h3 property="schema:name">Notification Verification and Validity</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
@@ -272,18 +292,7 @@
                         <div datatype="rdf:HTML" property="schema:description" resource="#protocol" typeof="deo:Contribution">
                             <p>Note: Mention W3C LDN here?</p>
 
-                            <p>Inboxes are repositories for notifications.</p>
-
-                            <p>Notifications are intended to announce social interactions and data.</p>
-
-                            <p>The contents of a notification is application specific. We derive two core principles from this:</p>
-
-                            <ul>
-                                <li>a notification can contain arbitrary data</li>
-                                <li>a notification is vocabulary agnostic</li>
-                            </ul>
-
-                            <p>Notifications are resources with their own URIs... (not ephemeral)</p>
+                            
 
                             <p>---</p>
 
