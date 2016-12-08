@@ -233,11 +233,9 @@
                             <section id="resource-management-considerations" inlist="" rel="schema:hasPart" resource="#security-considerations">
                                 <h3 property="schema:name">Resource Management Considerations</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
-                                    <p>In order to organise and manage large amount of notifications in an inbox over time, mechanisms should be in place to break representations into multiple paged responses that may be easier to consume by applications.</p>
+                                    <p>In order to organise and manage large amount of notifications over time, mechanisms should be in place to break representations of collections of notifications into multiple paged responses that may be easier to consume by applications.</p>
 
-                                    <p>Receivers may also consider setting constraints on the inbox to filter out unwarranted requests or to help better organise the location of the notifications, e.g., sub-containers.</p>
-
-                                    <p>While the senders and consumers may have some confidence in the persistence of the notifications, there may be subject to update or delete operations at the discretion of the receiver. Receivers may need to integrate authorisation mechanisms to allow certain operations on authenticated applications.</p>
+                                    <p>While the senders and consumers may have some confidence in the persistence of the notifications, they may be subject to update or delete operations at the discretion of the receiver. Receivers may need to integrate authorisation mechanisms to allow certain operations by authenticated applications.</p>
                                 </div>
                             </section>
 
