@@ -45,7 +45,7 @@
                 </div>
 
                 <dl id="document-identifier">
-                    <dt>Document ID</dt>
+                    <dt>Identifier</dt>
                     <dd><a href="http://csarven.ca/linked-data-notifications" rel="owl:sameAs">http://csarven.ca/linked-data-notifications</a></dd>
                 </dl>
 
@@ -61,7 +61,7 @@
 
                 <dl id="document-modified">
                     <dt>Modified</dt>
-                    <dd><time datatype="xsd:dateTime" datetime="2016-12-04T00:00:00Z" property="schema:dateModified">2016-12-04</time></dd>
+                    <dd><time datatype="xsd:dateTime" datetime="2016-12-09T00:00:00Z" property="schema:dateModified">2016-12-09</time></dd>
                 </dl>
 
                 <dl id="document-license">
@@ -92,7 +92,7 @@
                     <section id="introduction" inlist="" rel="schema:hasPart" resource="#introduction">
                         <h2 property="schema:name">Introduction</h2>
                         <div datatype="rdf:HTML" property="schema:description">
-                            <p about="" id="problem" rel="schema:hasPart">Notifications are sent over the Web for a variety of purposes, including social applications. <span class="todo">put some specific, vivid examples here</span> The notification data may be displayed to a human to acknowledge, or used to trigger some other application-specific process (or both). This data is arbitrary and typically only usable by the application which generated it in the first place. Current efforts towards <em>re-decentralising</em> the Web [http://crosscloud.org/2016/www-mansour-pdf.pdf, http://www.semantic-web-journal.net/sites/default/files/swj201_4.pdf, https://unhosted.org/, cite] are moving towards architectures in which data storage is decoupled from application logic, freeing end users to switch between applications, or to let multiple applications operate over the same data. So far, notifications are considered to be ephemeral resources which may disappear after transport, and thus are excluded from being reusable data.</p>
+                            <p>Notifications are sent over the Web for a variety of purposes, including social applications. <span class="todo">put some specific, vivid examples here</span> The notification data may be displayed to a human to acknowledge, or used to trigger some other application-specific process (or both). This data is arbitrary and typically only usable by the application which generated it in the first place. Current efforts towards <em>re-decentralising</em> the Web [http://crosscloud.org/2016/www-mansour-pdf.pdf, http://www.semantic-web-journal.net/sites/default/files/swj201_4.pdf, https://unhosted.org/, cite] are moving towards architectures in which data storage is decoupled from application logic, freeing end users to switch between applications, or to let multiple applications operate over the same data. So far, notifications are considered to be ephemeral resources which may disappear after transport, and thus are excluded from being reusable data.</p>
 
                             <p>We contend that notification data should no more be locked into particular systems than other user data, and designed the protocol <em>Linked Data Notifications (LDN)</em> to support sharing and reuse of notifications <em>across</em> applications, regardless of how they were generated or what their contents are. Specifying this architecture as a formal protocol is intended to allow applications which generate and make use of notifications, which are independently implemented and run on different technology stacks, to seamlessly work together. LDN contributes to decentralisation of our interactions on the Web, as well as encouraging generation and consumption of Linked Data.</p>
 
@@ -118,7 +118,7 @@
                                 </dl>
                             </div>
 
-                            <p>Welcome welcome feedback on this article in the form of a Linked Data Notification to https://linkedresearch.org/inbox/</p>
+                            <p>We welcome feedback on this article in the form of a Linked Data Notification to https://linkedresearch.org/inbox/</p>
                         </div>
                     </section>          
 
@@ -161,21 +161,6 @@
                                     <p>There are also notification mechanisms which send more information than just URLs in the notification body; due to each mechanism's focused use case, the payload is restricted to a particular vocabulary.</p>
 
                                     <p><strong>DSNotify</strong> is a centralised service which crawls Linked Datasets and tracks changes to links (create, remove, move, update) with the specific use case of preserving link integrity between Linked Open Data resources. Notifications of changes are delivered to subscribers in the form of a specific XML payload [<a href="http://eprints.cs.univie.ac.at/81/1/2010_WWW_DSNotify.pdf"></a>, <a href="http://www.cibiv.at/~niko/dsnotify/"></a>]. Alternatively, with the <strong>sparqlPuSH</strong> service, users may indicate specific updates to a dataset they are interested in via a SPARQL query. The query is run periodically by the service, and the results are converted to an XML feed, which is sent to a PubSubHubbub hub to which the user can subscribe [<a href="http://ceur-ws.org/Vol-699/Paper6.pdf"></a>]. The <strong>ResourceSync Change Notification</strong> specification also sends update notifications via a PubSubHubbub hub, this time with an XML payload based on the Sitemap format [<a class="ref" href="http://www.openarchives.org/rs/notification/1.0/notification"></a>].</p>
-
-                                </div>
-                            </section>
-
-                            <section id="complementary-protocols" rel="schema:hasPart" resource="#complementary-protocols">
-                                <h3 property="schema:name">Complementary protocols</h3>
-                                <div datatype="rdf:HTML" property="schema:description">
-                                    <p class="todo">I think this should come after the #protocols section because it reflects on what the LDN protocol does and doesn't wrt to the requirements/design considerations</p>
-                                    <ul>
-                                        <li>ActivityPub</li>
-                                        <li>Annotations</li>
-                                        <li>WebSub</li>
-                                        <li>Solid..?</li>
-                                        <li>Webhooks</li>
-                                    </ul>
                                 </div>
                             </section>
                         </div>
@@ -293,10 +278,9 @@
                     <section id="protocol" inlist="" rel="schema:hasPart" resource="#protocol">
                         <h2 property="schema:name">Protocol</h2>
                         <div datatype="rdf:HTML" property="schema:description" resource="#protocol" typeof="deo:Contribution">
-
                             <p><dfn id="ldn">Linked Data Notifications (<abbr title="Linked Data Notifications">LDN</abbr>)</dfn> is a protocol that describes how servers (receivers) can have messages pushed to them by applications (senders), as well as how other applications (consumers) may retrieve those messages. Any resource can advertise a receiving endpoint (Inbox) for the messages. Messages are expressed in RDF, and can contain any data.</p>
 
-                            <p>LDN can be considered a specialized use of Linked Data Platform [<cite><a class="bibref" href="#bib-ldp">LDP</a></cite>]. It is not dependent on a complete implementation of LDP, but comprises an easy-to-implement subset. LDN is a <a href="https://www.w3.org/TR/ldn">W3C Candidate Recommendation</a> [<cite><a class="bibref" href="#bib-ldn">LDN</a></cite>]</p>
+                            <p>An LDN receiver can be considered a specialisation of Linked Data Platform [<cite><a class="bibref" href="#bib-ldp">LDP</a></cite>]. It is not dependent on a complete implementation of LDP, but comprises an easy-to-implement subset. LDN is a <a href="https://www.w3.org/TR/ldn">W3C Candidate Recommendation</a> [<cite><a class="bibref" href="#bib-ldn">LDN</a></cite>]</p>
 
                             <figure id="figure-linked-data-notifications-overview" rel="schema:hasPart" resource="#figure-linked-data-notifications-overview">
                                 <object data="media/images/linked-data-notifications-overview.svg" height="200" rel="schema:image" type="image/svg+xml" width="420"></object>
@@ -415,7 +399,7 @@
                     <section id="implementation-and-evaluation" inlist="" rel="schema:hasPart" resource="#implementation-and-evaluation">
                         <h2 property="schema:name">Implementation and evaluation</h2>
                         <div datatype="rdf:HTML" property="schema:description" resource="#results" typeof="deo:Results">
-                            
+                            <p>An existing [LDP] implementation can serve as an [LDN] receiver, by simply advertising any ldp:Container as the Inbox for a resource.</p>
                             <p>What are some of the comparable features between implementations</p>
                             <p>Number of requests to discover/send/consume</p>
 
