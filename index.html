@@ -417,8 +417,42 @@
                         </div>
                     </section>
 
-                    <section id="implementation-and-evaluation" inlist="" rel="schema:hasPart" resource="#implementation-and-evaluation">
-                        <h2 property="schema:name">Implementation and evaluation</h2>
+                    <section id="implementations" inlist="" rel="schema:hasPart" resource="#implementations">
+                        <h2 property="schema:name">Implementations</h2>
+                        <div datatype="rdf:HTML" property="schema:description">
+                            <p><cite><a href="https://dokie.li/">dokieli</a></cite> is a clientside editor for decentralised article publishing, annotations and social interactions [<a href="http://csarven.ca/dokieli"></a>]. Figures 2,3,4 are screencasts of different ways of using notifications in dokieli.</p>
+
+                            <p>Figure 2 demonstrates an announcement notification to an article's inbox about an inline annotation that's been made and where it can be found on the Web. The article dynamically fetches the notification and the referenced annotation information, and then displays it as marginalia.</p>
+
+                            <figure id="figure-dokieli-annotation" rel="schema:hasPart" resource="#figure-dokieli-annotation">
+                                <video id="video-dokieli-annotation" rel="schema:hasPart" preload="none" controls="controls" width="800" poster="https://dokie.li/media/images/dokieli-annotation.jpg">
+                                    <source about="#video-dokieli-annotation" rel="schema:hasPart" resource="https://dokie.li/media/video/dokieli-annotation.webm" typeof="fabio:Film" src="https://dokie.li/media/video/dokieli-annotation.webm" type="video/webm" />
+                                </video>
+                                <figcaption property="schema:name"><a href="https://dokie.li/media/video/dokieli-annotation.webm">Video</a> of dokieli Web Annotation</figcaption>
+                            </figure>
+
+                            <p>Figure 3 demonstrates a case where the user signs in and selects contacts from their social network, and shares the article by sending a notification to their contact's inbox.</p>
+
+                            <figure id="figure-dokieli-share" rel="schema:hasPart" resource="#figure-dokieli-share">
+                                <video id="video-dokieli-share" rel="schema:hasPart" preload="none" controls="controls" width="800" poster="https://dokie.li/media/images/dokieli-share.jpg">
+                                    <source about="#video-dokieli-share" rel="schema:hasPart" resource="https://dokie.li/media/video/dokieli-share.webm"  typeof="fabio:Film" src="https://dokie.li/media/video/dokieli-share.webm" type="video/webm" />
+                                </video>
+                                <figcaption property="schema:name"><a href="https://dokie.li/media/video/dokieli-share.webm">Video</a> of dokieli Share</figcaption>
+                            </figure>
+
+                            <p>Figure 4 demonstrates a scenario where the user makes a semantic inline citation, and then sends a notification to the inbox of the cited entity. The cited entity then consumes this notification to indicate what part of their article was cited by what and how.</p>
+
+                            <figure id="figure-dokieli-citation" rel="schema:hasPart" resource="#figure-dokieli-citation">
+                                <video controls="controls" id="video-dokieli-citation" poster="https://dokie.li/media/images/dokieli-citation.jpg" preload="none" width="800" about="" rel="schema:hasPart">
+                                    <source about="#video-dokieli-citation" rel="schema:hasPart" resource="https://dokie.li/media/video/dokieli-citation.webm" src="https://dokie.li/media/video/dokieli-citation.webm" type="video/webm" typeof="fabio:Film" />
+                                </video>
+                                <figcaption property="schema:name"><a href="https://dokie.li/media/video/dokieli-citation.webm">Video</a> of semantic inline citations</figcaption>
+                            </figure>
+                        </div>
+                    </section>
+
+                    <section id="evaluation" inlist="" rel="schema:hasPart" resource="#evaluation">
+                        <h2 property="schema:name">Evaluation</h2>
                         <div datatype="rdf:HTML" property="schema:description" resource="#results" typeof="deo:Results">
                             <p>An existing [LDP] implementation can serve as an [LDN] receiver, by simply advertising any ldp:Container as the Inbox for a resource.</p>
                             <p>What are some of the comparable features between implementations</p>
