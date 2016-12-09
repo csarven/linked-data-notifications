@@ -107,6 +107,7 @@
 							So far, notifications are considered to be <em>ephemeral</em> resources which may disappear after transport, and thus are excluded from being reusable data.</p>
 
                             <p>We deem that notification data should not be locked within particular systems and designed the protocol <em>Linked Data Notifications (LDN)</em> to support sharing and reuse of notifications <em>across</em> applications, regardless of how they were generated or what their contents are. 
+							We describe how the principles of identification, adressability and semantic representation can be applied to notifications on the Web.
 							Specifying LDN as a formal protocol allows independently implemented, heterogeneous applications which generate and use notifications, to seamlessly work together. 
 							Thus, LDN supports the decentralisation of the Web as well as encourages the generation and consumption of Linked Data.</p>
 
@@ -131,7 +132,7 @@
 									We focus on Web-based decentralisation, where content is transported over HTTP, and resources are identified with URIs.</dd>
 
                                     <dt about="#concept-inbox" id="concept-inbox" property="skos:prefLabel" rel="skos:topConceptOf" resource="#concept-scheme" typeof="skos:Concept">Inbox</dt>
-                                    <dd about="#concept-inbox" property="skos:definition">A directory (within a Webspace) which is used to store and serve a collection of notifications.</dd>
+                                    <dd about="#concept-inbox" property="skos:definition">A container or directory (attached to a Web resource) which is used to store and serve a collection of notifications.</dd>
 
                                     <dt about="#concept-notification" id="concept-notification" property="skos:prefLabel" rel="skos:topConceptOf" resource="#concept-scheme" typeof="skos:Concept">Notification</dt>
                                     <dd about="#concept-notification" property="skos:definition">A retrievable resource which returns RDF. 
