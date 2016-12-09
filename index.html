@@ -335,9 +335,9 @@
                             </section>
 
                             <section id="data-formats" inlist="" rel="schema:hasPart" resource="#data-formats">
-                                <h3 property="schema:name">Data Formats</h3>
+                                <h3 property="schema:name">Data Formats and Content Negotiation</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
-                                    <p>While the ability for applications to generate payload, conduct <em>content negotiation</em>, and consume content in all W3C RDF serializations, has advantages to be flexible, it can be costly to support across applications. From the perspective of the protocol's design, there are some considerations to take into account, for example:</p>
+                                    <p>Whilst being able to handle data irrespective of the particular RDF serialisation it is presented in permits some flexibility, this can be costly to support. From the perspective of the protocol design, there are some considerations to take into account:</p>
 
                                     <ul>
                                         <li>application interoperability</li>
@@ -346,9 +346,9 @@
                                         <li>run-time efficiency</li>
                                     </ul>
 
-                                    <p>With the goal of enabling simple yet interoperable application creation, LDN requires applications to speak and understand the JSON-LD syntax — for looking at the contents of Inbox as well as individual notifications. Applications are permitted to optionally negotiate different RDF serialisations among themselves.</p>
+                                    <p>As such, LDN requires all applications to speak and understand the JSON-LD syntax, both for looking at the contents of Inbox as well as for individual notifications. Optionally, applications may perform content negotiation (receivers can expose <code>Accept-Post</code> headers for senders, and consumers can send <code>Accept</code> headers to receivers) in order to attempt to exchange different RDF serialisations if desired.</p>
 
-                                    <p>The rationale for this is that, if all applications can work with one serialisation, then they are interoperable. Applications that are capable of or wish to handle different serialisations are able to coexist in this ecosystem nevertheless. The benefit to making JSON-LD is that it provides the lowest barrier for applications to communicate. While the same can be said for any RDF serialisation, JSON-LD is arguably more convenient to work with than the other serialisations in client-side implementations.</p>
+                                    <p>The rationale is that if all applications can work with one serialisation, then they are interoperable. Applications which are capable of handling different serialisations are able to coexist in this ecosystem nevertheless. JSON-LD was designed to be an easy gateway into RDF for developers used to JSON-based APIs [cite].</p>
                                 </div>
                             </section>
 
