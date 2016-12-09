@@ -139,6 +139,49 @@
                         </div>
                     </section>
 
+
+                    <section id="related-work" inlist="" rel="schema:hasPart" resource="#related-work">
+                        <h2 property="schema:name">Related Work</h2>
+                        <div datatype="rdf:HTML" property="schema:description" resource="#related-work" typeof="deo:RelatedWork">
+
+                            <section id="notification-mechanisms" rel="schema:hasPart" resource="#notification-mechanisms">
+                                <h3 property="schema:name">Notification mechanisms</h3>
+                                <div datatype="rdf:HTML" property="schema:description">
+                                    
+                                    <p>Here we review previous and ongoing efforts towards delivering notifications in a decentralised manner. Since many systems which make use of notifications operate either in a completely centralised way, or are decentralised only in the sense that different instances of the <em>same</em> codebase need to interoperate, there appears to be limited work to review.</p>
+
+                                    <p>The contents of a notification is one of either: 1) URLs, indicating relations between Web resources, or 2) a 'fat ping' containing a blob of information. Semantic Pingback, Webmention, and Provenance Pingback follow the first form, and are also known as <cite>linkbacks</cite>, the suite of protocols that essentially allows Web documents to manually and automatically link to or mention one another. This has the advantage that a verification mechanism can be tightly specified (the URL of the target must appear in the content of the source), but the disadvantage that notifications are only available for the use case of a link being published on the Web.</p>
+
+                                    <p><strong>Semantic Pingback</strong> [<a href="http://www.informatik.uni-leipzig.de/~auer/publication/SemanticPingback.pdf"></a>, <a href="https://www.w3.org/wiki/index.php?title=Pingback&amp;oldid=57876"></a>, <a href="https://aksw.github.io/SemanticPingback/"></a>] and <strong>Webmention</strong> [<a href="https://www.w3.org/TR/webmention"></a>] both update the original Pingback [<a href="http://www.hixie.ch/specs/pingback/pingback"></a>] mechanism by replacing the XML-RPC transport mechanism by a <code>x-www-form-urlencoded</code> request with two parameters (<code>source</code> and <code>target</code>). They both also replace the <code>X-Pingback</code> HTTP header with a <code>Link</code> relation, either in HTTP or HTML, for discovery of the respective receiving service. Semantic Pingback further enables discovery of the Pingback service where source resources are available as RDF. While the content at source may indicate (in any convention or serialisation format) the type of relation between the source and target URLs, the information about the relation is not transmitted to the receiver's endpoint, and nor is there a way to distinguish between multiple potential mentions of the target; this is left up to the receiver to interpret. Semantic Pingback does encourage generation of additional semantics about the relation(s) between the source and the target by processing the source as RDF if possible, and also defines specific ways for a receiving server to handle incoming pingback data in order to add the source data to an RDF knowledge base. Beyond verification, Webmention does not specify any further requirements of the receiving server; it is not expected that "mentions" are retrievable once they have been sent. </p>
+
+                                    <!--- we probably don't need this exact paragraph, but want to include all these implementation refs somewhere 
+                                    <p>Semantic Pingback was implemented into OntoWiki [http://www.semantic-web-journal.net/sites/default/files/swj201_4.pdf] and as part of the <em>Structured Feedback</em> suite of tools [http://events.linkeddata.org/ldow2016/papers/LDOW2016_paper_02.pdf]. Webmention senders and receivers have been independently implemented as part of libraries, into blogging platforms such as Wordpress and Known, and as part of several personal websites or blogs [https://webmention.net/implementation-reports/summary/].</p>-->
+
+                                    <p id="provenance-pingback">A <strong>Provenance Pingback</strong> endpoint is also advertised through an HTTP Link header, and accepts a list of URIs for provenance records describing uses of the resource [<a href="http://www.w3.org/TR/prov-aq/#provenance-pingback"></a>]. Provenance Pingback does not specify any further behaviour by the receiving server, but the contents of the URIs listed in the notification body are well-defined.</p>
+
+                                    <p>There are also notification mechanisms which send more information than just URLs in the notification body; due to each mechanism's focused use case, the payload is restricted to a particular vocabulary.</p>
+                                    
+                                    <p><strong>DSNotify</strong> is a centralised service which crawls Linked Datasets and tracks changes to links (create, remove, move, update) with the specific use case of preserving link integrity between Linked Open Data resources. Notifications of changes are delivered to subscribers in the form of a specific XML payload [<a href="http://eprints.cs.univie.ac.at/81/1/2010_WWW_DSNotify.pdf"></a>, <a href="http://www.cibiv.at/~niko/dsnotify/"></a>]. Alternatively, with the <strong>sparqlPuSH</strong> service, users may indicate specific updates to a dataset they are interested in via a SPARQL query. The query is run periodically by the service, and the results are converted to an XML feed, which is sent to a PubSubHubbub hub to which the user can subscribe [<a href="http://ceur-ws.org/Vol-699/Paper6.pdf"></a>]. The <strong>ResourceSync Change Notification</strong> specification also sends update notifications via a PubSubHubbub hub, this time with an XML payload based on the Sitemap format [<a class="ref" href="http://www.openarchives.org/rs/notification/1.0/notification"></a>].</p>
+
+                                </div>
+                            </section>
+
+                            <section id="complementary-protocols" rel="schema:hasPart" resource="#complementary-protocols">
+                                <h3 property="schema:name">Complementary protocols</h3>
+                                <div datatype="rdf:HTML" property="schema:description">
+                                    <p class="todo">I think this should come after the #protocols section because it reflects on what the LDN protocol does and doesn't wrt to the requirements/design considerations</p>
+                                    <ul>
+                                        <li>ActivityPub</li>
+                                        <li>Annotations</li>
+                                        <li>WebSub</li>
+                                        <li>Solid..?</li>
+                                        <li>Webhooks</li>
+                                    </ul>
+                                </div>
+                            </section>
+                        </div>
+                    </section>
+
                     <section id="requirements-and-design-considerations" inlist="" rel="schema:hasPart" resource="#requirements-and-design-considerations">
                         <h2 property="schema:name">Requirements and Design Considerations</h2>
                         <div datatype="rdf:HTML" property="schema:description">
@@ -182,7 +225,7 @@
                                 <h3 property="schema:name">Content Constraints</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
 
-                                    <p>A possible filtering mechanism is by rejecting notifications which do not match a specific pattern in their contents, or the <em>shape</em> of the data. For example, if the owner of a receiving service knows the finite set of applications with which they expect to use their notifications, the receiving service can be configured with certain constraints which optimise for these cases. This can also be implemented as an anti-spam or abuse prevention measure.</p>
+                                    <p>A possible filtering mechanism is rejecting notifications which do not match a specific pattern in their contents, or the <em>shape</em> of the data. For example, if the owner of a receiving service knows the finite set of applications with which they expect to use their notifications, the receiving service can be configured with certain constraints which optimise for these cases. This can also be implemented as an anti-spam or abuse prevention measure.</p>
 
                                     <p>If the notification constraints are advertised by the receiving service as structured descriptions, generation and consumption of the notifications can be better automated by applications. A possible specification for doing so is <cite><a href="#">SHACL</a></cite>. Since the options for doing this are subject to ongoing development, we consider it too early to specify a particular mechanism as part of the notifications protocol.</p>
                                 </div>
@@ -237,48 +280,6 @@
                                     <p>Note: is this section necessary or meaningful?</p>
                                 </div>
                             </section> -->
-                        </div>
-                    </section>
-
-                    <section id="related-work" inlist="" rel="schema:hasPart" resource="#related-work">
-                        <h2 property="schema:name">Related Work</h2>
-                        <div datatype="rdf:HTML" property="schema:description" resource="#related-work" typeof="deo:RelatedWork">
-
-                            <section id="notification-mechanisms" rel="schema:hasPart" resource="#notification-mechanisms">
-                                <h3 property="schema:name">Notification mechanisms</h3>
-                                <div datatype="rdf:HTML" property="schema:description">
-                                    
-                                    <p>Here we review previous and ongoing efforts towards delivering notifications in a decentralised manner. Since many systems which make use of notifications operate either in a completely centralised way, or are decentralised only in the sense that different instances of the <em>same</em> codebase need to interoperate, there appears to be limited work to review.</p>
-
-                                    <p>The contents of a notification is one of either: 1) URLs, indicating relations between Web resources, or 2) a 'fat ping' containing a blob of information. Semantic Pingback, Webmention, and Provenance Pingback follow the first form, and are also known as <cite>linkbacks</cite>, the suite of protocols that essentially allows Web documents to manually and automatically link to or mention one another. This has the advantage that a verification mechanism can be tightly specified (the URL of the target must appear in the content of the source), but the disadvantage that notifications are only available for the use case of a link being published on the Web.</p>
-
-                                    <p><strong>Semantic Pingback</strong> [<a href="http://www.informatik.uni-leipzig.de/~auer/publication/SemanticPingback.pdf"></a>, <a href="https://www.w3.org/wiki/index.php?title=Pingback&amp;oldid=57876"></a>, <a href="https://aksw.github.io/SemanticPingback/"></a>] and <strong>Webmention</strong> [<a href="https://www.w3.org/TR/webmention"></a>] both update the original Pingback [<a href="http://www.hixie.ch/specs/pingback/pingback"></a>] mechanism by replacing the XML-RPC transport mechanism by a <code>x-www-form-urlencoded</code> request with two parameters (<code>source</code> and <code>target</code>). They both also replace the <code>X-Pingback</code> HTTP header with a <code>Link</code> relation, either in HTTP or HTML, for discovery of the respective receiving service. Semantic Pingback further enables discovery of the Pingback service where source resources are available as RDF. While the content at source may indicate (in any convention or serialisation format) the type of relation between the source and target URLs, the information about the relation is not transmitted to the receiver's endpoint, and nor is there a way to distinguish between multiple potential mentions of the target; this is left up to the receiver to interpret. Semantic Pingback does encourage generation of additional semantics about the relation(s) between the source and the target by processing the source as RDF if possible, and also defines specific ways for a receiving server to handle incoming pingback data in order to add the source data to an RDF knowledge base. Beyond verification, Webmention does not specify any further requirements of the receiving server; it is not expected that "mentions" are retrievable once they have been sent. </p>
-
-                                    <!--- we probably don't need this exact paragraph, but want to include all these implementation refs somewhere 
-                                    <p>Semantic Pingback was implemented into OntoWiki [http://www.semantic-web-journal.net/sites/default/files/swj201_4.pdf] and as part of the <em>Structured Feedback</em> suite of tools [http://events.linkeddata.org/ldow2016/papers/LDOW2016_paper_02.pdf]. Webmention senders and receivers have been independently implemented as part of libraries, into blogging platforms such as Wordpress and Known, and as part of several personal websites or blogs [https://webmention.net/implementation-reports/summary/].</p>-->
-
-                                    <p id="provenance-pingback">A <strong>Provenance Pingback</strong> endpoint is also advertised through an HTTP Link header, and accepts a list of URIs for provenance records describing uses of the resource [<a href="http://www.w3.org/TR/prov-aq/#provenance-pingback"></a>]. Provenance Pingback does not specify any further behaviour by the receiving server, but the contents of the URIs listed in the notification body are well-defined.</p>
-
-                                    <p>There are also notification mechanisms which send more information than just URLs in the notification body; due to each mechanism's focused use case, the payload is restricted to a particular vocabulary.</p>
-                                    
-                                    <p><strong>DSNotify</strong> is a centralised service which crawls Linked Datasets and tracks changes to links (create, remove, move, update) with the specific use case of preserving link integrity between Linked Open Data resources. Notifications of changes are delivered to subscribers in the form of a specific XML payload [<a href="http://eprints.cs.univie.ac.at/81/1/2010_WWW_DSNotify.pdf"></a>, <a href="http://www.cibiv.at/~niko/dsnotify/"></a>]. Alternatively, with the <strong>sparqlPuSH</strong> service, users may indicate specific updates to a dataset they are interested in via a SPARQL query. The query is run periodically by the service, and the results are converted to an XML feed, which is sent to a PubSubHubbub hub to which the user can subscribe [<a href="http://ceur-ws.org/Vol-699/Paper6.pdf"></a>]. The <strong>ResourceSync Change Notification</strong> specification also sends update notifications via a PubSubHubbub hub, this time with an XML payload based on the Sitemap format [<a class="ref" href="http://www.openarchives.org/rs/notification/1.0/notification"></a>].</p>
-
-                                </div>
-                            </section>
-
-                            <section id="complementary-protocols" rel="schema:hasPart" resource="#complementary-protocols">
-                                <h3 property="schema:name">Complementary protocols</h3>
-                                <div datatype="rdf:HTML" property="schema:description">
-                                    <p class="todo">I think this should come after the #protocols section because it reflects on what the LDN protocol does and doesn't wrt to the requirements/design considerations</p>
-                                    <ul>
-                                        <li>ActivityPub</li>
-                                        <li>Annotations</li>
-                                        <li>WebSub</li>
-                                        <li>Solid..?</li>
-                                        <li>Webhooks</li>
-                                    </ul>
-                                </div>
-                            </section>
                         </div>
                     </section>
 
