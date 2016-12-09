@@ -396,6 +396,27 @@
                         </div>
                     </section>
 
+                    <section id="analysis" rel="schema:hasPart" resource="#analysis">
+                        <h3 property="schema:name">Analysis</h3>
+                        <div datatype="rdf:HTML" property="schema:description">
+                            <p>At its core, the LDN protocol describes the discovery of a resource's inbox to send and consume notifications from, and sending and storage of those notifications. This only includes the base communication requirements, and leaves out other requirements which are complimentary and orthogonal to what's needed.</p>
+
+                            <p>The protocol's design intentionally excludes behaviour that's described in other existing protocols and standards. This has the advantage of having a modular protocol which can be accompanied with the other protocols in different environments and application needs. This is the essential principle that was applied through LDN's design in order to keep the protocol simple, and to increase its implementation and use. Although the <cite>The Rule of Least Power</cite> was originally about choosing a programming languages: <q cite="" lang="en-US" xml:lang="en-US">when publishing on the Web, you should usually choose the least powerful or most easily analyzed language variant that’s suitable for the purpose</q> [<a href=""></a>], our decisions for the protocol made use of the same principles. Therefore, LDN encourages the use of complementary protocols to meet other data and application needs without having to reinvent or add more complexity to itself.</p>
+
+                            <p>Here we briefly indicate some related protocols and recommendations:</p>
+                            <ul>
+                                <li><cite>WebID+TLS</cite> to authenticate Web identities</li>
+                                <li><cite>WAC/ACL</cite> to apply fine grained access controls</li>
+                                <li><cite>WebSub</cite> for a subscription and pushing mechanism</li>
+                                <li><cite>Webhooks</cite> to send event notifications with custom callbacks</li>
+                                <li><cite>ActivityPub</cite> to distribute interactions of social activities</li>
+                                <li><cite>SHACL</cite> to define the constraints of notification shape</li>
+                                <li><cite>Web Annotation Protocol</cite> to have a transport mechanism to create and manage annotations</li>
+                                <li><cite>Activity Streams 2.0</cite> to model for representing potential and completed activities</li>
+                            </ul>
+                        </div>
+                    </section>
+
                     <section id="implementation-and-evaluation" inlist="" rel="schema:hasPart" resource="#implementation-and-evaluation">
                         <h2 property="schema:name">Implementation and evaluation</h2>
                         <div datatype="rdf:HTML" property="schema:description" resource="#results" typeof="deo:Results">
