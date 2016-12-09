@@ -107,7 +107,7 @@
 							So far, notifications are considered to be <em>ephemeral</em> resources which may disappear after transport, and thus are excluded from being reusable data.</p>
 
                             <p>We deem that notification data should not be locked within particular systems and designed the protocol <em>Linked Data Notifications (LDN)</em> to support sharing and reuse of notifications <em>across</em> applications, regardless of how they were generated or what their contents are. 
-							We describe how the principles of identification, adressability and semantic representation can be applied to notifications on the Web.
+							We describe how the principles of identification, addressability and semantic representation can be applied to notifications on the Web.
 							Specifying LDN as a formal protocol allows independently implemented, heterogeneous applications which generate and use notifications, to seamlessly work together. 
 							Thus, LDN supports the decentralisation of the Web as well as encourages the generation and consumption of Linked Data.</p>
 
@@ -161,8 +161,7 @@
                             <p><strong>Change of State</strong>: Notifications can be used to capture provenance and state changes. 
 							For instance, datasets have changesets which include deltas between resources; software or collaborative documents have versioning; applications detect dataset issues and recommend fixes; emergency broadcasts are made during disaster situations; weather forecasts; personal fitness states; or scientific, experimental and statistical observations.</p>
 
-							<span class="todo">Sören: Not sure what this means:</span> 
-                            <p>As a scientific observation is identified or analysed by a system, notifications can be used to disseminate information to the interested parties. 
+                            <p>As a scientific observations are made systems, notifications can be used to disseminate information to the interested parties. 
 							For instance, applications can customise the notification to contain a small unit of information capturing the time and state of an event.</p>
                         </div>
                     </section>
@@ -447,7 +446,7 @@
                     <section id="analysis" rel="schema:hasPart" resource="#analysis">
                         <h2 property="schema:name">Analysis</h2>
                         <div datatype="rdf:HTML" property="schema:description">
-                            <p>At its core, the LDN protocol describes the discovery of a resource's inbox to send and consume notifications from, and sending and storage of those notifications. This only includes the base communication requirements, and leaves out other requirements which are complimentary and orthogonal to what's needed.</p>
+                            <p>At its core, the LDN protocol describes the discovery of a resource's inbox to send and consume notifications from, and sending and storage of those notifications. This only includes the base communication requirements, and leaves out other requirements which are complementary.</p>
 
                             <p>The protocol's design intentionally excludes behaviour that's described in other existing protocols and standards. This has the advantage of having a modular protocol which can be accompanied with the other protocols in different environments and application needs. This is the essential principle that was applied through LDN's design in order to keep the protocol simple, and to increase its implementation and use. Although the <cite>The Rule of Least Power</cite> was originally about choosing a programming languages: <q cite="" lang="en-US" xml:lang="en-US">when publishing on the Web, you should usually choose the least powerful or most easily analyzed language variant thatâ€™s suitable for the purpose</q> [<a href=""></a>], our decisions for the protocol made use of the same principles. Therefore, LDN encourages the use of complementary protocols to meet other data and application needs without having to reinvent or add more complexity to itself.</p>
 
