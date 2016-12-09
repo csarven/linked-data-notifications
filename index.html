@@ -294,64 +294,43 @@
                     <section id="protocol" inlist="" rel="schema:hasPart" resource="#protocol">
                         <h2 property="schema:name">Protocol</h2>
                         <div datatype="rdf:HTML" property="schema:description" resource="#protocol" typeof="deo:Contribution">
-                            <p>Note: Mention W3C LDN here?</p>
-
-                            
-
-                            <p>---</p>
 
                             <p><dfn id="ldn">Linked Data Notifications (<abbr title="Linked Data Notifications">LDN</abbr>)</dfn> is a protocol that describes how servers (receivers) can have messages pushed to them by applications (senders), as well as how other applications (consumers) may retrieve those messages. Any resource can advertise a receiving endpoint (Inbox) for the messages. Messages are expressed in RDF, and can contain any data.</p>
 
-                            <p>LDN is a specialized use of Linked Data Platform [<cite><a class="bibref" href="#bib-ldp">LDP</a></cite>] for sending and consuming notifications. It is not dependent on a complete implementation of LDP, but an easy-to-implement subset. LDN is a <a href="https://www.w3.org/TR/ldn">W3C Recommendation</a> [<cite><a class="bibref" href="#bib-ldn">LDN</a></cite>]</p>
+                            <p>LDN can be considered a specialized use of Linked Data Platform [<cite><a class="bibref" href="#bib-ldp">LDP</a></cite>]. It is not dependent on a complete implementation of LDP, but comprises an easy-to-implement subset. LDN is a <a href="https://www.w3.org/TR/ldn">W3C Candidate Recommendation</a> [<cite><a class="bibref" href="#bib-ldn">LDN</a></cite>]</p>
 
-                            <p>The LDN protocol supports a modular approach to creating and storing data, in particular a decoupling between applications and data storage. Thus, where senders, receivers and consumers of notifications are independently implemented and run on different technology stacks, this protocol allows them to seamlessly work together.</p>
+                            <figure id="figure-linked-data-notifications-overview" rel="schema:hasPart" resource="#figure-linked-data-notifications-overview">
+                                <object data="media/images/linked-data-notifications-overview.svg" height="200" rel="schema:image" type="image/svg+xml" width="420"></object>
 
-                            <ul>
-                                <li>This specification enables the notion of a notification as an individual entity with its own URI which can be retrieved and reused.</li>
-                                <li>This specification deliberately does not define the vocabulary of the notification contents in order to allow for use in a range of different application domains.</li>
-                                <li>Authentication and verification of notifications is encouraged, but the mechanism to do so is at the discretion of receivers and consumers, as needs differ according to types of notification and different application domains.</li>
-                            </ul>
+                                <figcaption property="schema:name">Overview of Linked Data Notifications</figcaption>
+                            </figure>
 
-                            <section id="overview" inlist="" rel="schema:hasPart" resource="#overview">
-                                <h3 property="schema:name">Overview</h3>
+                            <section id="sender-to-receiver" inlist="" rel="schema:hasPart" resource="#sender-to-receiver">
+                                <h3 property="schema:name">Sender to receiver interactions</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
-                                    <figure id="figure-linked-data-notifications-overview" rel="schema:hasPart" resource="#figure-linked-data-notifications-overview">
-                                        <object data="media/images/linked-data-notifications-overview.svg" height="200" rel="schema:image" type="image/svg+xml" width="420"></object>
 
-                                        <figcaption property="schema:name">Overview of Linked Data Notifications</figcaption>
-                                    </figure>
-
-                                    <p>A sender is triggered, either by a human or an automatic process, to deliver a notification to a server. The notification is data intended for the attention of the receiver, for example: a personal message from a friend; a pingback link; a comment on a blog post; an invitation to collaborate; a calendar reminder; a scientific observation.</p>
-
-                                    <p>The sender chooses a target resource to send notifications to; the sender then discovers the location of the target’s <em>Inbox</em>, and sends the notification there. Any resource can advertise an Inbox. The receiver exposes the notification data (according to appropriate access control) for use by consumers.</p>
-
-                                    <p>Consumers discover the location of the Inbox in the same way as the sender, and may perform further processing on the notifications, combine it with some other data, or simply present it in a suitable human-readable way.</p>
+                                    <ol>
+                                        <li>A sender is triggered, either by a human or an automatic process, to deliver a notification.</li>
+                                        <li>The sender chooses a target resource to send notifications to.</li>
+                                        <li>The sender discovers the location of the target’s <em>Inbox</em> through the <code>ldp:inbox</code> relation in the HTTP <code>Link</code> header or RDF body of the target resource.</li>
+                                        <li>The sender creates the body of the notification according to the needs of application.</li>
+                                        <li>The sender makes a <code>POST</code> request to the Inbox URL, containing the body in JSON-LD or in another serialization acceptable by the server.</li>
+                                        <li>The receiver optionally applies filtering rules, and sends the appropriate HTTP response code to accept or reject the notification.</li>
+                                        <li>The receiver exposes the notification data (according to appropriate access control) for use by consumers.</li>
+                                    </ol>
                                 </div>
                             </section>
 
-                            <section id="summary" inlist="" rel="schema:hasPart" resource="#summary">
-                                <h3 property="schema:name">Summary</h3>
+                            <section id="consumer-to-receiver" inlist="" rel="schema:hasPart" resource="#consumer-to-receiver">
+                                <h3 property="schema:name">Consumer to receiver interactions</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
-                                    <p id="summary-discovery">Senders and consumers <strong><a href="#discovery">discover</a></strong> a resource’s <em>Inbox</em> URL through a relation in the HTTP <code>Link</code> header or body of the resource.</p>
 
-                                    <p id="summary-sender">The <strong><a href="#sending">Sender</a></strong>:</p>
-                                    <ul>
-                                        <li>Creates the body of the notification according to the needs of application.</li>
-                                        <li>Sends the notification to the Inbox URL by making a <code>POST</code> request, containing the body in JSON-LD or in another serialization acceptable by the server.</li>
-                                    </ul>
-
-                                    <p id="summary-receiver">The <strong><a href="#receiving">Receiver</a></strong>:</p>
-                                    <ul>
-                                        <li>Responds to <code>GET</code> requests made to the Inbox URL with a listing of the URLs of notifications that have previously been accepted.</li>
-                                        <li>Responds to <code>GET</code> requests made to the individual notification URLs with JSON-LD (or optionally other serializations).</li>
-                                        <li>Accepts <code>POST</code> requests at the Inbox URL to create notifications.</li>
-                                        <li>Optionally enforces constraints on notifications sent to the Inbox.</li>
-                                    </ul>
-
-                                    <p id="summary-consumer">The <strong><a href="#consuming">Consumer</a></strong>:</p>
-                                    <ul>
-                                        <li>Retrieves the contents of the Inbox URL with a <code>GET</code> request, and uses according to the needs of application.</li>
-                                    </ul>
+                                    <ol>
+                                        <li>A consumer selects a target and discovers the location of its Inbox in the same way as the sender.</li>
+                                        <li>A receiver responds to <code>GET</code> requests made to the Inbox URL with a listing of the URLs of notifications that have previously been accepted, linked to the Inbox with the <code>ldp:contains</code> predicate.</li> 
+                                        <li>The receiver responds to <code>GET</code> requests made to the individual notification URLs with JSON-LD (or optionally other serializations).</li>
+                                        <li>Following retrieval of notification listings or individual notifications, the consumer and may perform further processing, combine with some other data, or simply present the results in a suitable human-readable way.</li>
+                                    </ol>
                                 </div>
                             </section>
 
@@ -484,6 +463,13 @@
                         <h2 property="schema:name">Conclusions</h2>
                         <div datatype="rdf:HTML" property="schema:description" resource="#conclusions" typeof="deo:Conclusion">
                             <p>In this article, ...</p>
+
+                            <ul>
+                                <li>This specification enables the notion of a notification as an individual entity with its own URI which can be retrieved and reused.</li>
+                                <li>This specification deliberately does not define the vocabulary of the notification contents in order to allow for use in a range of different application domains.</li>
+                                <li>Authentication and verification of notifications is encouraged, but the mechanism to do so is at the discretion of receivers and consumers, as needs differ according to types of notification and different application domains.</li>
+                            </ul>
+
                             <p>We found a solution that is robust? efficient? working? flexible? accessible? evolvable?</p>
                             <p>The benefits are.. Prove?</p>
                             <p>Show some evidence that's reasonable.. to persuade the reader to reuse this work for further research.</p>
