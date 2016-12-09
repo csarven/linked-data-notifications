@@ -425,44 +425,43 @@
                             <p>Number of requests to discover/send/consume</p>
 
                             <p>Implementations are interoperable. How many implementations are out there.. over length of time... different code stacks (variations) .. different groups/people implementing (without prior knowledge).. </p>
+
+                            <section id="comparision-with-related-work" inlist="" rel="schema:hasPart" resource="#comparison-with-related-work">
+                                <h3 property="schema:name">Comparison with related work</h3>
+                                <div datatype="rdf:HTML" property="schema:description" resource="#evaluation" typeof="deo:Evaluation">
+                                    <table id="comparison-of-notification-mechanisms">
+                                        <caption>Comparison of notification mechanisms</caption>
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th>Delivery method</th>
+                                                <th>Request payload</th>
+                                                <th>Claim verification</th>
+                                                <th>Authenticated requests</th>
+                                            </tr>
+                                        </thead>
+                                        <tfoot>
+                                            <tr>
+                                                <td colspan="7">
+                                                    <p>Information based on core specifications.</p>
+                                                    <p><sup>*</sup> JSON-LD is required, alternative RDF syntax are allowed on agreement</p>
+                                                    <p>After dereferencing; GET<sup>1</sup>, string or object matching, GET<sup>2</sup>, matches the object, to verify a claim's existence.</p>
+                                                </td>
+                                            </tr>
+                                        </tfoot>
+                                        <tbody>
+                                            <tr><th>Semantic Pingback</th><td><code>POST</code> (urlencoded)</td><td>source/target key-value pair</td><td><code>GET</code><sup>2</sup></td><td>Yes</td></tr>
+                                            <tr><th>Webmention</th><td><code>POST</code> (urlencoded)</td><td>source/target key-value pair</td><td><code>GET</code><sup>1</sup></td></tr>
+                                            <tr><th>Linked Data Notifications</th><td><code>POST</code></td><td>JSON-LD<sup>*</sup>, unconstrained vocabulary and data</td><td><code>GET</code><sup>2</sup></td><td>Yes</td></tr>
+                                        </tbody>
+                                    </table>
+
+                                    <p>The LDN protocol has the potential to disseminate lossless information. Without the need of extensions, notifications can contain content that's precise or conforming to receiver's constraints. This is in contrast to protocols like Semantic Pingback and Webmention, where while specific <em>statements</em> are made at the source, there is no definite way to distinguish between multiple statements with the same source and target, in relation to the original notification. The receiving endpoints eventually handle the source data at their own discretion.</p>
+
+                                    <p>In treating notifications as any other Linked Data resources, LDN follows the second approach but without constraint on the contained information. As such LDN can cover the uses cases of "A refers to B" (1), as well as "C has a specific relation to D, as well as E" and "The weather is fine today". </p>
+                                </div>
+                            </section>
                         </div>
-
-                        <section id="comparision-with-related-work" inlist="" rel="schema:hasPart" resource="#comparison-with-related-work">
-                            <h3 property="schema:name">Comparison with related work</h3>
-                            <div datatype="rdf:HTML" property="schema:description" resource="#evaluation" typeof="deo:Evaluation">
-
-                                <table id="comparison-of-notification-mechanisms">
-                                    <caption>Comparison of notification mechanisms</caption>
-                                    <thead>
-                                        <tr>
-                                            <th></th>
-                                            <th>Delivery method</th>
-                                            <th>Request payload</th>
-                                            <th>Claim verification</th>
-                                            <th>Authenticated requests</th>
-                                        </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <td colspan="7">
-                                                <p>Information based on core specifications.</p>
-                                                <p><sup>*</sup> JSON-LD is required, alternative RDF syntax are allowed on agreement</p>
-                                                <p>After dereferencing; GET<sup>1</sup>, string or object matching, GET<sup>2</sup>, matches the object, to verify a claim's existence.</p>
-                                            </td>
-                                        </tr>
-                                    </tfoot>
-                                    <tbody>
-                                        <tr><th>Semantic Pingback</th><td><code>POST</code> (urlencoded)</td><td>source/target key-value pair</td><td><code>GET</code><sup>2</sup></td><td>Yes</td></tr>
-                                        <tr><th>Webmention</th><td><code>POST</code> (urlencoded)</td><td>source/target key-value pair</td><td><code>GET</code><sup>1</sup></td></tr>
-                                        <tr><th>Linked Data Notifications</th><td><code>POST</code></td><td>JSON-LD<sup>*</sup>, unconstrained vocabulary and data</td><td><code>GET</code><sup>2</sup></td><td>Yes</td></tr>
-                                    </tbody>
-                                </table>
-
-                                <p>The LDN protocol has the potential to disseminate lossless information. Without the need of extensions, notifications can contain content that's precise or conforming to receiver's constraints. This is in contrast to protocols like Semantic Pingback and Webmention, where while specific <em>statements</em> are made at the source, there is no definite way to distinguish between multiple statements with the same source and target, in relation to the original notification. The receiving endpoints eventually handle the source data at their own discretion.</p>
-
-                                <p>In treating notifications as any other Linked Data resources, LDN follows the second approach but without constraint on the contained information. As such LDN can cover the uses cases of "A refers to B" (1), as well as "C has a specific relation to D, as well as E" and "The weather is fine today". </p>
-                            </div>
-                        </section>
                     </section>
 
                     <section id="conclusions" inlist="" rel="schema:hasPart" resource="#conclusions">
