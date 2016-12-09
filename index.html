@@ -420,7 +420,15 @@
                     <section id="implementations" inlist="" rel="schema:hasPart" resource="#implementations">
                         <h2 property="schema:name">Implementations</h2>
                         <div datatype="rdf:HTML" property="schema:description">
-                            <p><cite><a href="https://dokie.li/">dokieli</a></cite> is a clientside editor for decentralised article publishing, annotations and social interactions [<a href="http://csarven.ca/dokieli"></a>]. Figures 2,3,4 are screencasts of different ways of using notifications in dokieli.</p>
+                            <p>There are LDN implementations for sending, receiving, and consuming, and are built by different teams using different tool stacks, with accompanying implementation reports [<a href="https://github.com/w3c/ldn/"></a>].</p>
+
+                            <p>We note that any <a href="https://www.w3.org/wiki/LDP_Implementations">LDP implementation</a> is a conforming LDN receiver e.g., <a href="https://github.com/solid/node-solid-server">Solid server</a>, <a href="https://github.com/openlink/virtuoso-opensource">Virtuoso</a> + <a href="http://ods.openlinksw.com/wiki/ODS/OdsBriefcase">ODS Briefcase</a>.</p>
+
+                            <p>There are generic notification applications which can send any notification payload e.g., <a href="https://github.com/linkeddata/errol">errol</a>, <a href="solid-client">solid-client</a>, receive notifications e.g., <a href="https://github.com/csarven/mayktso">mayktso</a>, <a href="https://github.com/albertmeronyo/pyldn">pyldn</a>, and consume notifications e.g., <a href="https://github.com/solid/solid-notifications">solid-notifications</a>, <a href="https://github.com/rhiaro/onscreen">onscreen</a>.</p>
+
+                            <p>There are domain-specific applications e.g., <a href="https://github.com/albertmeronyo/linked-edit-rules">Linked Edit Rules</a> which checks and verifies the consistency of a statistical dataset, and then delivers a report to the dataset's inbox.</p>
+
+                            <p>We highlight some social Web and scholarly communication use cases with <cite><a href="https://dokie.li/">dokieli</a></cite> - a clientside editor for decentralised article publishing, annotations and social interactions [<a href="http://csarven.ca/dokieli"></a>]. dokieli is considered to be a domain-specific application that uses LDN to send and consume notifications. Figures 2,3,4 are screencasts of different ways of using notifications in dokieli.</p>
 
                             <p>Figure 2 demonstrates an announcement notification to an article's inbox about an inline annotation that's been made and where it can be found on the Web. The article dynamically fetches the notification and the referenced annotation information, and then displays it as marginalia.</p>
 
