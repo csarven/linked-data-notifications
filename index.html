@@ -240,9 +240,10 @@
                                 <h3 property="schema:name">Notification Filtering</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
                                     <p>It should be possible for the receiver to enforce restrictions on the notifications that are acceptable. 
-									This can be used as an anti-spam measure, a security protection, or for attaining application and data integrity.</p>
-                                    <p>There are many possible criteria by which a receiver could choose to accept or reject incoming notifications, and we consider selecting one (or more) to be an application-specific implementation detail. 
-									It is important to enable such security considerations, so the notifications protocol must leave space for such extensions.</p>
+									This can be used as an anti-spam measure, a security protection, or for attaining application and data integrity.
+									There are many possible criteria by which a receiver could choose to accept or reject incoming notifications.
+									<!-- SOA - This dosn't seem to add much relevant information:, and we consider selecting one (or more) to be an application-specific implementation detail. 
+									It is important to enable such security considerations, so the notifications protocol must leave space for such extensions.</p-->
                                 </div>
                             </section>
 
@@ -250,9 +251,11 @@
                                 <h3 property="schema:name">Content Constraints</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
 
-                                    <p>A possible filtering mechanism is rejecting notifications which do not match a specific pattern in their contents, or the <em>shape</em> of the data. For example, if the owner of a receiving service knows the finite set of applications with which they expect to use their notifications, the receiving service can be configured with certain constraints which optimise for these cases. This can also be implemented as an anti-spam or abuse prevention measure.</p>
-
-                                    <p>If the notification constraints are advertised by the receiving service as structured descriptions, generation and consumption of the notifications can be better automated by applications. A possible specification for doing so is <cite><a href="#">SHACL</a></cite>. Since the options for doing this are subject to ongoing development, we consider it too early to specify a particular mechanism as part of the notifications protocol.</p>
+                                    <p>A possible filtering mechanism is rejecting notifications which do not match a specific pattern in their contents, or the <em>shape</em> of the data. 
+									<!-- SOA - This dosn't seem to add much relevant information: For example, if the owner of a receiving service knows the finite set of applications with which they expect to use their notifications, the receiving service can be configured with certain constraints which optimise for these cases. 
+									This can also be implemented as an anti-spam or abuse prevention measure.</p> -->
+                                    If the notification constraints are advertised by the receiving service as structured descriptions, generation and consumption of the notifications can be better automated by applications. 
+									A possible specification for doing so is <cite><a href="#">SHACL</a></cite>.</p>
                                 </div>
                             </section>
 
@@ -260,11 +263,13 @@
                                 <h3 property="schema:name">Verification and Validation</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
 
-                                    <p>Receivers may wish to filter notifications by verifying the sender, through for example a whitelist or a web of trust. This would require an authentication mechanism. There are many options, including through clientside certificates (such as WebID+TLS), token-based (such as OAuth 2.0), or digital signatures. Different mechanisms are appropriate for different applications, so it is again beyond the scope of our notifications protocol to specify one in particular.</p>
+                                    <p>Receivers may wish to filter notifications by verifying the sender, through for example a whitelist or a web of trust. 
+									This requires an authentication mechanism and since different authentication mechanisms are appropriate for different applications, the notification protocol should ideally support various methods such as clientside certificates (e.g. WebID+TLS), token-based (e.g. OAuth 2.0), or digital signatures. 
+                                    A receiver which expects senders or consumers to authenticate requires additional security considerations.
+									For example, it should check the validity of their credentials before returning any other data, including other error codes, and authentication involving token passing must be done over HTTPS.</p>
 
-                                    <p>As <q>anyone can say anything about anything</q> another option is to dereference any external resources referred to in the notification contents, and cross-check against authoritative sources. (Similarly to how Semantic Pingback and Webmention require fetching and parsing of the source URL to verify existence of the target link).</p>
-
-                                    <p>A receiver which expects senders or consumers to authenticate comes with additional security considerations. For example, it should check the validity of their credentials before returning any other data, including other error codes, and authentication involving token passing must be done over HTTPS.</p>
+                                    <p>As <q>anyone can say anything about anything</q> another option is to dereference any external resources referred to in the notification contents, and cross-check against authoritative sources.
+									This is similar to how Semantic Pingback and Webmention require fetching and parsing of the source URL to verify existence of the target link.</p>
                                 </div>
                             </section>
 
@@ -272,15 +277,15 @@
                                 <h3 property="schema:name">Pushing and Pulling Notifications</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
 
-                                    <p>Applications may require that new notifications are pushed to them in real-time, or to request them at appropriate intervals. To take this into account, we expand our definition of senders, receivers and consumers with the following interaction expectations: </p>
+                                    <p>Applications may require that new notifications are pushed to them in real-time, or to request them at appropriate intervals. 
+									To take this into account, we expand our definition of senders, receivers and consumers with the following interaction expectations: </p>
                                     <ul>
                                         <li>Notifications are <em>pushed</em> from senders to receivers;</li>
                                         <li>and <em>pulled</em> from receivers by consumers.</li>
                                     </ul>
 
-                                    <p>Thus, an application which offers an endpoint or callback URL to which notifications should be sent directly is a receiver, and an application which fetches notifications from an endpoint on its own schedule is a consumer.</p>
-
-                                    <p>In certain scenarios, a receiver may wish to subscribe to a sender. We expect that establishing this relationship using an existing subscription mechanism such as WebSub (formerly PubSubHubbub), The WebSocket Protocol, or HTTP Web Push, would be the most modular approach.</p>
+                                    <p>Thus, an application which offers an endpoint or callback URL to which notifications should be sent directly is a receiver, and an application which fetches notifications from an endpoint on its own schedule is a consumer.
+									In certain scenarios, a receiver may wish to subscribe to a sender for which an existing subscription mechanism such as WebSub (formerly PubSubHubbub), the WebSocket Protocol, or HTTP Web Push can be used.</p>
 
                                 </div>
                             </section>
@@ -288,9 +293,14 @@
                             <section id="persistence-and-reuse" inlist="" rel="schema:hasPart" resource="#persistence-and-reuse">
                                 <h3 property="schema:name">Persistence and Reuse</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
-                                    <p>There is a social expectation around, and technical arguments for, ensuring the persistence of identifiers for Web resources [cooluris]. This is potentially at odds with the traditionally ephemeral nature of notifications. We need to consider both the needs of software systems (and humans) to garbage collect when large amounts of data are being generated, and the intent to share notification data between diverse applications which may be operating without knowledge of each other. Applications may have additional interest in referring to or reusing notifications if they are known to be available in the long term, or indicate an expected lifespan [<a href="http://philarcher.org/diary/2013/uripersistence/"></a>, <a href="https://www.w3.org/TR/dwbp/#UniqueIdentifiers" title="Best Practice 9: Use persistent URIs as identifiers of datasets"></a>, <a href="https://tools.ietf.org/html/rfc7089"></a>].</p>
+                                    <p>There is a social expectation and technical arguments for ensuring the persistence of identifiers of Web resources [cooluris]. 
+									This contradicts with the traditionally ephemeral nature of notifications. 
+									We need to consider both the needs of software systems and humans when large amounts of notification data are being generated, and sharing of notification data between diverse applications which may be operating without knowledge of each other. 
+									Applications will additionally benefit from referring to or reusing notifications if the notifications are known to be available in the long term, or indicate an expected lifespan [<a href="http://philarcher.org/diary/2013/uripersistence/"></a>, <a href="https://www.w3.org/TR/dwbp/#UniqueIdentifiers" title="Best Practice 9: Use persistent URIs as identifiers of datasets"></a>, <a href="https://tools.ietf.org/html/rfc7089"></a>].</p>
 
-                                    <p>In order to promote fair use or remixing of notification contents, applications can incorporate rights and licensing information into the data. Similarly, applications may include additional information on license of any resources which are referred from the notification. The presence of this type of information is essential for consumers to assess the usability of data.</p>
+                                    <p>In order to promote fair use or remixing of notification contents, applications can incorporate rights and licensing information into the data. 
+									Similarly, applications may include additional information on licensing of any resources which are referred from the notification. 
+									The presence of this type of information is essential for consumers to assess the usability of data.</p>
                                 </div>
                             </section>
 
@@ -299,7 +309,8 @@
                                 <div datatype="rdf:HTML" property="schema:description">
                                     <p>In order to organise and manage large amount of notifications over time, mechanisms should be in place to break representations of collections of notifications into multiple paged responses that may be easier to consume by applications.</p>
 
-                                    <p>While the senders and consumers may have some confidence in the persistence of the notifications, they may be subject to update or delete operations at the discretion of the receiver. Receivers may need to integrate authorisation mechanisms to allow certain operations by authenticated applications.</p>
+                                    <p>While the senders and consumers may have some confidence in the persistence of the notifications, they may be subject to update or delete operations at the discretion of the receiver. 
+									Receivers may need to integrate authorisation mechanisms to allow certain operations by authenticated applications.</p>
                                 </div>
                             </section>
 
