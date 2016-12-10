@@ -151,7 +151,8 @@
                             <p>The high level use case is to have independently built applications to be able to generate and make use of notification data no matter how it was created or where it is stored. 
 							Here we briefly discuss some of the use cases from different domains that can make use of Linked Data Notifications.</p>
 
-                            <p><strong>Social</strong>: Announcements of new status updates and blog posts from contacts can be delivered through notifications; private and public personal messages; new comments or annotations on content as well as likes, shares, and bookmarks; invitations to events, and RSVPs.</p>
+                            <p><strong>Social</strong>: Announcements of new status updates and blog posts from contacts can be delivered through notifications; private and public personal messages; new comments or annotations on content as well as likes, shares, and bookmarks; invitations to events, and RSVPs.
+							In particular for connecting different social networks or for realizing a fully distributed social network, standardized and semantically represented notifications are absolutely essential.</p>
 
                             <p><strong>Scholarly Communication</strong>: Academic articles, scientific reports, and their peer-reviews can be published online. 
 							Notifications can inform the author of an academic article or the scientific community about a new review or contribution. 
@@ -159,10 +160,9 @@
 							Another use case for scholarly articles would be to notify an author when their work has been cited, and to track such notifications for calculating impact.</p>
 
                             <p><strong>Change of State</strong>: Notifications can be used to capture provenance and state changes. 
-							For instance, datasets have changesets which include deltas between resources; software or collaborative documents have versioning; applications detect dataset issues and recommend fixes; emergency broadcasts are made during disaster situations; weather forecasts; personal fitness states; or scientific, experimental and statistical observations.</p>
-
-                            <p>As a scientific observations are made systems, notifications can be used to disseminate information to the interested parties. 
-							For instance, applications can customise the notification to contain a small unit of information capturing the time and state of an event.</p>
+							For instance, datasets have changesets which include deltas between resources; software or collaborative documents have versioning; applications detect dataset issues and recommend fixes; emergency broadcasts are made during disaster situations; weather forecasts; personal fitness states; or scientific, experimental and statistical observations.
+							For example, notifications can be used to disseminate scientific observations captured by systems, devices or sensors (e.g. telescope imagery, weather data) in a tailored and targeted manner to interested peer researchers. 
+							Applications can customise the notification to contain a small, semantically represented unit of information capturing in particular the time and state of an event.</p>
                         </div>
                     </section>
 
@@ -196,7 +196,8 @@
                     <section id="requirements-and-design-considerations" inlist="" rel="schema:hasPart" resource="#requirements-and-design-considerations">
                         <h2 property="schema:name">Requirements and Design Considerations</h2>
                         <div datatype="rdf:HTML" property="schema:description">
-                            <p>In this section we discuss some considerations for a Web notification protocol that conforms to the Linked Data design principles, as well as best practices for applications. We use the considerations towards establishing normative requirements for the protocol; what to be expected from the core for interoperable application behaviour, as well as notification data exchange.</p>
+                            <p>In this section we discuss some considerations for a Web notification protocol that conforms to the Linked Data design principles, as well as best practices for applications. 
+							We use the considerations for establishing concrete requirements for the protocol in order to ensure interoperable application behaviour and consistent notification data exchange.</p>
 
                             <section id="architectural-considerations" inlist="" rel="schema:hasPart" resource="#architectural-considerations">
                                 <h3 property="schema:name">Architectural Considerations</h3>
