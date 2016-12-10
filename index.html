@@ -200,7 +200,7 @@
 							We use the considerations for establishing concrete requirements for the protocol in order to ensure interoperable application behaviour and consistent notification data exchange.</p>
 
                             <section id="architectural-considerations" inlist="" rel="schema:hasPart" resource="#architectural-considerations">
-                                <h3 property="schema:name">Architectural Considerations</h3>
+                                <h4 property="schema:name">R1 Architectural Considerations</h4>
                                 <div datatype="rdf:HTML" property="schema:description">
                                     <p>We deem a <em>RESTful architecture</em> [<a class="ref" href=""></a>] compatible with the <em>Linked Data Platform</em> (LDP) specification [<a class="ref" href=""></a>] to be a prerequisite. 
 									REST is well suited for notifications, as it involves organisation of atomic resources, their discovery and description, and a lightweight API for the CRUD operations create, read, update, and delete [<a href="http://ws-rest.org/2011/proc/a5-page.pdf">LD&amp;REST</a>]. 
@@ -216,7 +216,7 @@
                             </section>
 
                             <section id="notification-contents" rel="schema:hasPart" resource="#notification-contents">
-                                <h3 property="schema:name">Notification contents</h3>
+                                <h4 property="schema:name">R2 Notification contents</h4>
                                 <div datatype="rdf:HTML" property="schema:description">
 
                                     <p>Linked Data applications benefit from domain-driven designs; that is, contributions and changes being small and focussed on a particular purpose, rather than generic or catch-all. 
@@ -237,7 +237,7 @@
                             </section>
 
                             <section id="notification-filtering" inlist="" rel="schema:hasPart" resource="#notification-filtering">
-                                <h3 property="schema:name">Notification Filtering</h3>
+                                <h4 property="schema:name">R3 Notification Filtering</h4>
                                 <div datatype="rdf:HTML" property="schema:description">
                                     <p>It should be possible for the receiver to enforce restrictions on the notifications that are acceptable. 
 									This can be used as an anti-spam measure, a security protection, or for attaining application and data integrity.
@@ -248,7 +248,7 @@
                             </section>
 
                             <section id="content-constraints" inlist="" rel="schema:hasPart" resource="#content-constraints">
-                                <h3 property="schema:name">Content Constraints</h3>
+                                <h4 property="schema:name">R4 Content Constraints</h4>
                                 <div datatype="rdf:HTML" property="schema:description">
 
                                     <p>A possible filtering mechanism is rejecting notifications which do not match a specific pattern in their contents, or the <em>shape</em> of the data. 
@@ -260,7 +260,7 @@
                             </section>
 
                             <section id="verification-and-validation" rel="schema:hasPart" resource="#verification-and-validation">
-                                <h3 property="schema:name">Verification and Validation</h3>
+                                <h4 property="schema:name">R5 Verification and Validation</h4>
                                 <div datatype="rdf:HTML" property="schema:description">
 
                                     <p>Receivers may wish to filter notifications by verifying the sender, through for example a whitelist or a web of trust. 
@@ -274,7 +274,7 @@
                             </section>
 
                             <section id="pushing-and-pulling-notifications" inlist="" rel="schema:hasPart" resource="#pushing-and-pulling-notifications">
-                                <h3 property="schema:name">Pushing and Pulling Notifications</h3>
+                                <h4 property="schema:name">R6 Pushing and Pulling Notifications</h4>
                                 <div datatype="rdf:HTML" property="schema:description">
 
                                     <p>Applications may require that new notifications are pushed to them in real-time, or to request them at appropriate intervals. 
@@ -291,7 +291,7 @@
                             </section>
 
                             <section id="persistence-and-reuse" inlist="" rel="schema:hasPart" resource="#persistence-and-reuse">
-                                <h3 property="schema:name">Persistence and Reuse</h3>
+                                <h4 property="schema:name">R7 Persistence and Reuse</h4>
                                 <div datatype="rdf:HTML" property="schema:description">
                                     <p>There is a social expectation and technical arguments for ensuring the persistence of identifiers of Web resources [cooluris]. 
 									This contradicts with the traditionally ephemeral nature of notifications. 
@@ -305,7 +305,7 @@
                             </section>
 
                             <section id="resource-management-considerations" inlist="" rel="schema:hasPart" resource="#security-considerations">
-                                <h3 property="schema:name">Resource Management Considerations</h3>
+                                <h4 property="schema:name">R8 Resource Management Considerations</h4>
                                 <div datatype="rdf:HTML" property="schema:description">
                                     <p>In order to organise and manage large amount of notifications over time, mechanisms should be in place to break representations of collections of notifications into multiple paged responses that may be easier to consume by applications.</p>
 
