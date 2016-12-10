@@ -202,10 +202,16 @@
                             <section id="architectural-considerations" inlist="" rel="schema:hasPart" resource="#architectural-considerations">
                                 <h3 property="schema:name">Architectural Considerations</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
-                                    <p>We propose a RESTful architecture [<a class="ref" href=""></a>], in the same way as the Linked Data Platform (LDP) specification [<a class="ref" href=""></a>]. This is well suited for notifications, as REST involves organisation of atomic resources, their discovery and description, and a lightweight API for creating, reading, updating, and deleting them [<a href="http://ws-rest.org/2011/proc/a5-page.pdf">LD&amp;REST</a>]. As such, notifications are considered resources in their own right, with their own dereferencable URIs.</p>
-                                    <p>A further advantage of this is that existing LDP servers can be used to store notifications, as new notifications can be created in a <code>Container</code> in exactly the same way as any other resource.</p>
-                                    <p>In order to encourage modularity of applications, it is important to differentiate between different classes of implementation of the protocol. Two parties are involved in the creation of a notification: a <em>sender</em> which has deemed it necessary to generate notification data, and a <em>receiver</em> which stores the created resource. For notifications to be reused, we also have the role of a <em>consumer</em>, which reads the data of the notification and repurposes it to some end.</p>
-                                    <p>A piece of software can of course play two or all three of these roles; the important part is that it need not. A consuming application can read and use notification data without being concerned about ever sending or storing notifications itself.</p>
+                                    <p>We deem a <em>RESTful architecture</em> [<a class="ref" href=""></a>] compatible with the <em>Linked Data Platform</em> (LDP) specification [<a class="ref" href=""></a>] to be a prerequisite. 
+									REST is well suited for notifications, as it involves organisation of atomic resources, their discovery and description, and a lightweight API for the CRUD operations create, read, update, and delete [<a href="http://ws-rest.org/2011/proc/a5-page.pdf">LD&amp;REST</a>]. 
+									As such, notifications are considered resources in their own right, with their own dereferencable URIs.
+                                    A further advantage is that existing LDP servers can be used to store notifications, as new notifications can be created in a <code>Container</code> in exactly the same way as any other resource.</p>
+                                    
+									<p>In order to encourage modularity of applications, it is important to <em>separate concerns</em> and differentiate between different classes of implementation of the protocol. 
+									Two parties are involved in the creation of a notification: a <em>sender</em> who generates the notification data, and a <em>receiver</em> who stores the created resource. 
+									For notifications to be reused, we also have the role of a <em>consumer</em>, who reads the data of the notification and repurposes it in some way.
+									A software implementation can of course play two or all three of these roles; the important part is that it needs not. 
+									A consuming application can read and use notification data without being concerned about ever sending or storing notifications itself.</p>
                                 </div>
                             </section>
 
