@@ -328,11 +328,14 @@
                     </section>
 
                     <section id="protocol" inlist="" rel="schema:hasPart" resource="#protocol">
-                        <h2 property="schema:name">Protocol</h2>
+                        <h2 property="schema:name">The LDN Approach</h2>
                         <div datatype="rdf:HTML" property="schema:description" resource="#protocol" typeof="deo:Contribution">
-                            <p><dfn id="ldn">Linked Data Notifications (<abbr title="Linked Data Notifications">LDN</abbr>)</dfn> is a protocol that describes how servers (receivers) can have messages pushed to them by applications (senders), as well as how other applications (consumers) may retrieve those messages. Any resource can advertise a receiving endpoint (Inbox) for the messages. Messages are expressed in RDF, and can contain any data.</p>
-
-                            <p>An LDN receiver can be considered a specialisation of Linked Data Platform [<cite><a class="bibref" href="#bib-ldp">LDP</a></cite>]. It is not dependent on a complete implementation of LDP, but comprises an easy-to-implement subset. LDN is a <a href="https://www.w3.org/TR/ldn">W3C Candidate Recommendation</a> [<cite><a class="bibref" href="#bib-ldn">LDN</a></cite>]</p>
+                            <p>The <dfn id="ldn">Linked Data Notifications (<abbr title="Linked Data Notifications">LDN</abbr>)</dfn> approach comprises a protocol that describes how servers (receivers) can recieve messages pushed to them by applications (senders), as well as how other applications (consumers) may retrieve those messages. 
+							Any resource can advertise alongside a receiving endpoint (inbox) for notification messages. 
+							Messages are expressed in RDF, and can contain arbitrary data.
+							An LDN receiver can be considered a specialisation of Linked Data Platform [<cite><a class="bibref" href="#bib-ldp">LDP</a></cite>]. 
+							It is not dependent on a complete implementation of LDP, but comprises an easy-to-implement subset. 
+							LDN is a <a href="https://www.w3.org/TR/ldn">W3C Candidate Recommendation</a>&nbsp;[<cite><a class="bibref" href="#bib-ldn">LDN</a></cite>].</p>
 
                             <figure id="figure-linked-data-notifications-overview" rel="schema:hasPart" resource="#figure-linked-data-notifications-overview">
                                 <object data="media/images/linked-data-notifications-overview.svg" height="200" rel="schema:image" type="image/svg+xml" width="420"></object>
@@ -343,7 +346,7 @@
                             <section id="sender-to-receiver" inlist="" rel="schema:hasPart" resource="#sender-to-receiver">
                                 <h3 property="schema:name">Sender to receiver interactions</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
-
+									<p>The following steps describe the interaction between sender and reciever:</p>
                                     <ol>
                                         <li>A sender is triggered, either by a human or an automatic process, to deliver a notification.</li>
                                         <li>The sender chooses a target resource to send notifications to.</li>
@@ -359,12 +362,12 @@
                             <section id="consumer-to-receiver" inlist="" rel="schema:hasPart" resource="#consumer-to-receiver">
                                 <h3 property="schema:name">Consumer to receiver interactions</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
-
+									<p>The following steps describe the interaction between consumer and reciever:</p>
                                     <ol>
                                         <li>A consumer selects a target and discovers the location of its Inbox in the same way as the sender.</li>
                                         <li>A receiver responds to <code>GET</code> requests made to the Inbox URL with a listing of the URLs of notifications that have previously been accepted, linked to the Inbox with the <code>ldp:contains</code> predicate.</li>
                                         <li>The receiver responds to <code>GET</code> requests made to the individual notification URLs with JSON-LD (or optionally other serialisations).</li>
-                                        <li>Following retrieval of notification listings or individual notifications, the consumer may perform further processing, combine with some other data, or simply present the results in a suitable human-readable way.</li>
+                                        <li>Following the retrieval of notification listings or individual notifications, the consumer may perform further processing, combine with some other data, or simply present the results in a suitable human-readable way.</li>
                                     </ol>
                                 </div>
                             </section>
@@ -372,18 +375,20 @@
                             <section id="data-formats" inlist="" rel="schema:hasPart" resource="#data-formats">
                                 <h3 property="schema:name">Data Formats and Content Negotiation</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
-                                    <p>Whilst being able to handle data irrespective of the particular RDF serialisation it is presented in permits some flexibility, this can be costly to support. From the perspective of the protocol design, there are some considerations to take into account:</p>
+                                    <p>Whilst being able to handle data irrespective of the particular RDF serialisation it is presented in permits some flexibility, this can be costly to support. 
+									From the perspective of the protocol design, there are some considerations to take into account:</p>
 
                                     <ul>
-                                        <li>application interoperability</li>
-                                        <li>maintenance of the RDF parsers and serialisation libraries</li>
-                                        <li>complexity of their inclusion in applications</li>
-                                        <li>run-time efficiency</li>
+                                        <li>application interoperability,</li>
+                                        <li>maintenance of the RDF parsers and serialisation libraries,</li>
+                                        <li>complexity of their inclusion in applications,</li>
+                                        <li>run-time efficiency.</li>
                                     </ul>
 
-                                    <p>As such, LDN requires all applications to speak and understand the JSON-LD syntax, both for looking at the contents of Inbox as well as for individual notifications. Optionally, applications may perform content negotiation (receivers can expose <code>Accept-Post</code> headers for senders, and consumers can send <code>Accept</code> headers to receivers) in order to attempt to exchange different RDF serialisations if desired.</p>
+                                    <p>In order to address these issues, LDN requires all applications to create and understand the JSON-LD syntax, both for looking at the contents of Inbox as well as for individual notifications. 
+									JSON-LD was designed to be an easy gateway into RDF for developers used to JSON-based APIs [cite].
+									Optionally, applications may perform content negotiation (receivers can expose <code>Accept-Post</code> headers for senders, and consumers can send <code>Accept</code> headers to receivers) in order to attempt to exchange different RDF serialisations if desired.</p>
 
-                                    <p>The rationale is that if all applications can work with one serialisation, then they are interoperable. Applications which are capable of handling different serialisations are able to coexist in this ecosystem nevertheless. JSON-LD was designed to be an easy gateway into RDF for developers used to JSON-based APIs [cite].</p>
                                 </div>
                             </section>
 
