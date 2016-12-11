@@ -258,7 +258,7 @@
 									<!-- SOA - This dosn't seem to add much relevant information: For example, if the owner of a receiving service knows the finite set of applications with which they expect to use their notifications, the receiving service can be configured with certain constraints which optimise for these cases. 
 									This can also be implemented as an anti-spam or abuse prevention measure.</p> -->
                                     If the notification constraints are advertised by the receiving service as structured descriptions, generation and consumption of the notifications can be better automated by applications. 
-									A possible specification for doing so is <cite><a href="#">SHACL</a></cite>.</p>
+									Possible specifications for doing so are <cite><a href="https://www.w3.org/TR/shacl/">SHACL</a></cite> or <cite><a href="https://shexspec.github.io/spec/">ShEx</a></cite>.</p>
                                 </div>
                             </section>
 
@@ -483,11 +483,11 @@
 
                             <p>We intentionally take a bare minimum approach, preferring to suggest using LDN alongside other existing protocols and standards rather than respecifying already standardised mechanisms for non-core behaviours. This has the advantage of resulting in a modular protocol which can be accompanied by other protocols in different environments according to application needs, as well as keeping LDN itself simple for stand-alone implementations. For example:</p>
                             <ul>
-                                <li><cite>WAC/ACL</cite> can be used along with an authentication mechanism to apply fine grained access controls to restrict who can send notifications, or who can retrieve notifications from the Inbox.</li>
+                                <li><cite>WAC/ACL</cite> can be used along with an authentication mechanism, e.g., with <cite>TLS</cite>, to apply fine grained access controls to restrict who, e.g., with <cite>WebID</cite>, can send notifications, or who can retrieve notifications from the Inbox.</li>
                                 <li><cite>WebSub</cite> can be used by a receiver to issue a subscription request to a sender's hub in order to trigger the sender to push notifications on a particular topic.</li>
                                 <li>An Inbox can double as a <cite>Webhook</cite> callback URL, in order to request notifications from applications which post JSON-based payloads.</li>
                                 <li><cite>ActivityPub</cite> specialises LDN sending with the <em>ActivityStreams 2.0</em> vocabulary for notification contents, as well as specifies additional behaviour for a receiver upon receiving notifications with particular contents in order to organise and distribute interactions within a social network.</li>
-                                <li><cite>SHACL</cite> can be used to define the constraints of notification shape.</li>
+                                <li><cite>SHACL/ShEx</cite> can be used to define the constraints of notification shape.</li>
                                 <li><cite>Web Annotation Protocol</cite> is an LDP-based mechanism for creating new content, which can be a trigger for notifications to be sent to the Inbox of the annotation target.</li>
                             </ul>
 
