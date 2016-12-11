@@ -479,20 +479,16 @@
                     <section id="analysis" rel="schema:hasPart" resource="#analysis">
                         <h2 property="schema:name">Analysis</h2>
                         <div datatype="rdf:HTML" property="schema:description">
-                            <p>At its core, the LDN protocol describes the discovery of a resource's inbox to send and consume notifications from, and sending and storage of those notifications. This only includes the base communication requirements, and leaves out other requirements which are complementary.</p>
+                            <p>At its core, the LDN protocol describes the discovery of a resource's Inbox whence notifications are sent or consumed, and the sending and exposure of those notifications.</p>
 
-                            <p>The protocol's design intentionally excludes behaviour that's described in other existing protocols and standards. This has the advantage of having a modular protocol which can be accompanied with the other protocols in different environments and application needs. This is the essential principle that was applied through LDN's design in order to keep the protocol simple, and to increase its implementation and use. Therefore, LDN encourages the use of complementary protocols to meet other data and application needs without having to reinvent or add more complexity to itself.</p>
-
-                            <p>Here we briefly indicate some related protocols and recommendations:</p>
+                            <p>We intentionally take a bare minimum approach, preferring to suggest using LDN alongside other existing protocols and standards rather than respecifying already standardised mechanisms for non-core behaviours. This has the advantage of resulting in a modular protocol which can be accompanied by other protocols in different environments according to application needs, as well as keeping LDN itself simple for stand-alone implementations. For example:</p>
                             <ul>
-                                <li><cite>WebID+TLS</cite> to authenticate Web identities</li>
-                                <li><cite>WAC/ACL</cite> to apply fine grained access controls</li>
-                                <li><cite>WebSub</cite> for a subscription and pushing mechanism</li>
-                                <li><cite>Webhooks</cite> to send event notifications with custom callbacks</li>
-                                <li><cite>ActivityPub</cite> to distribute interactions of social activities</li>
-                                <li><cite>SHACL</cite> to define the constraints of notification shape</li>
-                                <li><cite>Web Annotation Protocol</cite> to have a transport mechanism to create and manage annotations</li>
-                                <li><cite>Activity Streams 2.0</cite> to model for representing potential and completed activities</li>
+                                <li><cite>WAC/ACL</cite> can be used along with an authentication mechanism to apply fine grained access controls to restrict who can send notifications, or who can retrieve notifications from the Inbox.</li>
+                                <li><cite>WebSub</cite> can be used by a receiver to issue a subscription request to a sender's hub in order to trigger the sender to push notifications on a particular topic.</li>
+                                <li>An Inbox can double as a <cite>Webhook</cite> callback URL, in order to request notifications from applications which post JSON-based payloads.</li>
+                                <li><cite>ActivityPub</cite> specialises LDN sending with the <em>ActivityStreams 2.0</em> vocabulary for notification contents, as well as specifies additional behaviour for a receiver upon receiving notifications with particular contents in order to organise and distribute interactions within a social network.</li>
+                                <li><cite>SHACL</cite> can be used to define the constraints of notification shape.</li>
+                                <li><cite>Web Annotation Protocol</cite> is an LDP-based mechanism for creating new content, which can be a trigger for notifications to be sent to the Inbox of the annotation target.</li>
                             </ul>
 
                             <p>Here we compare related non-domain specific notification mechanisms:</p>
