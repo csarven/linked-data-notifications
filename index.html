@@ -254,7 +254,8 @@
                                 <h4 property="schema:name">R4 Content Constraints</h4>
                                 <div datatype="rdf:HTML" property="schema:description">
                                     <p>A possible filtering mechanism is rejecting notifications which do not match a specific pattern in their contents, or the <em>shape</em> of the data, in order to allow a certain class of applications consume them.
-                                    If the notification constraints are advertised by the receiving service as structured descriptions, generation and consumption of the notifications can be better automated by applications.
+                                    For example, if the Inbox owner knows that they will only ever use a consuming application which processes friend requests, they can configure their receiver to filter out anything that doesn't match the pattern for a friend request, helping their consumer to be more efficient.
+                                    If the notification constraints are also advertised by the receiving service as structured descriptions, generation and consumption of the notifications can be further automated.
                                     This can also be implemented as an anti-spam or abuse prevention measure.
 									Possible specifications for doing so are <cite><a href="https://www.w3.org/TR/shacl/">SHACL</a></cite> or <cite><a href="https://shexspec.github.io/spec/">ShEx</a></cite>.</p>
                                 </div>
