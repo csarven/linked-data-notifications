@@ -29,11 +29,13 @@
                         <dd id="Amy-Guy" inlist="" rel="bibo:authorList" resource="http://rhiaro.co.uk/about#me"><span about="" rel="schema:creator schema:author"><span about="http://rhiaro.co.uk/#me" typeof="schema:Person"><a href="http://rhiaro.co.uk/" rel="schema:url"><span about="http://rhiaro.co.uk/#me" property="schema:name"><span property="schema:givenName">Amy</span> <span property="schema:familyName">Guy</span></span></a></span></span><sup><a about="http://rhiaro.co.uk/about#me" href="#author-org-2" rel="schema:memberOf" resource="http://dbpedia.org/resource/University_of_Edinburgh">2</a></sup><sup><a href="#author-email-2">🐦</a></sup></dd>
                         <dd id="Christoph-Lange" inlist="" rel="bibo:authorList" resource="http://eis.iai.uni-bonn.de/ChristophLange"><span about="" rel="schema:contributor"><a about="http://eis.iai.uni-bonn.de/ChristophLange" href="https://langec.wordpress.com/about/" property="schema:name" rel="schema:url" typeof="schema:Person">Christoph Lange</a></span><sup><a about="http://eis.iai.uni-bonn.de/ChristophLange" href="#author-org-1" rel="schema:memberOf" resource="http://dbpedia.org/resource/University_of_Bonn">1</a></sup><sup><a href="#author-email-3">∫</a></sup></dd>
                         <dd id="Sören-Auer" inlist="" rel="bibo:authorList" resource="http://eis.iai.uni-bonn.de/SoerenAuer"><span about="" rel="schema:contributor"><a about="http://eis.iai.uni-bonn.de/SoerenAuer" href="http://eis.iai.uni-bonn.de/SoerenAuer.html" property="schema:name" rel="schema:url" typeof="schema:Person">Sören Auer</a></span><sup><a about="http://eis.iai.uni-bonn.de/SoerenAuer" href="#author-org-1" rel="schema:memberOf" resource="http://dbpedia.org/resource/University_of_Bonn">1</a></sup><sup><a href="#author-email-4">⚛</a></sup></dd>
+                        <dd id="Tim-Berners-Lee" inlist="" rel="bibo:authorList" resource="https://www.w3.org/People/Berners-Lee/card#i"><span about="" rel="schema:contributor"><a about="https://www.w3.org/People/Berners-Lee/card#i" href="https://www.w3.org/People/Berners-Lee/" property="schema:name" rel="schema:url" typeof="schema:Person">Tim Berners-Lee</a></span><sup><a about="https://www.w3.org/People/Berners-Lee/card#i" href="#author-org-4" rel="schema:memberOf" resource="http://dbpedia.org/resource/Massachusetts_Institute_of_Technology">3</a></sup><sup><a href="#author-email-5">🕸</a></sup></dd>
                     </dl>
 
                     <ul id="author-org">
                         <li id="author-org-1"><sup>1</sup>Enterprise Information Systems Department, <a about="http://dbpedia.org/resource/University_of_Bonn" href="http://uni-bonn.de/" property="schema:name" rel="schema:url" typeof="schema:Organization">University of Bonn</a>, Bonn, Germany</li>
                         <li id="author-org-2"><sup>2</sup>School of Informatics, <a about="http://dbpedia.org/resource/University_of_Edinburgh" href="http://inf.ed.ac.uk/" property="schema:name" rel="schema:url" typeof="schema:Organization">University of Edinburgh</a>, Edinburgh, UK</li>
+                        <li id="author-org-3"><sup>3</sup>Decentralized Information Group, CSAIL, <a about="http://dbpedia.org/resource/Massachusetts_Institute_of_Technology" href="https://mit.edu/" property="schema:name" rel="schema:url" typeof="schema:Organization">MIT</a>, Cambridge, US</li>
                     </ul>
 
                     <ul id="author-email">
@@ -41,6 +43,7 @@
                         <li id="author-email-2"><sup>🐦</sup><a about="http://rhiaro.co.uk/about#me" href="mailto:amy@rhiaro.co.uk" rel="schema:email">amy@rhiaro.co.uk</a></li>
                         <li id="author-email-3"><sup>∫</sup><a about="http://eis.iai.uni-bonn.de/ChristophLange" href="mailto:langec@cs.uni-bonn.de" rel="schema:email">langec@cs.uni-bonn.de</a></li>
                         <li id="author-email-4"><sup>⚛</sup><a about="http://eis.iai.uni-bonn.de/SoerenAuer" href="mailto:auer@cs.uni-bonn.de" rel="schema:email">auer@cs.uni-bonn.de</a></li>
+                        <li id="author-email-5"><sup>🕸</sup><a about="https://www.w3.org/People/Berners-Lee/card#i" href="mailto:timbl@w3.org" rel="schema:email">timbl@w3.org</a></li>
                     </ul>
                 </div>
 
@@ -242,7 +245,8 @@
 									This can be used as an anti-spam measure, a security protection, or for attaining application and data integrity.
 									There are many possible criteria by which a receiver could choose to accept or reject incoming notifications.
 									<!-- SOA - This dosn't seem to add much relevant information:, and we consider selecting one (or more) to be an application-specific implementation detail. 
-									It is important to enable such security considerations, so the notifications protocol must leave space for such extensions.</p-->
+									It is important to enable such security considerations, so the notifications protocol must leave space for such extensions.-->
+                                    </p>
                                 </div>
                             </section>
 
@@ -329,12 +333,12 @@
                     <section id="protocol" inlist="" rel="schema:hasPart" resource="#protocol">
                         <h2 property="schema:name">The LDN Approach</h2>
                         <div datatype="rdf:HTML" property="schema:description" resource="#protocol" typeof="deo:Contribution">
-                            <p>The <dfn id="ldn">Linked Data Notifications (<abbr title="Linked Data Notifications">LDN</abbr>)</dfn> approach comprises a protocol that describes how servers (receivers) can recieve messages pushed to them by applications (senders), as well as how other applications (consumers) may retrieve those messages. 
+                            <p>The <dfn id="ldn">Linked Data Notifications (<abbr title="Linked Data Notifications">LDN</abbr>)</dfn> approach comprises a protocol that describes how servers (receivers) can receive messages pushed to them by applications (senders), as well as how other applications (consumers) may retrieve those messages. 
 							Any resource can advertise alongside a receiving endpoint (inbox) for notification messages. 
 							Messages are expressed in RDF, and can contain arbitrary data.
 							An LDN receiver can be considered a specialisation of Linked Data Platform [<cite><a class="bibref" href="#bib-ldp">LDP</a></cite>]. 
 							It is not dependent on a complete implementation of LDP, but comprises an easy-to-implement subset. 
-							LDN is a <a href="https://www.w3.org/TR/ldn">W3C Candidate Recommendation</a>&nbsp;[<cite><a class="bibref" href="#bib-ldn">LDN</a></cite>].</p>
+							LDN is a <a href="https://www.w3.org/TR/ldn">W3C Candidate Recommendation</a> [<cite><a class="bibref" href="#bib-ldn">LDN</a></cite>].</p>
 
                             <figure id="figure-linked-data-notifications-overview" rel="schema:hasPart" resource="#figure-linked-data-notifications-overview">
                                 <object data="media/images/linked-data-notifications-overview.svg" height="200" rel="schema:image" type="image/svg+xml" width="420"></object>
@@ -345,7 +349,7 @@
                             <section id="sender-to-receiver" inlist="" rel="schema:hasPart" resource="#sender-to-receiver">
                                 <h3 property="schema:name">Sender to receiver interactions</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
-									<p>The following steps describe the interaction between sender and reciever:</p>
+									<p>The following steps describe the interaction between sender and receiver:</p>
                                     <ol>
                                         <li>A sender is triggered, either by a human or an automatic process, to deliver a notification.</li>
                                         <li>The sender chooses a target resource to send notifications to.</li>
@@ -361,7 +365,7 @@
                             <section id="consumer-to-receiver" inlist="" rel="schema:hasPart" resource="#consumer-to-receiver">
                                 <h3 property="schema:name">Consumer to receiver interactions</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
-									<p>The following steps describe the interaction between consumer and reciever:</p>
+									<p>The following steps describe the interaction between consumer and receiver:</p>
                                     <ol>
                                         <li>A consumer selects a target and discovers the location of its Inbox in the same way as the sender.</li>
                                         <li>A receiver responds to <code>GET</code> requests made to the Inbox URL with a listing of the URLs of notifications that have previously been accepted, linked to the Inbox with the <code>ldp:contains</code> predicate.</li>
