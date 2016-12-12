@@ -79,10 +79,10 @@
                           <p>In this article we describe the Linked Data Notifications (LDN) protocol, which is a Candidate Recommendation of the W3C (<a href="https://www.w3.org/TR/ldn/">https://www.w3.org/TR/ldn/</a>).
                           Notifications are sent over the Web for a variety of purposes, for example, by social applications. 
 						  The data contained within a notification is arbitrary, and typically only usable by the application which generated it in the first place. 
-						  In the spirit of Linked Data, we propose that notifications should be reusable by multiple applications.  
+						  In the spirit of Linked Data, we propose that notifications should be reusable by multiple authorised applications.
 						  Through separating the concepts of <em>senders</em>, <em>receivers</em> and <em>consumers</em> of notifications, and leveraging Linked Data principles of shared vocabularies and URIs, LDN provides a building block for decentralised Web applications. This permits end users more freedom to switch between the online tools they use, as well as generating greater value when notifications from different sources can be used in combination. 
 						  We situate LDN alongside related initiatives, and discuss additional considerations such as security and abuse prevention measures. 
-						  We evaluate the protocol's effectiveness with multiple, independent implementations which pass a suite of formal tests and can be demonstrated interoperating with each other. 
+						  We evaluate the protocol's effectiveness with multiple, independent implementations, which pass a suite of formal tests and can be demonstrated interoperating with each other. 
 						  The canonical URI of this article is http://csarven.ca/linked-data-notifications</p>
                         </div>
                     </section>
@@ -102,12 +102,12 @@
                     <section id="introduction" inlist="" rel="schema:hasPart" resource="#introduction">
                         <h2 property="schema:name">Introduction</h2>
                         <div datatype="rdf:HTML" property="schema:description">
-							<p>Notifications are sent over the Web for a variety of purposes, including social applications: <em>You have been invited to a graduation party!"</em>, <em>"Tim commented on your blog post!"</em>, <em>"Somebody searched for you and found your academia.edu profile!"</em>, <em>"Liz tagged you in a photo!"</em>. 
+							<p>Notifications are sent over the Web for a variety of purposes, including social applications: <q>You have been invited to a graduation party!</q>, <q>Tim commented on your blog post!</q>, <q>Somebody searched for you and is now following your profile</q>, <q>Liz tagged you in a photo</q>.
 							The notification data may be displayed to a human to acknowledge, or used to trigger some other application-specific process (or both). 
                             In a decentralised architecture, notifications can be a key element for federation of information, and application integration.
-							However in centralised systems which prevail today, this data is arbitrary and typically only usable by the application which generated it in the first place. 
-							Current efforts towards <em>re-decentralising</em> the Web [<a href="http://crosscloud.org/2016/www-mansour-pdf.pdf"></a>, <a href="http://www.semantic-web-journal.net/sites/default/files/swj201_4.pdf"></a>, <a href="https://unhosted.org/"></a>, cite] are moving towards architectures in which data storage is decoupled from application logic, freeing end users from switch between applications, or to let multiple applications operate over the same data. 
-							So far, notifications are considered to be <em>ephemeral</em> resources which may disappear after transport, and thus are excluded from being reusable data.</p>
+							However in the centralised systems prevailing today, this data is structured arbitrarily and typically only usable by the application that generated it in the first place. 
+							Current efforts towards <em>re-decentralising</em> the Web [<a href="http://crosscloud.org/2016/www-mansour-pdf.pdf"></a>, <a href="http://www.semantic-web-journal.net/sites/default/files/swj201_4.pdf"></a>, <a href="https://unhosted.org/"></a>] are moving towards architectures in which data storage is decoupled from application logic, freeing end users from switch between applications, or to let multiple applications operate over the same data.
+							So far, notifications are considered to be <em>ephemeral</em> resources which may disappear after transport, and thus are excluded from being designed for reuse.</p>
 
                             <p>We argue that notification data should not be locked into particular systems. We designed the protocol <em>Linked Data Notifications (LDN)</em> to support sharing and reuse of notifications <em>across</em> applications, regardless of how they were generated or what their contents are. 
 							We describe how the principles of identification, addressability and semantic representation can be applied to notifications on the Web.
@@ -386,7 +386,8 @@
                                     </ul>
 
                                     <p>In order to address these issues, LDN requires all applications to create and understand the JSON-LD syntax, both for looking at the contents of Inbox as well as for individual notifications. 
-									JSON-LD was designed to be an easy gateway into RDF for developers used to JSON-based APIs [cite].
+                                    Choosing a single serialisation which implementations <em>must</em> work with is necessary for consistent interoperability, as well as keeping processing requirements or external dependencies of codebases minimal.
+									JSON-LD is advantageous in being familiar for developers who are used to JSON-based APIs but not RDF [<a href="http://manu.sporny.org/2014/json-ld-origins-2/"></a>], and it is compatible with existing JSON libraries or in some cases native programming language data structures.
 									Optionally, applications may perform content negotiation (receivers can expose <code>Accept-Post</code> headers for senders, and consumers can send <code>Accept</code> headers to receivers) in order to attempt to exchange different RDF serialisations if desired.</p>
 
                                 </div>
@@ -470,99 +471,98 @@
                                         <th>Description</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <th>dokieli <sup>a</sup></th>
-                                        <td>SC</td>
-                                        <td>Clientside article editor and annotations tool</td>
-                                    </tr>
-                                    <tr>
-                                        <th>errol <sup>a</sup></th>
-                                        <td>S</td>
-                                        <td>Generic message sending client</td>
-                                    </tr>
-                                    <tr>
-                                        <th>IndieAnndroid</th>
-                                        <td>R</td>
-                                        <td>Personal blogging platform</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Linked Edit Rules</th>
-                                        <td>S</td>
-                                        <td>Statistical dataset consistency checker</td>
-                                    </tr>
-                                    <tr>
-                                        <th>mayktso <sup>a</sup></th>
-                                        <td>R</td>
-                                        <td>Personal data store (LDP-based)</td>
-                                    </tr>
-                                    <tr>
-                                        <th>ODS Briefcase</th>
-                                        <td>C?</td>
-                                        <td>WebDAV filesharing platform</td>
-                                    </tr>
-                                    <tr>
-                                        <th>onscreen <sup>a</sup></th>
-                                        <td>C</td>
-                                        <td>Generic notifications display client</td>
-                                    </tr>
-                                    <tr>
-                                        <th>pyLDN</th>
-                                        <td>R</td>
-                                        <td>Standalone Inbox</td>
-                                    </tr>
-                                    <tr>
-                                        <th>RDF::LinkedData::Notifications</th>
-                                        <td>R</td>
-                                        <td>Standalone Inbox</td>
-                                    </tr>
-                                    <tr>
-                                        <th>sloph <sup>a</sup></th>
-                                        <td>SR</td>
-                                        <td>Personal publishing, quantified self, and social platform</td>
-                                    </tr>
-                                    <tr>
-                                        <th>solid-client</th>
-                                        <td>S</td>
-                                        <td>Clientside library for interfacing with LDP servers</td>
-                                    </tr>
-                                    <tr>
-                                        <th>solid-inbox</th>
-                                        <td>C</td>
-                                        <td>Clientside social message reader</td>
-                                    </tr>
-                                    <tr>
-                                        <th>solid-notifications</th>
-                                        <td>SC</td>
-                                        <td>Clientside library for LDN</td>
-                                    </tr>
-                                    <tr>
-                                        <th>solid-server</th>
-                                        <td>R</td>
-                                        <td>Personal data storage server (LDP-based)</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Solid Words</th>
-                                        <td>S</td>
-                                        <td>Foreign language learning app</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Virtuoso</th>
-                                        <td>R</td>
-                                        <td>Personal data storage server (LDP-based)</td>
-                                    </tr>
-                                </tbody>
                                 <tfoot><tr>
                                     <td colspan="3">
                                         <p><sup id="implementations-key">*</sup> Conformance classes: S - sender, C - consumer, R - receiver.</p>
                                         <p><sup id="author-implementations">a</sup> Implementations by the authors.</p>
                                     </td>
                                 </tr></tfoot>
+                                <tbody>
+                                    <tr>
+                                        <th><a href="https://dokie.li/">dokieli</a><sup>a</sup></th>
+                                        <td>S,C</td>
+                                        <td>Clientside article editor and annotations tool</td>
+                                    </tr>
+                                    <tr>
+                                        <th><a href="https://github.com/linkeddata/errol">errol</a><sup>a</sup></th>
+                                        <td>S</td>
+                                        <td>Generic message sending client</td>
+                                    </tr>
+                                    <tr>
+                                        <th><a href="https://github.com/Kongaloosh/IndieAnndroid">IndieAndroid</a></th>
+                                        <td>R</td>
+                                        <td>Personal blogging platform</td>
+                                    </tr>
+                                    <tr>
+                                        <th><a href="https://github.com/albertmeronyo/linked-edit-rules">Linked Edit Rules</a></th>
+                                        <td>S</td>
+                                        <td>Statistical dataset consistency checker</td>
+                                    </tr>
+                                    <tr>
+                                        <th><a href="https://github.com/csarven/mayktso">mayktso</a><sup>a</sup></th>
+                                        <td>R</td>
+                                        <td>Personal data store (LDP-based)</td>
+                                    </tr>
+                                    <tr>
+                                        <th><a href="https://github.com/rhiaro/onscreen">OnScreen</a><sup>a</sup></th>
+                                        <td>C</td>
+                                        <td>Generic notifications display client</td>
+                                    </tr>
+                                    <tr>
+                                        <th><a href="https://github.com/albertmeronyo/pyldn">pyldn</a></th>
+                                        <td>R</td>
+                                        <td>Standalone Inbox</td>
+                                    </tr>
+                                    <tr>
+                                        <th><a href="https://github.com/kjetilk/p5-rdf-linkeddata-notifications">RDF::LinkedData::Notifications</a></th>
+                                        <td>R</td>
+                                        <td>Standalone Inbox</td>
+                                    </tr>
+                                    <tr>
+                                        <th><a href="https://github.com/rhiaro/sloph">sloph</a><sup>a</sup></th>
+                                        <td>S,R</td>
+                                        <td>Personal publishing, quantified self, and social platform</td>
+                                    </tr>
+                                    <tr>
+                                        <th><a href="https://github.com/melvincarvalho/vocab">Solid Words</a></th>
+                                        <td>S</td>
+                                        <td>Foreign language learning app</td>
+                                    </tr>
+                                    <tr>
+                                        <th><a href="https://github.com/solid/solid-client">solid-client</a></th>
+                                        <td>S</td>
+                                        <td>Clientside library for interfacing with LDP servers</td>
+                                    </tr>
+                                    <tr>
+                                        <th><a href="https://github.com/solid/solid-inbox">solid-inbox</a></th>
+                                        <td>C</td>
+                                        <td>Clientside social message reader</td>
+                                    </tr>
+                                    <tr>
+                                        <th><a href="https://github.com/solid/solid-notifications">solid-notifications</a></th>
+                                        <td>S,C</td>
+                                        <td>Clientside library for LDN</td>
+                                    </tr>
+                                    <tr>
+                                        <th><a href="https://github.com/solid/node-solid-server">solid-server</a></th>
+                                        <td>R</td>
+                                        <td>Personal data storage server (LDP-based)</td>
+                                    </tr>
+                                    <tr>
+                                        <th><a href="https://github.com/openlink/virtuoso-opensource">Virtuoso</a>+<a href="http://ods.openlinksw.com/wiki/ODS/OdsBriefcase">ODS Briefcase</a></th>
+                                        <td>R,C</td>
+                                        <td>Personal data storage server (LDP-based)</td>
+                                    </tr>
+                                </tbody>
                             </table>
 
-                            <p>We highlight some social Web and scholarly communication use cases with <cite><a href="https://dokie.li/">dokieli</a></cite> - a clientside editor for decentralised article publishing, annotations and social interactions [<a href="http://csarven.ca/dokieli"></a>]. dokieli is considered to be a domain-specific application that uses LDN to send and consume notifications. Figures 2,3,4 are screencasts of different ways of using notifications in dokieli.</p>
+                            <p>We highlight some social scholarly communication use cases with <cite><a href="https://dokie.li/">dokieli</a></cite> - a clientside editor for decentralised article publishing, annotations and social interactions [<a href="http://csarven.ca/dokieli"></a>]. dokieli is a domain-specific application that uses LDN to send and consume notifications for a variety of different purposes:</p>
 
-                            <p>Figure 2 demonstrates an announcement notification to an article's inbox about an inline annotation that's been made and where it can be found on the Web. The article dynamically fetches the notification and the referenced annotation information, and then displays it as marginalia.</p>
+                            <ul>
+                                <li>When a reader comments on a specific fragment of text in an article using dokieli, the application discovers an Inbox from the article and sends a notification about the annotation. dokieli also consumes notifications from this Inbox in order to fetch and display the annotation source data as marginalia (figure 2).</li>
+                                <li>A reader can share a dokieli-enabled article with their contacts; dokieli discovers an Inbox for each contact's profile URL and sends a notification there (figure 3).</li>
+                                <li>When editing an article, the author can add a citation. If an Inbox is discovered at the cited article, dokieli sends a notification there to indicate what part of the article was cited by and where. dokieli-enabled articles also consume citation notifications in order to display these metrics for the author and other readers (figure 4).</li>
+                            </ul>
 
                             <figure id="figure-dokieli-annotation" rel="schema:hasPart" resource="#figure-dokieli-annotation">
                                 <video id="video-dokieli-annotation" rel="schema:hasPart" preload="none" controls="controls" width="800" poster="https://dokie.li/media/images/dokieli-annotation.jpg">
@@ -571,8 +571,6 @@
                                 <figcaption property="schema:name"><a href="https://dokie.li/media/video/dokieli-annotation.webm">Video</a> of dokieli Web Annotation</figcaption>
                             </figure>
 
-                            <p>Figure 3 demonstrates a case where the user signs in and selects contacts from their social network, and shares the article by sending a notification to their contact's inbox.</p>
-
                             <figure id="figure-dokieli-share" rel="schema:hasPart" resource="#figure-dokieli-share">
                                 <video id="video-dokieli-share" rel="schema:hasPart" preload="none" controls="controls" width="800" poster="https://dokie.li/media/images/dokieli-share.jpg">
                                     <source about="#video-dokieli-share" rel="schema:hasPart" resource="https://dokie.li/media/video/dokieli-share.webm"  typeof="fabio:Film" src="https://dokie.li/media/video/dokieli-share.webm" type="video/webm" />
@@ -580,14 +578,23 @@
                                 <figcaption property="schema:name"><a href="https://dokie.li/media/video/dokieli-share.webm">Video</a> of dokieli Share</figcaption>
                             </figure>
 
-                            <p>Figure 4 demonstrates a scenario where the user makes a semantic inline citation, and then sends a notification to the inbox of the cited entity. The cited entity then consumes this notification to indicate what part of their article was cited by what and how.</p>
-
                             <figure id="figure-dokieli-citation" rel="schema:hasPart" resource="#figure-dokieli-citation">
                                 <video controls="controls" id="video-dokieli-citation" poster="https://dokie.li/media/images/dokieli-citation.jpg" preload="none" width="800" about="" rel="schema:hasPart">
                                     <source about="#video-dokieli-citation" rel="schema:hasPart" resource="https://dokie.li/media/video/dokieli-citation.webm" src="https://dokie.li/media/video/dokieli-citation.webm" type="video/webm" typeof="fabio:Film" />
                                 </video>
                                 <figcaption property="schema:name"><a href="https://dokie.li/media/video/dokieli-citation.webm">Video</a> of semantic inline citations</figcaption>
                             </figure>
+
+                            <p>Notifications sent by dokieli can be reused by any consuming applications which recognise the vocabulary terms; similarly, dokieli can consume notifications that were sent by a different application. </p>
+
+                            <p>Further social use cases can be demonstrated by <a href="https://rhiaro.co.uk/sloph">sloph</a>, a personal publishing and quantified self platform which behaves as a node in a decentralised social network. When a new piece of content is created on the server, sloph performs discovery on URLs it finds as values of particular properties of the generated data (according to <a href="https://www.w3.org/TR/activitypub">ActivityPub</a>) as well as any URLs in the body of the content and sends notifications accordingly. For instance:</p>
+                            <ul>
+                                <li>If the user generates an ActivityStreams 2.0 <em>Like</em> activity on their server, sloph uses the <code>object</code> of the <em>Like</em> as the target for a notification. Since dokieli also uses the ActivityStreams 2.0 vocabulary for social interactions, if the target is a dokieli article, this <em>Like</em> will be displayed (figure 5).</li>
+                                <li>If the user publishes a blog post which contains a link, which may be semantically annotated to indicate the reason for linking, sloph sends a notification to any Inbox discovered at that link.</li>
+                                <li>As a receiver, sloph accepts all incoming notifications, but holds for moderation (ie. places behind access control) any that it cannot automatically verify refer to third-party content published on another domain. If an article written with dokieli publishes a citation of a blog post which advertises a sloph Inbox, sloph will fetch the article and verify the relation matches the contents of the notification before exposing the notification for re-use.</li>
+                            </ul>
+
+                            <p><a href="http://www.linkededitrules.org/">Linked Edit Rules</a> and <a href="https://melvincarvalho.github.io/vocab/">Solid Words</a> are specialised senders. Linked Edit Rules checks the consistency of statistical datasets against structured constraints, and delivers the consistency report as a notification to the user. Solid Words is a clientside game for learning new words in a foreign language; it delivers the player's score for each round to their Inbox. <a href="https://apps.rhiaro.co.uk/onscreen">OnScreen</a> is a (crude) generic consumer; as such, it can display notifications sent by both of the aforementioned senders (figure 6).</p>
                         </div>
                     </section>
 
