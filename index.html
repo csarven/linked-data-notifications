@@ -331,7 +331,7 @@
                         <h2 property="schema:name">The LDN Protocol</h2>
                         <div datatype="rdf:HTML" property="schema:description" resource="#protocol" typeof="deo:Contribution">
                             <p>The <dfn id="ldn">Linked Data Notifications (<abbr title="Linked Data Notifications">LDN</abbr>)</dfn> protocol describes how servers (receivers) can receive messages pushed to them by applications (senders), as well as how other applications (consumers) may retrieve those messages. 
-							Any resource can advertise alongside a receiving endpoint (Inbox) for notification messages. 
+							Any resource can advertise a receiving endpoint (Inbox) for notification messages. 
 							Messages are expressed in RDF, and can contain arbitrary data.
 							An LDN receiver can be considered a specialisation of Linked Data Platform [<cite><a class="bibref" href="#bib-ldp">LDP</a></cite>]. 
 							It is not dependent on a complete implementation of LDP, but comprises an easy-to-implement subset. 
@@ -375,8 +375,8 @@
                             <section id="data-formats" inlist="" rel="schema:hasPart" resource="#data-formats">
                                 <h3 property="schema:name">Data Formats and Content Negotiation</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
-                                    <p>Whilst being able to handle data irrespective of the particular RDF serialisation it is presented in permits some flexibility, this can be costly to support. 
-									From the perspective of the protocol design, there are some considerations to take into account:</p>
+                                    <p>Whilst being able to handle data irrespective of the particular RDF serialisation permits some flexibility, this can be costly to support. 
+									From the perspective of the protocol design, we must take into account:</p>
 
                                     <ul>
                                         <li>application interoperability,</li>
@@ -395,36 +395,60 @@
                             <section id="example-notifications" inlist="" rel="schema:hasPart" resource="#example-notifications">
                                 <h3 property="schema:name">Example Notifications</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
-                                    <p>Here we present example notification payloads. The W3C LDN specification provides examples for every part of the protocol, including discovery and other requests.</p>
+                                    <p>Here we present example notification payloads. Please refer to the <a href="https://www.w3.org/TR/ldn/">W3C LDN specification</a> for examples of HTTP requests and responses for the other interactions between senders, receivers and consumers.</p>
 
                                     <figure class="listing" id="sending-notification-request" rel="schema:hasPart" resource="#sending-notification-request">
-                                        <pre about="#sending-notification-request" property="schema:description" typeof="fabio:Script"><code>POST /inbox/ HTTP/1.1</code>
+                                        <pre about="#sending-notification-request" property="schema:description" typeof="fabio:Script">
+<code>POST /inbox/ HTTP/1.1</code>
 <code>Host: example.org</code>
-<code>Content-Type: application/ld+json;profile="https://www.w3.org/ns/activitystreams"</code>
+<code>Content-Type: application/ld+json</code>
 <code>Content-Language: en</code>
 <code></code>
 <code>{</code>
-<code>  "@context": "https://www.w3.org/ns/activitystreams",</code>
+<code>  "@context": {</code>
+<code>    "@language": "en",</code>
+<code>    "sioc": "http://rdfs.org/sioc/ns#",</code>
+<code>    "foaf": "http://xmlns.com/foaf/0.1/"</code>
+<code>  },</code>
 <code>  "@id": "",</code>
-<code>  "@type": "Announce",</code>
-<code>  "actor": "https://rhiaro.co.uk/#me",</code>
-<code>  "object": "http://example.net/note",</code>
-<code>  "target": "http://example.org/article",</code>
-<code>  "updated": "2016-06-28T19:56:20.114Z"</code>
-<code>}</code></pre>
-                                        <figcaption property="schema:name">Example request to send to an Inbox.</figcaption>
+<code>  "@type": "sioc:Comment",</code>
+<code>  "sioc:content": "This is a great article!",</code>
+<code>  "sioc:reply_of": { "@id": "http://example.org/article" },</code>
+<code>  "sioc:created_at": {</code>
+<code>    "@type": "http://www.w3.org/2001/XMLSchema#dateTime",</code>
+<code>    "@value": "2015-12-23T16:44:21Z"</code>
+<code>  },</code>
+<code>  "sioc:has_creator": {</code>
+<code>    "@id": "http://example.org/profile",</code>
+<code>    "@type": "sioc:UserAccount",</code>
+<code>    "sioc:account_of": { "@id": "http://example.org/profile#alice" },</code>
+<code>    "sioc:avatar": { "@id": "http://example.org/profile/avatar.png" },</code>
+<code>    "foaf:name": "Alice"</code>
+<code>  }</code>
+<code>}</code>
+                                        </pre>
+                                        <figcaption property="schema:name">This notification body contains information about a comment and the user who created the comment, described by the Semantically Interlinked Online Communities (SIOC) and Friend-of-a-Friend (FOAF) vocabularies.</figcaption>
                                     </figure>
 
                                     <figure class="listing" id="notification-qualified-relation" rel="schema:hasPart" resource="#notification-qualified-relation">
-                                        <pre about="#notification-qualified-relation" property="schema:description" typeof="fabio:Script"><code>@prefix as: &lt;https://www.w3.org/ns/activitystreams#&gt; .</code>
+                                        <pre about="#notification-qualified-relation" property="schema:description" typeof="fabio:Script">
+<code>POST /inbox/ HTTP/1.1</code>
+<code>Host: csarven.ca</code>
+<code>Content-Type: text/turtle</code>
+<code>Content-Language: en</code>
+<code></code>
+<code>@prefix as: &lt;https://www.w3.org/ns/activitystreams#&gt; .</code>
+<code>@prefix cito: &lt;http://purl.org/spar/cito/&gt; .</code>
+<code></code>
 <code>&lt;&gt; a as:Announce</code>
 <code>  as:object &lt;https://linkedresearch.org/resources#r-903b83&gt; ;</code>
 <code>  as:target &lt;http://csarven.ca/dokieli#architecture&gt; ;</code>
 <code>  as:updated "2016-12-05T23:53:27.436Z"^^xsd:dateTime .</code>
+<code></code>
 <code>&lt;https://linkedresearch.org/resources#r-903b83&gt;</code>
-<code>  &lt;http://purl.org/spar/cito/citesAsPotentialReading&gt;</code>
+<code>  cito:citesAsPotentialReading</code>
 <code>    &lt;http://csarven.ca/dokieli#architecture&gt; .</code></pre>
-                                        <figcaption property="schema:name">An inline citation</figcaption>
+                                        <figcaption property="schema:name">This notification body conveys an announcement of a URL that the target resource should be aware of. It includes the specific relation between the announced URL and the target (the former cites the latter).</figcaption>
                                     </figure>
                                 </div>
                             </section>
