@@ -642,7 +642,7 @@
                                     <tr>
                                         <td colspan="7">
                                             <p>Information based on core specifications.</p>
-                                            <p><sup>x</sup> <code>source</code> and <code>target</code> keys are required</p>
+                                            <p><sup>x</sup> key–value pairs for <code>source</code> and <code>target</code> are required</p>
                                             <p><sup>y</sup> JSON-LD is required, alternative RDF syntax are allowed on agreement. Unconstrained vocabulary and data</p>
                                             <p>After dereferencing; GET<sup>1</sup>, string or object matching, GET<sup>2</sup>, matches the object, to verify a claim's existence.</p>
                                             <p><sup>@</sup> Source format can be structured or unstructured, in which case a mention is dependent on the media type</p>
@@ -650,8 +650,8 @@
                                     </tr>
                                 </tfoot>
                                 <tbody>
-                                    <tr><th>Semantic Pingback</th><td>Linkback</td><td><code>POST</code> (urlencoded)</td><td>key–value pair<sup>x</sup></td><td>Optional</td><td>RDF</td><td></td></tr>
-                                    <tr><th>Webmention</th><td>Linkback</td><td><code>POST</code> (urlencoded)</td><td>key–value pair<sup>x</sup></td><td>Required</td><td>Any<sup>@</sup></td><td></td></tr>
+                                    <tr><th>Semantic Pingback</th><td>Linkback</td><td><code>POST</code> (urlencoded)</td><td>key–value<sup>x</sup></td><td>Optional</td><td>RDF</td><td></td></tr>
+                                    <tr><th>Webmention</th><td>Linkback</td><td><code>POST</code> (urlencoded)</td><td>key–value<sup>x</sup></td><td>Required</td><td>Any<sup>@</sup></td><td></td></tr>
                                     <tr><th>Linked Data Notifications</th><td>Fat ping</td><td><code>POST</code></td><td>JSON-LD<sup>y</sup></td><td>Optional</td><td>RDF</td><td></td></tr>
                                 </tbody>
                             </table>
