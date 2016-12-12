@@ -595,6 +595,16 @@
                             </ul>
 
                             <p><a href="http://www.linkededitrules.org/">Linked Edit Rules</a> and <a href="https://melvincarvalho.github.io/vocab/">Solid Words</a> are specialised senders. Linked Edit Rules checks the consistency of statistical datasets against structured constraints, and delivers the consistency report as a notification to the user. Solid Words is a clientside game for learning new words in a foreign language; it delivers the player's score for each round to their Inbox. <a href="https://apps.rhiaro.co.uk/onscreen">OnScreen</a> is a (crude) generic consumer; as such, it can display notifications sent by both of the aforementioned senders (figure 6).</p>
+
+                            <figure id="figure-sloph" rel="schema:hasPart" resource="#figure-sloph">
+                                <img src="" />
+                                <figcaption property="schema:name">A <em>Like</em> notification created by Sloph, displayed by dokieli.</figcaption>
+                            </figure>
+
+                            <figure id="figure-senders-onscreen" rel="schema:hasPart" resource="#figure-senders-onscreen">
+                                <img src="media/images/sender-consumer-screenshots.png" alt="Screenshots of Solid Words, Linked Edit Rules, and OnScreen" />
+                                <figcaption property="schema:name">A: Solid Words (a sender), B: Linked Edit Rules (a sender), C: OnScreen (a consumer) displaying notifications sent by A and B.</figcaption>
+                            </figure>
                         </div>
                     </section>
 
@@ -632,7 +642,7 @@
                                     <tr>
                                         <td colspan="7">
                                             <p>Information based on core specifications.</p>
-                                            <p><sup>x</sup> <code>source</code> and <code>target</code> keys are required</p>
+                                            <p><sup>x</sup> key–value pairs for <code>source</code> and <code>target</code> are required</p>
                                             <p><sup>y</sup> JSON-LD is required, alternative RDF syntax are allowed on agreement. Unconstrained vocabulary and data</p>
                                             <p>After dereferencing; GET<sup>1</sup>, string or object matching, GET<sup>2</sup>, matches the object, to verify a claim's existence.</p>
                                             <p><sup>@</sup> Source format can be structured or unstructured, in which case a mention is dependent on the media type</p>
@@ -640,9 +650,9 @@
                                     </tr>
                                 </tfoot>
                                 <tbody>
-                                    <tr><th>Semantic Pingback</th><td>Linkback</td><td><code>POST</code> (urlencoded)</td><td>key–value pair<sup>x</sup></td><td>Optional</td><td>RDF</td><td></td></tr>
-                                    <tr><th>Webmention</th><td>Linkback</td><td><code>POST</code> (urlencoded)</td><td>key–value pair<sup>x</sup></td><td>Required</td><td>Any<sup>@</sup></td></tr>
-                                    <tr><th>Linked Data Notifications</th><td>Fat ping</td><td><code>POST</code></td><td>JSON-LD<sup>y</sup></td><td>Optional</td><td>RDF</td></tr>
+                                    <tr><th>Semantic Pingback</th><td>Linkback</td><td><code>POST</code> (urlencoded)</td><td>key–value<sup>x</sup></td><td>Optional</td><td>RDF</td><td></td></tr>
+                                    <tr><th>Webmention</th><td>Linkback</td><td><code>POST</code> (urlencoded)</td><td>key–value<sup>x</sup></td><td>Required</td><td>Any<sup>@</sup></td><td></td></tr>
+                                    <tr><th>Linked Data Notifications</th><td>Fat ping</td><td><code>POST</code></td><td>JSON-LD<sup>y</sup></td><td>Optional</td><td>RDF</td><td></td></tr>
                                 </tbody>
                             </table>
 
