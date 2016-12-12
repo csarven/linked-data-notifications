@@ -504,7 +504,7 @@
                                         <td>Personal data store (LDP-based)</td>
                                     </tr>
                                     <tr>
-                                        <th><a href="https://github.com/rhiaro/onscreen">onscreen</a><sup>a</sup></th>
+                                        <th><a href="https://github.com/rhiaro/onscreen">OnScreen</a><sup>a</sup></th>
                                         <td>C</td>
                                         <td>Generic notifications display client</td>
                                     </tr>
@@ -593,6 +593,8 @@
                                 <li>If the user publishes a blog post which contains a link, which may be semantically annotated to indicate the reason for linking, sloph sends a notification to any Inbox discovered at that link.</li>
                                 <li>As a receiver, sloph accepts all incoming notifications, but holds for moderation (ie. places behind access control) any that it cannot automatically verify refer to third-party content published on another domain. If an article written with dokieli publishes a citation of a blog post which advertises a sloph Inbox, sloph will fetch the article and verify the relation matches the contents of the notification before exposing the notification for re-use.</li>
                             </ul>
+
+                            <p><a href="http://www.linkededitrules.org/">Linked Edit Rules</a> and <a href="https://melvincarvalho.github.io/vocab/">Solid Words</a> are specialised senders. Linked Edit Rules checks the consistency of statistical datasets against structured constraints, and delivers the consistency report as a notification to the user. Solid Words is a clientside game for learning new words in a foreign language; it delivers the player's score for each round to their Inbox. <a href="https://apps.rhiaro.co.uk/onscreen">OnScreen</a> is a (crude) generic consumer; as such, it can display notifications sent by both of the aforementioned senders (figure 6).</p>
                         </div>
                     </section>
 
