@@ -386,7 +386,8 @@
                                     </ul>
 
                                     <p>In order to address these issues, LDN requires all applications to create and understand the JSON-LD syntax, both for looking at the contents of Inbox as well as for individual notifications. 
-									JSON-LD was designed to be an easy gateway into RDF for developers used to JSON-based APIs [cite].
+                                    Choosing a single serialisation which implementations <em>must</em> work with is necessary for consistent interoperability, as well as keeping processing requirements or external dependencies of codebases minimal.
+									JSON-LD is advantageous in being familiar for developers who are used to JSON-based APIs but not RDF [<a href="http://manu.sporny.org/2014/json-ld-origins-2/"></a>], and it is compatible with existing JSON libraries or in some cases native programming language data structures.
 									Optionally, applications may perform content negotiation (receivers can expose <code>Accept-Post</code> headers for senders, and consumers can send <code>Accept</code> headers to receivers) in order to attempt to exchange different RDF serialisations if desired.</p>
 
                                 </div>
