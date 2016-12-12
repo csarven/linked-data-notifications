@@ -79,8 +79,13 @@
                           <p>In this article we describe the Linked Data Notifications (LDN) protocol, which is a Candidate Recommendation of the W3C (<a href="https://www.w3.org/TR/ldn/">https://www.w3.org/TR/ldn/</a>).
                           Notifications are sent over the Web for a variety of purposes, for example, by social applications. 
 						  The data contained within a notification is arbitrary, and typically only usable by the application which generated it in the first place. 
+<<<<<<< HEAD
 						  In the spirit of Linked Data, we propose that notifications should be reusable by multiple applications.  
 						  Through separating the concepts of <em>senders</em>, <em>receivers</em> and <em>consumers</em> of notifications, and leveraging Linked Data principles of shared vocabularies and URIs, LDN provides a building block for decentralised Web applications. This permits end users more freedom to switch between the online tools they use, as well as generating greater value when notifications from different sources are used in combination. 
+=======
+						  In the spirit of Linked Data, we propose that notifications should be reusable by multiple authorised applications.
+						  Through separating the concepts of <em>senders</em>, <em>receivers</em> and <em>consumers</em> of notifications, and leveraging Linked Data principles of shared vocabularies and URIs, LDN provides a building block for decentralised Web applications. This permits end users more freedom to switch between the online tools they use, as well as generating greater value when notifications from different sources can be used in combination. 
+>>>>>>> 903e89be740d3626673c47361ca5dd9cc26b5740
 						  We situate LDN alongside related initiatives, and discuss additional considerations such as security and abuse prevention measures. 
 						  We evaluate the protocol's effectiveness with multiple, independent implementations, which pass a suite of formal tests and can be demonstrated interoperating with each other. 
 						  The canonical URI of this article is http://csarven.ca/linked-data-notifications</p>
@@ -102,11 +107,11 @@
                     <section id="introduction" inlist="" rel="schema:hasPart" resource="#introduction">
                         <h2 property="schema:name">Introduction</h2>
                         <div datatype="rdf:HTML" property="schema:description">
-							<p>Notifications are sent over the Web for a variety of purposes, including social applications: <em>“You have been invited to a graduation party!”</em>, <em>“Tim commented on your blog post!”</em>, <em>“Somebody searched for you and found your academia.edu profile!”</em>, <em>“Liz tagged you in a photo!”</em>. 
+							<p>Notifications are sent over the Web for a variety of purposes, including social applications: <q>You have been invited to a graduation party!</q>, <q>Tim commented on your blog post!</q>, <q>Somebody searched for you and is now following your profile</q>, <q>Liz tagged you in a photo</q>.
 							The notification data may be displayed to a human to acknowledge, or used to trigger some other application-specific process (or both). 
                             In a decentralised architecture, notifications can be a key element for federation of information, and application integration.
 							However in the centralised systems prevailing today, this data is structured arbitrarily and typically only usable by the application that generated it in the first place. 
-							Current efforts towards <em>re-decentralising</em> the Web [<a href="http://crosscloud.org/2016/www-mansour-pdf.pdf"></a>, <a href="http://www.semantic-web-journal.net/sites/default/files/swj201_4.pdf"></a>, <a href="https://unhosted.org/"></a>, cite] are moving towards architectures in which data storage is decoupled from application logic, freeing end users from switch between applications, or to let multiple applications operate over the same data. 
+							Current efforts towards <em>re-decentralising</em> the Web [<a href="http://crosscloud.org/2016/www-mansour-pdf.pdf"></a>, <a href="http://www.semantic-web-journal.net/sites/default/files/swj201_4.pdf"></a>, <a href="https://unhosted.org/"></a>] are moving towards architectures in which data storage is decoupled from application logic, freeing end users from switch between applications, or to let multiple applications operate over the same data.
 							So far, notifications are considered to be <em>ephemeral</em> resources which may disappear after transport, and thus are excluded from being designed for reuse.</p>
 
                             <p>We argue that notification data should not be locked into particular systems. We designed the protocol <em>Linked Data Notifications (LDN)</em> to support sharing and reuse of notifications <em>across</em> applications, regardless of how they were generated or what their contents are. 
@@ -386,7 +391,8 @@
                                     </ul>
 
                                     <p>In order to address these issues, LDN requires all applications to create and understand the JSON-LD syntax, both for looking at the contents of Inbox as well as for individual notifications. 
-									JSON-LD was designed to be an easy gateway into RDF for developers used to JSON-based APIs [cite].
+                                    Choosing a single serialisation which implementations <em>must</em> work with is necessary for consistent interoperability, as well as keeping processing requirements or external dependencies of codebases minimal.
+									JSON-LD is advantageous in being familiar for developers who are used to JSON-based APIs but not RDF [<a href="http://manu.sporny.org/2014/json-ld-origins-2/"></a>], and it is compatible with existing JSON libraries or in some cases native programming language data structures.
 									Optionally, applications may perform content negotiation (receivers can expose <code>Accept-Post</code> headers for senders, and consumers can send <code>Accept</code> headers to receivers) in order to attempt to exchange different RDF serialisations if desired.</p>
 
                                 </div>
@@ -458,13 +464,102 @@
                     <section id="implementations" inlist="" rel="schema:hasPart" resource="#implementations">
                         <h2 property="schema:name">Implementations</h2>
                         <div datatype="rdf:HTML" property="schema:description">
-                            <p>There are LDN implementations for sending, receiving, and consuming, and are built by different teams using different tool stacks, with accompanying implementation reports [<a href="https://github.com/w3c/ldn/"></a>].</p>
+                            <p>Here we summarise LDN implementations we are aware of to date. They are built by different teams or individuals using different tool stacks, and have submitted implementation reports<sup><a href="https://github.com/w3c/ldn/tree/master/implementations">x</a></sup> as part of the W3C standardisation process. 
+                            We note that any <a href="https://www.w3.org/wiki/LDP_Implementations">LDP implementation</a> is a conforming LDN receiver; we refer here to the ones we have tested.</p>
 
-                            <p>We note that any <a href="https://www.w3.org/wiki/LDP_Implementations">LDP implementation</a> is a conforming LDN receiver e.g., <a href="https://github.com/solid/node-solid-server">Solid server</a>, <a href="https://github.com/openlink/virtuoso-opensource">Virtuoso</a> + <a href="http://ods.openlinksw.com/wiki/ODS/OdsBriefcase">ODS Briefcase</a>.</p>
-
-                            <p>There are generic notification applications which can send any notification payload e.g., <a href="https://github.com/linkeddata/errol">errol</a>, <a href="solid-client">solid-client</a>, receive notifications e.g., <a href="https://github.com/csarven/mayktso">mayktso</a>, <a href="https://github.com/albertmeronyo/pyldn">pyldn</a>, and consume notifications e.g., <a href="https://github.com/solid/solid-notifications">solid-notifications</a>, <a href="https://github.com/rhiaro/onscreen">onscreen</a>.</p>
-
-                            <p>There are domain-specific applications e.g., <a href="https://github.com/albertmeronyo/linked-edit-rules">Linked Edit Rules</a> which checks and verifies the consistency of a statistical dataset, and then delivers a report to the dataset's inbox.</p>
+                            <table>
+                                <caption>LDN Implementations</caption>
+                                <thead>
+                                    <tr>
+                                        <th>Name and URL</th>
+                                        <th>Class<sup><a href="#implementations-key">*</a></sup></th>
+                                        <th>Description</th>
+                                    </tr>
+                                </thead>
+                                <tfoot><tr>
+                                    <td colspan="3">
+                                        <p><sup id="implementations-key">*</sup> Conformance classes: S - sender, C - consumer, R - receiver.</p>
+                                        <p><sup id="author-implementations">a</sup> Implementations by the authors.</p>
+                                    </td>
+                                </tr></tfoot>
+                                <tbody>
+                                    <tr>
+                                        <th><a href="https://dokie.li/">dokieli</a><sup>a</sup></th>
+                                        <td>S,C</td>
+                                        <td>Clientside article editor and annotations tool</td>
+                                    </tr>
+                                    <tr>
+                                        <th><a href="https://github.com/linkeddata/errol">errol</a><sup>a</sup></th>
+                                        <td>S</td>
+                                        <td>Generic message sending client</td>
+                                    </tr>
+                                    <tr>
+                                        <th><a href="https://github.com/Kongaloosh/IndieAnndroid">IndieAndroid</a></th>
+                                        <td>R</td>
+                                        <td>Personal blogging platform</td>
+                                    </tr>
+                                    <tr>
+                                        <th><a href="https://github.com/albertmeronyo/linked-edit-rules">Linked Edit Rules</a></th>
+                                        <td>S</td>
+                                        <td>Statistical dataset consistency checker</td>
+                                    </tr>
+                                    <tr>
+                                        <th><a href="https://github.com/csarven/mayktso">mayktso</a><sup>a</sup></th>
+                                        <td>R</td>
+                                        <td>Personal data store (LDP-based)</td>
+                                    </tr>
+                                    <tr>
+                                        <th><a href="https://github.com/rhiaro/onscreen">onscreen</a><sup>a</sup></th>
+                                        <td>C</td>
+                                        <td>Generic notifications display client</td>
+                                    </tr>
+                                    <tr>
+                                        <th><a href="https://github.com/albertmeronyo/pyldn">pyldn</a></th>
+                                        <td>R</td>
+                                        <td>Standalone Inbox</td>
+                                    </tr>
+                                    <tr>
+                                        <th><a href="https://github.com/kjetilk/p5-rdf-linkeddata-notifications">RDF::LinkedData::Notifications</a></th>
+                                        <td>R</td>
+                                        <td>Standalone Inbox</td>
+                                    </tr>
+                                    <tr>
+                                        <th><a href="https://github.com/rhiaro/sloph">sloph</a><sup>a</sup></th>
+                                        <td>S,R</td>
+                                        <td>Personal publishing, quantified self, and social platform</td>
+                                    </tr>
+                                    <tr>
+                                        <th><a href="https://github.com/melvincarvalho/vocab">Solid Words</a></th>
+                                        <td>S</td>
+                                        <td>Foreign language learning app</td>
+                                    </tr>
+                                    <tr>
+                                        <th><a href="https://github.com/solid/solid-client">solid-client</a></th>
+                                        <td>S</td>
+                                        <td>Clientside library for interfacing with LDP servers</td>
+                                    </tr>
+                                    <tr>
+                                        <th><a href="https://github.com/solid/solid-inbox">solid-inbox</a></th>
+                                        <td>C</td>
+                                        <td>Clientside social message reader</td>
+                                    </tr>
+                                    <tr>
+                                        <th><a href="https://github.com/solid/solid-notifications">solid-notifications</a></th>
+                                        <td>S,C</td>
+                                        <td>Clientside library for LDN</td>
+                                    </tr>
+                                    <tr>
+                                        <th><a href="https://github.com/solid/node-solid-server">solid-server</a></th>
+                                        <td>R</td>
+                                        <td>Personal data storage server (LDP-based)</td>
+                                    </tr>
+                                    <tr>
+                                        <th><a href="https://github.com/openlink/virtuoso-opensource">Virtuoso</a>+<a href="http://ods.openlinksw.com/wiki/ODS/OdsBriefcase">ODS Briefcase</a></th>
+                                        <td>R,C</td>
+                                        <td>Personal data storage server (LDP-based)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
 
                             <p>We highlight some social Web and scholarly communication use cases with <cite><a href="https://dokie.li/">dokieli</a></cite> - a clientside editor for decentralised article publishing, annotations and social interactions [<a href="http://csarven.ca/dokieli"></a>]. dokieli is considered to be a domain-specific application that uses LDN to send and consume notifications. Figures 2,3,4 are screencasts of different ways of using notifications in dokieli.</p>
 
