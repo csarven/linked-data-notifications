@@ -556,9 +556,13 @@
                                 </tbody>
                             </table>
 
-                            <p>We highlight some social Web and scholarly communication use cases with <cite><a href="https://dokie.li/">dokieli</a></cite> - a clientside editor for decentralised article publishing, annotations and social interactions [<a href="http://csarven.ca/dokieli"></a>]. dokieli is considered to be a domain-specific application that uses LDN to send and consume notifications. Figures 2,3,4 are screencasts of different ways of using notifications in dokieli.</p>
+                            <p>We highlight some social scholarly communication use cases with <cite><a href="https://dokie.li/">dokieli</a></cite> - a clientside editor for decentralised article publishing, annotations and social interactions [<a href="http://csarven.ca/dokieli"></a>]. dokieli is a domain-specific application that uses LDN to send and consume notifications for a variety of different purposes:</p>
 
-                            <p>Figure 2 demonstrates an announcement notification to an article's inbox about an inline annotation that's been made and where it can be found on the Web. The article dynamically fetches the notification and the referenced annotation information, and then displays it as marginalia.</p>
+                            <ul>
+                                <li>When a reader comments on a specific fragment of text in an article using dokieli, the application discovers an Inbox from the article and sends a notification about the annotation. dokieli also consumes notifications from this Inbox in order to fetch and display the annotation source data as marginalia (figure 2).</li>
+                                <li>A reader can share a dokieli-enabled article with their contacts; dokieli discovers an Inbox for each contact's profile URL and sends a notification there (figure 3).</li>
+                                <li>When editing an article, the author can add a citation. If an Inbox is discovered at the cited article, dokieli sends a notification there to indicate what part of the article was cited by and where. dokieli-enabled articles also consume citation notifications in order to display these metrics for the author and other readers (figure 4).</li>
+                            </ul>
 
                             <figure id="figure-dokieli-annotation" rel="schema:hasPart" resource="#figure-dokieli-annotation">
                                 <video id="video-dokieli-annotation" rel="schema:hasPart" preload="none" controls="controls" width="800" poster="https://dokie.li/media/images/dokieli-annotation.jpg">
@@ -567,8 +571,6 @@
                                 <figcaption property="schema:name"><a href="https://dokie.li/media/video/dokieli-annotation.webm">Video</a> of dokieli Web Annotation</figcaption>
                             </figure>
 
-                            <p>Figure 3 demonstrates a case where the user signs in and selects contacts from their social network, and shares the article by sending a notification to their contact's inbox.</p>
-
                             <figure id="figure-dokieli-share" rel="schema:hasPart" resource="#figure-dokieli-share">
                                 <video id="video-dokieli-share" rel="schema:hasPart" preload="none" controls="controls" width="800" poster="https://dokie.li/media/images/dokieli-share.jpg">
                                     <source about="#video-dokieli-share" rel="schema:hasPart" resource="https://dokie.li/media/video/dokieli-share.webm"  typeof="fabio:Film" src="https://dokie.li/media/video/dokieli-share.webm" type="video/webm" />
@@ -576,14 +578,21 @@
                                 <figcaption property="schema:name"><a href="https://dokie.li/media/video/dokieli-share.webm">Video</a> of dokieli Share</figcaption>
                             </figure>
 
-                            <p>Figure 4 demonstrates a scenario where the user makes a semantic inline citation, and then sends a notification to the inbox of the cited entity. The cited entity then consumes this notification to indicate what part of their article was cited by what and how.</p>
-
                             <figure id="figure-dokieli-citation" rel="schema:hasPart" resource="#figure-dokieli-citation">
                                 <video controls="controls" id="video-dokieli-citation" poster="https://dokie.li/media/images/dokieli-citation.jpg" preload="none" width="800" about="" rel="schema:hasPart">
                                     <source about="#video-dokieli-citation" rel="schema:hasPart" resource="https://dokie.li/media/video/dokieli-citation.webm" src="https://dokie.li/media/video/dokieli-citation.webm" type="video/webm" typeof="fabio:Film" />
                                 </video>
                                 <figcaption property="schema:name"><a href="https://dokie.li/media/video/dokieli-citation.webm">Video</a> of semantic inline citations</figcaption>
                             </figure>
+
+                            <p>Notifications sent by dokieli can be reused by any consuming applications which recognise the vocabulary terms; similarly, dokieli can consume notifications that were sent by a different application. </p>
+
+                            <p>Further social use cases can be demonstrated by <a href="https://rhiaro.co.uk/sloph">sloph</a>, a personal publishing and quantified self platform which behaves as a node in a decentralised social network. When a new piece of content is created on the server, sloph performs discovery on URLs it finds as values of particular properties of the generated data (according to <a href="https://www.w3.org/TR/activitypub">ActivityPub</a>) as well as any URLs in the body of the content and sends notifications accordingly. For instance:</p>
+                            <ul>
+                                <li>If the user generates an ActivityStreams 2.0 <em>Like</em> activity on their server, sloph uses the <code>object</code> of the <em>Like</em> as the target for a notification. Since dokieli also uses the ActivityStreams 2.0 vocabulary for social interactions, if the target is a dokieli article, this <em>Like</em> will be displayed (figure 5).</li>
+                                <li>If the user publishes a blog post which contains a link, which may be semantically annotated to indicate the reason for linking, sloph sends a notification to any Inbox discovered at that link.</li>
+                                <li>As a receiver, sloph accepts all incoming notifications, but holds for moderation (ie. places behind access control) any that it cannot automatically verify refer to third-party content published on another domain. If an article written with dokieli publishes a citation of a blog post which advertises a sloph Inbox, sloph will fetch the article and verify the relation matches the contents of the notification before exposing the notification for re-use.</li>
+                            </ul>
                         </div>
                     </section>
 
