@@ -622,7 +622,7 @@
                                         <caption>Comparison of notification mechanisms</caption>
                                         <thead >
                                             <tr>
-                                                <th></th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th>13</th>
+                                                <th>Mechanism</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th>13</th>
                                             </tr>
                                         </thead>
                                         <tfoot>
@@ -655,40 +655,29 @@
                                                     </dl>
                                                     <hr/>
                                                     <dl class="abbr">
-                                                        <dt><sup>x</sup></dt><dd>key–value pairs for <code>source</code> and <code>target</code> are required</dd>
-                                                        <dt><sup>y</sup></dt><dd>JSON-LD is required, alternative RDF syntax are allowed on agreement. Unconstrained vocabulary and data</dd>
+                                                        <dt><sup>h</sup></dt><dd>HTML recommended</dd>
+                                                        <dt><sup>j</sup></dt><dd>JSON-LD is required, alternative RDF representations can be negotiated.</dd>
+                                                        <dt><sup>k</sup></dt><dd>key–value pairs for <code>source</code> and <code>target</code> are required</dd>
+                                                        <dt><sup>p</sup></dt><dd><a href="http://www.w3.org/TR/prov-o/">The PROV Ontology</a></dd>
+                                                        <dt><sup>r</sup></dt><dd>RDF representation recommended</dd>
+                                                        <dt><sup>ra</sup></dt><dd>SPARQL results transformed to RSS,Atom</dd>
+                                                        <dt><sup>s</sup></dt><dd><a href="https://www.sitemaps.org/protocol.html">Sitemaps</a></dd>
                                                     </dl>
                                                 </td>
                                             </tr>
                                         </tfoot>
                                         <tbody>
                                             <tr>
-                                                <th>Linked Data Notifications</th>
-                                                <td>Fat ping</td>
-                                                <td><code>POST</code></td>
-                                                <td>JSON-LD<sup>y</sup></td>
-                                                <td>app, rec</td>
-                                                <td>app, rec</td>
-                                                <td>app</td>
-                                                <td>URI</td>
-                                                <td>Any, RDF rec</td>
-                                                <td>n/a</td>
-                                                <td>app</td>
-                                                <td>rec</td>
-                                                <td>req</td>
-                                                <td>JSON-LD</td>
-                                            </tr>
-                                            <tr>
                                                 <th>Semantic Pingback</th>
                                                 <td>Linkback</td>
                                                 <td><code>POST</code></td>
-                                                <td>form urlencoded<sup>x</sup></td>
+                                                <td>form urlencoded<sup>k</sup></td>
                                                 <td>req</td>
                                                 <td>req</td>
                                                 <td>parse source</td>
                                                 <td>n/s</td>
-                                                <td>Any, RDF rec</td>
-                                                <td>Any, RDF rec</td>
+                                                <td>Any<sup>r</sup></td>
+                                                <td>Any<sup>r</sup></td>
                                                 <td>no</td>
                                                 <td>n/s</td>
                                                 <td>n/s</td>
@@ -698,13 +687,13 @@
                                                 <th>Webmention</th>
                                                 <td>Linkback</td>
                                                 <td><code>POST</code></td>
-                                                <td>form urlencoded<sup>x</sup></td>
+                                                <td>form urlencoded<sup>k</sup></td>
                                                 <td>req</td>
                                                 <td>req</td>
                                                 <td>parse source</td>
                                                 <td>n/a</td>
                                                 <td>Any</td>
-                                                <td>Any, HTML rec</td>
+                                                <td>Any<sup>h</sup></td>
                                                 <td>no</td>
                                                 <td>n/a</td>
                                                 <td>n/a</td>
@@ -719,34 +708,51 @@
                                                 <td>n/a</td>
                                                 <td>n/a</td>
                                                 <td>n/a</td>
-                                                <td></td>
-                                                <td>RDF (PROV)</td>
+                                                <td>n/s</td>
+                                                <td>RDF<sup>p</sup></td>
                                                 <td>no</td>
-                                                <td></td>
+                                                <td>n/s</td>
                                                 <td>n/a</td>
                                                 <td>RDF</td>
+                                            </tr>
+                                            <tr>
+                                                <th>DSNotify</th>
+                                                <td>Fat ping</td>
+                                                <td><code>POST</code>, <code>PUT</code></td>
+                                                <td>XML</td>
+                                                <td>n/s</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td>req</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td>XML, PuSH</td>
                                             </tr>
                                             <tr>
                                                 <th>sparqlPuSH</th>
                                                 <td>Fat ping</td>
                                                 <td><code>POST</code></td>
-                                                <td>XML (SPARQL results to Atom)</td>
+                                                <td>XML<sup>ra</sup></td>
                                                 <td>n/s</td>
                                                 <td>n/s</td>
                                                 <td>n/a</td>
-                                                <td></td>
+                                                <td>n/s</td>
                                                 <td>n/a</td>
                                                 <td>RDF</td>
                                                 <td>req</td>
                                                 <td>n/a</td>
                                                 <td>n/a</td>
                                                 <td>XML, SPARQL, PuSH</td>
-                                            </tr><tr>
+                                            </tr>
+                                            <tr>
                                                 <th>ResourceSync</th>
                                                 <td>Fat ping</td>
                                                 <td><code>POST</code></td>
-                                                <td>XML (Sitemap)</td>
-                                                <td></td>
+                                                <td>XML<sup>s</sup></td>
+                                                <td>n/s</td>
                                                 <td></td>
                                                 <td></td>
                                                 <td></td>
@@ -756,21 +762,22 @@
                                                 <td></td>
                                                 <td></td>
                                                 <td>XML, PuSH</td>
-                                            </tr><tr>
-                                                <th>DSNotify</th>
+                                            </tr>
+                                            <tr>
+                                                <th>Linked Data Notifications</th>
                                                 <td>Fat ping</td>
                                                 <td><code>POST</code></td>
-                                                <td>XML</td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
+                                                <td>JSON-LD<sup>j</sup></td>
+                                                <td>app, rec</td>
+                                                <td>app, rec</td>
+                                                <td>app</td>
+                                                <td>URI</td>
+                                                <td>Any</td>
+                                                <td>n/a</td>
+                                                <td>app</td>
+                                                <td>rec</td>
                                                 <td>req</td>
-                                                <td></td>
-                                                <td></td>
-                                                <td>XML, PuSH</td>
+                                                <td>JSON-LD</td>
                                             </tr>
                                         </tbody>
                                     </table>
