@@ -613,68 +613,55 @@
                         <div datatype="rdf:HTML" property="schema:description" typeof="deo:Evaluation">
                             <p>At its core, the LDN protocol describes the discovery of a resource's Inbox whence notifications are sent or consumed, and the sending and exposure of those notifications.</p>
 
-                            <section id="summary-comparison" rel="schema:hasPart" resource="#summary-comparison">
-                                <h3 property="schema:name">Summary comparison</h3>
+                            <section id="comparison-summary" rel="schema:hasPart" resource="#comparison-summary">
+                                <h3 property="schema:name">Comparison summary</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
-                                    
+                                    <p>Here we compare existing notification mechanisms from related work. The criteria from the <a href="#requirements-and-design-considerations">requirements and design considerations</a> is included along with additional information which helps to capture some of the differences in their designs.</p>
+
                                     <table id="comparison-of-notification-mechanisms">
                                         <caption>Comparison of notification mechanisms</caption>
-                                        <thead style="font-size: 0.8em">
+                                        <thead >
                                             <tr>
-                                                <th></th>
-                                                <th>1</th>
-                                                <th>2</th> 
-                                                <th>3</th>
-                                                <th>4</th>
-                                                <th>5</th>
-                                                <th>6</th>
-                                                <th>7</th>
-                                                <th>8</th>
-                                                <th>9</th>
-                                                <th>10</th>
-                                                <th>11</th>
-                                                <th>12</th>
-                                                <th>13</th>
+                                                <th></th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th>13</th>
                                             </tr>
                                         </thead>
                                         <tfoot>
                                             <tr>
                                                 <td colspan="14">
-                                                    <p><strong>Columns:</strong></p>
-                                                    <ol>
-                                                        <li>Notification type</li>
-                                                        <li>Delivery method: how the notification is sent</li> <!-- Since these are all POST, maybe remove? -->
-                                                        <li>Payload body: what is sent as the notification</li>
-                                                        <li>Payload processing: any specified requirements by the server?</li>
-                                                        <li>Verification: checking whether notification is acceptable</li>
-                                                        <li>Verification mechanism: how is verification carried out</li>
-                                                        <li>Notification identification</li>
-                                                        <li>Target representation (pertinent to discovery of notifications endpoint)</li>
-                                                        <li>Other resources referenced from the notification, eg. source</li>
-                                                        <li>Subscription: are notifications solicited by receiver?</li>
-                                                        <li>Persistence</li>
-                                                        <li>Reusability</li>
-                                                        <li>Dependencies</li>
-                                                    </ol>
-                                                    
-                                                    <p><strong>Key:</strong></p>
-                                                    <ul>
-                                                        <li>n/a: not applicable, out of scope</li>
-                                                        <li>n/s: not specified, in scope</li>
-                                                        <li>no: explicitly disallowed</li>
-                                                        <li>app: application specific decision</li>
-                                                        <li>req: required</li>
-                                                        <li>opt: optional</li>
-                                                        <li>rec: recommended</li>
-                                                    </ul>
-
-                                                    <p><strong>Notes:</strong></p>
-                                                    <p><sup>x</sup> key–value pairs for <code>source</code> and <code>target</code> are required</p>
-                                                    <p><sup>y</sup> JSON-LD is required, alternative RDF syntax are allowed on agreement. Unconstrained vocabulary and data</p>
+                                                    <dl class="abbr">
+                                                        <dt>1</dt><dd>Notification type</dd>
+                                                        <dt>2</dt><dd>Delivery method: how the notification is sent</dd>
+                                                        <dt>3</dt><dd>Payload body: what is sent as the notification</dd>
+                                                        <dt>4</dt><dd>Payload processing: any specified requirements by the server?</dd>
+                                                        <dt>5</dt><dd>Verification: checking whether notification is acceptable</dd>
+                                                        <dt>6</dt><dd>Verification mechanism: how is verification carried out</dd>
+                                                        <dt>7</dt><dd>Notification identification</dd>
+                                                        <dt>8</dt><dd>Target representation (pertinent to discovery of notifications endpoint)</dd>
+                                                        <dt>9</dt><dd>Other resources referenced from the notification, eg. source</dd>
+                                                        <dt>10</dt><dd>Subscription: are notifications solicited by receiver?</dd>
+                                                        <dt>11</dt><dd>Persistence</dd>
+                                                        <dt>12</dt><dd>Reusability</dd>
+                                                        <dt>13</dt><dd>Dependencies</dd>
+                                                    </dl>
+                                                    <hr/>
+                                                    <dl class="abbr">
+                                                        <dt>n/a</dt><dd>not applicable, out of scope</dd>
+                                                        <dt>n/s</dt><dd>not specified, in scope</dd>
+                                                        <dt>no</dt><dd>explicitly disallowed</dd>
+                                                        <dt>app</dt><dd>application specific decision</dd>
+                                                        <dt>req</dt><dd>required</dd>
+                                                        <dt>opt</dt><dd>optional</dd>
+                                                        <dt>rec</dt><dd>recommended</dd>
+                                                    </dl>
+                                                    <hr/>
+                                                    <dl class="abbr">
+                                                        <dt><sup>x</sup></dt><dd>key–value pairs for <code>source</code> and <code>target</code> are required</dd>
+                                                        <dt><sup>y</sup></dt><dd>JSON-LD is required, alternative RDF syntax are allowed on agreement. Unconstrained vocabulary and data</dd>
+                                                    </dl>
                                                 </td>
                                             </tr>
                                         </tfoot>
-                                        <tbody style="font-size: 0.8em">
+                                        <tbody>
                                             <tr>
                                                 <th>Linked Data Notifications</th>
                                                 <td>Fat ping</td>
@@ -695,7 +682,7 @@
                                                 <th>Semantic Pingback</th>
                                                 <td>Linkback</td>
                                                 <td><code>POST</code></td>
-                                                <td>formencoded<sup>x</sup></td>
+                                                <td>form urlencoded<sup>x</sup></td>
                                                 <td>req</td>
                                                 <td>req</td>
                                                 <td>parse source</td>
@@ -711,7 +698,7 @@
                                                 <th>Webmention</th>
                                                 <td>Linkback</td>
                                                 <td><code>POST</code></td>
-                                                <td>formencoded<sup>x</sup></td>
+                                                <td>form urlencoded<sup>x</sup></td>
                                                 <td>req</td>
                                                 <td>req</td>
                                                 <td>parse source</td>
