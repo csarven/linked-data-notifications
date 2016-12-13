@@ -127,7 +127,7 @@
 							We summarise the protocol itself, and then go into detail about specific architectural considerations that were made. We built a test suite which can be used to confirm that implementations conform with the specification, and we describe the independent implementations which interoperate with each other so far.</p>
 
                             <div about="" id="concept-scheme" rel="schema:hasPart" resource="#concept-scheme">
-                                <p resource="#concept-scheme" typeof="skos:ConceptScheme"><span property="skos:prefLabel">We use some terms throughout which may be subject to different interpretations by different communities, so we provide some definitions here.</span></p>
+                              <p resource="#concept-scheme" typeof="skos:ConceptScheme"><span property="skos:prefLabel"><span class="TODO">This is too long for a label; it should be something like a <em>note</em>.</span>As the following terms used throughout this paper may be subject to different interpretations by different communities, we provide some definitions here.</span></p>
 
                                 <dl rel="skos:hasTopConcept">
                                     <dt about="#concept-decentralisation" id="concept-decentralisation" property="skos:prefLabel" rel="skos:topConceptOf" resource="#concept-scheme" typeof="skos:Concept">Decentralisation</dt>
@@ -143,7 +143,7 @@
                                 </dl>
                             </div>
 
-                            <p>Using this article as the target for notifications, we welcome your feedback via LDN.</p>
+                            <p>Using this article as the target for notifications, we welcome readers' feedback via LDN.</p>
                         </div>
                     </section>          
 
@@ -821,11 +821,11 @@
                                 <div datatype="rdf:HTML" property="schema:description">
                                     <p>In treating notifications as any other Linked Data resources, LDN follows the second approach but without constraint on the contained information. As such LDN can cover the uses cases of "A refers to B" (1), as well as "C has a specific relation to D, as well as E" and "The weather is fine today".</p>
 
-                                    <p>The LDN protocol has the potential to disseminate lossless information. Without the need of extensions, notifications can contain content that's precise or conforming to receiver's constraints. This is in contrast to protocols like Semantic Pingback and Webmention, where while specific <em>statements</em> are made at the source, there is no definite way to distinguish between multiple statements with the same source and target, in relation to the original notification. The receiving endpoints eventually handle the source data at their own discretion.</p>
+                                    <p>The LDN protocol has the potential to disseminate lossless information. Without the need of extensions, notifications can contain content that is precise or conforming to receiver's constraints. This is in contrast to protocols like Semantic Pingback and Webmention, where while specific <em>statements</em> are made at the source, there is no definite way to distinguish between multiple statements with the same source and target, in relation to the original notification. The receiving endpoints eventually handle the source data at their own discretion.</p>
                                 </div>
                             </section>
 
-                            <section id="modulairty" rel="schema:hasPart" resource="#modulairty">
+                            <section id="modularity" rel="schema:hasPart" resource="#modularity">
                                 <h3 property="schema:name">Modularity</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
                                     <p>As evidenced by implementations</p>
@@ -837,7 +837,7 @@
                                 <div datatype="rdf:HTML" property="schema:description">
                                     <p><strong>Target ownership</strong>: Publishers of the resources advertising an Inbox (target) should do so on a server they trust. Publishers must be aware that third-party access to headers or content could result in notifications being redirected.</p>
 
-                                    <p><strong class="todo"></strong>: One other consideration here is with the use of the <code>Link</code> header itself, and whether that's appropriate, required or improves the protocol. Generally the separation of protocol and content level messages is important, and so the content in RDF should describe itself rather relying on HTTP headers. However, in the case of non-RDF resources, like binary formats, images, video, it is not possible to achieve this in the content body. Therefore, using the <code>Link</code> header makes it possible to advertise an Inbox for these type of resources. In cases where Website owners want to add an Inbox to their assets without having to individually updates their content (or headers), as well as if they don't have write access for the content, then the <code>Link</code> header makes this possible.</p>
+                                    <p><strong class="todo"></strong>: One other consideration here is with the use of the <code>Link</code> header itself, and whether that is appropriate, required or improves the protocol. Generally the separation of protocol and content level messages is important, and so the content in RDF should describe itself rather relying on HTTP headers. However, in the case of non-RDF resources, like binary formats, images, video, it is not possible to achieve this in the content body. Therefore, using the <code>Link</code> header makes it possible to advertise an Inbox for these type of resources. In cases where Website owners want to add an Inbox to their assets without having to individually updates their content (or headers), as well as if they do not have write access for the content, then the <code>Link</code> header makes this possible.</p>
                                 </div>
                             </section>
 
@@ -853,7 +853,7 @@
                             <section id="tests-and-reports" inlist="" rel="schema:hasPart" resource="#tests-and-reports">
                                 <h3 property="schema:name">Tests and Reports</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
-                                    <p>Implementations are interoperable. How many implementations are out there.. over length of time... different code stacks (variations) .. different groups/people implementing (without prior knowledge).. </p>
+                                  <p><span class="todo">overlaps with “Implementation” section.  This should be covered in one section only.</span>Implementations are interoperable. How many implementations are out there.. over length of time... different code stacks (variations) .. different groups/people implementing (without prior knowledge).. </p>
                                 </div>
                             </section>
 
