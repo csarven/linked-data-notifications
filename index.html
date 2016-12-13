@@ -613,7 +613,7 @@
                         <div datatype="rdf:HTML" property="schema:description" typeof="deo:Evaluation">
                             <p>At its core, the LDN protocol describes the discovery of a resource's Inbox whence notifications are sent or consumed, and the sending and exposure of those notifications.</p>
 
-                            <section id="" rel="schema:hasPart" resource="#">
+                            <section id="summary-comparison" rel="schema:hasPart" resource="#summary-comparison">
                                 <h3 property="schema:name">Summary comparison</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
                                     
@@ -790,7 +790,7 @@
                                 </div>
                             </section>
 
-                            <section id="" rel="schema:hasPart" resource="#">
+                            <section id="compatibility-with-existing-systems" rel="schema:hasPart" resource="#compatibility-with-existing-systems">
                                 <h3 property="schema:name">Compatibility with existing systems</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
                                     <p>We intentionally take a bare minimum approach, preferring to suggest using LDN alongside other existing protocols and standards rather than re-specifying already standardised mechanisms for non-core behaviours. This has the advantage of resulting in a protocol which can serve as a module of a larger system, accompanied by other protocols according to the needs of the environment. Standalone implementations of LDN are also straightforward, as a result. For example:</p>
@@ -807,7 +807,7 @@
                                 </div>
                             </section>
 
-                            <section id="" rel="schema:hasPart" resource="#">
+                            <section id="complexity-of-implementation" rel="schema:hasPart" resource="#complexity-of-implementation">
                                 <h3 property="schema:name">Complexity of implementation</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
                                     <p>Given that <code>HTTP GET</code> headers provide the same information as <code>HTTP HEAD</code>, it is possible to omit the optional Inbox discovery via <code>HTTP HEAD</code>, as long as the Inbox can be discovered from the <code>Link</code> header or the body. This has the advantage of requiring applications to only make requests for and respond to <code>HTTP GET</code> requests, and thereby in a way simpler to implement and communicate with. However, one disadvantage is that the size of the entity-body is significant and puts a higher bandwidth requirement on applications to serve and consume, especially if only the <code>Link</code> header is of interest to discover the Inbox. Hence, <code>HTTP HEAD</code> is useful for optimisation reasons.</p>
@@ -818,7 +818,7 @@
                                 </div>
                             </section>
 
-                            <section id="" rel="schema:hasPart" resource="#">
+                            <section id="adaptability-and-extensibility" rel="schema:hasPart" resource="#adaptability-and-extensibility">
                                 <h3 property="schema:name">Adaptability and extensibility</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
                                     <p>In treating notifications as any other Linked Data resources, LDN follows the second approach but without constraint on the contained information. As such LDN can cover the uses cases of "A refers to B" (1), as well as "C has a specific relation to D, as well as E" and "The weather is fine today".</p>
@@ -827,14 +827,14 @@
                                 </div>
                             </section>
 
-                            <section id="" rel="schema:hasPart" resource="#">
+                            <section id="modulairty" rel="schema:hasPart" resource="#modulairty">
                                 <h3 property="schema:name">Modularity</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
                                     <p>As evidenced by implementations</p>
                                 </div>
                             </section>
 
-                            <section id="" rel="schema:hasPart" resource="#">
+                            <section id="publishing-challenges" rel="schema:hasPart" resource="#publishing-challenges">
                                 <h3 property="schema:name">Publishing challenges</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
                                     <p><strong>Target ownership</strong>: Publishers of the resources advertising an Inbox (target) should do so on a server they trust. Publishers must be aware that third-party access to headers or content could result in notifications being redirected.</p>
@@ -843,7 +843,7 @@
                                 </div>
                             </section>
 
-                            <section id="" rel="schema:hasPart" resource="#">
+                            <section id="content-challenges" rel="schema:hasPart" resource="#content-challenges">
                                 <h3 property="schema:name">Content challenges</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
                                     <p><strong>Natural Language Content</strong>: Building an international base of users is important in a federated network. Some LDN interactions can return content with natural language text, such as HTML fragments, or summary fields. Providing multiple language representations of each item might not be feasible in all circumstances. Implementations are encouraged to provide means of discovering the available languages and/or negotiating the language returned, such as using the HTTP <code>Accept-Language</code> header to negotiate and select the most appropriate language representation to send for a given request.</p>
