@@ -285,7 +285,7 @@
                                     </ul>
 
                                     <p>Thus, an application which offers an endpoint or callback URL to which notifications should be sent directly is a receiver, and an application which fetches notifications from an endpoint on its own schedule is a consumer.
-									In certain scenarios, a receiver may wish to subscribe to a sender; for this, an existing subscription mechanism such as WebSub (formerly PubSubHubbub), the WebSocket Protocol, or HTTP Web Push can be used.</p>
+				      In certain scenarios, a receiver may wish to subscribe to a sender; for this, an existing subscription mechanism such as WebSub (formerly <span class="todo">PubSubHubbub was introduced before, but the name WebSub was not.  Introduce both at the same time.</span>PubSubHubbub), the WebSocket Protocol, or HTTP Web Push can be used.</p>
 
                                 </div>
                             </section>
@@ -293,7 +293,7 @@
                             <section id="persistence-and-reuse" inlist="" rel="schema:hasPart" resource="#persistence-and-reuse">
                                 <h4 property="schema:name">R7 Persistence and Reuse</h4>
                                 <div datatype="rdf:HTML" property="schema:description">
-                                    <p>There is a social expectation and technical arguments for ensuring the persistence of identifiers of Web resources [cooluris]. 
+                                  <p>There is a social expectation and technical arguments for ensuring the persistence of identifiers of Web resources [<span class="todo">cite properly</span>cooluris]. 
 									This is inconsistent with the traditionally ephemeral nature of notifications. 
 									We need to consider both the needs of software systems and humans when large amounts of notification data are being generated and shared between diverse applications which may be operating without knowledge of each other. 
 									Applications may additionally benefit from referring to or reusing notifications if the notifications are known to be available in the long term, or indicate their expected lifespan [<a href="http://philarcher.org/diary/2013/uripersistence/"></a>, <a href="https://www.w3.org/TR/dwbp/#UniqueIdentifiers" title="Best Practice 9: Use persistent URIs as identifiers of datasets"></a>, <a href="https://tools.ietf.org/html/rfc7089"></a>].</p>
@@ -310,7 +310,7 @@
                                     <p>In order to organise and manage large amount of notifications over time, mechanisms should be in place to break representations of collections of notifications into multiple paged responses that may be easier to consume by applications.</p>
 
                                     <p>While the senders and consumers may have some confidence in the persistence of the notifications, they may be subject to update or delete operations at the discretion of the receiver. 
-									Receivers may carry out their own data modification actions, or they may integrate authorisation mechanisms to allow certain operations by third-party applications which can modify existing notification data. For example, an application to consume messages might let the user 'mark as read' by adding a triple to the notification contents.</p>
+									Receivers may carry out their own data modification actions, or they may integrate authorisation mechanisms to allow certain operations by third-party applications which can modify existing notification data. For example, an application to consume messages might let the user ‘mark as read’ by adding a triple to the notification contents.</p>
                                 </div>
                             </section>
 
