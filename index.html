@@ -619,32 +619,172 @@
                                     
                                     <table id="comparison-of-notification-mechanisms">
                                         <caption>Comparison of notification mechanisms</caption>
-                                        <thead>
+                                        <thead style="font-size: 0.8em">
                                             <tr>
                                                 <th></th>
-                                                <th>Notification type</th>
-                                                <th>Delivery method</th>
-                                                <th>Payload body</th>
-                                                <th>Payload processing</th>
-                                                <th>Source representation</th>
-                                                <th>Requirements met</th>
+                                                <th>1</th>
+                                                <th>2</th> 
+                                                <th>3</th>
+                                                <th>4</th>
+                                                <th>5</th>
+                                                <th>6</th>
+                                                <th>7</th>
+                                                <th>8</th>
+                                                <th>9</th>
+                                                <th>10</th>
+                                                <th>11</th>
+                                                <th>12</th>
+                                                <th>13</th>
                                             </tr>
                                         </thead>
                                         <tfoot>
                                             <tr>
-                                                <td colspan="7">
-                                                    <p>Information based on core specifications.</p>
+                                                <td colspan="14">
+                                                    <p><strong>Columns:</strong></p>
+                                                    <ol>
+                                                        <li>Notification type</li>
+                                                        <li>Delivery method: how the notification is sent</li> <!-- Since these are all POST, maybe remove? -->
+                                                        <li>Payload body: what is sent as the notification</li>
+                                                        <li>Payload processing: any specified requirements by the server?</li>
+                                                        <li>Verification: checking whether notification is acceptable</li>
+                                                        <li>Verification mechanism: how is verification carried out</li>
+                                                        <li>Notification identification</li>
+                                                        <li>Target representation (pertinent to discovery of notifications endpoint)</li>
+                                                        <li>Other resources referenced from the notification, eg. source</li>
+                                                        <li>Subscription: are notifications solicited by receiver?</li>
+                                                        <li>Persistence</li>
+                                                        <li>Reusability</li>
+                                                        <li>Dependencies</li>
+                                                    </ol>
+                                                    
+                                                    <p><strong>Key:</strong></p>
+                                                    <ul>
+                                                        <li>n/a: not applicable, out of scope</li>
+                                                        <li>n/s: not specified, in scope</li>
+                                                        <li>no: explicitly disallowed</li>
+                                                        <li>app: application specific decision</li>
+                                                        <li>req: required</li>
+                                                        <li>opt: optional</li>
+                                                        <li>rec: recommended</li>
+                                                    </ul>
+
+                                                    <p><strong>Notes:</strong></p>
                                                     <p><sup>x</sup> key–value pairs for <code>source</code> and <code>target</code> are required</p>
                                                     <p><sup>y</sup> JSON-LD is required, alternative RDF syntax are allowed on agreement. Unconstrained vocabulary and data</p>
-                                                    <p>After dereferencing; GET<sup>1</sup>, string or object matching, GET<sup>2</sup>, matches the object, to verify a claim's existence.</p>
-                                                    <p><sup>@</sup> Source format can be structured or unstructured, in which case a mention is dependent on the media type</p>
                                                 </td>
                                             </tr>
                                         </tfoot>
-                                        <tbody>
-                                            <tr><th>Semantic Pingback</th><td>Linkback</td><td><code>POST</code> (urlencoded)</td><td>key–value<sup>x</sup></td><td>Optional</td><td>RDF</td><td></td></tr>
-                                            <tr><th>Webmention</th><td>Linkback</td><td><code>POST</code> (urlencoded)</td><td>key–value<sup>x</sup></td><td>Required</td><td>Any<sup>@</sup></td><td></td></tr>
-                                            <tr><th>Linked Data Notifications</th><td>Fat ping</td><td><code>POST</code></td><td>JSON-LD<sup>y</sup></td><td>Optional</td><td>RDF</td><td></td></tr>
+                                        <tbody style="font-size: 0.8em">
+                                            <tr>
+                                                <th>Linked Data Notifications</th>
+                                                <td>Fat ping</td>
+                                                <td><code>POST</code></td>
+                                                <td>JSON-LD<sup>y</sup></td>
+                                                <td>app, rec</td>
+                                                <td>app, rec</td>
+                                                <td>app</td>
+                                                <td>URI</td>
+                                                <td>Any, RDF rec</td>
+                                                <td>n/a</td>
+                                                <td>app</td>
+                                                <td>rec</td>
+                                                <td>req</td>
+                                                <td>JSON-LD</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Semantic Pingback</th>
+                                                <td>Linkback</td>
+                                                <td><code>POST</code></td>
+                                                <td>formencoded<sup>x</sup></td>
+                                                <td>req</td>
+                                                <td>req</td>
+                                                <td>parse source</td>
+                                                <td>n/s</td>
+                                                <td>Any, RDF rec</td>
+                                                <td>Any, RDF rec</td>
+                                                <td>no</td>
+                                                <td>n/s</td>
+                                                <td>n/s</td>
+                                                <td>RDF</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Webmention</th>
+                                                <td>Linkback</td>
+                                                <td><code>POST</code></td>
+                                                <td>formencoded<sup>x</sup></td>
+                                                <td>req</td>
+                                                <td>req</td>
+                                                <td>parse source</td>
+                                                <td>n/a</td>
+                                                <td>Any</td>
+                                                <td>Any, HTML rec</td>
+                                                <td>no</td>
+                                                <td>n/a</td>
+                                                <td>n/a</td>
+                                                <td>HTML</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Provenance Pingback</th>
+                                                <td>Linkback</td>
+                                                <td><code>POST</code></td>
+                                                <td>URI list</td>
+                                                <td>n/s</td>
+                                                <td>n/a</td>
+                                                <td>n/a</td>
+                                                <td>n/a</td>
+                                                <td></td>
+                                                <td>RDF (PROV)</td>
+                                                <td>no</td>
+                                                <td></td>
+                                                <td>n/a</td>
+                                                <td>RDF</td>
+                                            </tr>
+                                            <tr>
+                                                <th>sparqlPuSH</th>
+                                                <td>Fat ping</td>
+                                                <td><code>POST</code></td>
+                                                <td>XML (SPARQL results to Atom)</td>
+                                                <td>n/s</td>
+                                                <td>n/s</td>
+                                                <td>n/a</td>
+                                                <td></td>
+                                                <td>n/a</td>
+                                                <td>RDF</td>
+                                                <td>req</td>
+                                                <td>n/a</td>
+                                                <td>n/a</td>
+                                                <td>XML, SPARQL, PuSH</td>
+                                            </tr><tr>
+                                                <th>ResourceSync</th>
+                                                <td>Fat ping</td>
+                                                <td><code>POST</code></td>
+                                                <td>XML (Sitemap)</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td>req</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td>XML, PuSH</td>
+                                            </tr><tr>
+                                                <th>DSNotify</th>
+                                                <td>Fat ping</td>
+                                                <td><code>POST</code></td>
+                                                <td>XML</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td>req</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td>XML, PuSH</td>
+                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -708,6 +848,7 @@
                                 <div datatype="rdf:HTML" property="schema:description">
                                     <p><strong>Natural Language Content</strong>: Building an international base of users is important in a federated network. Some LDN interactions can return content with natural language text, such as HTML fragments, or summary fields. Providing multiple language representations of each item might not be feasible in all circumstances. Implementations are encouraged to provide means of discovering the available languages and/or negotiating the language returned, such as using the HTTP <code>Accept-Language</code> header to negotiate and select the most appropriate language representation to send for a given request.</p>
                                     <p><strong>Notifications as graphs</strong>:</p>
+                                    <p><strong>Notifications being modified</strong>: We have yet to assess the implications of applications modifying data that another application also makes use of.</p>
                                 </div>
                             </section>
 
