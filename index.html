@@ -78,7 +78,7 @@
                         <div datatype="rdf:HTML" property="schema:abstract">
                           <p>In this article we describe the Linked Data Notifications (LDN) protocol, which is a Candidate Recommendation of the W3C (<a href="https://www.w3.org/TR/ldn/">https://www.w3.org/TR/ldn/</a>).
                           Notifications are sent over the Web for a variety of purposes, for example, by social applications. 
-						  The data contained within a notification is arbitrary, and typically only usable by the application which generated it in the first place. 
+						  The data contained within a notification is arbitrary, and typically only usable by the application which generated it in the first place.
 						  In the spirit of Linked Data, we propose that notifications should be reusable by multiple authorised applications.
 						  Through separating the concepts of <em>senders</em>, <em>receivers</em> and <em>consumers</em> of notifications, and leveraging Linked Data principles of shared vocabularies and URIs, LDN provides a building block for decentralised Web applications. This permits end users more freedom to switch between the online tools they use, as well as generating greater value when notifications from different sources can be used in combination. 
 						  We situate LDN alongside related initiatives, and discuss additional considerations such as security and abuse prevention measures. 
@@ -105,7 +105,7 @@
 							<p>Notifications are sent over the Web for a variety of purposes, including social applications: <q>You have been invited to a graduation party!</q>, <q>Tim commented on your blog post!</q>, <q>Somebody searched for you and is now following your profile</q>, <q>Liz tagged you in a photo</q>.
 							The notification data may be displayed to a human to acknowledge, or used to trigger some other application-specific process (or both). 
                             In a decentralised architecture, notifications can be a key element for federation of information, and application integration.
-							However in the centralised systems prevailing today, this data is structured arbitrarily and typically only usable by the application that generated it in the first place. 
+							However in centralised systems which prevail today, this data is structured arbitrarily and typically only usable by the application that generated it in the first place.
 							Current efforts towards <em>re-decentralising</em> the Web [<a href="http://crosscloud.org/2016/www-mansour-pdf.pdf"></a>, <a href="http://www.semantic-web-journal.net/sites/default/files/swj201_4.pdf"></a>, <a href="https://unhosted.org/"></a>] are moving towards architectures in which data storage is decoupled from application logic, freeing end users from switch between applications, or to let multiple applications operate over the same data.
 							So far, notifications are considered to be <em>ephemeral</em> resources which may disappear after transport, and thus are excluded from being designed for reuse.</p>
 
@@ -181,7 +181,7 @@
 
                                     <p>The contents of a notification is one of either: 1) URLs, indicating relations between Web resources, or 2) a 'fat ping' containing a blob of information. Semantic Pingback, Webmention, and Provenance Pingback follow the first form, and are also known as <cite>linkbacks</cite>, the suite of protocols that essentially allows Web documents to manually and automatically link to or mention one another. This has the advantage that a verification mechanism can be tightly specified (the URL of the target must appear in the content of the source), but the disadvantage that notifications are only available for the use case of a link being published on the Web.</p>
 
-                                    <p><strong>Semantic Pingback</strong> [<a href="http://www.informatik.uni-leipzig.de/~auer/publication/SemanticPingback.pdf"></a>, <a href="https://www.w3.org/wiki/index.php?title=Pingback&amp;oldid=57876"></a>, <a href="http://www.semantic-web-journal.net/sites/default/files/swj201_4.pdf"></a>, <a href="http://events.linkeddata.org/ldow2016/papers/LDOW2016_paper_02.pdf"></a>] and <strong>Webmention</strong> [<a href="https://www.w3.org/TR/webmention"></a>] both update the original Pingback [<a href="http://www.hixie.ch/specs/pingback/pingback"></a>] mechanism by replacing the XML-RPC transport mechanism by a <code>x-www-form-urlencoded</code> request with two parameters (<code>source</code> and <code>target</code>). Resources which are the target for a notification advertise the respective receiving service or endpoint via a <code>Link</code> relation, either in HTTP Headers or HTML. Semantic Pingback additionally enables discovery of the Pingback service where target is available as RDF. While the content at source may indicate (in any convention or serialisation format) the type of relation between the source and target URLs, this information about the relation is not transmitted to the receiver's endpoint; only the source and target URLs are sent. As such, there is also no way to distinguish between multiple potential mentions of the target at the source; this is left up to the receiver to interpret. Semantic Pingback does encourage generation of additional semantics about the relation(s) between the source and the target by processing the source as RDF if possible, and also defines specific ways for a receiving server to handle incoming pingback data in order to add the source data to an RDF knowledge base [<a href="https://aksw.github.io/SemanticPingback/"></a>]. Beyond verifying that the source does indeed contain the URL of the target, Webmention does not specify any further requirements of the receiving server; nor is it expected that "mentions" are retrievable once they have been sent. </p>
+                                    <p><strong>Semantic Pingback</strong> [<a href="http://www.informatik.uni-leipzig.de/~auer/publication/SemanticPingback.pdf"></a>, <a href="https://www.w3.org/wiki/index.php?title=Pingback&amp;oldid=57876"></a>, <a href="http://www.semantic-web-journal.net/sites/default/files/swj201_4.pdf"></a>, <a href="http://events.linkeddata.org/ldow2016/papers/LDOW2016_paper_02.pdf"></a>] and <strong>Webmention</strong> [<a href="https://www.w3.org/TR/webmention"></a>] both update the original Pingback [<a href="http://www.hixie.ch/specs/pingback/pingback"></a>] mechanism by replacing the XML-RPC transport mechanism by a <code>x-www-form-urlencoded</code> request with two parameters (<code>source</code> and <code>target</code>). Resources which are the target for a notification advertise the respective receiving service or endpoint via a <code>Link</code> relation, either in HTTP headers or HTML. Semantic Pingback additionally enables discovery of the Pingback service where target is available as RDF. While the content at source may indicate (in any convention or serialisation format) the type of relation between the source and target URLs, this information about the relation is not transmitted to the receiver's endpoint; only the source and target URLs are sent. As such, there is also no way to distinguish between multiple potential mentions of the target at the source; this is left up to the receiver to interpret. Semantic Pingback does encourage generation of additional semantics about the relation(s) between the source and the target by processing the source as RDF if possible, and also defines specific ways for a receiving server to handle incoming pingback data in order to add the source data to an RDF knowledge base [<a href="https://aksw.github.io/SemanticPingback/"></a>]. Beyond verifying that the source does indeed contain the URL of the target, Webmention does not specify any further requirements of the receiving server; nor is it expected that "mentions" are retrievable once they have been sent. </p>
 
                                     <p id="provenance-pingback">A <strong>Provenance Pingback</strong> endpoint is also advertised through an HTTP <code>Link</code> header, and accepts a list of URIs for provenance records describing uses of the resource [<a href="http://www.w3.org/TR/prov-aq/#provenance-pingback"></a>]. Provenance Pingback does not specify any further behaviour by the receiving server, but the contents at the URIs listed in the notification body are well-defined.</p>
 
@@ -210,7 +210,7 @@
 									A software implementation can of course play two or all three of these roles; the important part is that it need not. 
 									A consuming application can read and use notification data without being concerned about ever sending or storing notifications itself.</p>
                                     <p>We deem a <em>RESTful architecture</em> [<a class="ref" href=""></a>] compatible with the <em>Linked Data Platform</em> (LDP) specification [<a class="ref" href=""></a>] to be a prerequisite. 
-                                    REST is well suited for notifications, as it involves organisation of atomic resources, their discovery and description, and a lightweight API for the CRUD operations create, read, update, and delete [<a href="http://ws-rest.org/2011/proc/a5-page.pdf">LD&amp;REST</a>]. 
+                                    REST is well suited for notifications, as it involves organisation of atomic resources, their discovery and description, and a lightweight API for the <abbr title="create, read, update, and delete">CRUD</abbr> (create, read, update, and delete) operations [<a href="http://ws-rest.org/2011/proc/a5-page.pdf">LD&amp;REST</a>].
                                     As such, notifications are considered resources in their own right, with their own dereferencable URIs.
                                     A further advantage is that existing LDP servers can be used to store notifications, as new notifications can be created in a <code>Container</code> in exactly the same way as any other resource.</p>
                                 </div>
@@ -608,85 +608,244 @@
                         </div>
                     </section>
 
-                    <section id="analysis" rel="schema:hasPart" resource="#analysis">
-                        <h2 property="schema:name">Analysis</h2>
-                        <div datatype="rdf:HTML" property="schema:description">
+                    <section id="analysis-and-evaluation" rel="schema:hasPart" resource="#analysis-and-evaluation">
+                        <h2 property="schema:name">Analysis and Evaluation</h2>
+                        <div datatype="rdf:HTML" property="schema:description" typeof="deo:Evaluation">
                             <p>At its core, the LDN protocol describes the discovery of a resource's Inbox whence notifications are sent or consumed, and the sending and exposure of those notifications.</p>
 
-                            <p>We intentionally take a bare minimum approach, preferring to suggest using LDN alongside other existing protocols and standards rather than respecifying already standardised mechanisms for non-core behaviours. This has the advantage of resulting in a modular protocol which can be accompanied by other protocols in different environments according to application needs, as well as keeping LDN itself simple for stand-alone implementations. For example:</p>
-                            <ul>
-                                <li><cite>WAC/ACL</cite> can be used along with an authentication mechanism to apply fine grained access controls to restrict who can send notifications, or who can retrieve notifications from the Inbox.</li>
-                                <li><cite>WebSub</cite> can be used by a receiver to issue a subscription request to a sender's hub in order to trigger the sender to push notifications on a particular topic.</li>
-                                <li>An Inbox can double as a <cite>Webhook</cite> callback URL, in order to request notifications from applications which post JSON-based payloads.</li>
-                                <li><cite>ActivityPub</cite> specialises LDN sending with the <em>ActivityStreams 2.0</em> vocabulary for notification contents, as well as specifies additional behaviour for a receiver upon receiving notifications with particular contents in order to organise and distribute interactions within a social network.</li>
-                                <li><cite>SHACL/ShEx</cite> can be used to define the constraints of notification shape.</li>
-                                <li><cite>Web Annotation Protocol</cite> is an LDP-based mechanism for creating new content, which can be a trigger for notifications to be sent to the Inbox of the annotation target.</li>
-                            </ul>
+                            <section id="comparison-summary" rel="schema:hasPart" resource="#comparison-summary">
+                                <h3 property="schema:name">Comparison summary</h3>
+                                <div datatype="rdf:HTML" property="schema:description">
+                                    <p>Here we compare existing notification mechanisms from related work. The criteria from the <a href="#requirements-and-design-considerations">requirements and design considerations</a> is included along with additional information which helps to capture some of the differences in their designs.</p>
 
-                            <p>Here we compare related non-domain specific notification mechanisms:</p>
+                                    <table id="comparison-of-notification-mechanisms">
+                                        <caption>Comparison of notification mechanisms</caption>
+                                        <thead >
+                                            <tr>
+                                                <th></th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th>13</th>
+                                            </tr>
+                                        </thead>
+                                        <tfoot>
+                                            <tr>
+                                                <td colspan="14">
+                                                    <dl class="abbr">
+                                                        <dt>1</dt><dd>Notification type</dd>
+                                                        <dt>2</dt><dd>Delivery method: how the notification is sent</dd>
+                                                        <dt>3</dt><dd>Payload body: what is sent as the notification</dd>
+                                                        <dt>4</dt><dd>Payload processing: any specified requirements by the server?</dd>
+                                                        <dt>5</dt><dd>Verification: checking whether notification is acceptable</dd>
+                                                        <dt>6</dt><dd>Verification mechanism: how is verification carried out</dd>
+                                                        <dt>7</dt><dd>Notification identification</dd>
+                                                        <dt>8</dt><dd>Target representation (pertinent to discovery of notifications endpoint)</dd>
+                                                        <dt>9</dt><dd>Other resources referenced from the notification, eg. source</dd>
+                                                        <dt>10</dt><dd>Subscription: are notifications solicited by receiver?</dd>
+                                                        <dt>11</dt><dd>Persistence</dd>
+                                                        <dt>12</dt><dd>Reusability</dd>
+                                                        <dt>13</dt><dd>Dependencies</dd>
+                                                    </dl>
+                                                    <hr/>
+                                                    <dl class="abbr">
+                                                        <dt>n/a</dt><dd>not applicable, out of scope</dd>
+                                                        <dt>n/s</dt><dd>not specified, in scope</dd>
+                                                        <dt>no</dt><dd>explicitly disallowed</dd>
+                                                        <dt>app</dt><dd>application specific decision</dd>
+                                                        <dt>req</dt><dd>required</dd>
+                                                        <dt>opt</dt><dd>optional</dd>
+                                                        <dt>rec</dt><dd>recommended</dd>
+                                                    </dl>
+                                                    <hr/>
+                                                    <dl class="abbr">
+                                                        <dt><sup>x</sup></dt><dd>key–value pairs for <code>source</code> and <code>target</code> are required</dd>
+                                                        <dt><sup>y</sup></dt><dd>JSON-LD is required, alternative RDF syntax are allowed on agreement. Unconstrained vocabulary and data</dd>
+                                                    </dl>
+                                                </td>
+                                            </tr>
+                                        </tfoot>
+                                        <tbody>
+                                            <tr>
+                                                <th>Linked Data Notifications</th>
+                                                <td>Fat ping</td>
+                                                <td><code>POST</code></td>
+                                                <td>JSON-LD<sup>y</sup></td>
+                                                <td>app, rec</td>
+                                                <td>app, rec</td>
+                                                <td>app</td>
+                                                <td>URI</td>
+                                                <td>Any, RDF rec</td>
+                                                <td>n/a</td>
+                                                <td>app</td>
+                                                <td>rec</td>
+                                                <td>req</td>
+                                                <td>JSON-LD</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Semantic Pingback</th>
+                                                <td>Linkback</td>
+                                                <td><code>POST</code></td>
+                                                <td>form urlencoded<sup>x</sup></td>
+                                                <td>req</td>
+                                                <td>req</td>
+                                                <td>parse source</td>
+                                                <td>n/s</td>
+                                                <td>Any, RDF rec</td>
+                                                <td>Any, RDF rec</td>
+                                                <td>no</td>
+                                                <td>n/s</td>
+                                                <td>n/s</td>
+                                                <td>RDF</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Webmention</th>
+                                                <td>Linkback</td>
+                                                <td><code>POST</code></td>
+                                                <td>form urlencoded<sup>x</sup></td>
+                                                <td>req</td>
+                                                <td>req</td>
+                                                <td>parse source</td>
+                                                <td>n/a</td>
+                                                <td>Any</td>
+                                                <td>Any, HTML rec</td>
+                                                <td>no</td>
+                                                <td>n/a</td>
+                                                <td>n/a</td>
+                                                <td>HTML</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Provenance Pingback</th>
+                                                <td>Linkback</td>
+                                                <td><code>POST</code></td>
+                                                <td>URI list</td>
+                                                <td>n/s</td>
+                                                <td>n/a</td>
+                                                <td>n/a</td>
+                                                <td>n/a</td>
+                                                <td></td>
+                                                <td>RDF (PROV)</td>
+                                                <td>no</td>
+                                                <td></td>
+                                                <td>n/a</td>
+                                                <td>RDF</td>
+                                            </tr>
+                                            <tr>
+                                                <th>sparqlPuSH</th>
+                                                <td>Fat ping</td>
+                                                <td><code>POST</code></td>
+                                                <td>XML (SPARQL results to Atom)</td>
+                                                <td>n/s</td>
+                                                <td>n/s</td>
+                                                <td>n/a</td>
+                                                <td></td>
+                                                <td>n/a</td>
+                                                <td>RDF</td>
+                                                <td>req</td>
+                                                <td>n/a</td>
+                                                <td>n/a</td>
+                                                <td>XML, SPARQL, PuSH</td>
+                                            </tr><tr>
+                                                <th>ResourceSync</th>
+                                                <td>Fat ping</td>
+                                                <td><code>POST</code></td>
+                                                <td>XML (Sitemap)</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td>req</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td>XML, PuSH</td>
+                                            </tr><tr>
+                                                <th>DSNotify</th>
+                                                <td>Fat ping</td>
+                                                <td><code>POST</code></td>
+                                                <td>XML</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td>req</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td>XML, PuSH</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </section>
 
-                            <table id="comparison-of-notification-mechanisms">
-                                <caption>Comparison of notification mechanisms</caption>
-                                <thead>
-                                    <tr>
-                                        <th></th>
-                                        <th>Notification type</th>
-                                        <th>Delivery method</th>
-                                        <th>Payload body</th>
-                                        <th>Payload processing</th>
-                                        <th>Source representation</th>
-                                        <th>Requirements met</th>
-                                    </tr>
-                                </thead>
-                                <tfoot>
-                                    <tr>
-                                        <td colspan="7">
-                                            <p>Information based on core specifications.</p>
-                                            <p><sup>x</sup> key–value pairs for <code>source</code> and <code>target</code> are required</p>
-                                            <p><sup>y</sup> JSON-LD is required, alternative RDF syntax are allowed on agreement. Unconstrained vocabulary and data</p>
-                                            <p>After dereferencing; GET<sup>1</sup>, string or object matching, GET<sup>2</sup>, matches the object, to verify a claim's existence.</p>
-                                            <p><sup>@</sup> Source format can be structured or unstructured, in which case a mention is dependent on the media type</p>
-                                        </td>
-                                    </tr>
-                                </tfoot>
-                                <tbody>
-                                    <tr><th>Semantic Pingback</th><td>Linkback</td><td><code>POST</code> (urlencoded)</td><td>key–value<sup>x</sup></td><td>Optional</td><td>RDF</td><td></td></tr>
-                                    <tr><th>Webmention</th><td>Linkback</td><td><code>POST</code> (urlencoded)</td><td>key–value<sup>x</sup></td><td>Required</td><td>Any<sup>@</sup></td><td></td></tr>
-                                    <tr><th>Linked Data Notifications</th><td>Fat ping</td><td><code>POST</code></td><td>JSON-LD<sup>y</sup></td><td>Optional</td><td>RDF</td><td></td></tr>
-                                </tbody>
-                            </table>
+                            <section id="compatibility-with-existing-systems" rel="schema:hasPart" resource="#compatibility-with-existing-systems">
+                                <h3 property="schema:name">Compatibility with existing systems</h3>
+                                <div datatype="rdf:HTML" property="schema:description">
+                                    <p>We intentionally take a bare minimum approach, preferring to suggest using LDN alongside other existing protocols and standards rather than re-specifying already standardised mechanisms for non-core behaviours. This has the advantage of resulting in a protocol which can serve as a module of a larger system, accompanied by other protocols according to the needs of the environment. Standalone implementations of LDN are also straightforward, as a result. For example:</p>
+                                    <ul>
+                                        <li><cite>WAC/ACL</cite> can be used along with an authentication mechanism to apply fine grained access controls to restrict who can send notifications, or who can retrieve notifications from the Inbox (used by the Solid suite of tools, and dokieli).</li>
+                                        <li><cite>WebSub</cite> can be used by a receiver to issue a subscription request to a sender's hub in order to trigger the sender to push notifications on a particular topic.</li>
+                                        <li>An Inbox can double as a <cite>Webhook</cite> callback URL, in order to request notifications from applications which post JSON-based payloads (used by sloph).</li>
+                                        <li><cite>ActivityPub</cite> specialises LDN sending with the <em>ActivityStreams 2.0</em> vocabulary for notification contents, as well as specifies additional behaviour for a receiver upon receiving notifications with particular contents in order to organise and distribute interactions within a social network (used by sloph, and LDN is referenced directly by the ActivityPub specification).</li>
+                                        <li><cite>SHACL/ShEx</cite> can be used to define the constraints of notification shape.</li>
+                                        <li><cite>Web Annotation Protocol</cite> is an LDP-based mechanism for creating new content, which can be a trigger for notifications to be sent to the Inbox of the annotation target (used by dokieli).</li>
+                                    </ul>
 
-                            <p>The LDN protocol has the potential to disseminate lossless information. Without the need of extensions, notifications can contain content that's precise or conforming to receiver's constraints. This is in contrast to protocols like Semantic Pingback and Webmention, where while specific <em>statements</em> are made at the source, there is no definite way to distinguish between multiple statements with the same source and target, in relation to the original notification. The receiving endpoints eventually handle the source data at their own discretion.</p>
+                                    <p>Importantly, an existing <abbr title="Linked Data Platform">LDP</abbr> implementation can serve as an LDN receiver. Simply advertising any <code>ldp:Container</code> as the Inbox for a resource is sufficient. As described previously, we confirmed this with two LDP servers which were developed prior to the LDN specification (Virtuoso and Solid Server).</p>
+                                </div>
+                            </section>
 
-                            <p>In treating notifications as any other Linked Data resources, LDN follows the second approach but without constraint on the contained information. As such LDN can cover the uses cases of "A refers to B" (1), as well as "C has a specific relation to D, as well as E" and "The weather is fine today".</p>
-                        </div>
-                    </section>
-
-                    <section id="evaluation" inlist="" rel="schema:hasPart" resource="#evaluation">
-                        <h2 property="schema:name">Evaluation</h2>
-                        <div datatype="rdf:HTML" property="schema:description" resource="#results" typeof="deo:Evaluation">
-                            <p>An existing [LDP] implementation can serve as an [LDN] receiver, by simply advertising any ldp:Container as the Inbox for a resource.</p>
-                            <p>What are some of the comparable features between implementations</p>
-                            <p>Number of requests to discover/send/consume</p>
-
-                            <p>Implementations are interoperable. How many implementations are out there.. over length of time... different code stacks (variations) .. different groups/people implementing (without prior knowledge).. </p>
-
-                            <section id="protocol-complexity-considerations" inlist="" rel="schema:hasPart" resource="#protocol-complexity-considerations">
-                                <h3 property="schema:name">Protocol Complexity Considerations</h3>
+                            <section id="complexity-of-implementation" rel="schema:hasPart" resource="#complexity-of-implementation">
+                                <h3 property="schema:name">Complexity of implementation</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
                                     <p>Given that <code>HTTP GET</code> headers provide the same information as <code>HTTP HEAD</code>, it is possible to omit the optional Inbox discovery via <code>HTTP HEAD</code>, as long as the Inbox can be discovered from the <code>Link</code> header or the body. This has the advantage of requiring applications to only make requests for and respond to <code>HTTP GET</code> requests, and thereby in a way simpler to implement and communicate with. However, one disadvantage is that the size of the entity-body is significant and puts a higher bandwidth requirement on applications to serve and consume, especially if only the <code>Link</code> header is of interest to discover the Inbox. Hence, <code>HTTP HEAD</code> is useful for optimisation reasons.</p>
 
-                                    <p>One other consideration here is with the use of the <code>Link</code> header itself, and whether that's appropriate, required or improves the protocol. Generally the separation of protocol and content level messages is important, and so the content in RDF should describe itself rather relying on HTTP headers. However, in the case of non-RDF resources, like binary formats, images, video, it is not possible to achieve this in the content body. Therefore, using the <code>Link</code> header makes it possible to advertise an Inbox for these type of resources. In cases where Website owners want to add an Inbox to their assets without having to individually updates their content (or headers), as well as if they don't have write access for the content, then the <code>Link</code> header makes this possible.</p>
-
                                     <p>Allowing the possibility of discovering an Inbox through <code>HTTP HEAD</code> or <code>Link</code> header is a pragmatic approach with optimisation benefits.</p>
+
+                                    <p>Dependencies</p>
+                                </div>
+                            </section>
+
+                            <section id="adaptability-and-extensibility" rel="schema:hasPart" resource="#adaptability-and-extensibility">
+                                <h3 property="schema:name">Adaptability and extensibility</h3>
+                                <div datatype="rdf:HTML" property="schema:description">
+                                    <p>In treating notifications as any other Linked Data resources, LDN follows the second approach but without constraint on the contained information. As such LDN can cover the uses cases of "A refers to B" (1), as well as "C has a specific relation to D, as well as E" and "The weather is fine today".</p>
+
+                                    <p>The LDN protocol has the potential to disseminate lossless information. Without the need of extensions, notifications can contain content that's precise or conforming to receiver's constraints. This is in contrast to protocols like Semantic Pingback and Webmention, where while specific <em>statements</em> are made at the source, there is no definite way to distinguish between multiple statements with the same source and target, in relation to the original notification. The receiving endpoints eventually handle the source data at their own discretion.</p>
+                                </div>
+                            </section>
+
+                            <section id="modulairty" rel="schema:hasPart" resource="#modulairty">
+                                <h3 property="schema:name">Modularity</h3>
+                                <div datatype="rdf:HTML" property="schema:description">
+                                    <p>As evidenced by implementations</p>
+                                </div>
+                            </section>
+
+                            <section id="publishing-challenges" rel="schema:hasPart" resource="#publishing-challenges">
+                                <h3 property="schema:name">Publishing challenges</h3>
+                                <div datatype="rdf:HTML" property="schema:description">
+                                    <p><strong>Target ownership</strong>: Publishers of the resources advertising an Inbox (target) should do so on a server they trust. Publishers must be aware that third-party access to headers or content could result in notifications being redirected.</p>
+
+                                    <p><strong class="todo"></strong>: One other consideration here is with the use of the <code>Link</code> header itself, and whether that's appropriate, required or improves the protocol. Generally the separation of protocol and content level messages is important, and so the content in RDF should describe itself rather relying on HTTP headers. However, in the case of non-RDF resources, like binary formats, images, video, it is not possible to achieve this in the content body. Therefore, using the <code>Link</code> header makes it possible to advertise an Inbox for these type of resources. In cases where Website owners want to add an Inbox to their assets without having to individually updates their content (or headers), as well as if they don't have write access for the content, then the <code>Link</code> header makes this possible.</p>
+                                </div>
+                            </section>
+
+                            <section id="content-challenges" rel="schema:hasPart" resource="#content-challenges">
+                                <h3 property="schema:name">Content challenges</h3>
+                                <div datatype="rdf:HTML" property="schema:description">
+                                    <p><strong>Natural Language Content</strong>: Building an international base of users is important in a federated network. Some LDN interactions can return content with natural language text, such as HTML fragments, or summary fields. Providing multiple language representations of each item might not be feasible in all circumstances. Implementations are encouraged to provide means of discovering the available languages and/or negotiating the language returned, such as using the HTTP <code>Accept-Language</code> header to negotiate and select the most appropriate language representation to send for a given request.</p>
+                                    <p><strong>Notifications as graphs</strong>:</p>
+                                    <p><strong>Notifications being modified</strong>: We have yet to assess the implications of applications modifying data that another application also makes use of.</p>
                                 </div>
                             </section>
 
                             <section id="tests-and-reports" inlist="" rel="schema:hasPart" resource="#tests-and-reports">
                                 <h3 property="schema:name">Tests and Reports</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
+                                    <p>Implementations are interoperable. How many implementations are out there.. over length of time... different code stacks (variations) .. different groups/people implementing (without prior knowledge).. </p>
                                 </div>
                             </section>
+
                         </div>
                     </section>
 
@@ -707,9 +866,9 @@
 
                             <p>Note: How about a discussion here?</p>
 
-                            <p><strong>Target ownership</strong>: Publishers of the resources advertising an Inbox (target) should do so on a server they trust. Publishers must be aware that third-party access to headers or content could result in notifications being redirected.</p>
+                            
 
-                            <p><strong>Natural Language Content</strong>: Building an international base of users is important in a federated network. Some LDN interactions can return content with natural language text, such as HTML fragments, or summary fields. Providing multiple language representations of each item might not be feasible in all circumstances. Implementations are encouraged to provide means of discovering the available languages and/or negotiating the language returned, such as using the HTTP <code>Accept-Language</code> header to negotiate and select the most appropriate language representation to send for a given request.</p>
+                            
 
                             <p>Note: Future work?</p>
                         </div>
