@@ -608,85 +608,116 @@
                         </div>
                     </section>
 
-                    <section id="analysis" rel="schema:hasPart" resource="#analysis">
-                        <h2 property="schema:name">Analysis</h2>
-                        <div datatype="rdf:HTML" property="schema:description">
+                    <section id="analysis-and-evaluation" rel="schema:hasPart" resource="#analysis-and-evaluation">
+                        <h2 property="schema:name">Analysis and Evaluation</h2>
+                        <div datatype="rdf:HTML" property="schema:description" typeof="deo:Evaluation">
                             <p>At its core, the LDN protocol describes the discovery of a resource's Inbox whence notifications are sent or consumed, and the sending and exposure of those notifications.</p>
 
-                            <p>We intentionally take a bare minimum approach, preferring to suggest using LDN alongside other existing protocols and standards rather than respecifying already standardised mechanisms for non-core behaviours. This has the advantage of resulting in a modular protocol which can be accompanied by other protocols in different environments according to application needs, as well as keeping LDN itself simple for stand-alone implementations. For example:</p>
-                            <ul>
-                                <li><cite>WAC/ACL</cite> can be used along with an authentication mechanism to apply fine grained access controls to restrict who can send notifications, or who can retrieve notifications from the Inbox.</li>
-                                <li><cite>WebSub</cite> can be used by a receiver to issue a subscription request to a sender's hub in order to trigger the sender to push notifications on a particular topic.</li>
-                                <li>An Inbox can double as a <cite>Webhook</cite> callback URL, in order to request notifications from applications which post JSON-based payloads.</li>
-                                <li><cite>ActivityPub</cite> specialises LDN sending with the <em>ActivityStreams 2.0</em> vocabulary for notification contents, as well as specifies additional behaviour for a receiver upon receiving notifications with particular contents in order to organise and distribute interactions within a social network.</li>
-                                <li><cite>SHACL/ShEx</cite> can be used to define the constraints of notification shape.</li>
-                                <li><cite>Web Annotation Protocol</cite> is an LDP-based mechanism for creating new content, which can be a trigger for notifications to be sent to the Inbox of the annotation target.</li>
-                            </ul>
+                            <section id="" rel="schema:hasPart" resource="#">
+                                <h3 property="schema:name">Summary comparison</h3>
+                                <div datatype="rdf:HTML" property="schema:description">
+                                    
+                                    <table id="comparison-of-notification-mechanisms">
+                                        <caption>Comparison of notification mechanisms</caption>
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th>Notification type</th>
+                                                <th>Delivery method</th>
+                                                <th>Payload body</th>
+                                                <th>Payload processing</th>
+                                                <th>Source representation</th>
+                                                <th>Requirements met</th>
+                                            </tr>
+                                        </thead>
+                                        <tfoot>
+                                            <tr>
+                                                <td colspan="7">
+                                                    <p>Information based on core specifications.</p>
+                                                    <p><sup>x</sup> key–value pairs for <code>source</code> and <code>target</code> are required</p>
+                                                    <p><sup>y</sup> JSON-LD is required, alternative RDF syntax are allowed on agreement. Unconstrained vocabulary and data</p>
+                                                    <p>After dereferencing; GET<sup>1</sup>, string or object matching, GET<sup>2</sup>, matches the object, to verify a claim's existence.</p>
+                                                    <p><sup>@</sup> Source format can be structured or unstructured, in which case a mention is dependent on the media type</p>
+                                                </td>
+                                            </tr>
+                                        </tfoot>
+                                        <tbody>
+                                            <tr><th>Semantic Pingback</th><td>Linkback</td><td><code>POST</code> (urlencoded)</td><td>key–value<sup>x</sup></td><td>Optional</td><td>RDF</td><td></td></tr>
+                                            <tr><th>Webmention</th><td>Linkback</td><td><code>POST</code> (urlencoded)</td><td>key–value<sup>x</sup></td><td>Required</td><td>Any<sup>@</sup></td><td></td></tr>
+                                            <tr><th>Linked Data Notifications</th><td>Fat ping</td><td><code>POST</code></td><td>JSON-LD<sup>y</sup></td><td>Optional</td><td>RDF</td><td></td></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </section>
 
-                            <p>Here we compare related non-domain specific notification mechanisms:</p>
+                            <section id="" rel="schema:hasPart" resource="#">
+                                <h3 property="schema:name">Compatibility with existing systems</h3>
+                                <div datatype="rdf:HTML" property="schema:description">
+                                    <p>We intentionally take a bare minimum approach, preferring to suggest using LDN alongside other existing protocols and standards rather than respecifying already standardised mechanisms for non-core behaviours. This has the advantage of resulting in a modular protocol which can be accompanied by other protocols in different environments according to application needs, as well as keeping LDN itself simple for stand-alone implementations. For example:</p>
+                                    <ul>
+                                        <li><cite>WAC/ACL</cite> can be used along with an authentication mechanism to apply fine grained access controls to restrict who can send notifications, or who can retrieve notifications from the Inbox.</li>
+                                        <li><cite>WebSub</cite> can be used by a receiver to issue a subscription request to a sender's hub in order to trigger the sender to push notifications on a particular topic.</li>
+                                        <li>An Inbox can double as a <cite>Webhook</cite> callback URL, in order to request notifications from applications which post JSON-based payloads.</li>
+                                        <li><cite>ActivityPub</cite> specialises LDN sending with the <em>ActivityStreams 2.0</em> vocabulary for notification contents, as well as specifies additional behaviour for a receiver upon receiving notifications with particular contents in order to organise and distribute interactions within a social network.</li>
+                                        <li><cite>SHACL/ShEx</cite> can be used to define the constraints of notification shape.</li>
+                                        <li><cite>Web Annotation Protocol</cite> is an LDP-based mechanism for creating new content, which can be a trigger for notifications to be sent to the Inbox of the annotation target.</li>
+                                    </ul>
 
-                            <table id="comparison-of-notification-mechanisms">
-                                <caption>Comparison of notification mechanisms</caption>
-                                <thead>
-                                    <tr>
-                                        <th></th>
-                                        <th>Notification type</th>
-                                        <th>Delivery method</th>
-                                        <th>Payload body</th>
-                                        <th>Payload processing</th>
-                                        <th>Source representation</th>
-                                        <th>Requirements met</th>
-                                    </tr>
-                                </thead>
-                                <tfoot>
-                                    <tr>
-                                        <td colspan="7">
-                                            <p>Information based on core specifications.</p>
-                                            <p><sup>x</sup> key–value pairs for <code>source</code> and <code>target</code> are required</p>
-                                            <p><sup>y</sup> JSON-LD is required, alternative RDF syntax are allowed on agreement. Unconstrained vocabulary and data</p>
-                                            <p>After dereferencing; GET<sup>1</sup>, string or object matching, GET<sup>2</sup>, matches the object, to verify a claim's existence.</p>
-                                            <p><sup>@</sup> Source format can be structured or unstructured, in which case a mention is dependent on the media type</p>
-                                        </td>
-                                    </tr>
-                                </tfoot>
-                                <tbody>
-                                    <tr><th>Semantic Pingback</th><td>Linkback</td><td><code>POST</code> (urlencoded)</td><td>key–value<sup>x</sup></td><td>Optional</td><td>RDF</td><td></td></tr>
-                                    <tr><th>Webmention</th><td>Linkback</td><td><code>POST</code> (urlencoded)</td><td>key–value<sup>x</sup></td><td>Required</td><td>Any<sup>@</sup></td><td></td></tr>
-                                    <tr><th>Linked Data Notifications</th><td>Fat ping</td><td><code>POST</code></td><td>JSON-LD<sup>y</sup></td><td>Optional</td><td>RDF</td><td></td></tr>
-                                </tbody>
-                            </table>
+                                    <p>An existing [LDP] implementation can serve as an [LDN] receiver, by simply advertising any ldp:Container as the Inbox for a resource.</p>
+                                </div>
+                            </section>
 
-                            <p>The LDN protocol has the potential to disseminate lossless information. Without the need of extensions, notifications can contain content that's precise or conforming to receiver's constraints. This is in contrast to protocols like Semantic Pingback and Webmention, where while specific <em>statements</em> are made at the source, there is no definite way to distinguish between multiple statements with the same source and target, in relation to the original notification. The receiving endpoints eventually handle the source data at their own discretion.</p>
-
-                            <p>In treating notifications as any other Linked Data resources, LDN follows the second approach but without constraint on the contained information. As such LDN can cover the uses cases of "A refers to B" (1), as well as "C has a specific relation to D, as well as E" and "The weather is fine today".</p>
-                        </div>
-                    </section>
-
-                    <section id="evaluation" inlist="" rel="schema:hasPart" resource="#evaluation">
-                        <h2 property="schema:name">Evaluation</h2>
-                        <div datatype="rdf:HTML" property="schema:description" resource="#results" typeof="deo:Evaluation">
-                            <p>An existing [LDP] implementation can serve as an [LDN] receiver, by simply advertising any ldp:Container as the Inbox for a resource.</p>
-                            <p>What are some of the comparable features between implementations</p>
-                            <p>Number of requests to discover/send/consume</p>
-
-                            <p>Implementations are interoperable. How many implementations are out there.. over length of time... different code stacks (variations) .. different groups/people implementing (without prior knowledge).. </p>
-
-                            <section id="protocol-complexity-considerations" inlist="" rel="schema:hasPart" resource="#protocol-complexity-considerations">
-                                <h3 property="schema:name">Protocol Complexity Considerations</h3>
+                            <section id="" rel="schema:hasPart" resource="#">
+                                <h3 property="schema:name">Complexity of implementation</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
                                     <p>Given that <code>HTTP GET</code> headers provide the same information as <code>HTTP HEAD</code>, it is possible to omit the optional Inbox discovery via <code>HTTP HEAD</code>, as long as the Inbox can be discovered from the <code>Link</code> header or the body. This has the advantage of requiring applications to only make requests for and respond to <code>HTTP GET</code> requests, and thereby in a way simpler to implement and communicate with. However, one disadvantage is that the size of the entity-body is significant and puts a higher bandwidth requirement on applications to serve and consume, especially if only the <code>Link</code> header is of interest to discover the Inbox. Hence, <code>HTTP HEAD</code> is useful for optimisation reasons.</p>
 
-                                    <p>One other consideration here is with the use of the <code>Link</code> header itself, and whether that's appropriate, required or improves the protocol. Generally the separation of protocol and content level messages is important, and so the content in RDF should describe itself rather relying on HTTP headers. However, in the case of non-RDF resources, like binary formats, images, video, it is not possible to achieve this in the content body. Therefore, using the <code>Link</code> header makes it possible to advertise an Inbox for these type of resources. In cases where Website owners want to add an Inbox to their assets without having to individually updates their content (or headers), as well as if they don't have write access for the content, then the <code>Link</code> header makes this possible.</p>
-
                                     <p>Allowing the possibility of discovering an Inbox through <code>HTTP HEAD</code> or <code>Link</code> header is a pragmatic approach with optimisation benefits.</p>
+
+                                    <p>Dependencies</p>
+                                </div>
+                            </section>
+
+                            <section id="" rel="schema:hasPart" resource="#">
+                                <h3 property="schema:name">Adaptability and extensibility</h3>
+                                <div datatype="rdf:HTML" property="schema:description">
+                                    <p>In treating notifications as any other Linked Data resources, LDN follows the second approach but without constraint on the contained information. As such LDN can cover the uses cases of "A refers to B" (1), as well as "C has a specific relation to D, as well as E" and "The weather is fine today".</p>
+
+                                    <p>The LDN protocol has the potential to disseminate lossless information. Without the need of extensions, notifications can contain content that's precise or conforming to receiver's constraints. This is in contrast to protocols like Semantic Pingback and Webmention, where while specific <em>statements</em> are made at the source, there is no definite way to distinguish between multiple statements with the same source and target, in relation to the original notification. The receiving endpoints eventually handle the source data at their own discretion.</p>
+                                </div>
+                            </section>
+
+                            <section id="" rel="schema:hasPart" resource="#">
+                                <h3 property="schema:name">Modularity</h3>
+                                <div datatype="rdf:HTML" property="schema:description">
+                                    <p>As evidenced by implementations</p>
+                                </div>
+                            </section>
+
+                            <section id="" rel="schema:hasPart" resource="#">
+                                <h3 property="schema:name">Publishing challenges</h3>
+                                <div datatype="rdf:HTML" property="schema:description">
+                                    <p><strong>Target ownership</strong>: Publishers of the resources advertising an Inbox (target) should do so on a server they trust. Publishers must be aware that third-party access to headers or content could result in notifications being redirected.</p>
+
+                                    <p><strong class="todo"></strong>: One other consideration here is with the use of the <code>Link</code> header itself, and whether that's appropriate, required or improves the protocol. Generally the separation of protocol and content level messages is important, and so the content in RDF should describe itself rather relying on HTTP headers. However, in the case of non-RDF resources, like binary formats, images, video, it is not possible to achieve this in the content body. Therefore, using the <code>Link</code> header makes it possible to advertise an Inbox for these type of resources. In cases where Website owners want to add an Inbox to their assets without having to individually updates their content (or headers), as well as if they don't have write access for the content, then the <code>Link</code> header makes this possible.</p>
+                                </div>
+                            </section>
+
+                            <section id="" rel="schema:hasPart" resource="#">
+                                <h3 property="schema:name">Content challenges</h3>
+                                <div datatype="rdf:HTML" property="schema:description">
+                                    <p><strong>Natural Language Content</strong>: Building an international base of users is important in a federated network. Some LDN interactions can return content with natural language text, such as HTML fragments, or summary fields. Providing multiple language representations of each item might not be feasible in all circumstances. Implementations are encouraged to provide means of discovering the available languages and/or negotiating the language returned, such as using the HTTP <code>Accept-Language</code> header to negotiate and select the most appropriate language representation to send for a given request.</p>
+                                    <p><strong>Notifications as graphs</strong>:</p>
                                 </div>
                             </section>
 
                             <section id="tests-and-reports" inlist="" rel="schema:hasPart" resource="#tests-and-reports">
                                 <h3 property="schema:name">Tests and Reports</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
+                                    <p>Implementations are interoperable. How many implementations are out there.. over length of time... different code stacks (variations) .. different groups/people implementing (without prior knowledge).. </p>
                                 </div>
                             </section>
+
                         </div>
                     </section>
 
@@ -707,9 +738,9 @@
 
                             <p>Note: How about a discussion here?</p>
 
-                            <p><strong>Target ownership</strong>: Publishers of the resources advertising an Inbox (target) should do so on a server they trust. Publishers must be aware that third-party access to headers or content could result in notifications being redirected.</p>
+                            
 
-                            <p><strong>Natural Language Content</strong>: Building an international base of users is important in a federated network. Some LDN interactions can return content with natural language text, such as HTML fragments, or summary fields. Providing multiple language representations of each item might not be feasible in all circumstances. Implementations are encouraged to provide means of discovering the available languages and/or negotiating the language returned, such as using the HTTP <code>Accept-Language</code> header to negotiate and select the most appropriate language representation to send for a given request.</p>
+                            
 
                             <p>Note: Future work?</p>
                         </div>
