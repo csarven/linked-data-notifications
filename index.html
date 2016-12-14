@@ -630,6 +630,7 @@
                                                     <dl class="abbr">
                                                         <dt>T1</dt><dd>Notification type</dd>
                                                         <dt>T2</dt><dd>Delivery method</dd>
+                                                        <dt>T3</dt><dd>Dependencies</dd>
                                                         <dt>R1</dt><dd>Modularity (application classes defined - S Sender, R Receiver, C Consumer, U Subscriber/User)</dd>
                                                         <dt>R2</dt><dd>Reusability</dd>
                                                         <dt>R3</dt><dd>Persitence (if required, how?)</dd>
@@ -639,7 +640,6 @@
                                                         <dt>R4C<sup>v</sup></dt><dd>Adaptability (verification - required? how?)</dd>
                                                         <dt>R4C<sup>o</sup></dt><dd>Adaptability (requirements for other referenced resources?)</dd>
                                                         <dt>R5</dt><dd>Subscription</dd>
-                                                        <dt>T3</dt><dd>Dependencies</dd>
                                                     </dl>
                                                     <hr/>
                                                     <dl class="abbr">
@@ -676,6 +676,7 @@
                                                 <th>Semantic Pingback</th>
                                                 <td>Linkback</td>
                                                 <td>POST</td>
+                                                <td>RDF</td>
                                                 <td>S R</td>
                                                 <td>/</td>
                                                 <td>/</td>
@@ -685,12 +686,12 @@
                                                 <td>! parse source</td>
                                                 <td>Any<sup>r</sup></td>
                                                 <td>X</td>
-                                                <td>RDF</td>
                                             </tr>
                                             <tr>
                                                 <th>Webmention</th>
                                                 <td>Linkback</td>
                                                 <td>POST</td>
+                                                <td>HTML</td>
                                                 <td>S R</td>
                                                 <td>-</td>
                                                 <td>-</td>
@@ -700,12 +701,12 @@
                                                 <td>! parse source</td>
                                                 <td>Any<sup>h</sup></td>
                                                 <td>X</td>
-                                                <td>HTML</td>
                                             </tr>
                                             <tr>
                                                 <th>Provenance Pingback</th>
                                                 <td>Linkback</td>
                                                 <td>POST</td>
+                                                <td>RDF</td>
                                                 <td>S R</td>
                                                 <td>/</td>
                                                 <td>/</td>
@@ -715,12 +716,12 @@
                                                 <td>/</td>
                                                 <td>RDF<sup>q</sup></td>
                                                 <td>X</td>
-                                                <td>RDF</td>
                                             </tr>
                                             <tr>
                                                 <th>DSNotify</th>
                                                 <td>Fat ping</td>
                                                 <td>POST, PUT</td>
+                                                <td>XML, PuSH</td>
                                                 <td>S U</td>
                                                 <td>/</td>
                                                 <td>-</td>
@@ -730,12 +731,12 @@
                                                 <td>-</td>
                                                 <td>RDF<sup>t</sup></td>
                                                 <td>!</td>
-                                                <td>XML, PuSH</td>
                                             </tr>
                                             <tr>
                                                 <th>sparqlPuSH</th>
                                                 <td>Fat ping</td>
                                                 <td>POST</td>
+                                                <td>XML, SPARQL, PuSH</td>
                                                 <td>S U</td>
                                                 <td>-</td>
                                                 <td>-</td>
@@ -745,12 +746,12 @@
                                                 <td>-</td>
                                                 <td>RDF<sup>t</sup></td>
                                                 <td>!</td>
-                                                <td>XML, SPARQL, PuSH</td>
                                             </tr>
                                             <tr>
                                                 <th>ResourceSync</th>
                                                 <td>Fat ping</td>
                                                 <td>POST</td>
+                                                <td>XML, PuSH</td>
                                                 <td>S U</td>
                                                 <td>/</td>
                                                 <td>-</td>
@@ -760,12 +761,12 @@
                                                 <td>-</td>
                                                 <td>?</td>
                                                 <td>!</td>
-                                                <td>XML, PuSH</td>
                                             </tr>
                                             <tr>
                                                 <th>Linked Data Notifications</th>
                                                 <td>Fat ping</td>
                                                 <td>POST</td>
+                                                <td>JSON-LD</td>
                                                 <td>S R C</td>
                                                 <td>!</td>
                                                 <td>! URI</td>
@@ -775,7 +776,6 @@
                                                 <td>+ app</td>
                                                 <td>-</td>
                                                 <td>O app</td>
-                                                <td>JSON-LD</td>
                                             </tr>
                                         </tbody>
                                     </table>
