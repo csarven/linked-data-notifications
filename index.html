@@ -51,7 +51,7 @@
                     <dt>Identifier</dt>
                     <dd><a href="http://csarven.ca/linked-data-notifications" rel="owl:sameAs">http://csarven.ca/linked-data-notifications</a></dd>
                 </dl>
-
+<!--
                 <dl id="document-in-reply-to">
                     <dt>In Reply To</dt>
                     <dd><a href="http://2017.eswc-conferences.org/call-papers" rel="sioc:reply_of">ESWC 2017 Call for Papers</a></dd>
@@ -71,19 +71,19 @@
                     <dt>License</dt>
                     <dd><a href="https://creativecommons.org/licenses/by/4.0/" rel="schema:license" title="Creative Commons Attribution 4.0 Unported">CC BY 4.0</a></dd>
                 </dl>
-
+ -->
                 <div id="content">
                     <section id="abstract">
                         <h2>Abstract</h2>
                         <div datatype="rdf:HTML" property="schema:abstract">
-                          <p>In this article we describe the Linked Data Notifications (LDN) protocol, which is a Candidate Recommendation of the W3C (<a href="https://www.w3.org/TR/ldn/">https://www.w3.org/TR/ldn/</a>).
+                          <p>In this article we describe the Linked Data Notifications (LDN) protocol, which is a Candidate Recommendation of the W3C<!-- (<a href="https://www.w3.org/TR/ldn/">https://www.w3.org/TR/ldn/</a>) -->.
                           Notifications are sent over the Web for a variety of purposes, for example, by social applications. 
 						  The data contained within a notification is structured arbitrarily, and typically only usable by the application which generated it in the first place.
 						  In the spirit of Linked Data, we propose that notifications should be reusable by multiple authorised applications.
 						  Through separating the concepts of <em>senders</em>, <em>receivers</em> and <em>consumers</em> of notifications, and leveraging Linked Data principles of shared vocabularies and URIs, LDN provides a building block for decentralised Web applications. This permits end users more freedom to switch between the online tools they use, as well as generating greater value when notifications from different sources can be used in combination. 
 						  We situate LDN alongside related initiatives, and discuss additional considerations such as security and abuse prevention measures. 
-						  We evaluate the protocol's effectiveness with multiple, independent implementations, which pass a suite of formal tests and can be demonstrated interoperating with each other. 
-						  The canonical URI of this article is http://csarven.ca/linked-data-notifications</p>
+						  We evaluate the protocol's effectiveness with multiple, independent implementations, which pass a suite of formal tests and can be demonstrated interoperating with each other.<!--
+						  The canonical URI of this article is http://csarven.ca/linked-data-notifications --></p>
                         </div>
                     </section>
 
@@ -368,29 +368,25 @@
 <code>POST /inbox/ HTTP/1.1</code>
 <code>Host: example.org</code>
 <code>Content-Type: application/ld+json</code>
-<code>Content-Language: en</code>
 <code></code>
 <code>{</code>
 <code>  "@context": {</code>
 <code>    "@language": "en",</code>
 <code>    "sioc": "http://rdfs.org/sioc/ns#",</code>
-<code>    "foaf": "http://xmlns.com/foaf/0.1/"</code>
-<code>  },</code>
+<code>    "foaf": "http://xmlns.com/foaf/0.1/" },</code>
 <code>  "@id": "",</code>
 <code>  "@type": "sioc:Comment",</code>
 <code>  "sioc:content": "This is a great article!",</code>
 <code>  "sioc:reply_of": { "@id": "http://example.org/article" },</code>
 <code>  "sioc:created_at": {</code>
 <code>    "@type": "http://www.w3.org/2001/XMLSchema#dateTime",</code>
-<code>    "@value": "2015-12-23T16:44:21Z"</code>
-<code>  },</code>
+<code>    "@value": "2015-12-23T16:44:21Z" },</code>
 <code>  "sioc:has_creator": {</code>
 <code>    "@id": "http://example.org/profile",</code>
 <code>    "@type": "sioc:UserAccount",</code>
 <code>    "sioc:account_of": { "@id": "http://example.org/profile#alice" },</code>
 <code>    "sioc:avatar": { "@id": "http://example.org/profile/avatar.png" },</code>
-<code>    "foaf:name": "Alice"</code>
-<code>  }</code>
+<code>    "foaf:name": "Alice" }</code>
 <code>}</code></pre>
                                         <figcaption property="schema:name">This notification body contains information about a comment and the user who created the comment, described by the Semantically Interlinked Online Communities (SIOC) and Friend-of-a-Friend (FOAF) vocabularies.</figcaption>
                                     </figure>
@@ -400,11 +396,9 @@
 <code>POST /inbox/ HTTP/1.1</code>
 <code>Host: csarven.ca</code>
 <code>Content-Type: text/turtle</code>
-<code>Content-Language: en</code>
 <code></code>
 <code>@prefix as: &lt;https://www.w3.org/ns/activitystreams#&gt; .</code>
 <code>@prefix cito: &lt;http://purl.org/spar/cito/&gt; .</code>
-<code></code>
 <code>&lt;&gt;  a         as:Announce</code>
 <code>  as:object   &lt;https://linkedresearch.org/resources#r-903b83&gt; ;</code>
 <code>  as:target   &lt;http://csarven.ca/dokieli#architecture&gt; ;</code>
