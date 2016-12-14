@@ -431,8 +431,8 @@
                     <section id="implementations" inlist="" rel="schema:hasPart" resource="#implementations">
                         <h2 property="schema:name">Implementations</h2>
                         <div datatype="rdf:HTML" property="schema:description">
-                            <p>Here we summarise the 16 LDN implementations we are aware of to date. 
-							They are built by 9 different teams or individuals using different tool stacks (5 clientside JavaScript, 3 PHP, 3 NodeJS, 3 Python, 1 Perl, 1 C/C++) and have submitted <a href="https://github.com/w3c/ldn/tree/master/implementations">implementation reports</a> as part of the W3C standardisation process.
+                            <p>Here we summarise the 17 LDN implementations we are aware of to date.
+							They are built by 10 different teams or individuals using different tool stacks (5 clientside JavaScript, 3 PHP, 3 NodeJS, 3 Python, 1 Perl, 1 Virtuoso Server Pages, 1 Java) and have submitted <a href="https://github.com/w3c/ldn/tree/master/implementations">implementation reports</a> as part of the W3C standardisation process.
                             We note that any <a href="https://www.w3.org/wiki/LDP_Implementations">LDP implementation</a> is a conforming LDN receiver; we refer here to the ones we have tested. We discuss the value of these implementations further in the <a href="#analysis-and-evaluation">Evaluation</a> section.</p>
 
                             <table>
@@ -472,7 +472,7 @@
                                     <tr>
                                         <th><a href="https://wiki.duraspace.org/display/FF">Fedora Repository</a></th>
                                         <td>R</td>
-                                        <td>Open source repository system</td>
+                                        <td>Open source repository system (LDP)</td>
                                     </tr>
                                     <tr>
                                         <th><a href="https://github.com/Kongaloosh/IndieAnndroid">IndieAnndroid</a></th>
@@ -795,7 +795,7 @@
                                 <div datatype="rdf:HTML" property="schema:description">
                                     <p>We intentionally take a bare minimum approach, preferring to suggest using LDN alongside other existing protocols and standards rather than re-specifying already standardised mechanisms for non-core behaviours. This has the advantage of resulting in a protocol which can serve as a module of a larger system, accompanied by other protocols according to the needs of the environment (R1 Modularity, R4 Adaptability). Examples include (listed with implementations that already use these protocols alongside LDN):</p>
                                     <ul>
-                                        <li><cite><a href="https://www.w3.org/wiki/WebAccessControl">Web Access Control</a></cite> can be used along with an authentication mechanism to apply fine grained access controls to restrict who can send notifications, or who can retrieve notifications from the Inbox (used by the Solid suite of tools, and dokieli).</li>
+                                        <li><cite><a href="https://www.w3.org/wiki/WebAccessControl">Web Access Control</a></cite> can be used along with an authentication mechanism to apply fine grained access controls to restrict who can send notifications, or who can retrieve notifications from the Inbox (used by the Solid suite of tools, Virtuoso+ODS-Briefcase, and dokieli).</li>
                                         <li><cite><a href="https://www.w3.org/TR/websub/">WebSub</a></cite> can be used by a receiver to issue a subscription request to a sender's hub in order to trigger the sender to push notifications on a particular topic.</li>
                                         <li>An Inbox can double as a <cite><a href="http://www.webhooks.org/">Webhooks</a></cite> callback URL, in order to request notifications from applications which post JSON-based payloads (used by sloph).</li>
                                         <li><cite><a href="https://www.w3.org/TR/activitypub/">ActivityPub</a></cite> is a W3C Candidate Recommendation for decentralised social media applications based on the <a href="https://www.w3.org/ns/activitystreams-vocabulary">ActivityStreams 2.0</a> (AS2) vocabulary. ActivityPub directly references LDN for delivery of notifications, with the additional requirement that notification contents are AS2. It also specifies additional behaviour for a receiver upon receiving notifications in order to propagate information through the social network (used by sloph).</li>
@@ -805,7 +805,7 @@
 
                                     <p>Importantly, any existing <abbr title="Linked Data Platform">LDP</abbr> implementation can serve as an LDN receiver. Simply advertising any <code>ldp:Container</code> as the Inbox for a resource is sufficient. We confirmed this with three LDP servers which were developed prior to the LDN specification (Virtuoso, CarbonLDP and Solid Server).</p>
 
-                                    <p>LDN has been integrated into existing domain specific systems: dokieli, IndieAnndroid, Linked Edit Rules, sloph, solid-client. Standalone implementations of LDN are also straightforward as a result of this modularity, ie: errol, mayktso, onscreen, pyLDN, RDF::LinkedData::Notifications, solid-inbox, solid-notifications.</p>
+                                    <p>LDN has been integrated into existing domain specific systems: dokieli, IndieAnndroid, Linked Edit Rules, sloph, solid-client. Standalone implementations of LDN are also straightforward as a result of this modularity, ie: errol, Fedora Repository, mayktso, onscreen, pyLDN, RDF::LinkedData::Notifications, solid-inbox, solid-notifications.</p>
                                 </div>
                             </section>
 
