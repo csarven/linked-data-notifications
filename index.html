@@ -228,8 +228,8 @@
                                 <div datatype="rdf:HTML" property="schema:description">
 									<p>There is a <a href="">social expectation and technical arguments</a> for ensuring the persistence of identifiers of Web resources [<a class="ref" href="">9</a>].
                                     This is inconsistent with the traditionally ephemeral nature of notifications.  
-                                    Applications may benefit from referring to or reusing notifications if the notifications are known to be available in the long term, or indicate their expected lifespan [<a class="ref" href="">10</a>, <a href="https://www.w3.org/TR/dwbp/#UniqueIdentifiers" title="Best Practice 9: Use persistent URIs as identifiers of datasets"></a>, <a href="https://tools.ietf.org/html/rfc7089"></a>].</p>
-                                    <p>A <em>RESTful architecture</em> [<a class="ref" href=""></a>] is well suited for persistent notifications, as it involves organisation of atomic resources, their discovery and description, and a lightweight API for the <abbr title="create, read, update, and delete">CRUD</abbr> (create, read, update, and delete) operations [<a href="http://ws-rest.org/2011/proc/a5-page.pdf">LD&amp;REST</a>].
+                                    Applications may benefit from referring to or reusing notifications if the notifications are known to be available in the long term, or indicate their expected lifespan [<a class="ref" href="">10</a><!-- , <a href="https://www.w3.org/TR/dwbp/#UniqueIdentifiers" title="Best Practice 9: Use persistent URIs as identifiers of datasets"></a>, <a href="https://tools.ietf.org/html/rfc7089"></a>-->].</p>
+                                    <p>A <em>RESTful architecture</em> [<a class="ref" href="">11</a>] is well suited for persistent notifications, as it involves organisation of atomic resources, their discovery and description, and a lightweight API for the <abbr title="create, read, update, and delete">CRUD</abbr> (create, read, update, and delete) operations [<a class="ref" href="">12</a>].
                                     This enforces the notion that notifications are considered resources in their own right, with their own dereferencable URIs.
                                     </p>
 
@@ -244,7 +244,6 @@
                             <section id="adaptability" rel="schema:hasPart" resource="#adaptability">
                                 <h4 property="schema:name">R4 Adaptability</h4>
                                 <div datatype="rdf:HTML" property="schema:description">
-
                                     <p>Linked Data applications benefit from domain-driven designs; that is, functionality being small and focussed on a particular purpose, rather than generic. We believe a notification protocol should be adaptable for different domains, but that there is no need to create multiple domain-specific notification protocols; the fundamental mechanics are the same.</p>
 
                                     <p><strong>R4-A</strong>: Any resource may be the <em>target</em> of a notification. By target, we mean a notification may be addressed <em>to</em> the resource, be <em>about</em> the resource, or for a sender to otherwise decide that it is appropriate to draw the attention of the resource (or resource owner) to the information in the notification body. As such, any Web resource must be able to advertise an endpoint to which it can receive notifications. Resources can be RDF or non-RDF (such as an image, or CSV dataset), and may be informational (a blog post, a user profile) or non-informational (a person).</p>
@@ -266,7 +265,7 @@
                                     <p>A possible filtering mechanism is rejecting notifications which do not match a specific pattern in their contents, or the <em>shape</em> of the data, in order to allow a certain class of applications consume them.
                                     For example, if the Inbox owner knows that they will only ever use a consuming application which processes friend requests, they can configure their receiver to filter out anything that doesn't match the pattern for a friend request, helping their consumer to be more efficient.
                                     If the notification constraints are also advertised by the receiving service as structured descriptions, generation and consumption of the notifications can be further automated.
-                                    Possible specifications for doing so are <cite><a href="https://www.w3.org/TR/shacl/">SHACL</a></cite> or <cite><a href="https://shexspec.github.io/spec/">ShEx</a></cite>.</p>
+                                    Possible specifications for doing so are W3C <cite><a href="https://www.w3.org/TR/shacl/">Shapes Constraint Language (SHACL)</a></cite> [<a class="ref" href="">13</a>] or <cite><a href="https://shexspec.github.io/spec/">ShEx</a></cite>.</p>
 
                                     <p>Receivers may wish to filter notifications by verifying the sender, through for example a whitelist or a web of trust. 
                                     This requires an authentication mechanism and since different authentication mechanisms are appropriate for different applications, the notification protocol should ideally be usable alongside various methods such as clientside certificates (e.g. WebID+TLS), token-based (e.g. OAuth 2.0), or digital signatures. 
@@ -280,7 +279,6 @@
                             <section id="subscribing" inlist="" rel="schema:hasPart" resource="#subscribing">
                                 <h4 property="schema:name">R5 Subscribing</h4>
                                 <div datatype="rdf:HTML" property="schema:description">
-
                                     <p>In general, applications may require that new notifications are pushed to them in real-time, or to request them at appropriate intervals. 
                                     To take this into account, we expand our definition of senders, receivers and consumers with the following interaction expectations: </p>
                                     <ul>
@@ -290,14 +288,11 @@
 
                                     <p>Thus, an application which offers an endpoint or callback URL to which notifications should be sent directly is a receiver, and an application which fetches notifications from an endpoint on its own schedule is a consumer.
                                     Much of the related work <em>requires</em> notifications to be explicitly solicited in order to trigger sending. Since in a decentralised model, receivers may not be aware of possible sources for notifications, our sender-receiver relationship depends on the sender's autonomy to make such decisions by itself. 
-                                    This does not preclude the scenario in which a receiver may wish to solicit notifications from a particular sender, but as there are already subscription mechanisms in wide use on the Web, we do not need to specify it as part of LDN. For example, WebSub<sup><a href="#fn-websub">w</a></sup>, the WebSocket Protocol, or HTTP Web Push can be used.</p>
-
+                                    This does not preclude the scenario in which a receiver may wish to solicit notifications from a particular sender, but as there are already subscription mechanisms in wide use on the Web, we do not need to specify it as part of LDN. For example, <cite><a href="https://www.w3.org/TR/websub/">WebSub</a></cite> (recent W3C evolution of PubSubHubbub), the <cite>WebSocket Protocol</cite>, or <cite>HTTP Web Push</cite> can be used.</p>
                                 </div>
                             </section>
 
-                            <p>Given our adoption of Linked Data principles and a RESTful architecture, a further design decision we made was to ensure minimal compatibility with the <em>Linked Data Platform</em> (LDP) specification [<a class="ref" href=""></a>]. LDP is a RESTful read-write API for RDF resources, which groups related resources together into constructs known as <em>Containers</em>. Thus, existing LDP servers can be used to store notifications, as new notifications can be created by <code>POST</code>ing RDF to a Container.</p>
- 
-                            <p><sup id="fn-websub">w. WebSub is a recent W3C evolution of PubSubHubbub.</sup></p>
+                            <p>Given our adoption of Linked Data principles and a RESTful architecture, a further design decision we made was to ensure minimal compatibility with the <cite><a href="https://www.w3.org/TR/ldp/">Linked Data Platform</a></cite> (LDP) specification [<a class="ref" href="">14</a>]. LDP is a RESTful read-write API for RDF resources, which groups related resources together into constructs known as <em>Containers</em>. Thus, existing LDP servers can be used to store notifications, as new notifications can be created by <code>POST</code>ing RDF to a Container.</p>
                         </div>
                     </section>
 
@@ -894,14 +889,18 @@ Pages 223-226, ISBN: 978-1-4503-4144-8, doi:10.1145/2872518.2890529, <a rel="sch
 <li>Haslhofer, B., Popitsch, N.: <cite>DSNotify – Detecting and Fixing Broken Links in Linked Data Sets</cite>, WWW, 2010, <a rel="schema:citation" href="http://eprints.cs.univie.ac.at/81/1/2010_WWW_DSNotify.pdf">http://eprints.cs.univie.ac.at/81/1/2010_WWW_DSNotify.pdf</a></li>
 <li>Passant, A., Mendes, P.N.: <cite>sparqlPuSH: Proactive notification of data updates in RDF stores using PubSubHubbub</cite>. In CEUR Workshop Proceedings, Vol. 699, CEUR-WS.org, 2010, <a rel="schema:citation" href="http://ceur-ws.org/Vol-699/Paper6.pdf">http://ceur-ws.org/Vol-699/Paper6.pdf</a></li>
 <li id="">Klein, M., Van de Sompel, H., Warner, S., Klyne, G., Haslhofer, B., Nelson, M., Lagoze, C., Sanderson, R.: ResourceSync Framework Specification – Change Notification, 2016, <a rel="schema:citation" href="http://www.openarchives.org/rs/notification/1.0/notification">http://www.openarchives.org/rs/notification/1.0/notification</a></li>
-<li>Berners-Lee, T.: Cool URIs don't change, W3C, 1998, <a rel="schema:citation" href="https://www.w3.org/Provider/Style/URI.html" rel="schema:citation">https://www.w3.org/Provider/Style/URI.html</a></li>
-<li>Archer, P., Loutas, N., Goedertier S., Kourtidis, S.: <cite>Study On Persistent URIs</cite>, 2012, <a href="http://philarcher.org/diary/2013/uripersistence/">http://philarcher.org/diary/2013/uripersistence/</a>
+<li>Berners-Lee, T.: <cite>Cool URIs don't change</cite>, W3C, 1998, <a rel="schema:citation" href="https://www.w3.org/Provider/Style/URI.html">https://www.w3.org/Provider/Style/URI.html</a></li>
+<li>Archer, P., Loutas, N., Goedertier S., Kourtidis, S.: <cite>Study On Persistent URIs</cite>, 2012, <a href="http://philarcher.org/diary/2013/uripersistence/">http://philarcher.org/diary/2013/uripersistence/</a></li>
 
+
+<li>Fielding, R. T.: <cite>Architectural Styles and the Design of Network-based Software Architectures</cite>. Doctoral dissertation, University of California, Irvine, 2000, <a rel="schema:citation" href="http://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm">http://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm</a></li>
+<li>Page, K.R., De Roure, D.C., Martinez, K.:<cite>REST and Linked Data: a match made for domain driven development?</cite>, WWW, WS-REST, 2011, <a rel="schema:citation" href="http://ws-rest.org/2011/proc/a5-page.pdf">http://ws-rest.org/2011/proc/a5-page.pdf</a></li>
+<li>Knublauch, H., Kontokostas, D.: <cite>Shapes Constraint Language (SHACL)</cite>, W3C Working Draft, 2016, <a rel="schema:citation" href="https://www.w3.org/TR/shacl/"></a></li>
+<li>Speicher, S., Arwe, J., Malhotra, A.: <cite>Linked Data Platform</cite>, W3C Recommendation, 2015, <a href="https://www.w3.org/TR/ldp/">https://www.w3.org/TR/ldp/</a></li>
 
 
 <li>Webber, C., Tallon, J.: <cite>ActivityPub</cite>, W3C Candidate Recommendation, 2016, <a href="https://www.w3.org/TR/activitypub/">https://www.w3.org/TR/activitypub/</a></li>
 
-                                <li id="">Fielding, R. T.: <cite>Architectural Styles and the Design of Network-based Software Architectures</cite>. Doctoral dissertation, University of California, Irvine, 2000, <a rel="schema:citation" href="http://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm">http://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm</a></li>
 
                             </ol>
                         </div>
