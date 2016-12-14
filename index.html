@@ -591,32 +591,43 @@
                             <section id="comparison-summary" rel="schema:hasPart" resource="#comparison-summary">
                                 <h3 property="schema:name">Comparison summary</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
-                                  <p>Here we compare existing notification mechanisms from related work. The criteria from the <a href="#requirements-and-design-considerations">requirements and design considerations</a> is included along with additional information which helps to capture some of the differences in their designs.</p>
+                                  <p>Here we compare existing notification mechanisms from related work. The criteria from the <a href="#requirements-and-design-considerations">requirements and design considerations</a> are included (denoted by <em>Rx</em>) along with additional technical information which helps to capture some of the differences in their designs (denoted by <em>Tx</em>).</p>
 
                                     <table id="comparison-of-notification-mechanisms">
                                         <caption>Comparison of notification mechanisms</caption>
                                         <thead >
                                             <tr>
-                                                <th>Mechanism</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th>13</th>
+                                                <th>Mechanism</th>
+                                                <th>T1</th>
+                                                <th>T2</th>
+                                                <th>R1</th>
+                                                <th>R2</th>
+                                                <th>R3</th>
+                                                <th>R4A</th>
+                                                <th>R4B</th>
+                                                <th>R4Cp</th>
+                                                <th>R4Cv</th>
+                                                <th>R4Co</th>
+                                                <th>R5</th>
+                                                <th>T3</th>
                                             </tr>
                                         </thead>
                                         <tfoot>
                                             <tr>
                                                 <td colspan="14">
                                                     <dl class="abbr">
-                                                        <dt>1</dt><dd>Notification type</dd>
-                                                        <dt>2</dt><dd>Delivery method: how the notification is sent</dd>
-                                                        <dt>3</dt><dd>Payload body: what is sent as the notification</dd>
-                                                        <dt>4</dt><dd>Payload processing: any specified requirements by the server?</dd>
-                                                        <dt>5</dt><dd>Verification: checking whether notification is acceptable</dd>
-                                                        <dt>6</dt><dd>Verification mechanism: how is verification carried out</dd>
-                                                        <dt>7</dt><dd>Notification identification</dd>
-                                                        <dt>8</dt><dd>Target representation (pertinent to discovery of notifications endpoint)</dd>
-                                                        <dt>9</dt><dd>Other resources referenced from the notification, eg. source</dd>
-                                                        <dt>10</dt><dd>Subscription: are notifications solicited by receiver?</dd>
-                                                        <dt>11</dt><dd>Persistence</dd>
-                                                        <dt>12</dt><dd>Reusability</dd>
-                                                        <dt>13</dt><dd>Dependencies</dd>
+                                                        <dt>T1</dt><dd>Notification type</dd>
+                                                        <dt>T2</dt><dd>Delivery method</dd>
+                                                        <dt>R1</dt><dd>Modularity (application classes defined - S Sender, R Receiver, C Consumer, U Subscriber/User)</dd>
+                                                        <dt>R2</dt><dd>Reusability</dd>
+                                                        <dt>R3</dt><dd>Persitence (if required, how?)</dd>
+                                                        <dt>R4A</dt><dd>Adaptability (target representation)</dd>
+                                                        <dt>R4B</dt><dd>Adaptability (notification body)</dd>
+                                                        <dt>R4C<sup>p</sup></dt><dd>Adaptability (payload processing required?)</dd>
+                                                        <dt>R4C<sup>v</sup></dt><dd>Adaptability (verification - required? how?)</dd>
+                                                        <dt>R4C<sup>o</sup></dt><dd>Adaptability (requirements for other referenced resources?)</dd>
+                                                        <dt>R5</dt><dd>Subscription</dd>
+                                                        <dt>T3</dt><dd>Dependencies</dd>
                                                     </dl>
                                                     <hr/>
                                                     <dl class="abbr">
@@ -624,9 +635,9 @@
                                                         <dt>n/s</dt><dd>not specified, in scope</dd>
                                                         <dt>no</dt><dd>explicitly disallowed</dd>
                                                         <dt>app</dt><dd>application specific decision</dd>
-                                                        <dt>req</dt><dd>required</dd>
-                                                        <dt>opt</dt><dd>optional</dd>
-                                                        <dt>rec</dt><dd>recommended</dd>
+                                                        <dt>req</dt><dd>required (<em>MUST</em>)</dd>
+                                                        <dt>rec</dt><dd>recommended (<em>SHOULD</em>)</dd>
+                                                        <dt>opt</dt><dd>optional (<em>MAY</em>)</dd>
                                                         <dt>PuSH</dt><dd>PubSubHubbub</dd>
                                                     </dl>
                                                     <hr/>
@@ -634,12 +645,18 @@
                                                         <dt><sup>h</sup></dt><dd>HTML recommended</dd>
                                                         <dt><sup>j</sup></dt><dd>JSON-LD is required, alternative RDF representations can be negotiated.</dd>
                                                         <dt><sup>k</sup></dt><dd>key–value pairs for <code>source</code> and <code>target</code> are required</dd>
-                                                        <dt><sup>p</sup></dt><dd><a href="http://www.w3.org/TR/prov-o/">The PROV Ontology</a></dd>
+                                                        <dt><sup>q</sup></dt><dd>Provenance records with <a href="http://www.w3.org/TR/prov-o/">PROV Ontology</a></dd>
                                                         <dt><sup>r</sup></dt><dd>RDF representation recommended</dd>
-                                                        <dt><sup>ra</sup></dt><dd>SPARQL results transformed to RSS,Atom</dd>
+                                                        <dt><sup>ra</sup></dt><dd>SPARQL results transformed to RSS/Atom</dd>
                                                         <dt><sup>s</sup></dt><dd><a href="https://www.sitemaps.org/protocol.html">Sitemaps</a></dd>
+                                                        <dt><sup>t</sup><dd>Described in an RDF store or dataset</dd>
                                                     </dl>
                                                 </td>
+                                                <!-- Notes for how I removed some ?s:
+                                                    * target representation is n/a when there's no discovery step for the sender ie. subscription based
+
+                                                    * verification required is n/a when there's a subscription relationship because we assume the receiver trusts the sender
+                                                -rhiaro -->
                                             </tr>
                                         </tfoot>
                                         <tbody>
@@ -647,112 +664,105 @@
                                                 <th>Semantic Pingback</th>
                                                 <td>Linkback</td>
                                                 <td>POST</td>
+                                                <td>S R</td>
+                                                <td>n/s</td>
+                                                <td>n/s</td>
+                                                <td>Any<sup>r</sup></td>
                                                 <td>form urlencoded<sup>k</sup></td>
                                                 <td>req</td>
-                                                <td>req</td>
-                                                <td>parse source</td>
-                                                <td>n/s</td>
-                                                <td>Any<sup>r</sup></td>
+                                                <td>req, parse source</td>
                                                 <td>Any<sup>r</sup></td>
                                                 <td>no</td>
-                                                <td>n/s</td>
-                                                <td>n/s</td>
                                                 <td>RDF</td>
                                             </tr>
                                             <tr>
                                                 <th>Webmention</th>
                                                 <td>Linkback</td>
                                                 <td>POST</td>
+                                                <td>S R</td>
+                                                <td>n/a</td>
+                                                <td>n/a</td>
+                                                <td>Any<sup>h</sup></td>
                                                 <td>form urlencoded<sup>k</sup></td>
                                                 <td>req</td>
-                                                <td>req</td>
-                                                <td>parse source</td>
-                                                <td>n/a</td>
-                                                <td>Any</td>
+                                                <td>req, parse source</td>
                                                 <td>Any<sup>h</sup></td>
                                                 <td>no</td>
-                                                <td>n/a</td>
-                                                <td>n/a</td>
                                                 <td>HTML</td>
                                             </tr>
                                             <tr>
                                                 <th>Provenance Pingback</th>
                                                 <td>Linkback</td>
                                                 <td>POST</td>
+                                                <td>S R</td>
+                                                <td>n/s</td>
+                                                <td>n/s</td>
+                                                <td>n/s</td>
                                                 <td>URI list</td>
                                                 <td>n/s</td>
-                                                <td>n/a</td>
-                                                <td>n/a</td>
-                                                <td>n/a</td>
                                                 <td>n/s</td>
-                                                <td>RDF<sup>p</sup></td>
+                                                <td>RDF<sup>q</sup></td>
                                                 <td>no</td>
-                                                <td>n/s</td>
-                                                <td>n/a</td>
                                                 <td>RDF</td>
                                             </tr>
                                             <tr>
                                                 <th>DSNotify</th>
                                                 <td>Fat ping</td>
                                                 <td>POST, PUT</td>
+                                                <td>S U</td>
+                                                <td>n/s</td>
+                                                <td>n/a</td>
+                                                <td>n/a</td>
                                                 <td>XML</td>
                                                 <td>n/s</td>
-                                                <td>n/s</td>
-                                                <td>n/s</td>
-                                                <td>n/s</td>
-                                                <td>n/s</td>
-                                                <td>Any<sup>r</sup></td>
+                                                <td>n/a</td>
+                                                <td>RDF<sup>t</sup></td>
                                                 <td>req</td>
-                                                <td>n/s</td>
-                                                <td>n/s</td>
                                                 <td>XML, PuSH</td>
                                             </tr>
                                             <tr>
                                                 <th>sparqlPuSH</th>
                                                 <td>Fat ping</td>
                                                 <td>POST</td>
+                                                <td>S U</td>
+                                                <td>n/a</td>
+                                                <td>n/a</td>
+                                                <td>n/a</td>
                                                 <td>XML<sup>ra</sup></td>
                                                 <td>n/s</td>
-                                                <td>n/s</td>
                                                 <td>n/a</td>
-                                                <td>n/s</td>
-                                                <td>n/a</td>
-                                                <td>RDF</td>
+                                                <td>RDF<sup>t</sup></td>
                                                 <td>req</td>
-                                                <td>n/a</td>
-                                                <td>n/a</td>
                                                 <td>XML, SPARQL, PuSH</td>
                                             </tr>
                                             <tr>
                                                 <th>ResourceSync</th>
                                                 <td>Fat ping</td>
                                                 <td>POST</td>
+                                                <td>S U</td>
+                                                <td>n/s</td>
+                                                <td>n/a</td>
+                                                <td>n/a</td>
                                                 <td>XML<sup>s</sup></td>
                                                 <td>n/s</td>
-                                                <td>?</td>
-                                                <td>?</td>
-                                                <td>?</td>
-                                                <td>?</td>
+                                                <td>n/a</td>
                                                 <td>?</td>
                                                 <td>req</td>
-                                                <td>?</td>
-                                                <td>?</td>
                                                 <td>XML, PuSH</td>
                                             </tr>
                                             <tr>
                                                 <th>Linked Data Notifications</th>
                                                 <td>Fat ping</td>
                                                 <td>POST</td>
-                                                <td>JSON-LD<sup>j</sup></td>
-                                                <td>app, rec</td>
-                                                <td>app, rec</td>
-                                                <td>app</td>
-                                                <td>URI</td>
-                                                <td>Any</td>
-                                                <td>n/a</td>
-                                                <td>app</td>
-                                                <td>rec</td>
+                                                <td>S R C</td>
                                                 <td>req</td>
+                                                <td>req URI</td>
+                                                <td>Any</td>
+                                                <td>JSON-LD<sup>j</sup></td>
+                                                <td>rec, app</td>
+                                                <td>rec, app</td>
+                                                <td>n/a</td>
+                                                <td>opt, app</td>
                                                 <td>JSON-LD</td>
                                             </tr>
                                         </tbody>
