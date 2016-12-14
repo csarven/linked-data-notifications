@@ -352,14 +352,7 @@
                                 <h3 property="schema:name">Data Formats and Content Negotiation</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
                                     <p>Whilst being able to handle data irrespective of the particular RDF serialisation permits some flexibility, this can be costly to support. 
-									From the perspective of the protocol design, we must take into account:</p>
-
-                                    <ul>
-                                        <li>application interoperability,</li>
-                                        <li>maintenance of the RDF parsers and serialisation libraries,</li>
-                                        <li>complexity of their inclusion in applications,</li>
-                                        <li>run-time efficiency.</li>
-                                    </ul>
+									From the perspective of the protocol design, we must take into account: (a) application interoperability, (b) maintenance of the RDF parsers and serialisation libraries, (c) complexity of their inclusion in applications, (d) run-time efficiency.
 
                                     <p>In order to address these issues, LDN requires all applications to create and understand the JSON-LD syntax, both for looking at the contents of Inbox as well as for individual notifications. 
                                     Choosing a single serialisation which implementations <em>must</em> work with is necessary for consistent interoperability, as well as keeping processing requirements or external dependencies of codebases minimal.
@@ -402,8 +395,7 @@
 <code>    "sioc:avatar": { "@id": "http://example.org/profile/avatar.png" },</code>
 <code>    "foaf:name": "Alice"</code>
 <code>  }</code>
-<code>}</code>
-                                        </pre>
+<code>}</code></pre>
                                         <figcaption property="schema:name">This notification body contains information about a comment and the user who created the comment, described by the Semantically Interlinked Online Communities (SIOC) and Friend-of-a-Friend (FOAF) vocabularies.</figcaption>
                                     </figure>
 
@@ -417,10 +409,10 @@
 <code>@prefix as: &lt;https://www.w3.org/ns/activitystreams#&gt; .</code>
 <code>@prefix cito: &lt;http://purl.org/spar/cito/&gt; .</code>
 <code></code>
-<code>&lt;&gt; a as:Announce</code>
-<code>  as:object &lt;https://linkedresearch.org/resources#r-903b83&gt; ;</code>
-<code>  as:target &lt;http://csarven.ca/dokieli#architecture&gt; ;</code>
-<code>  as:updated "2016-12-05T23:53:27.436Z"^^xsd:dateTime .</code>
+<code>&lt;&gt;  a         as:Announce</code>
+<code>  as:object   &lt;https://linkedresearch.org/resources#r-903b83&gt; ;</code>
+<code>  as:target   &lt;http://csarven.ca/dokieli#architecture&gt; ;</code>
+<code>  as:updated  "2016-12-05T23:53:27.436Z"^^xsd:dateTime .</code>
 <code></code>
 <code>&lt;https://linkedresearch.org/resources#r-903b83&gt;</code>
 <code>  cito:citesAsPotentialReading</code>
