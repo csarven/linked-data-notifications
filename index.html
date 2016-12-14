@@ -434,7 +434,7 @@
                     <section id="implementations" inlist="" rel="schema:hasPart" resource="#implementations">
                         <h2 property="schema:name">Implementations</h2>
                         <div datatype="rdf:HTML" property="schema:description">
-                            <p>Here we summarise LDN implementations we are aware of to date. They are built by different teams or individuals using different tool stacks, and have submitted implementation reports<sup><a href="https://github.com/w3c/ldn/tree/master/implementations">x</a></sup> as part of the W3C standardisation process. 
+                            <p>Here we summarise the 16 LDN implementations we are aware of to date. They are built by 9 different teams or individuals using different tool stacks (5 clientside JavaScript, 3 PHP, 3 NodeJS, 2 Python, 1 Perl, 1 C/C++) and have submitted implementation reports<sup><a href="https://github.com/w3c/ldn/tree/master/implementations">x</a></sup> as part of the W3C standardisation process. 
                             We note that any <a href="https://www.w3.org/wiki/LDP_Implementations">LDP implementation</a> is a conforming LDN receiver; we refer here to the ones we have tested.</p>
 
                             <table>
@@ -603,7 +603,7 @@
 
                                     <table id="comparison-of-notification-mechanisms">
                                         <caption>Comparison of notification mechanisms</caption>
-                                        <thead >
+                                        <thead>
                                             <tr>
                                                 <th>Mechanism</th>
                                                 <th>T1</th>
@@ -797,9 +797,12 @@
                                 </div>
                             </section>
 
-                            <section id="complexity-of-implementation" rel="schema:hasPart" resource="#complexity-of-implementation">
-                                <h3 property="schema:name">Complexity of implementation</h3>
+                            <section id="optimising-implementation" rel="schema:hasPart" resource="#optimising-implementation">
+                                <h3 property="schema:name">Optimising implementation</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
+
+
+
                                   <p>We discuss the complexity of implementing LDN in terms of the number of HTTP requests it takes to implement a basic operation. <span class="todo">If space and time permit, present the following as a table</span>Sending a notification requires 2 distinct types of HTTP requests (<code>GET</code>, <code>POST</code>) to 2 distinct types of resources (target, Inbox); receiving requires 2 distinct types of request (<code>POST</code>, <code>GET</code>) to 2 (or more) distinct types of resource (Inbox, notifications); and consuming requires 1 distinct type of request (<code>GET</code>) to 3 (or more) distinct types of resources (target, Inbox, notifications).</p>
 
                                     <p><span class="todo">As a transition from the above to this specific “HEAD” discussion, say which of the above operations normally require a HEAD request.</span>  Allowing the possibility of discovering an Inbox through <code>HTTP HEAD</code> or <code>Link</code> header is a pragmatic approach with optimisation benefits.</p>
@@ -810,8 +813,8 @@
                                 </div>
                             </section>
 
-                            <section id="adaptability-and-extensibility" rel="schema:hasPart" resource="#adaptability-and-extensibility">
-                                <h3 property="schema:name">Adaptability and extensibility</h3>
+                            <section id="precision" rel="schema:hasPart" resource="#precision">
+                                <h3 property="schema:name">Precision</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
                                     <p>In treating notifications as any other Linked Data resources, LDN follows the second approach but without constraint on the contained information. As such LDN can cover the uses cases of "A refers to B" (1), as well as "C has a specific relation to D, as well as E" and "The weather is fine today".</p>
 
@@ -834,13 +837,6 @@
                                     <p><strong>Natural Language Content</strong>: Building an international base of users is important in a federated network. Some LDN interactions can return content with natural language text, such as HTML fragments, or summary fields. Providing multiple language representations of each item might not be feasible in all circumstances. Implementations are encouraged to provide means of discovering the available languages and/or negotiating the language returned, such as using the HTTP <code>Accept-Language</code> header to negotiate and select the most appropriate language representation to send for a given request.</p>
                                     <p><strong>Notifications as graphs</strong>:</p>
                                     <p><strong>Notifications being modified</strong>: We have yet to assess the implications of applications modifying data that another application also makes use of.</p>
-                                </div>
-                            </section>
-
-                            <section id="tests-and-reports" inlist="" rel="schema:hasPart" resource="#tests-and-reports">
-                                <h3 property="schema:name">Tests and Reports</h3>
-                                <div datatype="rdf:HTML" property="schema:description">
-                                  <p><span class="todo">overlaps with “Implementation” section.  This should be covered in one section only.</span>Implementations are interoperable. How many implementations are out there.. over length of time... different code stacks (variations) .. different groups/people implementing (without prior knowledge).. </p>
                                 </div>
                             </section>
 
