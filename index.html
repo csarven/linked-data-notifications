@@ -304,7 +304,7 @@
 							Messages are expressed in RDF, and can contain arbitrary data.
 							An LDN receiver can be considered a specialisation of Linked Data Platform [<cite><a class="bibref" href="#bib-ldp">LDP</a></cite>]. 
 							It is not dependent on a complete implementation of LDP, but comprises an easy-to-implement subset. 
-							LDN is a <a href="https://www.w3.org/TR/ldn">W3C Candidate Recommendation</a> [<cite><a class="bibref" href="#bib-ldn">LDN</a></cite>].</p>
+							LDN is a <cite><a href="https://www.w3.org/TR/ldn">W3C Candidate Recommendation</a></cite> [<a class="ref" href="">15</a>].</p>
 
                             <figure id="figure-linked-data-notifications-overview" rel="schema:hasPart" resource="#figure-linked-data-notifications-overview">
                                 <object data="media/images/linked-data-notifications-overview.svg" height="200" rel="schema:image" type="image/svg+xml" width="420"></object>
@@ -535,7 +535,7 @@
                                 </tbody>
                             </table>
 
-                            <p>We highlight some social scholarly communication use cases with <cite><a href="https://dokie.li/">dokieli</a></cite> – a clientside editor for decentralised scientific article publishing, annotations and social interactions [<a href="http://csarven.ca/dokieli"></a>]. 
+                            <p>We highlight some social scholarly communication use cases with <cite><a href="https://dokie.li/">dokieli</a></cite> – a clientside editor for decentralised scientific article publishing, annotations and social interactions [<a class="ref" href="">16</a>].
 							dokieli is a domain-specific application that uses LDN to send and consume notifications for various purposes:</p>
 
                             <ul>
@@ -570,18 +570,18 @@
 
                             <p>Notifications sent by dokieli can be reused by any consuming applications which recognise the vocabulary terms; similarly, dokieli can consume notifications that were sent by a different application. </p>
 
-                            <p>Further social use cases are demonstrated by <a href="https://rhiaro.co.uk/sloph">sloph</a>, a personal publishing and quantified self platform which acts as a node in a decentralised social network. When new content is created on the server, sloph performs discovery on URLs it finds as values of particular properties of the new content, as well as any URLs in the body of the content, and sends notifications accordingly. For instance:</p>
+                            <p>Further social use cases are demonstrated by <cite><a href="https://rhiaro.co.uk/sloph">sloph</a></cite>, a personal publishing and quantified self platform which acts as a node in a decentralised social network. When new content is created on the server, sloph performs discovery on URLs it finds as values of particular properties of the new content, as well as any URLs in the body of the content, and sends notifications accordingly. For instance:</p>
                             <ul>
-                                <li>If a <em>Like</em> activity is generated on the server, sloph uses the <code>object</code> of the <em>Like</em> as the target for a notification. Since dokieli uses the same vocabulary for social interactions (<a href="https://www.w3.org/ns/activitystreams-core">ActivityStreams 2.0</a>), if the target is a dokieli article, this <em>Like</em> will be displayed (figure 5).</li>
+                                <li>If a <em>Like</em> activity is generated on the server, sloph uses the <code>object</code> of the <em>Like</em> as the target for a notification. Since dokieli uses the same vocabulary for social interactions (<cite><a href="https://www.w3.org/ns/activitystreams-core">ActivityStreams 2.0</a></cite> [<a class="ref" href="">17</a>]), if the target is a dokieli article, this <em>Like</em> will be displayed (figure 5).</li>
                                 <li>If the user publishes a blog post containing a link, which may be semantically annotated to indicate the reason for linking, sloph sends a notification to any Inbox discovered at that link.</li>
                                 <li>As a receiver, sloph accepts all incoming notifications, but holds for moderation (i.e. places behind access control) any that it cannot automatically verify refer to third-party content published on another domain. 
 								If an article written with dokieli publishes a citation of a blog post which advertises a sloph Inbox, sloph will fetch the article and verify whether the relation matches the contents of the notification before exposing the notification for re-use.</li>
                             </ul>
 
-                            <p><a href="http://www.linkededitrules.org/">Linked Edit Rules</a> and <a href="https://melvincarvalho.github.io/vocab/">Solid Words</a> are specialised senders. 
+                            <p><cite><a href="http://www.linkededitrules.org/">Linked Edit Rules</a></cite> and <cite><a href="https://melvincarvalho.github.io/vocab/">Solid Words</a></cite> are specialised senders.
 							Linked Edit Rules checks the consistency of statistical datasets against structured constraints, and delivers the consistency report as a notification to the user. 
-							Solid Words is a clientside game for learning new words in a foreign language; it delivers the player's score for each round to their Inbox. 
-							<a href="https://apps.rhiaro.co.uk/onscreen">OnScreen</a> is a (crude) generic consumer; as such, it can display notifications sent by both of the aforementioned senders (figure 6).</p>
+							Solid Words is a clientside game for learning new words in a foreign language; it delivers the player's score for each round to their Inbox.
+							<cite><a href="https://apps.rhiaro.co.uk/onscreen">OnScreen</a></cite> is a (crude) generic consumer; as such, it can display notifications sent by both of the aforementioned senders (figure 6).</p>
 
                             <figure id="figure-sloph" rel="schema:hasPart" resource="#figure-sloph">
                                 <img src="media/images/sloph-dokieli-screenshots.jpg" alt="Screenshots of sloph and dokieli" />
@@ -634,7 +634,7 @@
                                                         <dt>T3</dt><dd>Dependencies</dd>
                                                         <dt>R1</dt><dd>Modularity (application classes defined - S Sender, R Receiver, C Consumer, U Subscriber/User)</dd>
                                                         <dt>R2</dt><dd>Reusability</dd>
-                                                        <dt>R3</dt><dd>Persitence (if required, how?)</dd>
+                                                        <dt>R3</dt><dd>Persistence (if required, how?)</dd>
                                                         <dt>R4A</dt><dd>Adaptability (target representation)</dd>
                                                         <dt>R4B</dt><dd>Adaptability (notification body)</dd>
                                                         <dt>R4C<sup>p</sup></dt><dd>Adaptability (payload processing required?)</dd>
@@ -791,7 +791,7 @@
                                         <li><cite><a href="https://www.w3.org/wiki/WebAccessControl">Web Access Control</a></cite> can be used along with an authentication mechanism to apply fine grained access controls to restrict who can send notifications, or who can retrieve notifications from the Inbox (used by the Solid suite of tools, Virtuoso+ODS-Briefcase, and dokieli).</li>
                                         <li><cite><a href="https://www.w3.org/TR/websub/">WebSub</a></cite> can be used by a receiver to issue a subscription request to a sender's hub in order to trigger the sender to push notifications on a particular topic.</li>
                                         <li>An Inbox can double as a <cite><a href="http://www.webhooks.org/">Webhooks</a></cite> callback URL, in order to request notifications from applications which post JSON-based payloads (used by sloph).</li>
-                                        <li><cite><a href="https://www.w3.org/TR/activitypub/">ActivityPub</a></cite> is a W3C Candidate Recommendation for decentralised social media applications based on the <a href="https://www.w3.org/ns/activitystreams-vocabulary">ActivityStreams 2.0</a> (AS2) vocabulary. ActivityPub directly references LDN for delivery of notifications, with the additional requirement that notification contents are AS2. It also specifies additional behaviour for a receiver upon receiving notifications in order to propagate information through the social network (used by sloph).</li>
+                                        <li><cite><a href="https://www.w3.org/TR/activitypub/">ActivityPub</a></cite> is a W3C Candidate Recommendation for decentralised social media applications based on the <a href="https://www.w3.org/ns/activitystreams-vocabulary">ActivityStreams 2.0</a> (AS2) vocabulary [<a class="ref" href="">18</a>]. ActivityPub directly references LDN for delivery of notifications, with the additional requirement that notification contents are AS2. It also specifies additional behaviour for a receiver upon receiving notifications in order to propagate information through the social network (used by sloph).</li>
                                         <li><cite><a href="https://www.w3.org/TR/shacl/">SHACL</a></cite>/<cite><a href="https://shexspec.github.io/spec/">ShEx</a></cite> can be used to define the constraints of notification shape.</li>
                                         <li><cite><a href="https://www.w3.org/TR/annotation-protocol/">Web Annotation Protocol</a></cite> is an LDP-based mechanism for creating new content, which can be a trigger for notifications to be sent to the Inbox of the annotation target (used by dokieli).</li>
                                         <li><cite><a href="http://fcrepo.github.io/fcrepo-specification/">Fedora API Specification</a></cite> is in the process of being formalised (as an extension of LDP) by the Fedora community. It draws upon the LDN specification to have messages where they allow clients to react to repository changes asynchronously and may be used to support external integrations.</li>
@@ -831,7 +831,7 @@
                                 <h3 property="schema:name">Publishing challenges</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
 
-                                    <p><strong>Inbox advertising</strong>: The relation between a resource and its Inbox could be argued to be either content-level data or purely protocol. Generally the separation of protocol and content is important, and content in RDF should describe itself rather relying on HTTP headers. Per <em>R4 Adaptability</em>, we wanted LDN to be available for all resources in any publishing context. Since binary formats such as images and video cannot contain an RDF relation, the HTTP Header is essential for including them. It also allows the inclusion of resources for which it is undesirable or impractical to add individual Inbox relations, such as to elements in a dataset; or circumstances where the developer responsible for the Inbox relation is unable to modify the content.</p>
+                                    <p><strong>Inbox advertising</strong>: The relation between a resource and its Inbox could be argued to be either content-level data or purely protocol. Generally the separation of protocol and content is important, and content in RDF should describe itself rather relying on HTTP headers. Per <em>R4 Adaptability</em>, we wanted LDN to be available for all resources in any publishing context. Since binary formats such as images and video cannot contain an RDF relation, the HTTP header is essential for including them. It also allows the inclusion of resources for which it is undesirable or impractical to add individual Inbox relations, such as to elements in a dataset; or circumstances where the developer responsible for the Inbox relation is unable to modify the content.</p>
 
                                     <p>Conversely, non-informational resources (represented with fragment URIs or 303 redirects) are unable to express HTTP headers. Their relation to an Inbox must be expressed in an RDF source.</p>
 
@@ -896,9 +896,12 @@ Pages 223-226, ISBN: 978-1-4503-4144-8, doi:10.1145/2872518.2890529, <a rel="sch
 <li>Fielding, R. T.: <cite>Architectural Styles and the Design of Network-based Software Architectures</cite>. Doctoral dissertation, University of California, Irvine, 2000, <a rel="schema:citation" href="http://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm">http://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm</a></li>
 <li>Page, K.R., De Roure, D.C., Martinez, K.:<cite>REST and Linked Data: a match made for domain driven development?</cite>, WWW, WS-REST, 2011, <a rel="schema:citation" href="http://ws-rest.org/2011/proc/a5-page.pdf">http://ws-rest.org/2011/proc/a5-page.pdf</a></li>
 <li>Knublauch, H., Kontokostas, D.: <cite>Shapes Constraint Language (SHACL)</cite>, W3C Working Draft, 2016, <a rel="schema:citation" href="https://www.w3.org/TR/shacl/"></a></li>
-<li>Speicher, S., Arwe, J., Malhotra, A.: <cite>Linked Data Platform</cite>, W3C Recommendation, 2015, <a href="https://www.w3.org/TR/ldp/">https://www.w3.org/TR/ldp/</a></li>
+<li>Speicher, S., Arwe, J., Malhotra, A.: <cite>Linked Data Platform</cite>, W3C Recommendation, 2015, <a rel="schema:citation" href="https://www.w3.org/TR/ldp/">https://www.w3.org/TR/ldp/</a></li>
+<li>Capadisli, S., Guy, A.: <cite>Linked Data Notifications</cite>, W3C Candidate Recommendation, 2016, <a rel="schema:citation" href="https://www.w3.org/TR/ldn/">https://www.w3.org/TR/ldn/</a></li>
 
 
+<li>Capadisli, S., Guy, A., Auer S., Berners-Lee, T.: <cite>dokieli: decentralised authoring, annotations and social notifications</cite>, 2016, <a rel="schema:citation" href="http://csarven.ca/dokieli">http://csarven.ca/dokieli</a></li>
+<li>Snell, J., Prodromou, E.: <cite>Activity Streams 2.0</cite>, W3C Candidate Recommendation, 2016, <a href="https://www.w3.org/TR/activitystreams-core/">https://www.w3.org/TR/activitystreams-core/</a></li>
 <li>Webber, C., Tallon, J.: <cite>ActivityPub</cite>, W3C Candidate Recommendation, 2016, <a href="https://www.w3.org/TR/activitypub/">https://www.w3.org/TR/activitypub/</a></li>
 
 
