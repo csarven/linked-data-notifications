@@ -432,7 +432,7 @@
                         <h2 property="schema:name">Implementations</h2>
                         <div datatype="rdf:HTML" property="schema:description">
                             <p>Here we summarise the 16 LDN implementations we are aware of to date. 
-							They are built by 9 different teams or individuals using different tool stacks (5 clientside JavaScript, 3 PHP, 3 NodeJS, 3 Python, 1 Perl, 1 C/C++) and have submitted implementation reports<sup><a href="https://github.com/w3c/ldn/tree/master/implementations">x</a></sup> as part of the W3C standardisation process. 
+							They are built by 9 different teams or individuals using different tool stacks (5 clientside JavaScript, 3 PHP, 3 NodeJS, 3 Python, 1 Perl, 1 C/C++) and have submitted <a href="https://github.com/w3c/ldn/tree/master/implementations">implementation reports</a></sup> as part of the W3C standardisation process.
                             We note that any <a href="https://www.w3.org/wiki/LDP_Implementations">LDP implementation</a> is a conforming LDN receiver; we refer here to the ones we have tested. We discuss the value of these implementations further in the <a href="#analysis-and-evaluation">Evaluation</a> section.</p>
 
                             <table>
@@ -446,15 +446,18 @@
                                 </thead>
                                 <tfoot><tr>
                                     <td colspan="3">
-                                        <p><sup id="implementations-key">*</sup> Conformance classes: S – sender, C – consumer, R – receiver.</p>
-                                        <p><sup id="author-implementations">a</sup> Implementations by the authors.</p>
+                                        <dl class="abbr">
+                                            <dt><sup id="implementations-key">*</sup></dt><dd>Conformance classes: S – sender, C – consumer, R – receiver.</dd>
+                                            <dt><sup id="author-implementations">a</sup></dt><dd>Implementations by the authors</dt>
+                                        <dl>
+                                        <p>Implementations and source code: <a href="https://github.com/w3c/ldn/tree/master/implementations">https://github.com/w3c/ldn/tree/master/implementations</a></p>
                                     </td>
                                 </tr></tfoot>
                                 <tbody>
                                     <tr>
                                         <th><a href="https://carbonldp.com">CarbonLDP</a></th>
                                         <td>R</td>
-                                        <td>Data storage platform (LDP-based)</td>
+                                        <td>Data storage platform (LDP)</td>
                                     </tr>
                                     <tr>
                                         <th><a href="https://dokie.li/">dokieli</a><sup>a</sup></th>
@@ -479,7 +482,7 @@
                                     <tr>
                                         <th><a href="https://github.com/csarven/mayktso">mayktso</a><sup>a</sup></th>
                                         <td>R</td>
-                                        <td>Personal data store (LDP-based)</td>
+                                        <td>Personal data store (LDP)</td>
                                     </tr>
                                     <tr>
                                         <th><a href="https://github.com/rhiaro/onscreen">OnScreen</a><sup>a</sup></th>
@@ -524,12 +527,12 @@
                                     <tr>
                                         <th><a href="https://github.com/solid/node-solid-server">solid-server</a></th>
                                         <td>R</td>
-                                        <td>Personal data storage server (LDP-based)</td>
+                                        <td>Personal data storage server (LDP)</td>
                                     </tr>
                                     <tr>
                                         <th><a href="https://github.com/openlink/virtuoso-opensource">Virtuoso</a>+<a href="http://ods.openlinksw.com/wiki/ODS/OdsBriefcase">ODS Briefcase</a></th>
                                         <td>R,C</td>
-                                        <td>Personal data storage server (LDP-based)</td>
+                                        <td>Personal data storage server (LDP)</td>
                                     </tr>
                                 </tbody>
                             </table>
