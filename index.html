@@ -842,9 +842,10 @@
                             <section id="content-challenges" rel="schema:hasPart" resource="#content-challenges">
                                 <h3 property="schema:name">Content challenges</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
+                                    <!-- I feel like we can maybe drop this whole section - rhiaro -->
                                     <p><strong>Natural Language Content</strong>: Building an international base of users is important in a federated network. Some LDN interactions can return content with natural language text, such as HTML fragments or plaintext literals. Providing multiple language representations of each item might not be feasible in all circumstances. Implementations are encouraged to provide means of discovering the available languages and/or negotiating the language returned, such as using the HTTP <code>Accept-Language</code> header, or the JSON-LD <code>@language</code> construct.</p>
                                     <p><strong>Modification of notifications</strong>: We have yet to assess the implications of applications modifying data that another application also makes use of. This would be a useful study for decentralisation in general.</p>
-                                    <p><strong>Notifications as graphs</strong>:</p>
+                                    <p><strong>Resources referred to</strong>: Notifications can refer to other resources; that is, contain triples with multiple different subjects. For content that has no external identifier, senders can use an empty subject (<code>"@id": ""</code> in JSON-LD, <code>&lt;&gt;</code> in turtle), and the these triples are determined have the subject of the notification itself, hosted only by the receiver. It is possible for a notification to contain no triples with itself as the subject. As such, notifications are quads, and notification URIs can be considered to identify graphs.</p>
                                 </div>
                             </section>
 
