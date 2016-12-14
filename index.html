@@ -199,131 +199,104 @@
                         <h2 property="schema:name">Requirements and Design Considerations</h2>
                         <div datatype="rdf:HTML" property="schema:description">
                             <p>In this section we discuss our considerations for a Web notification protocol that conforms to the Linked Data design principles, as well as best practices for applications. 
-							We use the considerations for establishing concrete requirements for the protocol in order to ensure interoperable application behaviour and consistent notification data exchange.</p>
+							We use these considerations for establishing both concrete requirements and points of implementation-specific flexibility for the protocol in order to ensure interoperable application behaviour and consistent notification data exchange.</p>
 
-                            <section id="architectural-considerations" inlist="" rel="schema:hasPart" resource="#architectural-considerations">
-                                <h4 property="schema:name">R1 Architectural Considerations</h4>
+                            <section id="modularity" inlist="" rel="schema:hasPart" resource="#modularity">
+                                <h4 property="schema:name">R1 Modularity</h4>
                                 <div datatype="rdf:HTML" property="schema:description">
-									<p>In order to encourage modularity of applications, it is important to separate concerns and differentiate between different classes of implementation of the protocol. 
-									Two parties are involved in the creation of a notification: a <em>sender</em> which generates the notification data, and a <em>receiver</em> which stores the created resource. 
-									  <span class="todo">Within this requirements group, “reusable notifications” sounds like one distinct requirement.</span>For notifications to be reused, we also have the role of a <em>consumer</em>, which reads the data of the notification and repurposes it in some way.
-									A software implementation can of course play two or all three of these roles; the important part is that it need not. 
-									A consuming application can read and use notification data without being concerned about ever sending or storing notifications itself.</p>
-                                    <p>We deem a <em>RESTful architecture</em> [<a class="ref" href=""></a>] compatible with the <em>Linked Data Platform</em> (LDP) specification [<a class="ref" href=""></a>] to be a prerequisite. 
-                                    REST is well suited for notifications, as it involves organisation of atomic resources, their discovery and description, and a lightweight API for the <abbr title="create, read, update, and delete">CRUD</abbr> (create, read, update, and delete) operations [<a href="http://ws-rest.org/2011/proc/a5-page.pdf">LD&amp;REST</a>].
-                                    As such, notifications are considered resources in their own right, with their own dereferencable URIs.
-                                      A further advantage is that existing LDP servers can be used to store notifications, as new notifications can be created in a <code>Container</code><span class="todo">For those who are not perfectly familiar with LDP, please explain in 1 sentence what LDP is, and what a Container is.</span> in exactly the same way as any other resource.</p>
+                                    <p>In order to encourage modularity of applications, it is important to differentiate between different classes of implementation of the protocol. 
+                                    Two parties are involved in the creation of a notification: a <em>sender</em> which generates the notification data, and a <em>receiver</em> which stores the created resource. 
+                                    We also have the role of a <em>consumer</em>, which reads the data of the notification and repurposes it in some way.
+                                    A software implementation can of course play two or all three of these roles; the important part is that it need not. 
+                                    A consuming application can read and use notification data without being concerned about ever sending or storing notifications itself.</p>
                                 </div>
                             </section>
 
-                            <section id="notification-contents" rel="schema:hasPart" resource="#notification-contents">
-                                <h4 property="schema:name">R2 Notification contents</h4>
+                            <section id="reusable-notifications" inlist="" rel="schema:hasPart" resource="#reusable-notifications">
+                                <h4 property="schema:name">R2 Reusable notifications</h4>
                                 <div datatype="rdf:HTML" property="schema:description">
-
-                                    <p>Linked Data applications benefit from domain-driven designs; that is, contributions and changes being small and focussed on a particular purpose, rather than generic or catch-all. 
-									We do not purport to be able to design a notifications ontology which is appropriate for every domain, and so we consider the contents of a notification to be <em>application specific</em>. 
-									We derive two core principles:</p>
-
-                                    <ul>
-                                        <li>a notification can contain arbitrary data,</li>
-                                        <li>a notification is vocabulary agnostic.</li>
-                                    </ul>
-
-                                    <p>Interoperability between different applications occurs through vocabulary reuse, and shared understanding of terms. 
-									This is in accordance with Linked Data principles in general. 
-									The practical upshot of this is that a calendar application which consumes event invitations using the <cite><a href="https://www.w3.org/TR/rdfcal/">RDF Calendar</a></cite> vocabulary is likely to completely ignore notifications containing the <cite><a href="http://schema.org/">schema.org</a></cite> vocabulary, even if it finds them all stored in the same place.
-									For two independent applications operating in the <em>same</em> domain, a shared understanding of appropriate vocabulary terms is assumed.</p>
+                                    <p>The relationship between the <em>consumer</em> and <em>receiver</em> roles is key to notifications being reusable. A consumer must be able to autonomously find the location of notifications for or about the particular resource it is interested in. To achieve this we place a requirement on the receiver to expose notifications it has been sent in such away to permit other applications to access them; and specify how any resource can advertise its receiving endpoint for consumers to discover. </p>
+                                    <p>In order to promote fair use or remixing of notification contents, applications can incorporate rights and licensing information into the data. 
+                                    Similarly, applications may include additional information on licensing of any resources which are referred from the notification. 
+                                    The presence of this type of information is important for consumers to assess the usability of data.</p>
                                 </div>
                             </section>
 
-                            <section id="notification-filtering" inlist="" rel="schema:hasPart" resource="#notification-filtering">
-                                <h4 property="schema:name">R3 Notification Filtering</h4>
+                            <section id="persistence-and-retrievability" inlist="" rel="schema:hasPart" resource="#persistence-and-retrievability">
+                                <h4 property="schema:name">R3 Persistence and Retrievablity</h4>
                                 <div datatype="rdf:HTML" property="schema:description">
-                                    <p>It should be possible for the receiver to enforce restrictions on the notifications that are acceptable. 
-									This can be used as an anti-spam measure, a security protection, or for attaining application and data integrity.
-									There are many possible criteria by which a receiver could choose to accept or reject incoming notifications.
-									<!-- SOA – This dosn't seem to add much relevant information:, and we consider selecting one (or more) to be an application-specific implementation detail. 
-									It is important to enable such security considerations, so the notifications protocol must leave space for such extensions.-->
+
+									<p>There is a social expectation and technical arguments for ensuring the persistence of identifiers of Web resources [cooluris]. 
+                                    This is inconsistent with the traditionally ephemeral nature of notifications.  
+                                    Applications may benefit from referring to or reusing notifications if the notifications are known to be available in the long term, or indicate their expected lifespan [<a href="http://philarcher.org/diary/2013/uripersistence/"></a>, <a href="https://www.w3.org/TR/dwbp/#UniqueIdentifiers" title="Best Practice 9: Use persistent URIs as identifiers of datasets"></a>, <a href="https://tools.ietf.org/html/rfc7089"></a>].</p>
+
+                                    <p>A <em>RESTful architecture</em> [<a class="ref" href=""></a>] is well suited for persistent notifications, as it involves organisation of atomic resources, their discovery and description, and a lightweight API for the <abbr title="create, read, update, and delete">CRUD</abbr> (create, read, update, and delete) operations [<a href="http://ws-rest.org/2011/proc/a5-page.pdf">LD&amp;REST</a>].
+                                    This enforces the notion that notifications are considered resources in their own right, with their own dereferencable URIs.
                                     </p>
+
+                                    <p>We need to consider both the needs of software systems and humans when large amounts of notification data are being generated and shared between diverse applications which may be operating without knowledge of each other.
+                                    In order to organise and manage large amount of notifications over time, mechanisms should be in place to break representations of collections of notifications into multiple paged responses that may be easier to consume by applications.</p>
+
+                                    <p>Relatedly, receivers may carry out resource management or garbage collection, or permit consumers or other applications to do so. 
+                                    For example, an application to consume messages might let an authenticated and authorised user ‘mark as read’ by adding a triple to the notification contents.</p>
                                 </div>
                             </section>
 
-                            <section id="content-constraints" inlist="" rel="schema:hasPart" resource="#content-constraints">
-                                <h4 property="schema:name">R4 Content Constraints</h4>
+                            <section id="adaptability" rel="schema:hasPart" resource="#adaptability">
+                                <h4 property="schema:name">R4 Adaptability</h4>
                                 <div datatype="rdf:HTML" property="schema:description">
+
+                                    <p>Linked Data applications benefit from domain-driven designs; that is, functionality being small and focussed on a particular purpose, rather than generic. 
+                                    We do not purport to be able to design a notifications ontology which is appropriate for every domain. We believe a notification protocol should be adaptable for different domains, but that there is no need to create multiple domain-specific notification protocols; the fundamental mechanics are the same. To this end, we consider the <em>contents</em> of a notification to be application specific. 
+                                    From a sender's perspective, we derive two core principles:
+                                    a notification can contain <em>any data</em>;
+                                    a notification can use <em>any vocabulary</em>.</p>
+
+                                    <p>From a consumer's perspective, interoperability between different applications occurs through vocabulary reuse, and shared understanding of terms. 
+                                    This is in accordance with Linked Data principles in general. 
+                                    The practical upshot of this is that a calendar application which consumes event invitations using the <cite><a href="https://www.w3.org/TR/rdfcal/">RDF Calendar</a></cite> vocabulary is likely to completely ignore notifications containing the <cite><a href="http://schema.org/">schema.org</a></cite> vocabulary, even if it finds them all stored in the same place.
+                                    For two independent applications operating in the <em>same</em> domain, a shared understanding of appropriate vocabulary terms is assumed.</p>
+
+                                    <p>However from a receiver's perspective, exposing itself to receive any blobs of RDF data from unknown senders may be problematic. 
+                                    Thus it should be possible for the receiver to enforce restrictions and accept only notifications that are acceptable according to its own criteria (deemed by e.g., user configuration; domain-specific receivers). 
+                                    This can be used as an anti-spam measure, a security protection, or for attaining application and data integrity.</p>
+
                                     <p>A possible filtering mechanism is rejecting notifications which do not match a specific pattern in their contents, or the <em>shape</em> of the data, in order to allow a certain class of applications consume them.
                                     For example, if the Inbox owner knows that they will only ever use a consuming application which processes friend requests, they can configure their receiver to filter out anything that doesn't match the pattern for a friend request, helping their consumer to be more efficient.
                                     If the notification constraints are also advertised by the receiving service as structured descriptions, generation and consumption of the notifications can be further automated.
-                                    This can also be implemented as an anti-spam or abuse prevention measure.
-									Possible specifications for doing so are <cite><a href="https://www.w3.org/TR/shacl/">SHACL</a></cite> or <cite><a href="https://shexspec.github.io/spec/">ShEx</a></cite>.</p>
-                                </div>
-                            </section>
-
-                            <section id="verification-and-validation" rel="schema:hasPart" resource="#verification-and-validation">
-                                <h4 property="schema:name">R5 Verification and Validation</h4>
-                                <div datatype="rdf:HTML" property="schema:description">
+                                    Possible specifications for doing so are <cite><a href="https://www.w3.org/TR/shacl/">SHACL</a></cite> or <cite><a href="https://shexspec.github.io/spec/">ShEx</a></cite>.</p>
 
                                     <p>Receivers may wish to filter notifications by verifying the sender, through for example a whitelist or a web of trust. 
-									This requires an authentication mechanism and since different authentication mechanisms are appropriate for different applications, the notification protocol should ideally be usable alongside various methods such as clientside certificates (e.g. WebID+TLS), token-based (e.g. OAuth 2.0), or digital signatures. 
-                                    A receiver which expects senders or consumers to authenticate requires additional security considerations.
-									For example, it should check the validity of their credentials before returning any other data, including other error codes, and authentication involving token passing must be done over HTTPS.</p>
+                                    This requires an authentication mechanism and since different authentication mechanisms are appropriate for different applications, the notification protocol should ideally be usable alongside various methods such as clientside certificates (e.g. WebID+TLS), token-based (e.g. OAuth 2.0), or digital signatures. 
+                                    </p>
 
-                                    <p>As <q>anyone can say anything about anything</q> another option is to dereference any external resources referred to in the notification contents, and cross-check against authoritative sources.
-									This is similar to how Semantic Pingback and Webmention require fetching and parsing of the source URL to verify existence of the target link.</p>
+                                    <p>As <q>anyone can say anything about anything</q> a receiver may choose to dereference any external resources referred to by the notification, and cross-check the notification contents against authoritative sources.
+                                    This is similar to how Semantic Pingback and Webmention require fetching and parsing of the source URL to verify existence of the target link.</p>
                                 </div>
                             </section>
 
-                            <section id="pushing-and-pulling-notifications" inlist="" rel="schema:hasPart" resource="#pushing-and-pulling-notifications">
-                                <h4 property="schema:name">R6 Pushing and Pulling Notifications</h4>
+                            <section id="subscribing" inlist="" rel="schema:hasPart" resource="#subscribing">
+                                <h4 property="schema:name">R5 Subscribing</h4>
                                 <div datatype="rdf:HTML" property="schema:description">
 
-                                    <p>Applications may require that new notifications are pushed to them in real-time, or to request them at appropriate intervals. 
-									To take this into account, we expand our definition of senders, receivers and consumers with the following interaction expectations: </p>
+                                    <p>In general, applications may require that new notifications are pushed to them in real-time, or to request them at appropriate intervals. 
+                                    To take this into account, we expand our definition of senders, receivers and consumers with the following interaction expectations: </p>
                                     <ul>
                                         <li>Notifications are <em>pushed</em> from senders to receivers;</li>
                                         <li>and <em>pulled</em> from receivers by consumers.</li>
                                     </ul>
 
                                     <p>Thus, an application which offers an endpoint or callback URL to which notifications should be sent directly is a receiver, and an application which fetches notifications from an endpoint on its own schedule is a consumer.
-				      In certain scenarios, a receiver may wish to subscribe to a sender; for this, an existing subscription mechanism such as WebSub (formerly <span class="todo">PubSubHubbub was introduced before, but the name WebSub was not.  Introduce both at the same time.</span>PubSubHubbub), the WebSocket Protocol, or HTTP Web Push can be used.</p>
+                                    Much of the related work <em>requires</em> notifications to be explicitly solicited in order to trigger sending. Since in a decentralised model, receivers may not be aware of possible sources for notifications, our sender-receiver relationship depends on the sender's autonomy to make such decisions by itself. 
+                                    This does not preclude the scenario in which a receiver may wish to solicit notifications from a particular sender, but as there are already subscription mechanisms in wide use on the Web, we do not need to specify it as part of LDN. For example, WebSub<sup><a href="#fn-websub">w</a></sup>, the WebSocket Protocol, or HTTP Web Push can be used.</p>
+
 
                                 </div>
                             </section>
 
-                            <section id="persistence-and-reuse" inlist="" rel="schema:hasPart" resource="#persistence-and-reuse">
-                                <h4 property="schema:name">R7 Persistence and Reuse</h4>
-                                <div datatype="rdf:HTML" property="schema:description">
-                                  <p>There is a social expectation and technical arguments for ensuring the persistence of identifiers of Web resources [<span class="todo">cite properly</span>cooluris]. 
-									This is inconsistent with the traditionally ephemeral nature of notifications. 
-									We need to consider both the needs of software systems and humans when large amounts of notification data are being generated and shared between diverse applications which may be operating without knowledge of each other. 
-									Applications may additionally benefit from referring to or reusing notifications if the notifications are known to be available in the long term, or indicate their expected lifespan [<a href="http://philarcher.org/diary/2013/uripersistence/"></a>, <a href="https://www.w3.org/TR/dwbp/#UniqueIdentifiers" title="Best Practice 9: Use persistent URIs as identifiers of datasets"></a>, <a href="https://tools.ietf.org/html/rfc7089"></a>].</p>
-
-                                    <p>In order to promote fair use or remixing of notification contents, applications can incorporate rights and licensing information into the data. 
-									Similarly, applications may include additional information on licensing of any resources which are referred from the notification. 
-									The presence of this type of information is important for consumers to assess the usability of data.</p>
-                                </div>
-                            </section>
-
-                            <section id="resource-management-considerations" inlist="" rel="schema:hasPart" resource="#security-considerations">
-                                <h4 property="schema:name">R8 Resource Management Considerations</h4>
-                                <div datatype="rdf:HTML" property="schema:description">
-                                    <p>In order to organise and manage large amount of notifications over time, mechanisms should be in place to break representations of collections of notifications into multiple paged responses that may be easier to consume by applications.</p>
-
-                                    <p>While the senders and consumers may have some confidence in the persistence of the notifications, they may be subject to update or delete operations at the discretion of the receiver. 
-									Receivers may carry out their own data modification actions, or they may integrate authorisation mechanisms to allow certain operations by third-party applications which can modify existing notification data. For example, an application to consume messages might let the user ‘mark as read’ by adding a triple to the notification contents.</p>
-                                </div>
-                            </section>
-
-<!--                             <section id="involved-parties-considerations" inlist="" rel="schema:hasPart" resource="#involved-parties-considerations">
-                                <h3 property="schema:name">Involved Parties Considerations</h3>
-                                <div datatype="rdf:HTML" property="schema:description">
-                                    <p>Notifications could be sent client-to-server, server-to-server. We should be clear about the intentions in our proposal. Default being a client (user-application?) sends a notification to a server.</p>
-
-                                    <p>I think c2s and s2s should have equal standing, no 'default'. As a 'federation protocol' in the socialwg sense, one would expect s2s as the 'default'. Since we have strong weight from dokieli/solid use case, we think about c2s too. But none elevated over another. AP is s2s. – rhiaro</p>
-
-                                    <p>Note: is this section necessary or meaningful?</p>
-                                </div>
-                            </section> -->
+                            <p>Given our adoption of Linked Data principles and a RESTful architecture, a further design decision we made was to ensure minimal compatibility with the <em>Linked Data Platform</em> (LDP) specification [<a class="ref" href=""></a>]. LDP is a RESTful read-write API for RDF resources, which groups related resources together into constructs known as <em>Containers</em>. Thus, existing LDP servers can be used to store notifications, as new notifications can be created by <code>POST</code>ing RDF to a Container.</p>
+ 
+                            <p><sup id="fn-websub">w. WebSub is a recent W3C evolution of PubSubHubbub.</sup></p>
                         </div>
                     </section>
 
