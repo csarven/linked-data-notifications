@@ -246,19 +246,22 @@
                                 <h4 property="schema:name">R4 Adaptability</h4>
                                 <div datatype="rdf:HTML" property="schema:description">
 
-                                    <p>Linked Data applications benefit from domain-driven designs; that is, functionality being small and focussed on a particular purpose, rather than generic. 
-                                    We do not purport to be able to design a notifications ontology which is appropriate for every domain. We believe a notification protocol should be adaptable for different domains, but that there is no need to create multiple domain-specific notification protocols; the fundamental mechanics are the same. To this end, we consider the <em>contents</em> of a notification to be application specific. 
+                                    <p>Linked Data applications benefit from domain-driven designs; that is, functionality being small and focussed on a particular purpose, rather than generic. We believe a notification protocol should be adaptable for different domains, but that there is no need to create multiple domain-specific notification protocols; the fundamental mechanics are the same.</p>
+
+                                    <p><strong>R4-A</strong>: Any resource may be the <em>target</em> of a notification. By target, we mean a notification may be addressed <em>to</em> the resource, be <em>about</em> the resource, or for a sender to otherwise decide that it is appropriate to draw the attention of the resource (or resource owner) to the information in the notification body. As such, any Web resource must be able to advertise an endpoint to which it can receive notifications. Resources can be RDF or non-RDF (such as an image, or CSV dataset), and may be informational (a blog post, a user profile) or non-informational (a person).</p>
+
+                                    <p><strong>R4-B</strong>:  
+                                    We do not purport to be able to design a notifications ontology which is appropriate for every domain. Thus we consider the <em>contents</em> of a notification to be application specific. 
                                     From a sender's perspective, we derive two core principles:
                                     a notification can contain <em>any data</em>;
-                                    a notification can use <em>any vocabulary</em>.</p>
-
-                                    <p>From a consumer's perspective, interoperability between different applications occurs through vocabulary reuse, and shared understanding of terms. 
+                                    a notification can use <em>any vocabulary</em>.
+                                    From a consumer's perspective, interoperability between different applications occurs through vocabulary reuse, and shared understanding of terms. 
                                     This is in accordance with Linked Data principles in general. 
                                     The practical upshot of this is that a calendar application which consumes event invitations using the <cite><a href="https://www.w3.org/TR/rdfcal/">RDF Calendar</a></cite> vocabulary is likely to completely ignore notifications containing the <cite><a href="http://schema.org/">schema.org</a></cite> vocabulary, even if it finds them all stored in the same place.
                                     For two independent applications operating in the <em>same</em> domain, a shared understanding of appropriate vocabulary terms is assumed.</p>
 
                                     <p>However from a receiver's perspective, exposing itself to receive any blobs of RDF data from unknown senders may be problematic. 
-                                    Thus it should be possible for the receiver to enforce restrictions and accept only notifications that are acceptable according to its own criteria (deemed by e.g., user configuration; domain-specific receivers). 
+                                    Thus, <strong>R4-C</strong>: it should be possible for the receiver to enforce restrictions and accept only notifications that are acceptable according to its own criteria (deemed by e.g., user configuration; domain-specific receivers). 
                                     This can be used as an anti-spam measure, a security protection, or for attaining application and data integrity.</p>
 
                                     <p>A possible filtering mechanism is rejecting notifications which do not match a specific pattern in their contents, or the <em>shape</em> of the data, in order to allow a certain class of applications consume them.
@@ -289,7 +292,6 @@
                                     <p>Thus, an application which offers an endpoint or callback URL to which notifications should be sent directly is a receiver, and an application which fetches notifications from an endpoint on its own schedule is a consumer.
                                     Much of the related work <em>requires</em> notifications to be explicitly solicited in order to trigger sending. Since in a decentralised model, receivers may not be aware of possible sources for notifications, our sender-receiver relationship depends on the sender's autonomy to make such decisions by itself. 
                                     This does not preclude the scenario in which a receiver may wish to solicit notifications from a particular sender, but as there are already subscription mechanisms in wide use on the Web, we do not need to specify it as part of LDN. For example, WebSub<sup><a href="#fn-websub">w</a></sup>, the WebSocket Protocol, or HTTP Web Push can be used.</p>
-
 
                                 </div>
                             </section>
