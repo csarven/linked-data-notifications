@@ -801,13 +801,15 @@
                                 <h3 property="schema:name">Optimising implementation</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
 
+                                    <p>The complexity of implementing a protocol can be considered in terms of the number of HTTP requests required for a core operation. In designing LDN, we have considered tradeoffs between the HTTP operations receivers and publishers are <em>required</em> to respond to, and ways in which developers may wish to optimise senders or consumers by reducing outbound requests.</p>
 
+                                    <p><code>HEAD</code> requests are low cost, and <code>GET</code> requests may be high cost of the body of the resource is large. Given that an Inbox may be discovered from the HTTP Headers of a resource, senders and consumers can optimise by attempting a <code>HEAD</code> request for discovery, and only continuing with a <code>GET</code> request if the <code>HEAD</code> is not successful.
 
-                                  <p>We discuss the complexity of implementing LDN in terms of the number of HTTP requests it takes to implement a basic operation. <span class="todo">If space and time permit, present the following as a table</span>Sending a notification requires 2 distinct types of HTTP requests (<code>GET</code>, <code>POST</code>) to 2 distinct types of resources (target, Inbox); receiving requires 2 distinct types of request (<code>POST</code>, <code>GET</code>) to 2 (or more) distinct types of resource (Inbox, notifications); and consuming requires 1 distinct type of request (<code>GET</code>) to 3 (or more) distinct types of resources (target, Inbox, notifications).</p>
+                                    On the other hand, senders and consumers may be attempting discovery upon RDF resources which they already intend to parse into their own storage. In this case, there is no need for a HEAD request, as a GET will yield both HTTP Link Headers and an RDF body, either of which could include the Inbox triple.
 
-                                    <p><span class="todo">As a transition from the above to this specific “HEAD” discussion, say which of the above operations normally require a HEAD request.</span>  Allowing the possibility of discovering an Inbox through <code>HTTP HEAD</code> or <code>Link</code> header is a pragmatic approach with optimisation benefits.</p>
+                                    This means that resources advertising an Inbox must respond to <code>GET</code> requests (even if only with HTTP Headers) and may respond to <code>HEAD</code> requests.</p>
 
-                                    <p>Given that <code>HTTP GET</code> headers provide the same information as <code>HTTP HEAD</code>, it is possible to omit the optional Inbox discovery via <code>HTTP HEAD</code>, as long as the Inbox can be discovered from the <code>Link</code> header or the body. This has the advantage of requiring applications to only make requests for and respond to <code>HTTP GET</code> requests, and thereby in a way simpler to implement and communicate with. However, one disadvantage is that the size of the entity-body is significant and puts a higher bandwidth requirement on applications to serve and consume, especially if only the <code>Link</code> header is of interest to discover the Inbox. Hence, <code>HTTP HEAD</code> is useful for optimisation reasons.</p>
+                                    <!-- bother with OPTIONS for Accept-Post stuff, or no? Probably not worth space.. -->
 
                                     <p class="todo">Dependencies...</p>
                                 </div>
