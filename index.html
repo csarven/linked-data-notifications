@@ -803,7 +803,7 @@
 
                                     <p>The complexity of implementing a protocol can be considered in terms of the number of HTTP requests required for a core operation. In designing LDN, we have considered tradeoffs between the HTTP operations receivers and publishers are <em>required</em> to respond to, and ways in which developers may wish to optimise senders or consumers by reducing outbound requests.</p>
 
-                                    <p><code>HEAD</code> requests are low cost, and <code>GET</code> requests may be high cost of the body of the resource is large. Given that an Inbox may be discovered from the HTTP Headers of a resource, senders and consumers can optimise by attempting a <code>HEAD</code> request for discovery, and only continuing with a <code>GET</code> request if the <code>HEAD</code> is not successful.
+                                    <p><code>HEAD</code> requests are low cost, and <code>GET</code> requests may be high cost if the body of the resource is large. Given that an Inbox may be discovered from the HTTP Headers of a resource, senders and consumers can optimise by attempting a <code>HEAD</code> request for discovery, and only continuing with a <code>GET</code> request if the <code>HEAD</code> is not successful.
 
                                     On the other hand, senders and consumers may be attempting discovery upon RDF resources which they already intend to parse into their own storage. In this case, there is no need for a HEAD request, as a GET will yield both HTTP Link Headers and an RDF body, either of which could include the Inbox triple.
 
