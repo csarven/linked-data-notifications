@@ -79,7 +79,7 @@ table { font-size: 0.8em !important; }
                     <dd><a href="http://csarven.ca/linked-data-notifications" rel="owl:sameAs">http://csarven.ca/linked-data-notifications</a></dd>
                 </dl>
 
-<!--                 <dl id="document-in-reply-to">
+                <dl id="document-in-reply-to">
                     <dt>In Reply To</dt>
                     <dd><a href="http://2017.eswc-conferences.org/call-papers" rel="sioc:reply_of">ESWC 2017 Call for Papers</a></dd>
                 </dl>
@@ -102,7 +102,7 @@ table { font-size: 0.8em !important; }
                 <dl id="document-license">
                     <dt>License</dt>
                     <dd><a href="https://creativecommons.org/licenses/by/4.0/" rel="schema:license" title="Creative Commons Attribution 4.0 Unported">CC BY 4.0</a></dd>
-                </dl> -->
+                </dl>
 
                 <div id="content">
                     <section id="abstract">
@@ -506,7 +506,7 @@ table { font-size: 0.8em !important; }
 								dokieli-enabled articles also consume citation notifications to display these metrics for the author and other readers (<a href="#figure-dokieli-citation">figure 4</a>). -->
                             </p>
 
-                            <div class="figure-column-2">
+                            <!-- <div class="figure-column-2"> -->
                             <figure id="figure-dokieli-annotation" rel="schema:hasPart" resource="#figure-dokieli-annotation">
                                 <video id="video-dokieli-annotation" rel="schema:hasPart" preload="none" controls="controls" width="800" poster="https://dokie.li/media/images/dokieli-annotation.jpg">
                                     <source about="#video-dokieli-annotation" rel="schema:hasPart" resource="https://dokie.li/media/video/dokieli-annotation.webm" typeof="fabio:Film" src="https://dokie.li/media/video/dokieli-annotation.webm" type="video/webm" />
@@ -520,15 +520,15 @@ table { font-size: 0.8em !important; }
                                 </video>
                                 <figcaption property="schema:name"><a href="https://dokie.li/media/video/dokieli-share.webm">Video</a> of dokieli Share</figcaption>
                             </figure>
-                            </div>
-<!-- 
+                            <!-- </div> -->
+
                             <figure id="figure-dokieli-citation" rel="schema:hasPart" resource="#figure-dokieli-citation">
                                 <video controls="controls" id="video-dokieli-citation" poster="https://dokie.li/media/images/dokieli-citation.jpg" preload="none" width="800" about="" rel="schema:hasPart">
                                     <source about="#video-dokieli-citation" rel="schema:hasPart" resource="https://dokie.li/media/video/dokieli-citation.webm" src="https://dokie.li/media/video/dokieli-citation.webm" type="video/webm" typeof="fabio:Film" />
                                 </video>
                                 <figcaption property="schema:name"><a href="https://dokie.li/media/video/dokieli-citation.webm">Video</a> of semantic inline citations</figcaption>
                             </figure>
- -->
+
                             <p>Notifications sent by dokieli can be reused by any consuming applications that recognise the vocabulary terms; similarly, dokieli can consume notifications sent by different applications.</p>
 
                             <p>Further social use cases are demonstrated by <cite><a href="https://rhiaro.co.uk/sloph">sloph</a></cite>, a personal publishing and quantified self platform which acts as a node in a decentralised social network. When new content is created on the server, sloph performs discovery on URLs it finds as values of particular properties of the new content, as well as any URLs in the body of the content, and sends notifications accordingly. For instance:</p>
