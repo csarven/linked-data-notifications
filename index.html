@@ -274,11 +274,7 @@
                                 <h4 property="schema:name">R5 Subscribing</h4>
                                 <div datatype="rdf:HTML" property="schema:description">
                                     <p>In general, applications may require that new notifications are pushed to them in real-time, or to request them at appropriate intervals. 
-                                    To take this into account, we expand our definition of senders, receivers and consumers with the following interaction expectations: </p>
-                                    <ul>
-                                        <li>Notifications are <em>pushed</em> from senders to receivers;</li>
-                                        <li>and <em>pulled</em> from receivers by consumers.</li>
-                                    </ul>
+                                    To take this into account, we expand our definition of senders, receivers and consumers with the following interaction expectations: notifications are <em>pushed</em> from senders to receivers; and <em>pulled</em> from receivers by consumers.</p>
 
                                     <p>Thus, an application which offers an endpoint or callback URL to which notifications should be sent directly is a receiver, and an application which fetches notifications from an endpoint on its own schedule is a consumer.
                                     Much of the related work <em>requires</em> notifications to be explicitly solicited in order to trigger sending. Since in a decentralised model, receivers may not be aware of possible sources for notifications, our sender-receiver relationship depends on the sender's autonomy to make such decisions by itself. 
