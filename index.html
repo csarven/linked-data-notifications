@@ -33,7 +33,7 @@ table { font-size: 0.8em !important; }
 </style>
     </head>
 
-    <body about="" prefix="rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns# rdfs: http://www.w3.org/2000/01/rdf-schema# owl: http://www.w3.org/2002/07/owl# xsd: http://www.w3.org/2001/XMLSchema# dcterms: http://purl.org/dc/terms/ dctypes: http://purl.org/dc/dcmitype/ foaf: http://xmlns.com/foaf/0.1/ v: http://www.w3.org/2006/vcard/ns# pimspace: http://www.w3.org/ns/pim/space# cc: http://creativecommons.org/ns# skos: http://www.w3.org/2004/02/skos/core# prov: http://www.w3.org/ns/prov# qb: http://purl.org/linked-data/cube# schema: http://schema.org/ rsa: http://www.w3.org/ns/auth/rsa# cert: http://www.w3.org/ns/auth/cert# cal: http://www.w3.org/2002/12/cal/ical# wgs: http://www.w3.org/2003/01/geo/wgs84_pos# org: http://www.w3.org/ns/org# biblio: http://purl.org/net/biblio# bibo: http://purl.org/ontology/bibo/ book: http://purl.org/NET/book/vocab# ov: http://open.vocab.org/terms/ sioc: http://rdfs.org/sioc/ns# doap: http://usefulinc.com/ns/doap# dbr: http://dbpedia.org/resource/ dbp: http://dbpedia.org/property/ sio: http://semanticscience.org/resource/ opmw: http://www.opmw.org/ontology/ deo: http://purl.org/spar/deo/ doco: http://purl.org/spar/doco/ cito: http://purl.org/spar/cito/ fabio: http://purl.org/spar/fabio/ oa: http://www.w3.org/ns/oa# as: http://www.w3.org/ns/activitystreams# ldp: http://www.w3.org/ns/ldp# solid: http://www.w3.org/ns/solid/terms#" typeof="schema:CreativeWork sioc:Post prov:Entity">
+    <body about="" prefix="rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns# rdfs: http://www.w3.org/2000/01/rdf-schema# owl: http://www.w3.org/2002/07/owl# xsd: http://www.w3.org/2001/XMLSchema# dcterms: http://purl.org/dc/terms/ dctypes: http://purl.org/dc/dcmitype/ foaf: http://xmlns.com/foaf/0.1/ v: http://www.w3.org/2006/vcard/ns# pimspace: http://www.w3.org/ns/pim/space# cc: http://creativecommons.org/ns# skos: http://www.w3.org/2004/02/skos/core# prov: http://www.w3.org/ns/prov# qb: http://purl.org/linked-data/cube# schema: http://schema.org/ rsa: http://www.w3.org/ns/auth/rsa# cert: http://www.w3.org/ns/auth/cert# cal: http://www.w3.org/2002/12/cal/ical# wgs: http://www.w3.org/2003/01/geo/wgs84_pos# org: http://www.w3.org/ns/org# biblio: http://purl.org/net/biblio# bibo: http://purl.org/ontology/bibo/ book: http://purl.org/NET/book/vocab# ov: http://open.vocab.org/terms/ sioc: http://rdfs.org/sioc/ns# doap: http://usefulinc.com/ns/doap# dbr: http://dbpedia.org/resource/ dbp: http://dbpedia.org/property/ sio: http://semanticscience.org/resource/ opmw: http://www.opmw.org/ontology/ deo: http://purl.org/spar/deo/ doco: http://purl.org/spar/doco/ cito: http://purl.org/spar/cito/ fabio: http://purl.org/spar/fabio/ oa: http://www.w3.org/ns/oa# as: http://www.w3.org/ns/activitystreams# ldp: http://www.w3.org/ns/ldp# solid: http://www.w3.org/ns/solid/terms# dio: https://w3id.org/dio#" typeof="schema:CreativeWork sioc:Post prov:Entity">
         <main>
             <article about="" typeof="schema:Article">
                 <h1 property="schema:name">Linked Data Notifications: a resource-centric communication protocol</h1>
@@ -126,12 +126,16 @@ table { font-size: 0.8em !important; }
                         <div datatype="rdf:HTML" property="schema:description">
 							<p>Notifications are sent over the Web for a variety of purposes, including social applications: <q>You have been invited to a graduation party!</q>, <q>Tim commented on your blog post!</q>, <q>Liz tagged you in a photo</q>.
 							The notification data may be displayed to a human to acknowledge, or used to trigger some other application-specific process (or both). 
+                            <span id="issue" about="#issue" datatype="rdf:HTML" property="schema:description" rel="dio:generatedByIntent" resource="#intent" typeof="dio:DesignIssue">
                             In a decentralised architecture, notifications can be a key element for federation of information, and application integration.
-							However in centralised systems which prevail today, this data is structured arbitrarily and typically only usable by the application that generated it in the first place.
+							However in <span rel="dio:hasStatus" resource="#issue-status" typeof="dio:Active">centralised systems which prevail today</span>, this data is structured arbitrarily and typically only usable by the application that generated it in the first place.
 							Current efforts towards <em>re-decentralising</em> the Web [<a class="ref" href="#ref-1">1</a>, <a class="ref" href="#ref-2">2</a>] are moving towards architectures in which data storage is decoupled from application logic, freeing end users to switch between applications, or to let multiple applications operate over the same data.
-							So far, notifications are considered to be <em>ephemeral</em> resources which may disappear after transport, and thus are excluded from being designed for reuse.</p>
+							So far, notifications are considered to be <em>ephemeral</em> resources which may disappear after transport, and thus are excluded from being designed for reuse.
+                            </span>
+                            </p>
 
-                            <p>We argue that notification data should not be locked into particular systems. 
+                            <p id="#intent" about="#intent" datatype="rdf:HTML" property="schema:description" rel="dio:generatesIssue" resource="#issue" typeof="dio:Intent">
+                            We argue that notification data should not be locked into particular systems. 
 							We designed the <em>Linked Data Notifications (LDN)</em> protocol to support sharing and reuse of notifications <em>across</em> applications, regardless of how they were generated or what their contents are. 
 							We describe how the principles of identification, addressability and semantic representation can be applied to notifications on the Web.
 							Specifying LDN as a formal protocol allows independently implemented, heterogeneous applications which generate and use notifications, to seamlessly work together. 
@@ -199,7 +203,7 @@ table { font-size: 0.8em !important; }
 
                             <section id="modularity" inlist="" rel="schema:hasPart" resource="#modularity">
                                 <h4 property="schema:name">R1 Modularity</h4>
-                                <div datatype="rdf:HTML" property="schema:description">
+                                <div about="#modularity" datatype="rdf:HTML" property="schema:description" rel="dio:addressedBy" resource="#intent" typeof="dio:DesignRequirement">
                                     <p>To encourage modularity of applications, one should differentiate between different classes of implementation of the protocol. 
                                     Two parties are involved in the creation of a notification: a <em>sender</em>, generating the notification data, and a <em>receiver</em>, storing the created resource. 
                                     We also have the role of a <em>consumer</em>, which reads the notification data and repurposes it in some way.
@@ -210,7 +214,7 @@ table { font-size: 0.8em !important; }
 
                             <section id="reusable-notifications" inlist="" rel="schema:hasPart" resource="#reusable-notifications">
                                 <h4 property="schema:name">R2 Reusable notifications</h4>
-                                <div datatype="rdf:HTML" property="schema:description">
+                                <div about="#reusable-notifications" datatype="rdf:HTML" property="schema:description" rel="dio:addressedBy" resource="#intent" typeof="dio:DesignRequirement">
                                     <p>The relationship between the <em>consumer</em> and <em>receiver</em> roles is key to notifications being reusable. A consumer must be able to autonomously find the location of notifications for or about the particular resource it is interested in. To achieve this we place a requirement on the receiver to expose notifications it has been sent in such away to permit other applications to access them; and specify how any resource can advertise its receiving endpoint for consumers to discover. <!--</p>
                                     <p>-->To promote fair use or remixing of notification contents, applications can incorporate rights and licensing information into the data. 
                                     Similarly, applications may include additional information on licensing resources that the notification refers to. 
@@ -220,7 +224,7 @@ table { font-size: 0.8em !important; }
 
                             <section id="persistence-and-retrievability" inlist="" rel="schema:hasPart" resource="#persistence-and-retrievability">
                                 <h4 property="schema:name">R3 Persistence and Retrievability</h4>
-                                <div datatype="rdf:HTML" property="schema:description">
+                                <div about="#persistence-and-retrievability" datatype="rdf:HTML" property="schema:description" rel="dio:addressedBy" resource="#intent" typeof="dio:DesignRequirement">
 									<p>There is a social expectation and technical arguments for ensuring the persistence of identifiers of Web resources [<a class="ref" href="#ref-10">10</a>].
                                     This is inconsistent with the traditionally ephemeral nature of notifications.  
                                     Applications may benefit from referring to or reusing notifications if the notifications are known to be available in the long term, or indicate their expected lifespan [<a class="ref" href="#ref-11">11</a><!-- , <a href="https://www.w3.org/TR/dwbp/#UniqueIdentifiers" title="Best Practice 9: Use persistent URIs as identifiers of datasets"></a>, <a href="https://tools.ietf.org/html/rfc7089"></a>-->].</p>
@@ -238,12 +242,12 @@ table { font-size: 0.8em !important; }
 
                             <section id="adaptability" rel="schema:hasPart" resource="#adaptability">
                                 <h4 property="schema:name">R4 Adaptability</h4>
-                                <div datatype="rdf:HTML" property="schema:description">
+                                <div about="#adaptability" datatype="rdf:HTML" property="schema:description" rel="dio:addressedBy" resource="#intent" typeof="dio:DesignRequirement">
                                     <p>Linked Data applications benefit from domain-driven designs; that is, functionality being small and focussed on a particular purpose, rather than generic. We believe a notification protocol should be adaptable for different domains, but that there is no need to create multiple domain-specific notification protocols; the fundamental mechanics are the same.</p>
 
-                                    <p><strong>R4-A</strong>: Any resource may be the <em>target</em> of a notification. By target, we mean a notification may be addressed <em>to</em> the resource, be <em>about</em> the resource, or for a sender to otherwise decide that it is appropriate to draw the attention of the resource (or resource owner) to the information in the notification body. As such, any Web resource must be able to advertise an endpoint to which it can receive notifications. Resources can be RDF or non-RDF (such as an image, or CSV dataset), and may be informational (a blog post, a user profile) or non-informational (a person).</p>
+                                    <p id="target-representation" about="#target-representation" datatype="rdf:HTML" property="schema:description" rel="dio:refines" resource="#adaptability"><strong>R4-A</strong>: Any resource may be the <em>target</em> of a notification. By target, we mean a notification may be addressed <em>to</em> the resource, be <em>about</em> the resource, or for a sender to otherwise decide that it is appropriate to draw the attention of the resource (or resource owner) to the information in the notification body. As such, any Web resource must be able to advertise an endpoint to which it can receive notifications. Resources can be RDF or non-RDF (such as an image, or CSV dataset), and may be informational (a blog post, a user profile) or non-informational (a person).</p>
 
-                                    <p><strong>R4-B</strong>:  
+                                    <p id="notification-body" about="#notification-body" datatype="rdf:HTML" property="schema:description" rel="dio:refines" resource="#adaptability"><strong>R4-B</strong>:  
                                     We do not purport to be able to design a notifications ontology which is appropriate for every domain. Thus we consider the <em>contents</em> of a notification to be application specific. 
                                     From a sender's perspective, we derive two core principles:
                                     a notification can contain <em>any data</em>;
@@ -253,6 +257,7 @@ table { font-size: 0.8em !important; }
                                     The practical upshot of this is that a calendar application which consumes event invitations using the <cite><a href="https://www.w3.org/TR/rdfcal/">RDF Calendar</a></cite> vocabulary is likely to completely ignore notifications containing the <cite><a href="www.w3.org/TR/prov-o/">PROV Ontology</a></cite>, even if it finds them all stored in the same place.
                                     For two independent applications operating in the <em>same</em> domain, a shared understanding of appropriate vocabulary terms is assumed.</p>
 
+                                    <div id="notification-verification" about="#notification-verification" datatype="rdf:HTML" property="schema:description" rel="dio:refines" resource="#adaptability">
                                     <p>However from a receiver's perspective, exposing itself to receive any blobs of RDF data from unknown senders may be problematic. 
                                     Thus, <strong>R4-C</strong>: it should be possible for the receiver to enforce restrictions and accept only notifications that are acceptable according to its own criteria (deemed by e.g., user configuration; domain-specific receivers). 
                                     This can be used as an anti-spam measure, a security protection, or for attaining application and data integrity.</p>
@@ -268,12 +273,13 @@ table { font-size: 0.8em !important; }
 
                                     <p>As <q>anyone can say anything about anything</q> a receiver may choose to dereference any external resources referred to by the notification, and cross-check the notification contents against authoritative sources.
                                     This is similar to how Semantic Pingback and Webmention require fetching and parsing of the source URL to verify existence of the target link.</p>
+                                    </div>
                                 </div>
                             </section>
 
                             <section id="subscribing" inlist="" rel="schema:hasPart" resource="#subscribing">
                                 <h4 property="schema:name">R5 Subscribing</h4>
-                                <div datatype="rdf:HTML" property="schema:description">
+                                <div about="#subscribing" datatype="rdf:HTML" property="schema:description" rel="dio:addressedBy" resource="#intent" typeof="dio:DesignRequirement">
                                     <p>In general, applications may require that new notifications are pushed to them in real-time, or to request them at appropriate intervals. 
                                     To take this into account, we expand our definition of senders, receivers and consumers with the following interaction expectations: notifications are <em>pushed</em> from senders to receivers; and <em>pulled</em> from receivers by consumers.</p>
 
@@ -289,7 +295,7 @@ table { font-size: 0.8em !important; }
 
                     <section id="protocol" inlist="" rel="schema:hasPart" resource="#protocol">
                         <h2 property="schema:name">The LDN Protocol</h2>
-                        <div datatype="rdf:HTML" property="schema:description" resource="#protocol" typeof="deo:Contribution">
+                        <div datatype="rdf:HTML" property="schema:description" resource="#protocol" typeof="deo:Contribution dio:Design">
                             <p>The <dfn id="ldn">Linked Data Notifications (<abbr title="Linked Data Notifications">LDN</abbr>)</dfn> protocol describes how servers (receivers) can receive messages pushed to them by applications (senders), as well as how other applications (consumers) may retrieve those messages. 
 							Any resource can advertise a receiving endpoint (Inbox) for notification messages. 
 							Messages are expressed in RDF, and can contain arbitrary data. 
@@ -322,10 +328,15 @@ table { font-size: 0.8em !important; }
                                 <div datatype="rdf:HTML" property="schema:description">
                                     <p>The following steps describe the interaction between consumer and receiver:</p>
 
-                                    <p>(1) A consumer selects a target and discovers the location of its Inbox in the same way as the sender;
+                                    <p>
+                                    (1) A consumer selects a target and discovers the location of its Inbox in the same way as the sender;
                                     (2) A receiver responds to <code>GET</code> requests made to the Inbox URL with a listing of the URLs of notifications that have previously been accepted, linked to the Inbox with the <code>ldp:contains</code> predicate;
+                                    <span about="#protocol" rel="dio:fulfillsRequirement" resource="#persistence-and-retrievability">
                                     (3) The receiver responds to <code>GET</code> requests made to the individual notification URLs with JSON-LD (or optionally other serialisations);
-                                    (4) Following the retrieval of notification listings or individual notifications, the consumer may perform further processing, combine with some other data, or simply present the results in a suitable human-readable way.</p>
+                                    </span>
+                                    <span about="#protocol" rel="dio:fulfillsRequirement" resource="#reusable-notifications">
+                                    (4) Following the retrieval of notification listings or individual notifications, the consumer may perform further processing, combine with some other data, or simply present the results in a suitable human-readable way.
+                                    </span></p>
                                 </div>
                             </section>
 
@@ -510,7 +521,7 @@ table { font-size: 0.8em !important; }
                                 <figcaption property="schema:name"><a href="https://dokie.li/media/video/dokieli-citation.webm">Video</a> of semantic inline citations</figcaption>
                             </figure>
  -->
-                            <p>Notifications sent by dokieli can be reused by any consuming applications that recognise the vocabulary terms; similarly, dokieli can consume notifications sent by different applications. </p>
+                            <p>Notifications sent by dokieli can be reused by any consuming applications that recognise the vocabulary terms; similarly, dokieli can consume notifications sent by different applications.</p>
 
                             <p>Further social use cases are demonstrated by <cite><a href="https://rhiaro.co.uk/sloph">sloph</a></cite>, a personal publishing and quantified self platform which acts as a node in a decentralised social network. When new content is created on the server, sloph performs discovery on URLs it finds as values of particular properties of the new content, as well as any URLs in the body of the content, and sends notifications accordingly. For instance:</p>
                             <ul>
@@ -728,7 +739,7 @@ table { font-size: 0.8em !important; }
                             <section id="compatibility-with-existing-systems" rel="schema:hasPart" resource="#compatibility-with-existing-systems">
                                 <h3 property="schema:name">Compatibility with existing systems</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
-                                    <p>Per <a href="#modularity">R1</a> and <a href="#adaptability">R4</a> we have tried to optimise LDN for use as a module of a larger system. The success of this is demonstrated by implementations which use LDN alongside existing protocols according to their specific needs.</p>
+                                    <p>Per <a about="#protocol" rel="dio:fulfillsRequirement" href="#modularity">R1</a> and <a about="#protocol" rel="dio:fulfillsRequirement" href="#adaptability">R4</a> we have tried to optimise LDN for use as a module of a larger system. The success of this is demonstrated by implementations which use LDN alongside existing protocols according to their specific needs.</p>
                                     <p>The Solid suite of tools, Virtuoso+ODS-Briefcase, and dokieli use <cite><a href="https://www.w3.org/wiki/WebAccessControl">Web Access Control</a></cite> along with an authentication mechanism to apply fine grained access controls to restrict who can send notifications, or who can retrieve notifications from the Inbox. sloph demonstrates an Inbox as a <cite><a href="http://www.webhooks.org/">Webhooks</a></cite> callback URL, for requesting notifications from APIs which post JSON-based payloads. <cite><a href="https://www.w3.org/TR/activitypub/">ActivityPub</a></cite> is a W3C <abbr title="Candidate Recommendation">CR</abbr> for decentralised social media [<a class="ref" href="#ref-18">18</a>]. It uses LDN for delivery of notifications with the <a href="https://www.w3.org/ns/activitystreams-vocabulary">ActivityStreams 2.0</a> (AS2) vocabulary, and specifies additional specialised receiver behaviour; also used by sloph. dokieli uses the <cite><a href="https://www.w3.org/TR/annotation-protocol/">Web Annotation Protocol</a></cite>, an LDP-based mechanism for creating new content, which acts as a trigger for notifications to be sent to the Inbox of the annotation target. The <cite><a href="http://fcrepo.github.io/fcrepo-specification/">Fedora API Specification</a></cite> is in the process of being formalised (as an extension of LDP) by the Fedora community. The repository event stream draws upon the LDN specification, allowing LDN consumers and senders to react asynchronously to repository events.</p>
 
                                     <p>Any existing <abbr title="Linked Data Platform">LDP</abbr> implementation can serve as an LDN receiver. Simply advertising any <code>ldp:Container</code> as the Inbox for a resource is sufficient. We confirmed this with four LDP servers which were developed independently with different code bases, prior to the LDN specification (CarbonLDP, Fedora Commons, Solid Server, Virtuoso).</p>
