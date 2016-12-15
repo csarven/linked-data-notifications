@@ -143,7 +143,8 @@ section p + ol { margin-top:0; }
 
                             <p>LDN is a W3C <a href="https://www.w3.org/TR/ldn/">Candidate Recommendation</a> via the <cite><a href="https://www.w3.org/wiki/Socialwg">Social Web Working Group</a></cite> [<a class="ref" href="#ref-3">3</a>]. The authors of this article: <a href="http://csarven.ca/#i">Sarven</a> and <a href="https://rhiaro.co.uk/#me">Amy</a>, are the co-editors of the specification.</p>
 
-                            <p>We present use cases for decentralised notifications from the Social Web and related domains, and describe the requirements which guided the development of the protocol. 
+                            <p>Use cases for decentralised notifications are particularly evident in social networking (status updates, interactions, games); scholarly communication (reviews, citations); and changes of state of resources (datasets, versioning, sensor readings, experimental observations). 
+                            We describe the requirements which guided the development of the protocol. 
 							Discussion of related work includes current alternative approaches and complementary protocols which can work alongside LDN. 
 							We summarise the protocol itself, and detail about specific architectural considerations that were made. We built a test suite which can be used to confirm that implementations conform with the specification, and we describe the independent implementations which interoperate with each other so far.</p>
 
@@ -167,28 +168,7 @@ section p + ol { margin-top:0; }
 
                             <!-- <p>Using this article as the target for notifications, we welcome readers' feedback via LDN.</p> -->
                         </div>
-                    </section>          
-
-
-                    <section id="use-cases" inlist="" rel="schema:hasPart" resource="#use-cases">
-                        <h2 property="schema:name">Use cases</h2>
-                        <div datatype="rdf:HTML" property="schema:description">
-                            <p>The high level use case is to have independently built applications able to generate and make use of notification data no matter how it was created or where it is stored. 
-							We briefly discuss use cases from different domains that can make use of Linked Data Notifications.</p>
-
-                            <p><strong>Social Networks</strong>: Announcements of new status updates and blog posts from contacts can be delivered through notifications; private and public personal messages; new comments or annotations on content, as well as likes, shares, and bookmarks; invitations to events and RSVPs; moves in a game.
-							</p>
-
-                            <p><strong>Scholarly Communication</strong>: When academic articles, scientific reports, and their peer-reviews are published online, notifications can inform the author or the scientific community about a new contributions. 
-							A notification can contain a concise description about what was reviewed, when it was created, by whom, and the conditions under which it can be reused.
-							Notifications can alert an author when their work is cited, providing the means to build bidirectional connections between ideas, discoveries, and innovations, as well as their evolution.</p>
-
-                            <p><strong>Change of State</strong>: Capturing provenance and change tracking, such as: 
-							updates to datasets; versioning of software or collaborative documents; error detection and recommended fixes; emergency broadcasts during disaster situations; weather forecasts; personal fitness progress; scientific, experimental and statistical observations; data captured by sensors. 
-							Applications can customise notifications to contain a small, semantically represented unit of information capturing in particular the time and state of an event, and distribute it to interested parties.</p>
-                        </div>
-                    </section>
-
+                    </section>         
 
                     <section id="related-work" inlist="" rel="schema:hasPart" resource="#related-work">
                         <h2 property="schema:name">Related Work</h2>
