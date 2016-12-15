@@ -350,38 +350,19 @@ section p + ol { margin-top:0; }
                                     <p>Here we present example notification payloads. Please refer to the <a href="https://www.w3.org/TR/ldn/">W3C specification</a> for example interactions between senders, receivers and consumers.</p>
 
                                     <figure class="listing" id="sending-notification-request" rel="schema:hasPart" resource="#sending-notification-request">
-                                        <pre about="#sending-notification-request" property="schema:description" typeof="fabio:Script">
-<code>POST /inbox/ HTTP/1.1</code>
-<code>Host: example.org</code>
-<code>Content-Type: application/ld+json</code>
-<code></code>
-<code>{</code>
-<code>  "@context": {</code>
-<code>    "sioc": "http://rdfs.org/sioc/ns#",</code>
-<code>    "foaf": "http://xmlns.com/foaf/0.1/" },</code>
+                                        <pre about="#sending-notification-request" property="schema:description" typeof="fabio:Script"><code>{</code>
+<code>  "@context": { "sioc": "http://rdfs.org/sioc/ns#" }</code>
 <code>  "@id": "",</code>
 <code>  "@type": "sioc:Comment",</code>
 <code>  "sioc:content": "This is a great article!",</code>
 <code>  "sioc:reply_of": { "@id": "http://example.org/article" },</code>
-<code>  "sioc:created_at": {</code>
-<code>    "@type": "http://www.w3.org/2001/XMLSchema#dateTime",</code>
-<code>    "@value": "2015-12-23T16:44:21Z" },</code>
-<code>  "sioc:has_creator": {</code>
-<code>    "@id": "http://example.org/profile",</code>
-<code>    "@type": "sioc:UserAccount",</code>
-<code>    "sioc:account_of": { "@id": "http://example.org/profile#alice" },</code>
-<code>    "foaf:name": "Alice" }</code>
+<code>  "sioc:created_at": { "@value": "2015-12-23T16:44:21Z" }</code>
 <code>}</code></pre>
                                         <figcaption property="schema:name">This notification is about a comment and the user who created the comment, described by the SIOC and FOAF vocabularies.</figcaption>
                                     </figure>
 
                                     <figure class="listing" id="notification-qualified-relation" rel="schema:hasPart" resource="#notification-qualified-relation">
-                                        <pre about="#notification-qualified-relation" property="schema:description" typeof="fabio:Script">
-<code>POST /inbox/ HTTP/1.1</code>
-<code>Host: csarven.ca</code>
-<code>Content-Type: text/turtle</code>
-<code></code>
-<code>@prefix as: &lt;https://www.w3.org/ns/activitystreams#&gt; .</code>
+                                        <pre about="#notification-qualified-relation" property="schema:description" typeof="fabio:Script"><code>@prefix as: &lt;https://www.w3.org/ns/activitystreams#&gt; .</code>
 <code>@prefix cito: &lt;http://purl.org/spar/cito/&gt; .</code>
 <code></code>
 <code>&lt;&gt;  a         as:Announce</code>
