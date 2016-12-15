@@ -128,20 +128,21 @@
 							We summarise the protocol itself, and then go into detail about specific architectural considerations that were made. We built a test suite which can be used to confirm that implementations conform with the specification, and we describe the independent implementations which interoperate with each other so far.</p>
 
                             <div about="" id="concept-scheme" rel="schema:hasPart" resource="#concept-scheme">
-                              <p resource="#concept-scheme" typeof="skos:ConceptScheme"><span property="skos:definition">As the following terms used throughout this paper may be subject to different interpretations by different communities, we provide some definitions here.</span></p>
+                                <p resource="#concept-scheme" typeof="skos:ConceptScheme"><span property="skos:definition">As the following terms used throughout this paper may be subject to different interpretations by different communities, we provide some definitions here.</span></p>
 
-                                <dl rel="skos:hasTopConcept">
-                                    <dt about="#concept-decentralisation" id="concept-decentralisation" property="skos:prefLabel" rel="skos:topConceptOf" resource="#concept-scheme" typeof="skos:Concept">Decentralisation</dt>
-                                    <dd about="#concept-decentralisation" property="skos:definition">Data and applications are loosely coupled, and users are empowered to choose where their data is stored or held. 
-									We focus on Web-based decentralisation, where content is transported over HTTP, and resources are identified with URIs.</dd>
+                                <p rel="skos:hasTopConcept">
+                                    By
+                                    <strong about="#concept-decentralisation" id="concept-decentralisation" property="skos:prefLabel" rel="skos:topConceptOf" resource="#concept-scheme" typeof="skos:Concept">decentralisation</strong>, we mean
+                                    <span about="#concept-decentralisation" property="skos:definition">data and applications are loosely coupled, and users are empowered to choose where their data is stored or held.
+									We focus on Web-based decentralisation, where content is transported over HTTP, and resources are identified with URIs.</span>
 
-                                    <dt about="#concept-inbox" id="concept-inbox" property="skos:prefLabel" rel="skos:topConceptOf" resource="#concept-scheme" typeof="skos:Concept">Inbox</dt>
-                                    <dd about="#concept-inbox" property="skos:definition">A container or directory (attached to a Web resource) which is used to store and serve a collection of notifications.</dd>
+                                    An <strong about="#concept-inbox" id="concept-inbox" property="skos:prefLabel" rel="skos:topConceptOf" resource="#concept-scheme" typeof="skos:Concept">Inbox</strong> is
+                                    <span about="#concept-inbox" property="skos:definition">a container or directory (attached to a Web resource) which is used to store and serve a collection of notifications.</span>
 
-                                    <dt about="#concept-notification" id="concept-notification" property="skos:prefLabel" rel="skos:topConceptOf" resource="#concept-scheme" typeof="skos:Concept">Notification</dt>
-                                    <dd about="#concept-notification" property="skos:definition">A retrievable resource which returns RDF. 
-									The contents of notifications are intended to describe a change in state of some other resource, or contain new information for the attention of a user or process, and may be subject to constraints of the Inbox it is contained in.</dd>
-                                </dl>
+                                    A <strong about="#concept-notification" id="concept-notification" property="skos:prefLabel" rel="skos:topConceptOf" resource="#concept-scheme" typeof="skos:Concept">notification</strong> is
+                                    <span about="#concept-notification" property="skos:definition">a retrievable resource which returns RDF.
+									The contents of notifications are intended to describe a change in state of some other resource, or contain new information for the attention of a user or process, and may be subject to constraints of the Inbox it is contained in.</span>
+                                </p>
                             </div>
 
                             <!-- <p>Using this article as the target for notifications, we welcome readers' feedback via LDN.</p> -->
