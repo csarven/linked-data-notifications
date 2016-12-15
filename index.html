@@ -302,29 +302,27 @@ section p + ol { margin-top:0; }
                             <section id="sender-to-receiver" inlist="" rel="schema:hasPart" resource="#sender-to-receiver">
                                 <h3 property="schema:name">Sender to receiver interactions</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
-									<p>The following steps describe the interaction between sender and receiver:</p>
-                                    <ol>
-                                        <li>A sender is triggered, either by a human or an automatic process, to deliver a notification.</li>
-                                        <li>The sender chooses a target resource to send notifications to.</li>
-                                        <li>The sender discovers the location of the target’s <em>Inbox</em> through the <code>ldp:inbox</code> relation in the HTTP <code>Link</code> header or RDF body of the target resource.</li>
-                                        <li>The sender creates the body of the notification according to the needs of application.</li>
-                                        <li>The sender makes a <code>POST</code> request to the Inbox URL, containing the body in JSON-LD or in another serialisation acceptable by the server.</li>
-                                        <li>The receiver optionally applies filtering rules, and sends the appropriate HTTP response code to accept or reject the notification.</li>
-                                        <li>The receiver exposes the notification data (according to appropriate access control) for use by consumers.</li>
-                                    </ol>
+                                    <p>The following steps describe the interaction between sender and receiver:</p>
+
+                                    <p>(1) A sender is triggered, either by a human or an automatic process, to deliver a notification;
+                                    (2) The sender chooses a target resource to send notifications to;
+                                    (3) The sender discovers the location of the target’s <em>Inbox</em> through the <code>ldp:inbox</code> relation in the HTTP <code>Link</code> header or RDF body of the target resource;
+                                    (4) The sender creates the body of the notification according to the needs of application;
+                                    (5) The sender makes a <code>POST</code> to the Inbox URL, containing the body in JSON-LD or in another serialisation acceptable by the server;
+                                    (6) The receiver optionally applies filtering rules, and sends the appropriate HTTP response code to accept or reject the notification;
+                                    (7) The receiver exposes the notification data (according to appropriate access control) for use by consumers.</p>
                                 </div>
                             </section>
 
                             <section id="consumer-to-receiver" inlist="" rel="schema:hasPart" resource="#consumer-to-receiver">
                                 <h3 property="schema:name">Consumer to receiver interactions</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
-									<p>The following steps describe the interaction between consumer and receiver:</p>
-                                    <ol>
-                                        <li>A consumer selects a target and discovers the location of its Inbox in the same way as the sender.</li>
-                                        <li>A receiver responds to <code>GET</code> requests made to the Inbox URL with a listing of the URLs of notifications that have previously been accepted, linked to the Inbox with the <code>ldp:contains</code> predicate.</li>
-                                        <li>The receiver responds to <code>GET</code> requests made to the individual notification URLs with JSON-LD (or optionally other serialisations).</li>
-                                        <li>Following the retrieval of notification listings or individual notifications, the consumer may perform further processing, combine with some other data, or simply present the results in a suitable human-readable way.</li>
-                                    </ol>
+                                    <p>The following steps describe the interaction between consumer and receiver:</p>
+
+                                    <p>(1) A consumer selects a target and discovers the location of its Inbox in the same way as the sender;
+                                    (2) A receiver responds to <code>GET</code> requests made to the Inbox URL with a listing of the URLs of notifications that have previously been accepted, linked to the Inbox with the <code>ldp:contains</code> predicate;
+                                    (3) The receiver responds to <code>GET</code> requests made to the individual notification URLs with JSON-LD (or optionally other serialisations);
+                                    (4) Following the retrieval of notification listings or individual notifications, the consumer may perform further processing, combine with some other data, or simply present the results in a suitable human-readable way.</p>
                                 </div>
                             </section>
 
