@@ -4,9 +4,9 @@
         <meta charset="utf-8" />
         <title>Linked Data Notifications: a resource-centric communication protocol</title>
         <meta content="width=device-width, initial-scale=1" name="viewport" />
-        <link href="https://dokie.li/media/css/basic.css" media="all" rel="stylesheet alternate" title="Basic" />
+        <!-- <link href="https://dokie.li/media/css/basic.css" media="all" rel="stylesheet alternate" title="Basic" /> -->
         <link href="https://dokie.li/media/css/lncs.css" media="all" rel="stylesheet" title="LNCS" />
-        <link href="https://dokie.li/media/css/acm.css" media="all" rel="stylesheet alternate" title="ACM" />
+<!--         <link href="https://dokie.li/media/css/acm.css" media="all" rel="stylesheet alternate" title="ACM" />
         <link href="https://www.w3.org/StyleSheets/TR/2016/W3C-UD" media="all" rel="stylesheet alternate" title="W3C-UD" />
         <link href="https://dokie.li/media/css/do.css" media="all" rel="stylesheet" />
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" media="all" rel="stylesheet" />
@@ -14,10 +14,19 @@
         <script src="https://dokie.li/scripts/simplerdf.js"></script>
         <script src="https://dokie.li/scripts/medium-editor.min.js"></script>
         <script src="https://dokie.li/scripts/medium-editor-tables.min.js"></script>
-        <script src="https://dokie.li/scripts/do.js"></script>
+        <script src="https://dokie.li/scripts/do.js"></script> -->
 <style>
-table { font-size: 0.8em; }
-figcaption { font-size:0.9em; line-height:1; }
+table { font-size: 0.8em !important; }
+figcaption { font-size:0.9em !important; line-height:1 !important; }
+#abstract, #document-status, #document-identifier, #document-purpose, #document-published, #document-modified, #document-appeared, #document-in-reply-to, #document-license, #document-language, #document-format, #document-event, #document-inbox, #document-see-also, #general-terms, #categories-and-subject-descriptors, #keywords { padding:0 2.2em; margin-bottom:0.5em; line-height:1.1; }
+#authors { width:94%; margin:0 auto 2.5em auto; }
+@media print {
+table { font-size: 0.8em !important; }
+object:not([type="text/html"]) { height:unset !important; }
+object { width:75% !important; min-height:unset !important; }
+}
+section p + ul,
+section p + ol { margin-top:0; }
 </style>
     </head>
 
@@ -183,13 +192,13 @@ figcaption { font-size:0.9em; line-height:1; }
 
                             <p>The contents of a notification is either: 1) URLs, indicating relations between Web resources, or 2) a ‘fat ping’ containing a blob of information. Semantic Pingback, Webmention, and Provenance Pingback follow the first form, and are also known as <cite>linkbacks</cite>, the suite of protocols that essentially allows Web documents to automatically reciprocate hyperlinks. This has the advantage that a verification mechanism can be tightly specified (the URL of the target must appear in the content of the source), but the disadvantage that notifications are only available for use cases involving Web publishing.</p>
 
-                            <p id="semantic-pingback-and-webmention"><strong><a href="https://aksw.github.io/SemanticPingback/">Semantic Pingback</a></strong> [<a class="ref" href="#ref-2">2</a>] and <strong><a href="https://www.w3.org/TR/webmention">Webmention</a></strong> [<a class="ref" href="#ref-4">4</a>] both update the original <a href="http://www.hixie.ch/specs/pingback/pingback">Pingback</a> [<a class="ref" href="#ref-5">5</a>] mechanism by replacing the XML-RPC transport mechanism by a <code>x-www-form-urlencoded</code> request with two parameters (<code>source</code> and <code>target</code>). Resources which are the target for a notification advertise the respective receiving service or endpoint via a <code>Link</code> relation, either in HTTP headers or HTML. Semantic Pingback additionally enables discovery of the Pingback service where target is available as RDF. While the content at source may indicate (in any convention or serialisation format) the type of relation between the source and target URLs, this information about the relation is not transmitted to the receiver's endpoint; only the source and target URLs are sent. As such, there is also no way to distinguish between multiple potential mentions of the target at the source; this is left up to the receiver to interpret. Semantic Pingback does encourage generation of additional semantics about the relation(s) between the source and the target by processing the source as RDF if possible, and also defines specific ways for a receiving server to handle incoming pingback data in order to add the source data to an RDF knowledge base [<a class="ref" href="#ref-2">2</a>]. Beyond verifying that the source contains the URL of the target, Webmention does not specify any further requirements of the receiving server; nor is it expected that “mentions” are retrievable once they have been sent. </p>
+                            <p id="semantic-pingback-and-webmention"><cite><a href="https://aksw.github.io/SemanticPingback/">Semantic Pingback</a></cite> [<a class="ref" href="#ref-2">2</a>] and <cite><a href="https://www.w3.org/TR/webmention">Webmention</a></cite> [<a class="ref" href="#ref-4">4</a>] both update the original <cite><a href="http://www.hixie.ch/specs/pingback/pingback">Pingback</a></cite> [<a class="ref" href="#ref-5">5</a>] mechanism by replacing the XML-RPC transport mechanism by a <code>x-www-form-urlencoded</code> request with two parameters (<code>source</code> and <code>target</code>). Resources which are the target for a notification advertise the respective receiving service or endpoint via a <code>Link</code> relation, either in HTTP headers or HTML. Semantic Pingback additionally enables discovery of the Pingback service where target is available as RDF. While the content at source may indicate (in any convention or serialisation format) the type of relation between the source and target URLs, this information about the relation is not transmitted to the receiver's endpoint; only the source and target URLs are sent. As such, there is also no way to distinguish between multiple potential mentions of the target at the source; this is left up to the receiver to interpret. Semantic Pingback does encourage generation of additional semantics about the relation(s) between the source and the target by processing the source as RDF if possible, and also defines specific ways for a receiving server to handle incoming pingback data in order to add the source data to an RDF knowledge base [<a class="ref" href="#ref-2">2</a>]. Beyond verifying that the source contains the URL of the target, Webmention does not specify any further requirements of the receiving server; nor is it expected that “mentions” are retrievable once they have been sent. </p>
 
-                            <p id="provenance-pingback">A <strong><a href="http://www.w3.org/TR/prov-aq/#provenance-pingback">Provenance Pingback</a></strong> endpoint is also advertised through an HTTP <code>Link</code> header, and accepts a list of URIs for provenance records describing uses of the resource [<a class="ref" href="#ref-6">6</a>]. Provenance Pingback does not specify any further behaviour by the receiving server, but the contents at the URIs listed in the notification body must be semantic data.</p>
+                            <p id="provenance-pingback">A <cite><a href="http://www.w3.org/TR/prov-aq/#provenance-pingback">Provenance Pingback</a></cite> endpoint is also advertised through an HTTP <code>Link</code> header, and accepts a list of URIs for provenance records describing uses of the resource [<a class="ref" href="#ref-6">6</a>]. Provenance Pingback does not specify any further behaviour by the receiving server, but the contents at the URIs listed in the notification body must be semantic data.</p>
 
                             <p>Other notification mechanisms send more information than just URLs in the notification body; due to each mechanism's focused use case, the payload is restricted to a particular vocabulary.</p>
 
-                            <p><strong><a href="http://www.cibiv.at/~niko/dsnotify/">DSNotify</a></strong> is a centralised service which crawls datasets and observes changes to links with the specific use case of preserving link integrity between Linked Open Data resources. Third-party applications can register with the sending service to receive notifications of changes in the form of a specific XML payload [<a class="ref" href="#ref-7">7</a>]. With the <strong><a href="https://www.w3.org/2001/sw/wiki/SparqlPuSH">sparqlPuSH</a></strong> service, users may input a SPARQL query, the results of which are the specific updates they are interested in. The query is run periodically by the service, and the results are converted to an RSS feed, which is sent to a <a href="http://pubsubhubbub.github.io/PubSubHubbub/pubsubhubbub-core-0.4.html">PubSubHubbub</a> hub to which the user can subscribe [<a class="ref" href="#ref-8">8</a>]. The <strong><a href="http://www.openarchives.org/rs/notification/1.0/notification">ResourceSync Change Notification</a></strong> specification also sends update notifications via a <abbr title="PubSubHubbub">PuSH</abbr> hub, this time with an XML payload based on the Sitemap format [<a class="ref" href="#ref-9">9</a>].
+                            <p><cite><a href="http://www.cibiv.at/~niko/dsnotify/">DSNotify</a></cite> is a centralised service which crawls datasets and observes changes to links with the specific use case of preserving link integrity between Linked Open Data resources. Third-party applications can register with the sending service to receive notifications of changes in the form of a specific XML payload [<a class="ref" href="#ref-7">7</a>]. With the <cite><a href="https://www.w3.org/2001/sw/wiki/SparqlPuSH">sparqlPuSH</a></cite> service, users may input a SPARQL query, the results of which are the specific updates they are interested in. The query is run periodically by the service, and the results are converted to an RSS feed, which is sent to a <a href="http://pubsubhubbub.github.io/PubSubHubbub/pubsubhubbub-core-0.4.html">PubSubHubbub</a> hub to which the user can subscribe [<a class="ref" href="#ref-8">8</a>]. The <cite><a href="http://www.openarchives.org/rs/notification/1.0/notification">ResourceSync Change Notification</a></cite> specification also sends update notifications via a <abbr title="PubSubHubbub">PuSH</abbr> hub, this time with an XML payload based on the Sitemap format [<a class="ref" href="#ref-9">9</a>].
                             Each of these mechanisms is triggered by subscription requests. That is, a user must actively solicit messages from a particular service, rather than having a way for a service to select a notification target and autonomously discover where to send notifications to.</p>
                         </div>
                     </section>
@@ -286,7 +295,7 @@ figcaption { font-size:0.9em; line-height:1; }
                                 </div>
                             </section>
 
-                            <p>Given our adoption of Linked Data principles and a RESTful architecture, a further design decision we made was to ensure minimal compatibility with the <cite><a href="https://www.w3.org/TR/ldp/">Linked Data Platform</a></cite> (LDP) specification [<a class="ref" href="#ref-15">15</a>]. LDP is a RESTful read-write API for RDF resources, which groups related resources together into constructs known as <em>Containers</em>. Thus, existing LDP servers can be used to store notifications, as new notifications can be created by <code>POST</code>ing RDF to a Container.</p>
+                            <p>Given our adoption of Linked Data principles and a RESTful architecture, a further design decision was to ensure minimal compatibility with the <cite><a href="https://www.w3.org/TR/ldp/">Linked Data Platform</a></cite> (LDP) specification [<a class="ref" href="#ref-15">15</a>]. LDP is a RESTful read-write API for RDF resources, which groups related resources together into constructs known as <q>Containers</q>. Thus, existing LDP servers can be used to store notifications, as new notifications can be created by <code>POST</code>ing RDF to a container.</p>
                         </div>
                     </section>
 
@@ -573,7 +582,7 @@ figcaption { font-size:0.9em; line-height:1; }
                             </figure>
 
                             <figure id="figure-senders-onscreen" rel="schema:hasPart" resource="#figure-senders-onscreen">
-                                <img src="media/images/sender-consumer-screenshots.png" alt="Screenshots of Solid Words, Linked Edit Rules, and OnScreen" />
+                                <img src="media/images/sender-consumer-screenshots.png" alt="Screenshots of Solid Words, Linked Edit Rules, and OnScreen" width="65%" />
                                 <figcaption property="schema:name">A: Solid Words (a sender), B: Linked Edit Rules (a sender), C: OnScreen (a consumer) displaying notifications sent by A and B.</figcaption>
                             </figure>
                         </div>
