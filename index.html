@@ -177,7 +177,7 @@
 
                             <p>The contents of a notification is either: 1) URLs, indicating relations between Web resources, or 2) a ‘fat ping’ containing a blob of information. Semantic Pingback, Webmention, and Provenance Pingback follow the first form, and are also known as <cite>linkbacks</cite>, the suite of protocols that essentially allows Web documents to automatically reciprocate hyperlinks. This has the advantage that a verification mechanism can be tightly specified (the URL of the target must appear in the content of the source), but the disadvantage that notifications are only available for use cases involving Web publishing.</p>
 
-                            <p id="semantic-pingback-and-webmention"><strong><a href="https://aksw.github.io/SemanticPingback/">Semantic Pingback</a></strong> [<a class="ref" href="#ref-2">2</a>] and <strong><a href="https://www.w3.org/TR/webmention">Webmention</a></strong> [<a class="ref" href="#ref-4">4</a>] both update the original <a href="http://www.hixie.ch/specs/pingback/pingback">Pingback</a> [<a class="ref" href="#ref-5">5</a>] mechanism by replacing the XML-RPC transport mechanism by a <code>x-www-form-urlencoded</code> request with two parameters (<code>source</code> and <code>target</code>). Resources which are the target for a notification advertise the respective receiving service or endpoint via a <code>Link</code> relation, either in HTTP headers or HTML. Semantic Pingback additionally enables discovery of the Pingback service where target is available as RDF. While the content at source may indicate (in any convention or serialisation format) the type of relation between the source and target URLs, this information about the relation is not transmitted to the receiver's endpoint; only the source and target URLs are sent. As such, there is also no way to distinguish between multiple potential mentions of the target at the source; this is left up to the receiver to interpret. Semantic Pingback does encourage generation of additional semantics about the relation(s) between the source and the target by processing the source as RDF if possible, and also defines specific ways for a receiving server to handle incoming pingback data in order to add the source data to an RDF knowledge base [<a class="ref" href="#ref-2">2</a>]. Beyond verifying that the source does indeed contain the URL of the target, Webmention does not specify any further requirements of the receiving server; nor is it expected that “mentions” are retrievable once they have been sent. </p>
+                            <p id="semantic-pingback-and-webmention"><strong><a href="https://aksw.github.io/SemanticPingback/">Semantic Pingback</a></strong> [<a class="ref" href="#ref-2">2</a>] and <strong><a href="https://www.w3.org/TR/webmention">Webmention</a></strong> [<a class="ref" href="#ref-4">4</a>] both update the original <a href="http://www.hixie.ch/specs/pingback/pingback">Pingback</a> [<a class="ref" href="#ref-5">5</a>] mechanism by replacing the XML-RPC transport mechanism by a <code>x-www-form-urlencoded</code> request with two parameters (<code>source</code> and <code>target</code>). Resources which are the target for a notification advertise the respective receiving service or endpoint via a <code>Link</code> relation, either in HTTP headers or HTML. Semantic Pingback additionally enables discovery of the Pingback service where target is available as RDF. While the content at source may indicate (in any convention or serialisation format) the type of relation between the source and target URLs, this information about the relation is not transmitted to the receiver's endpoint; only the source and target URLs are sent. As such, there is also no way to distinguish between multiple potential mentions of the target at the source; this is left up to the receiver to interpret. Semantic Pingback does encourage generation of additional semantics about the relation(s) between the source and the target by processing the source as RDF if possible, and also defines specific ways for a receiving server to handle incoming pingback data in order to add the source data to an RDF knowledge base [<a class="ref" href="#ref-2">2</a>]. Beyond verifying that the source contains the URL of the target, Webmention does not specify any further requirements of the receiving server; nor is it expected that “mentions” are retrievable once they have been sent. </p>
 
                             <p id="provenance-pingback">A <strong><a href="http://www.w3.org/TR/prov-aq/#provenance-pingback">Provenance Pingback</a></strong> endpoint is also advertised through an HTTP <code>Link</code> header, and accepts a list of URIs for provenance records describing uses of the resource [<a class="ref" href="#ref-6">6</a>]. Provenance Pingback does not specify any further behaviour by the receiving server, but the contents at the URIs listed in the notification body must be semantic data.</p>
 
@@ -349,7 +349,7 @@
                             <section id="example-notifications" inlist="" rel="schema:hasPart" resource="#example-notifications">
                                 <h3 property="schema:name">Example Notifications</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
-                                    <p>Here we present example notification payloads. Please refer to the <a href="https://www.w3.org/TR/ldn/">W3C LDN specification</a> for examples of HTTP requests and responses for the other interactions between senders, receivers and consumers.</p>
+                                    <p>Here we present example notification payloads. Please refer to the <a href="https://www.w3.org/TR/ldn/">W3C specification</a> for example interactions between senders, receivers and consumers.</p>
 
                                     <figure class="listing" id="sending-notification-request" rel="schema:hasPart" resource="#sending-notification-request">
                                         <pre about="#sending-notification-request" property="schema:description" typeof="fabio:Script">
@@ -359,7 +359,6 @@
 <code></code>
 <code>{</code>
 <code>  "@context": {</code>
-<code>    "@language": "en",</code>
 <code>    "sioc": "http://rdfs.org/sioc/ns#",</code>
 <code>    "foaf": "http://xmlns.com/foaf/0.1/" },</code>
 <code>  "@id": "",</code>
@@ -373,7 +372,6 @@
 <code>    "@id": "http://example.org/profile",</code>
 <code>    "@type": "sioc:UserAccount",</code>
 <code>    "sioc:account_of": { "@id": "http://example.org/profile#alice" },</code>
-<code>    "sioc:avatar": { "@id": "http://example.org/profile/avatar.png" },</code>
 <code>    "foaf:name": "Alice" }</code>
 <code>}</code></pre>
                                         <figcaption property="schema:name">This notification is about a comment and the user who created the comment, described by the SIOC and FOAF vocabularies.</figcaption>
@@ -390,12 +388,11 @@
 <code></code>
 <code>&lt;&gt;  a         as:Announce</code>
 <code>  as:object   &lt;https://linkedresearch.org/resources#r-903b83&gt; ;</code>
-<code>  as:target   &lt;http://csarven.ca/dokieli#architecture&gt; ;</code>
-<code>  as:updated  "2016-12-05T23:53:27.436Z"^^xsd:dateTime .</code>
+<code>  as:target   &lt;http://csarven.ca/dokieli#architecture&gt; .</code>
 <code>&lt;https://linkedresearch.org/resources#r-903b83&gt;</code>
 <code>  cito:citesAsPotentialReading</code>
 <code>    &lt;http://csarven.ca/dokieli#architecture&gt; .</code></pre>
-                                        <figcaption property="schema:name">This notification is an announcement of a URL that the target resource should be aware of about a specific relation between them (the former cites the latter).</figcaption>
+                                        <figcaption property="schema:name">This notification is an announcement of a specific citation relation between two entities where the cited get informed.</figcaption>
                                     </figure>
                                 </div>
                             </section>
@@ -770,9 +767,11 @@
                                     <p>We intentionally take a bare minimum approach, preferring to suggest using LDN alongside other existing protocols and standards rather than re-specifying already standardised mechanisms for non-core behaviours. This has the advantage of resulting in a protocol which can serve as a module of a larger system, accompanied by other protocols according to the needs of the environment (<a href="#modularity">R1</a>, <a href="#adaptability">R4</a>). Examples include (listed with implementations that already use these protocols alongside LDN):</p>
                                     <ul>
                                         <li><cite><a href="https://www.w3.org/wiki/WebAccessControl">Web Access Control</a></cite> can be used along with an authentication mechanism to apply fine grained access controls to restrict who can send notifications, or who can retrieve notifications from the Inbox (used by the Solid suite of tools, Virtuoso+ODS-Briefcase, and dokieli).</li>
+
                                         <li><cite><a href="https://www.w3.org/TR/websub/">WebSub</a></cite> can be used by a receiver to issue a subscription request to a sender's hub as a trigger for the sender to push notifications on a particular topic.</li>
                                         <li>An Inbox can double as a <cite><a href="http://www.webhooks.org/">Webhooks</a></cite> callback URL, for requesting notifications from applications which post JSON-based payloads (used by sloph).</li>
                                         <li><cite><a href="https://www.w3.org/TR/activitypub/">ActivityPub</a></cite> is a W3C Candidate Recommendation for decentralised social media applications based on the <a href="https://www.w3.org/ns/activitystreams-vocabulary">ActivityStreams 2.0</a> (AS2) vocabulary [<a class="ref" href="#ref-18">18</a>]. ActivityPub directly references LDN for delivery of notifications, with the additional requirement that notification contents are AS2. It also specifies additional behaviour for a receiver upon receiving notifications, to propagate information through the social network (used by sloph).</li>
+
                                         <li><cite><a href="https://www.w3.org/TR/shacl/">SHACL</a></cite>/<cite><a href="https://shexspec.github.io/spec/">ShEx</a></cite> can be used to define the constraints of notification shape.</li>
                                         <li><cite><a href="https://www.w3.org/TR/annotation-protocol/">Web Annotation Protocol</a></cite> is an LDP-based mechanism for creating new content, which can be a trigger for notifications to be sent to the Inbox of the annotation target (used by dokieli).</li>
                                         <li><cite><a href="http://fcrepo.github.io/fcrepo-specification/">Fedora API Specification</a></cite> is in the process of being formalised (as an extension of LDP) by the Fedora community. The repository event stream draws upon the LDN specification, allowing LDN consumers and senders to react asynchronously to repository events.</li>
