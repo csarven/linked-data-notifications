@@ -80,12 +80,12 @@ table { font-size: 0.8em !important; }
 
                 <dl id="document-published">
                     <dt>Published</dt>
-                    <dd><time datatype="xsd:dateTime" datetime="2016-05-01T00:00:00Z" property="schema:datePublished">2016-05-01</time></dd>
+                    <dd><time datatype="xsd:dateTime" content="2016-12-15T00:00:00Z" datetime="2016-05-01T00:00:00Z" property="schema:datePublished">2016-05-01</time></dd>
                 </dl>
 
                 <dl id="document-modified">
                     <dt>Modified</dt>
-                    <dd><time datatype="xsd:dateTime" datetime="2016-12-15T00:00:00Z" property="schema:dateModified">2016-12-15</time></dd>
+                    <dd><time datatype="xsd:dateTime" content="2016-12-15T00:00:00Z" datetime="2016-12-15T00:00:00Z" property="schema:dateModified">2016-12-15</time></dd>
                 </dl>
 
                 <dl id="document-license">
@@ -202,7 +202,7 @@ table { font-size: 0.8em !important; }
 							We use these considerations to establish both concrete requirements and points of implementation-specific flexibility for the protocol.</p>
 
                             <section id="modularity" inlist="" rel="schema:hasPart" resource="#modularity">
-                                <h4 property="schema:name">R1 Modularity</h4>
+                                <h3 property="schema:name">R1 Modularity</h3>
                                 <div about="#modularity" datatype="rdf:HTML" property="schema:description" rel="dio:addressedBy" resource="#intent" typeof="dio:DesignRequirement">
                                     <p>To encourage modularity of applications, one should differentiate between different classes of implementation of the protocol. 
                                     Two parties are involved in the creation of a notification: a <em>sender</em>, generating the notification data, and a <em>receiver</em>, storing the created resource. 
@@ -213,7 +213,7 @@ table { font-size: 0.8em !important; }
                             </section>
 
                             <section id="reusable-notifications" inlist="" rel="schema:hasPart" resource="#reusable-notifications">
-                                <h4 property="schema:name">R2 Reusable notifications</h4>
+                                <h3 property="schema:name">R2 Reusable notifications</h3>
                                 <div about="#reusable-notifications" datatype="rdf:HTML" property="schema:description" rel="dio:addressedBy" resource="#intent" typeof="dio:DesignRequirement">
                                     <p>The relationship between the <em>consumer</em> and <em>receiver</em> roles is key to notifications being reusable. A consumer must be able to autonomously find the location of notifications for or about the particular resource it is interested in. To achieve this we place a requirement on the receiver to expose notifications it has been sent in such away to permit other applications to access them; and specify how any resource can advertise its receiving endpoint for consumers to discover. <!--</p>
                                     <p>-->To promote fair use or remixing of notification contents, applications can incorporate rights and licensing information into the data. 
@@ -223,7 +223,7 @@ table { font-size: 0.8em !important; }
                             </section>
 
                             <section id="persistence-and-retrievability" inlist="" rel="schema:hasPart" resource="#persistence-and-retrievability">
-                                <h4 property="schema:name">R3 Persistence and Retrievability</h4>
+                                <h3 property="schema:name">R3 Persistence and Retrievability</h3>
                                 <div about="#persistence-and-retrievability" datatype="rdf:HTML" property="schema:description" rel="dio:addressedBy" resource="#intent" typeof="dio:DesignRequirement">
 									<p>There is a social expectation and technical arguments for ensuring the persistence of identifiers of Web resources [<a class="ref" href="#ref-10">10</a>].
                                     This is inconsistent with the traditionally ephemeral nature of notifications.  
@@ -241,7 +241,7 @@ table { font-size: 0.8em !important; }
                             </section>
 
                             <section id="adaptability" rel="schema:hasPart" resource="#adaptability">
-                                <h4 property="schema:name">R4 Adaptability</h4>
+                                <h3 property="schema:name">R4 Adaptability</h3>
                                 <div about="#adaptability" datatype="rdf:HTML" property="schema:description" rel="dio:addressedBy" resource="#intent" typeof="dio:DesignRequirement">
                                     <p>Linked Data applications benefit from domain-driven designs; that is, functionality being small and focussed on a particular purpose, rather than generic. We believe a notification protocol should be adaptable for different domains, but that there is no need to create multiple domain-specific notification protocols; the fundamental mechanics are the same.</p>
 
@@ -278,7 +278,7 @@ table { font-size: 0.8em !important; }
                             </section>
 
                             <section id="subscribing" inlist="" rel="schema:hasPart" resource="#subscribing">
-                                <h4 property="schema:name">R5 Subscribing</h4>
+                                <h3 property="schema:name">R5 Subscribing</h3>
                                 <div about="#subscribing" datatype="rdf:HTML" property="schema:description" rel="dio:addressedBy" resource="#intent" typeof="dio:DesignRequirement">
                                     <p>In general, applications may require that new notifications are pushed to them in real-time, or to request them at appropriate intervals. 
                                     To take this into account, we expand our definition of senders, receivers and consumers with the following interaction expectations: notifications are <em>pushed</em> from senders to receivers; and <em>pulled</em> from receivers by consumers.</p>
