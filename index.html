@@ -326,28 +326,10 @@ section p + ol { margin-top:0; }
                                 </div>
                             </section>
 
-                            <section id="data-formats" inlist="" rel="schema:hasPart" resource="#data-formats">
-                                <h3 property="schema:name">Data Formats and Content Negotiation</h3>
-                                <div datatype="rdf:HTML" property="schema:description">
-                                    <p>Whilst being able to handle data irrespective of the particular RDF serialisation permits some flexibility, this can be costly to support. 
-									From the perspective of the protocol design, we must take into account: 
-									(a) application interoperability, 
-									(b) maintenance of the RDF parsers and serialisation libraries, 
-									(c) complexity of their inclusion in applications, 
-									(d) run-time efficiency.</p>
-
-                                    <p>To address these issues, LDN requires all applications to create and understand the JSON-LD syntax, both for looking at the contents of Inbox as well as for individual notifications. 
-                                    Choosing a single serialisation which implementations <em>must</em> work with is necessary for consistent interoperability, as well as keeping processing requirements or external dependencies of codebases minimal.
-									JSON-LD is advantageous in being familiar for developers who are <a href="http://manu.sporny.org/2014/json-ld-origins-2/">used to JSON-based APIs but not RDF</a>, and it is compatible with existing JSON libraries or in some cases native programming language data structures.
-									Optionally, applications may attempt to exchange different RDF serialisations by performing content negotiation (receivers can expose <code>Accept-Post</code> headers for senders, and consumers can send <code>Accept</code> headers to receivers).</p>
-
-                                </div>
-                            </section>
-
                             <section id="example-notifications" inlist="" rel="schema:hasPart" resource="#example-notifications">
                                 <h3 property="schema:name">Example Notifications</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
-                                    <p>Here we present example notification payloads. Please refer to the <a href="https://www.w3.org/TR/ldn/">W3C specification</a> for example interactions between senders, receivers and consumers.</p>
+                                    <p>For more example notification payloads, see the <a href="https://www.w3.org/TR/ldn/">LDN specification</a>.</p>
 
                                     <figure class="listing" id="sending-notification-request" rel="schema:hasPart" resource="#sending-notification-request">
                                         <pre about="#sending-notification-request" property="schema:description" typeof="fabio:Script"><code>{</code>
@@ -763,6 +745,24 @@ section p + ol { margin-top:0; }
                                     On the other hand, senders and consumers may be attempting discovery upon RDF resources which they already intend to parse into their own storage. In this case, there is no need for a <code>HEAD</code> request, as a <code>GET</code> will yield both HTTP <code>Link</code> headers and an RDF body, either of which could include the Inbox triple.
 
                                     This means that resources advertising an Inbox must respond to <code>GET</code> requests (even if only with HTTP headers) and may respond to <code>HEAD</code> requests.</p>
+
+                                </div>
+                            </section>
+
+                            <section id="data-formats" inlist="" rel="schema:hasPart" resource="#data-formats">
+                                <h3 property="schema:name">Data Formats and Content Negotiation</h3>
+                                <div datatype="rdf:HTML" property="schema:description">
+                                    <p>Handling data irrespective of the particular RDF serialisation permits some flexibility, but can be costly to support. 
+                                    We take into account: 
+                                    (a) application interoperability, 
+                                    (b) maintenance of RDF parsers and serialisation libraries, 
+                                    (c) complexity of their inclusion in applications, 
+                                    (d) run-time efficiency.</p>
+
+                                    <p>To address these issues, LDN requires all applications to create and understand the JSON-LD syntax, both for the contents of Inbox as well as for individual notifications. 
+                                    Choosing a single serialisation to <em>require</em> is necessary for consistent interoperability, as well as keeping processing requirements or external code dependencies minimal.
+                                    JSON-LD is advantageous in being familiar for developers who are <a href="http://manu.sporny.org/2014/json-ld-origins-2/">used to JSON-based APIs but not RDF</a>, and it is compatible with existing JSON libraries or in some cases native programming language data structures.
+                                    Optionally, applications may attempt to exchange different RDF serialisations by performing content negotiation (receivers can expose <code>Accept-Post</code> headers for senders, and consumers can send <code>Accept</code> headers to receivers).</p>
 
                                 </div>
                             </section>
