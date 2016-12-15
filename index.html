@@ -21,15 +21,26 @@ body{
 width:132mm !important;
 }
 object:not([type="text/html"]) { height:unset !important; }
-object { width:75% !important; min-height:unset !important; }
+object { width:60% !important; min-height:unset !important; }
 figcaption { font-size:0.9em !important; line-height:1 !important; }
 #references [rel~="schema:citation"] { display:none; }
-p { orphans:1 !important; widows:1 !important; }
+p { orphans:3 !important; widows:3 !important; }
+#persistence-and-retrievability { page-break-before: always; }
+}
 
+h2 {
+margin-top: 1.1em;
+margin-bottom: 0.5em;
+}
+h3 {
+margin-top: 1.3em;
+margin-bottom: 0.4em;
+}
 table { font-size: 0.8em !important; }
 #authors { width:87% !important; margin:0 auto 1.5em auto !important; }
 #authors dl, .authors { margin-bottom: 0.5em; }
 #abstract, #document-status, #document-identifier, #document-purpose, #document-published, #document-modified, #document-appeared, #document-in-reply-to, #document-license, #document-language, #document-format, #document-event, #document-inbox, #document-see-also, #general-terms, #categories-and-subject-descriptors, #keywords { padding:0 2.2em; margin-bottom:0.5em; line-height:1.1; }
+#requirements-and-design-considerations h3:before { content:"" !important; }
 </style>
     </head>
 
@@ -68,7 +79,7 @@ table { font-size: 0.8em !important; }
                     <dd><a href="http://csarven.ca/linked-data-notifications" rel="owl:sameAs">http://csarven.ca/linked-data-notifications</a></dd>
                 </dl>
 
-                <dl id="document-in-reply-to">
+<!--                 <dl id="document-in-reply-to">
                     <dt>In Reply To</dt>
                     <dd><a href="http://2017.eswc-conferences.org/call-papers" rel="sioc:reply_of">ESWC 2017 Call for Papers</a></dd>
                 </dl>
@@ -91,7 +102,7 @@ table { font-size: 0.8em !important; }
                 <dl id="document-license">
                     <dt>License</dt>
                     <dd><a href="https://creativecommons.org/licenses/by/4.0/" rel="schema:license" title="Creative Commons Attribution 4.0 Unported">CC BY 4.0</a></dd>
-                </dl>
+                </dl> -->
 
                 <div id="content">
                     <section id="abstract">
@@ -267,11 +278,11 @@ table { font-size: 0.8em !important; }
                                     If the notification constraints are also advertised by the receiving service as structured descriptions, generation and consumption of the notifications can be further automated.
                                     Possible specifications for doing so are W3C <cite><a href="https://www.w3.org/TR/shacl/">Shapes Constraint Language (SHACL)</a></cite> [<a class="ref" href="#ref-15">15</a>] or <cite><a href="https://shexspec.github.io/spec/">ShEx</a></cite>.</p>
 
-                                    <p>Receivers may wish to filter notifications by verifying the sender, through for example a whitelist or a web of trust. 
-                                    This requires an authentication mechanism and since different authentication mechanisms are appropriate for different applications, the notification protocol should ideally be usable alongside various methods such as clientside certificates (e.g. WebID+TLS), token-based (e.g. OAuth 2.0), or digital signatures. 
+                                    <p>Receivers may wish to filter notifications by verifying the sender, through for example a whitelist or a Web of trust. 
+                                    This requires an authentication mechanism and since different authentication mechanisms are appropriate for different applications, the notification protocol should ideally be usable alongside various methods such as clientside certificates, e.g., WebID+TLS, token-based, e.g., OAuth 2.0, or digital signatures. 
                                     </p>
 
-                                    <p>As <q>anyone can say anything about anything</q> a receiver may choose to dereference any external resources referred to by the notification, and cross-check the notification contents against authoritative sources.
+                                    <p>As <q>anyone can say anything about anything</q> a receiver may choose to resolve any external resources referred to by the notification, and cross-check the notification contents against authoritative sources.
                                     This is similar to how Semantic Pingback and Webmention require fetching and parsing of the source URL to verify existence of the target link.</p>
                                     </div>
                                 </div>
@@ -354,20 +365,19 @@ table { font-size: 0.8em !important; }
 <code>  "sioc:reply_of": { "@id": "http://example.org/article" },</code>
 <code>  "sioc:created_at": { "@value": "2015-12-23T16:44:21Z" }</code>
 <code>}</code></pre>
-                                        <figcaption property="schema:name">This notification is about a comment and the user who created the comment, described by the SIOC and FOAF vocabularies (JSON-LD).</figcaption>
+                                        <figcaption property="schema:name">A notification about a comment created by a user (JSON-LD).</figcaption>
                                     </figure>
 
                                     <figure class="listing" id="notification-qualified-relation" rel="schema:hasPart" resource="#notification-qualified-relation">
                                         <pre about="#notification-qualified-relation" property="schema:description" typeof="fabio:Script"><code>@prefix as: &lt;https://www.w3.org/ns/activitystreams#&gt; .</code>
 <code>@prefix cito: &lt;http://purl.org/spar/cito/&gt; .</code>
-<code></code>
-<code>&lt;&gt;  a         as:Announce</code>
-<code>  as:object   &lt;https://linkedresearch.org/resources#r-903b83&gt; ;</code>
-<code>  as:target   &lt;http://csarven.ca/dokieli#architecture&gt; .</code>
+<code>&lt;&gt; a as:Announce</code>
+<code>  as:object &lt;https://linkedresearch.org/resources#r-903b83&gt; ;</code>
+<code>  as:target &lt;http://csarven.ca/dokieli#architecture&gt; .</code>
 <code>&lt;https://linkedresearch.org/resources#r-903b83&gt;</code>
 <code>  cito:citesAsPotentialReading</code>
-<code>    &lt;http://csarven.ca/dokieli#architecture&gt; .</code></pre>
-                                        <figcaption property="schema:name">This notification is an announcement of a specific citation relation between two entities (Turtle).</figcaption>
+<code>    &lt;http://csarven.ca/linked-data-notifications#protocol&gt; .</code></pre>
+                                        <figcaption property="schema:name">An announcement of a specific citation relation between two entities (Turtle).</figcaption>
                                     </figure>
                                 </div>
                             </section>
@@ -377,11 +387,9 @@ table { font-size: 0.8em !important; }
                     <section id="implementations" inlist="" rel="schema:hasPart" resource="#implementations">
                         <h2 property="schema:name">Implementations</h2>
                         <div datatype="rdf:HTML" property="schema:description">
-                            <p>Here we summarise the 17 LDN implementations we are aware of to date.
-							They are built by 10 different teams or individuals using different tool stacks (5 clientside JavaScript, 3 PHP, 3 NodeJS, 3 Python, 1 Perl, 1 Virtuoso Server Pages, 1 Java) and have submitted <a href="https://github.com/w3c/ldn/tree/master/implementations">implementation reports</a> as part of the W3C standardisation process.
-                            We note that any <a href="https://www.w3.org/wiki/LDP_Implementations">LDP implementation</a> is a conforming LDN receiver; we refer here to the ones we have tested. We discuss the value of these implementations further in the <a href="#analysis-and-evaluation">Evaluation</a> section.</p>
+                            <p>Here we summarise the 17 LDN implementations we are aware of to date. They are built by 10 different teams or individuals using different tool stacks (5 clientside JavaScript, 3 PHP, 3 NodeJS, 3 Python, 1 Perl, 1 Virtuoso Server Pages, 1 Java) and have submitted <a href="https://github.com/w3c/ldn/tree/master/implementations">implementation reports</a> as part of the W3C standardisation process. We note that any <a href="https://www.w3.org/wiki/LDP_Implementations">LDP implementation</a> is a conforming LDN receiver; we refer here to the ones we have tested. We discuss the value of these implementations further in the <a href="#analysis-and-evaluation">Evaluation</a> section.</p>
 
-                            <table>
+                            <table id="ldn-implementations">
                                 <caption>LDN Implementations</caption>
                                 <thead>
                                     <tr>
@@ -557,7 +565,7 @@ table { font-size: 0.8em !important; }
                             <section id="comparison-summary" rel="schema:hasPart" resource="#comparison-summary">
                                 <h3 property="schema:name">Comparison summary</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
-                                  <p>Here we compare existing notification mechanisms from related work. The criteria includes our <a href="#requirements-and-design-considerations">requirements and design considerations</a> (<em>Rx</em>) along with additional technical information which helps to capture some design differences (<em>Tx</em>).</p>
+                                    <p>Here we compare existing notification mechanisms from related work. The criteria includes our <a href="#requirements-and-design-considerations">requirements and design considerations</a> (<em>Rx</em>) along with additional technical information which helps to capture some design differences (<em>Tx</em>).</p>
 
                                     <table id="comparison-of-notification-mechanisms">
                                         <caption>Comparison of notification mechanisms</caption>
