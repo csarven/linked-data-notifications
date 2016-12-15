@@ -756,7 +756,7 @@ section p + ol { margin-top:0; }
                                 <h3 property="schema:name">Optimising implementation</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
 
-                                    <p>The complexity of implementing a protocol can be considered in terms of the number of HTTP requests required for a core operation. In designing LDN, we have considered tradeoffs between the HTTP operations receivers and publishers are <em>required</em> to respond to, and ways in which developers may wish to optimise senders or consumers by reducing outbound requests.</p>
+                                    <p>We have considered tradeoffs between the HTTP operations receivers and publishers are <em>required</em> to respond to, and ways in which developers may wish to optimise senders or consumers by reducing outbound requests.</p>
 
                                     <p><code>HEAD</code> requests are low cost, and <code>GET</code> requests may be high cost if the body of the resource is large. Given that an Inbox may be discovered from the HTTP headers of a resource, senders and consumers can optimise by attempting a <code>HEAD</code> request for discovery, and only continuing with a <code>GET</code> request if the <code>HEAD</code> is not successful.
 
@@ -775,17 +775,16 @@ section p + ol { margin-top:0; }
                                 </div>
                             </section>
 
-                            <section id="publishing-challenges" rel="schema:hasPart" resource="#publishing-challenges">
-                                <h3 property="schema:name">Publishing challenges</h3>
+                            <section id="accommodating-different-targets" rel="schema:hasPart" resource="#accommodating-different targets">
+                                <h3 property="schema:name">Accommodating different targets</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
 
-                                    <p><strong>Inbox advertising</strong>: The relation between a resource and its Inbox could be argued to be either content-level data or purely protocol. Generally the separation of protocol and content is important, and content in RDF should describe itself rather relying on HTTP headers. Per <em>R4 Adaptability</em>, we wanted LDN to be available for all resources in any publishing context. Since binary formats such as images and video cannot contain an RDF relation, the HTTP header is essential for including them. It also allows the inclusion of resources for which it is undesirable or impractical to add individual Inbox relations, such as to elements in a dataset; or circumstances where the developer responsible for the Inbox relation is unable to modify the content.</p>
-
-                                    <p>Conversely, non-informational resources (represented with fragment URIs or 303 redirects) are unable to express HTTP headers. Their relation to an Inbox must be expressed in an RDF source.</p>
-
-                                    <p>Thus, we require that senders and consumers must be equipped to discover Inboxes through both HTTP headers and RDF content. Given that a publisher of a target resource can outsource the receiver role to a third-party service, we consider prioritising a low barrier for publishers of target resources a worthwhile trade-off against slightly increased complexity for senders and consumers. One exception to this requirement is if a sender or consumer intends only ever to target non-informational resources; this is an acceptable domain-specific requirement, and in this case, they can exclude discovery via HTTP headers.</p>
+                                    <p>Per <em>R4 Adaptability</em>, we want LDN to be available for all resources in any publishing context. We consider lowering the bar for publishers of target resources to be a worthwhile trade-off against slightly increased complexity for senders and consumers. This is why we require that senders and consumers must be equipped to discover Inboxes through both HTTP headers and RDF content. </p>
+ 
+                                    <p>Since binary formats such as images and video cannot contain an RDF relation, the HTTP header is essential for including them. It also allows the inclusion of resources for which it is undesirable or impractical to add individual Inbox relations, such as to elements in a dataset; or circumstances where the developer responsible for the Inbox relation is unable to modify the content.
+                                    Conversely, non-informational resources (represented with fragment URIs or 303 redirects) are unable to express HTTP headers. Their relation to an Inbox must be expressed in an RDF source.
+                                    However, if a sender or consumer has a domain-specific requirement to <em>only</em> ever target non-informational resources, they are exempt from the requirement of discovery via HTTP headers.</p>
                                     
-                                    <p><strong>Target ownership</strong>: Publishers of target resources and their Inbox relations should do so on a server they trust. Publishers must be aware that third-party access to headers or content could result in notifications being redirected to somewhere they did not intend.</p>
                                 </div>
                             </section>
 
