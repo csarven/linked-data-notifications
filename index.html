@@ -16,15 +16,20 @@
         <script src="https://dokie.li/scripts/medium-editor-tables.min.js"></script>
         <script src="https://dokie.li/scripts/do.js"></script> -->
 <style>
-table { font-size: 0.8em !important; }
-figcaption { font-size:0.9em !important; line-height:1 !important; }
-#abstract, #document-status, #document-identifier, #document-purpose, #document-published, #document-modified, #document-appeared, #document-in-reply-to, #document-license, #document-language, #document-format, #document-event, #document-inbox, #document-see-also, #general-terms, #categories-and-subject-descriptors, #keywords { padding:0 2.2em; margin-bottom:0.5em; line-height:1.1; }
-#authors { width:94%; margin:0 auto 2.5em auto; }
 @media print {
+body{
+width:132mm !important;
+height:203mm !important;
+}
 table { font-size: 0.8em !important; }
 object:not([type="text/html"]) { height:unset !important; }
 object { width:75% !important; min-height:unset !important; }
 }
+table { font-size: 0.8em !important; }
+figcaption { font-size:0.9em !important; line-height:1 !important; }
+#abstract, #document-status, #document-identifier, #document-purpose, #document-published, #document-modified, #document-appeared, #document-in-reply-to, #document-license, #document-language, #document-format, #document-event, #document-inbox, #document-see-also, #general-terms, #categories-and-subject-descriptors, #keywords { padding:0 2.2em; margin-bottom:0.5em; line-height:1.1; }
+#authors { width:94%; margin:0 auto 1.5em auto; }
+#authors dl, .authors { margin-bottom: 0.5em; }
 section p + ul,
 section p + ol { margin-top:0; }
 </style>
