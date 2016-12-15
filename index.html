@@ -192,12 +192,12 @@
                         <h2 property="schema:name">Requirements and Design Considerations</h2>
                         <div datatype="rdf:HTML" property="schema:description">
                             <p>In this section we discuss our considerations for a Web notification protocol that conforms to the Linked Data design principles, as well as best practices for applications. 
-							We use these considerations for establishing both concrete requirements and points of implementation-specific flexibility for the protocol in order to ensure interoperable application behaviour and consistent notification data exchange.</p>
+							We use these considerations to establish both concrete requirements and points of implementation-specific flexibility for the protocol.</p>
 
                             <section id="modularity" inlist="" rel="schema:hasPart" resource="#modularity">
                                 <h4 property="schema:name">R1 Modularity</h4>
                                 <div datatype="rdf:HTML" property="schema:description">
-                                    <p>In order to encourage modularity of applications, it is important to differentiate between different classes of implementation of the protocol. 
+                                    <p>To encourage modularity of applications, it is important to differentiate between different classes of implementation of the protocol. 
                                     Two parties are involved in the creation of a notification: a <em>sender</em> which generates the notification data, and a <em>receiver</em> which stores the created resource. 
                                     We also have the role of a <em>consumer</em>, which reads the data of the notification and repurposes it in some way.
                                     A software implementation can of course play two or all three of these roles; the important part is that it need not. 
@@ -209,7 +209,7 @@
                                 <h4 property="schema:name">R2 Reusable notifications</h4>
                                 <div datatype="rdf:HTML" property="schema:description">
                                     <p>The relationship between the <em>consumer</em> and <em>receiver</em> roles is key to notifications being reusable. A consumer must be able to autonomously find the location of notifications for or about the particular resource it is interested in. To achieve this we place a requirement on the receiver to expose notifications it has been sent in such away to permit other applications to access them; and specify how any resource can advertise its receiving endpoint for consumers to discover. </p>
-                                    <p>In order to promote fair use or remixing of notification contents, applications can incorporate rights and licensing information into the data. 
+                                    <p>To promote fair use or remixing of notification contents, applications can incorporate rights and licensing information into the data. 
                                     Similarly, applications may include additional information on licensing of any resources which are referred from the notification. 
                                     The presence of this type of information is important for consumers to assess the usability of data.</p>
                                 </div>
@@ -226,7 +226,7 @@
                                     </p>
 
                                     <p>We need to consider both the needs of software systems and humans when large amounts of notification data are being generated and shared between diverse applications which may be operating without knowledge of each other.
-                                    In order to organise and manage large amount of notifications over time, mechanisms should be in place to break representations of collections of notifications into multiple paged responses that may be easier to consume by applications.</p>
+                                    To organise and manage large amount of notifications over time, mechanisms should be in place to break representations of collections of notifications into multiple paged responses that may be easier to consume by applications.</p>
 
                                     <p>Relatedly, receivers may carry out resource management or garbage collection, or permit consumers or other applications to do so. 
                                     For example, an application to consume messages might let an authenticated and authorised user ‘mark as read’ by adding a triple to the notification contents.</p>
@@ -254,7 +254,7 @@
                                     Thus, <strong>R4-C</strong>: it should be possible for the receiver to enforce restrictions and accept only notifications that are acceptable according to its own criteria (deemed by e.g., user configuration; domain-specific receivers). 
                                     This can be used as an anti-spam measure, a security protection, or for attaining application and data integrity.</p>
 
-                                    <p>A possible filtering mechanism is rejecting notifications which do not match a specific pattern in their contents, or the <em>shape</em> of the data, in order to allow a certain class of applications consume them.
+                                    <p>Rejecting notifications which do not match a specific pattern in their contents, or the <em>shape</em> of the data, is one way to filter.
                                     For example, if the Inbox owner knows that they will only ever use a consuming application which processes friend requests, they can configure their receiver to filter out anything that doesn't match the pattern for a friend request, helping their consumer to be more efficient.
                                     If the notification constraints are also advertised by the receiving service as structured descriptions, generation and consumption of the notifications can be further automated.
                                     Possible specifications for doing so are W3C <cite><a href="https://www.w3.org/TR/shacl/">Shapes Constraint Language (SHACL)</a></cite> [<a class="ref" href="#ref-14">14</a>] or <cite><a href="https://shexspec.github.io/spec/">ShEx</a></cite>.</p>
@@ -275,7 +275,7 @@
                                     To take this into account, we expand our definition of senders, receivers and consumers with the following interaction expectations: notifications are <em>pushed</em> from senders to receivers; and <em>pulled</em> from receivers by consumers.</p>
 
                                     <p>Thus, an application which offers an endpoint or callback URL to which notifications should be sent directly is a receiver, and an application which fetches notifications from an endpoint on its own schedule is a consumer.
-                                    Much of the related work <em>requires</em> notifications to be explicitly solicited in order to trigger sending. Since in a decentralised model, receivers may not be aware of possible sources for notifications, our sender-receiver relationship depends on the sender's autonomy to make such decisions by itself. 
+                                    Much of the related work <em>requires</em> notifications to be explicitly solicited to trigger sending. Since in a decentralised model, receivers may not be aware of possible sources for notifications, our sender-receiver relationship depends on the sender's autonomy to make such decisions by itself. 
                                     This does not preclude the scenario in which a receiver may wish to solicit notifications from a particular sender, but as there are already subscription mechanisms in wide use on the Web, we do not need to specify it as part of LDN. For example, <cite><a href="https://www.w3.org/TR/websub/">WebSub</a></cite> (recent W3C evolution of PubSubHubbub), the <cite>WebSocket Protocol</cite>, or <cite>HTTP Web Push</cite> can be used.</p>
                                 </div>
                             </section>
@@ -338,10 +338,10 @@
 									(c) complexity of their inclusion in applications, 
 									(d) run-time efficiency.</p>
 
-                                    <p>In order to address these issues, LDN requires all applications to create and understand the JSON-LD syntax, both for looking at the contents of Inbox as well as for individual notifications. 
+                                    <p>To address these issues, LDN requires all applications to create and understand the JSON-LD syntax, both for looking at the contents of Inbox as well as for individual notifications. 
                                     Choosing a single serialisation which implementations <em>must</em> work with is necessary for consistent interoperability, as well as keeping processing requirements or external dependencies of codebases minimal.
 									JSON-LD is advantageous in being familiar for developers who are <a href="http://manu.sporny.org/2014/json-ld-origins-2/">used to JSON-based APIs but not RDF</a>, and it is compatible with existing JSON libraries or in some cases native programming language data structures.
-									Optionally, applications may perform content negotiation (receivers can expose <code>Accept-Post</code> headers for senders, and consumers can send <code>Accept</code> headers to receivers) in order to attempt to exchange different RDF serialisations if desired.</p>
+									Optionally, applications may attempt to exchange different RDF serialisations by performing content negotiation (receivers can expose <code>Accept-Post</code> headers for senders, and consumers can send <code>Accept</code> headers to receivers).</p>
 
                                 </div>
                             </section>
@@ -770,9 +770,9 @@
                                     <p>We intentionally take a bare minimum approach, preferring to suggest using LDN alongside other existing protocols and standards rather than re-specifying already standardised mechanisms for non-core behaviours. This has the advantage of resulting in a protocol which can serve as a module of a larger system, accompanied by other protocols according to the needs of the environment (<a href="#modularity">R1</a>, <a href="#adaptability">R4</a>). Examples include (listed with implementations that already use these protocols alongside LDN):</p>
                                     <ul>
                                         <li><cite><a href="https://www.w3.org/wiki/WebAccessControl">Web Access Control</a></cite> can be used along with an authentication mechanism to apply fine grained access controls to restrict who can send notifications, or who can retrieve notifications from the Inbox (used by the Solid suite of tools, Virtuoso+ODS-Briefcase, and dokieli).</li>
-                                        <li><cite><a href="https://www.w3.org/TR/websub/">WebSub</a></cite> can be used by a receiver to issue a subscription request to a sender's hub in order to trigger the sender to push notifications on a particular topic.</li>
-                                        <li>An Inbox can double as a <cite><a href="http://www.webhooks.org/">Webhooks</a></cite> callback URL, in order to request notifications from applications which post JSON-based payloads (used by sloph).</li>
-                                        <li><cite><a href="https://www.w3.org/TR/activitypub/">ActivityPub</a></cite> is a W3C Candidate Recommendation for decentralised social media applications based on the <a href="https://www.w3.org/ns/activitystreams-vocabulary">ActivityStreams 2.0</a> (AS2) vocabulary [<a class="ref" href="#ref-18">18</a>]. ActivityPub directly references LDN for delivery of notifications, with the additional requirement that notification contents are AS2. It also specifies additional behaviour for a receiver upon receiving notifications in order to propagate information through the social network (used by sloph).</li>
+                                        <li><cite><a href="https://www.w3.org/TR/websub/">WebSub</a></cite> can be used by a receiver to issue a subscription request to a sender's hub as a trigger for the sender to push notifications on a particular topic.</li>
+                                        <li>An Inbox can double as a <cite><a href="http://www.webhooks.org/">Webhooks</a></cite> callback URL, for requesting notifications from applications which post JSON-based payloads (used by sloph).</li>
+                                        <li><cite><a href="https://www.w3.org/TR/activitypub/">ActivityPub</a></cite> is a W3C Candidate Recommendation for decentralised social media applications based on the <a href="https://www.w3.org/ns/activitystreams-vocabulary">ActivityStreams 2.0</a> (AS2) vocabulary [<a class="ref" href="#ref-18">18</a>]. ActivityPub directly references LDN for delivery of notifications, with the additional requirement that notification contents are AS2. It also specifies additional behaviour for a receiver upon receiving notifications, to propagate information through the social network (used by sloph).</li>
                                         <li><cite><a href="https://www.w3.org/TR/shacl/">SHACL</a></cite>/<cite><a href="https://shexspec.github.io/spec/">ShEx</a></cite> can be used to define the constraints of notification shape.</li>
                                         <li><cite><a href="https://www.w3.org/TR/annotation-protocol/">Web Annotation Protocol</a></cite> is an LDP-based mechanism for creating new content, which can be a trigger for notifications to be sent to the Inbox of the annotation target (used by dokieli).</li>
                                         <li><cite><a href="http://fcrepo.github.io/fcrepo-specification/">Fedora API Specification</a></cite> is in the process of being formalised (as an extension of LDP) by the Fedora community. The repository event stream draws upon the LDN specification, allowing LDN consumers and senders to react asynchronously to repository events.</li>
@@ -833,7 +833,7 @@
                             <ul>
                                 <li>Enabling the notion of a notification as an individual entity with its own URI which can be retrieved and reused.</li>
                                 <li>Creating distinct conformance classes for senders, receivers, and consumers of notifications.</li>
-                                <li>Deliberately not defining the vocabulary of notification contents in order to allow for use in a range of different application domains.</li>
+                                <li>Deliberately not defining the vocabulary of notification contents to allow for use in a range of different application domains.</li>
                                 <li>Permitting flexibility with regard to authentication and verification of notifications, for the same reason.</li>
                             </ul>
 
