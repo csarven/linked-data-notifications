@@ -5,7 +5,7 @@
         <title>Linked Data Notifications: a resource-centric communication protocol</title>
         <meta content="width=device-width, initial-scale=1" name="viewport" />
         <!-- <link href="https://dokie.li/media/css/basic.css" media="all" rel="stylesheet alternate" title="Basic" /> -->
-        <link href="https://dokie.li/media/css/lncs.css" media="all" rel="stylesheet" title="LNCS" />
+        <link href="media/css/lncs.css" media="all" rel="stylesheet" title="LNCS" />
 <!--         <link href="https://dokie.li/media/css/acm.css" media="all" rel="stylesheet alternate" title="ACM" />
         <link href="https://www.w3.org/StyleSheets/TR/2016/W3C-UD" media="all" rel="stylesheet alternate" title="W3C-UD" />
         <link href="https://dokie.li/media/css/do.css" media="all" rel="stylesheet" />
@@ -77,31 +77,6 @@ table { font-size: 0.8em !important; }
                 <dl id="document-identifier">
                     <dt>Identifier</dt>
                     <dd><a href="http://csarven.ca/linked-data-notifications" rel="owl:sameAs">http://csarven.ca/linked-data-notifications</a></dd>
-                </dl>
-
-                <dl id="document-in-reply-to">
-                    <dt>In Reply To</dt>
-                    <dd><a href="http://2017.eswc-conferences.org/call-papers" rel="sioc:reply_of">ESWC 2017 Call for Papers</a></dd>
-                </dl>
-
-                <dl id="document-inbox">
-                    <dt>Notifications Inbox</dt>
-                    <dd><a href="https://linkedresearch.org/inbox/aHR0cDovL2NzYXJ2ZW4uY2EvbGlua2VkLWRhdGEtbm90aWZpY2F0aW9ucw==/" rel="ldp:inbox">inbox/</a></dd>
-                </dl>
-
-                <dl id="document-published">
-                    <dt>Published</dt>
-                    <dd><time datatype="xsd:dateTime" content="2016-12-15T00:00:00Z" datetime="2016-05-01T00:00:00Z" property="schema:datePublished">2016-05-01</time></dd>
-                </dl>
-
-                <dl id="document-modified">
-                    <dt>Modified</dt>
-                    <dd><time datatype="xsd:dateTime" content="2016-12-15T00:00:00Z" datetime="2016-12-15T00:00:00Z" property="schema:dateModified">2016-12-15</time></dd>
-                </dl>
-
-                <dl id="document-license">
-                    <dt>License</dt>
-                    <dd><a href="https://creativecommons.org/licenses/by/4.0/" rel="schema:license" title="Creative Commons Attribution 4.0 Unported">CC BY 4.0</a></dd>
                 </dl>
 
                 <div id="content">
@@ -314,7 +289,7 @@ table { font-size: 0.8em !important; }
 							LDN is a <cite><a href="https://www.w3.org/TR/ldn">W3C Candidate Recommendation</a></cite> [<a class="ref" href="#ref-4">4</a>].</p>
 
                             <figure id="figure-linked-data-notifications-overview" rel="schema:hasPart" resource="#figure-linked-data-notifications-overview">
-                                <object data="https://www.w3.org/TR/ldn/linked-data-notifications-overview.svg" height="200" rel="schema:image" type="image/svg+xml" width="420"></object>
+                                <object data="media/images/linked-data-notifications-overview.svg" height="200" rel="schema:image" type="image/svg+xml" width="420"></object>
 
                                 <figcaption property="schema:name">Overview of Linked Data Notifications</figcaption>
                             </figure>
@@ -506,28 +481,28 @@ table { font-size: 0.8em !important; }
 								dokieli-enabled articles also consume citation notifications to display these metrics for the author and other readers (<a href="#figure-dokieli-citation">figure 4</a>). -->
                             </p>
 
-                            <!-- <div class="figure-column-2"> -->
+                            <div class="figure-column-2">
                             <figure id="figure-dokieli-annotation" rel="schema:hasPart" resource="#figure-dokieli-annotation">
-                                <video id="video-dokieli-annotation" rel="schema:hasPart" preload="none" controls="controls" width="800" poster="https://dokie.li/media/images/dokieli-annotation.jpg">
+                                <video id="video-dokieli-annotation" rel="schema:hasPart" preload="none" controls="controls" width="800" poster="media/images/dokieli-annotation.jpg">
                                     <source about="#video-dokieli-annotation" rel="schema:hasPart" resource="https://dokie.li/media/video/dokieli-annotation.webm" typeof="fabio:Film" src="https://dokie.li/media/video/dokieli-annotation.webm" type="video/webm" />
                                 </video>
                                 <figcaption property="schema:name"><a href="https://dokie.li/media/video/dokieli-annotation.webm">Video</a> of dokieli Web Annotation</figcaption>
                             </figure>
 
                             <figure id="figure-dokieli-share" rel="schema:hasPart" resource="#figure-dokieli-share">
-                                <video id="video-dokieli-share" rel="schema:hasPart" preload="none" controls="controls" width="800" poster="https://dokie.li/media/images/dokieli-share.jpg">
+                                <video id="video-dokieli-share" rel="schema:hasPart" preload="none" controls="controls" width="800" poster="media/images/dokieli-share.jpg">
                                     <source about="#video-dokieli-share" rel="schema:hasPart" resource="https://dokie.li/media/video/dokieli-share.webm"  typeof="fabio:Film" src="https://dokie.li/media/video/dokieli-share.webm" type="video/webm" />
                                 </video>
                                 <figcaption property="schema:name"><a href="https://dokie.li/media/video/dokieli-share.webm">Video</a> of dokieli Share</figcaption>
                             </figure>
-                            <!-- </div> -->
+                            </div>
 
-                            <figure id="figure-dokieli-citation" rel="schema:hasPart" resource="#figure-dokieli-citation">
+<!--                             <figure id="figure-dokieli-citation" rel="schema:hasPart" resource="#figure-dokieli-citation">
                                 <video controls="controls" id="video-dokieli-citation" poster="https://dokie.li/media/images/dokieli-citation.jpg" preload="none" width="800" about="" rel="schema:hasPart">
                                     <source about="#video-dokieli-citation" rel="schema:hasPart" resource="https://dokie.li/media/video/dokieli-citation.webm" src="https://dokie.li/media/video/dokieli-citation.webm" type="video/webm" typeof="fabio:Film" />
                                 </video>
                                 <figcaption property="schema:name"><a href="https://dokie.li/media/video/dokieli-citation.webm">Video</a> of semantic inline citations</figcaption>
-                            </figure>
+                            </figure> -->
 
                             <p>Notifications sent by dokieli can be reused by any consuming applications that recognise the vocabulary terms; similarly, dokieli can consume notifications sent by different applications.</p>
 
