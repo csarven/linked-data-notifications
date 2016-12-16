@@ -166,7 +166,7 @@ table { font-size: 0.8em !important; }
 							and discuss related work, including current alternative approaches and complementary protocols which can work alongside LDN. 
 							We summarise the protocol itself, and specific architectural considerations that were made. We built a test suite which can be used to confirm that implementations conform with the specification, and we describe 17 implementations which interoperate with each other.</p>
 
-                            <div about="" id="concept-scheme" rel="schema:hasPart" resource="#concept-scheme">
+                            <div about="" id="concept-scheme" inlist="" rel="schema:hasPart" resource="#concept-scheme">
                                 <p resource="#concept-scheme" typeof="skos:ConceptScheme"><span property="skos:definition">As the following terms used throughout this article may be subject to different interpretations by different communities, we provide some definitions here.</span></p>
 
                                 <p rel="skos:hasTopConcept">
@@ -251,7 +251,7 @@ table { font-size: 0.8em !important; }
                                 </div>
                             </section>
 
-                            <section id="adaptability" rel="schema:hasPart" resource="#adaptability">
+                            <section id="adaptability" inlist="" rel="schema:hasPart" resource="#adaptability">
                                 <h3 property="schema:name">R4 Adaptability</h3>
                                 <div about="#adaptability" datatype="rdf:HTML" property="schema:description" rel="dio:addressedBy" resource="#intent" typeof="dio:DesignRequirement">
                                     <p>Linked Data applications benefit from domain-driven designs; that is, functionality being small and focussed on a particular purpose, rather than generic. We believe a notification protocol should be adaptable for different domains, but that there is no need to create multiple domain-specific notification protocols; the fundamental mechanics are the same.</p>
@@ -313,7 +313,7 @@ table { font-size: 0.8em !important; }
 							It is not dependent on a complete implementation of LDP, but comprises an easy-to-implement subset. 
 							LDN is a <cite><a href="https://www.w3.org/TR/ldn">W3C Candidate Recommendation</a></cite> [<a class="ref" href="#ref-4">4</a>].</p>
 
-                            <figure id="figure-linked-data-notifications-overview" rel="schema:hasPart" resource="#figure-linked-data-notifications-overview">
+                            <figure id="figure-linked-data-notifications-overview" inlist="" rel="schema:hasPart" resource="#figure-linked-data-notifications-overview">
                                 <object data="https://www.w3.org/TR/ldn/linked-data-notifications-overview.svg" height="200" rel="schema:image" type="image/svg+xml" width="420"></object>
 
                                 <figcaption property="schema:name">Overview of Linked Data Notifications</figcaption>
@@ -356,7 +356,7 @@ table { font-size: 0.8em !important; }
                                 <div datatype="rdf:HTML" property="schema:description">
                                     <p>For more example notification payloads, see the <a href="https://www.w3.org/TR/ldn/">LDN specification</a>.</p>
 
-                                    <figure class="listing" id="sending-notification-request" rel="schema:hasPart" resource="#sending-notification-request">
+                                    <figure class="listing" id="sending-notification-request" inlist="" rel="schema:hasPart" resource="#sending-notification-request">
                                         <pre about="#sending-notification-request" property="schema:description" typeof="fabio:Script"><code>{</code>
 <code>  "@context": { "sioc": "http://rdfs.org/sioc/ns#" }</code>
 <code>  "@id": "",</code>
@@ -368,7 +368,7 @@ table { font-size: 0.8em !important; }
                                         <figcaption property="schema:name">A notification about a comment created by a user (JSON-LD).</figcaption>
                                     </figure>
 
-                                    <figure class="listing" id="notification-qualified-relation" rel="schema:hasPart" resource="#notification-qualified-relation">
+                                    <figure class="listing" id="notification-qualified-relation" inlist="" rel="schema:hasPart" resource="#notification-qualified-relation">
                                         <pre about="#notification-qualified-relation" property="schema:description" typeof="fabio:Script"><code>@prefix as: &lt;https://www.w3.org/ns/activitystreams#&gt; .</code>
 <code>@prefix cito: &lt;http://purl.org/spar/cito/&gt; .</code>
 <code>&lt;&gt; a as:Announce</code>
@@ -507,14 +507,14 @@ table { font-size: 0.8em !important; }
                             </p>
 
                             <!-- <div class="figure-column-2"> -->
-                            <figure id="figure-dokieli-annotation" rel="schema:hasPart" resource="#figure-dokieli-annotation">
-                                <video id="video-dokieli-annotation" rel="schema:hasPart" preload="none" controls="controls" width="800" poster="https://dokie.li/media/images/dokieli-annotation.jpg">
+                            <figure id="figure-dokieli-annotation" inlist="" rel="schema:hasPart" resource="#figure-dokieli-annotation">
+                                <video id="video-dokieli-annotation" inlist="" rel="schema:hasPart" preload="none" controls="controls" width="800" poster="https://dokie.li/media/images/dokieli-annotation.jpg">
                                     <source about="#video-dokieli-annotation" rel="schema:hasPart" resource="https://dokie.li/media/video/dokieli-annotation.webm" typeof="fabio:Film" src="https://dokie.li/media/video/dokieli-annotation.webm" type="video/webm" />
                                 </video>
                                 <figcaption property="schema:name"><a href="https://dokie.li/media/video/dokieli-annotation.webm">Video</a> of dokieli Web Annotation</figcaption>
                             </figure>
 
-                            <figure id="figure-dokieli-share" rel="schema:hasPart" resource="#figure-dokieli-share">
+                            <figure id="figure-dokieli-share" inlist="" rel="schema:hasPart" resource="#figure-dokieli-share">
                                 <video id="video-dokieli-share" rel="schema:hasPart" preload="none" controls="controls" width="800" poster="https://dokie.li/media/images/dokieli-share.jpg">
                                     <source about="#video-dokieli-share" rel="schema:hasPart" resource="https://dokie.li/media/video/dokieli-share.webm"  typeof="fabio:Film" src="https://dokie.li/media/video/dokieli-share.webm" type="video/webm" />
                                 </video>
@@ -522,7 +522,7 @@ table { font-size: 0.8em !important; }
                             </figure>
                             <!-- </div> -->
 
-                            <figure id="figure-dokieli-citation" rel="schema:hasPart" resource="#figure-dokieli-citation">
+                            <figure id="figure-dokieli-citation" inlist="" rel="schema:hasPart" resource="#figure-dokieli-citation">
                                 <video controls="controls" id="video-dokieli-citation" poster="https://dokie.li/media/images/dokieli-citation.jpg" preload="none" width="800" about="" rel="schema:hasPart">
                                     <source about="#video-dokieli-citation" rel="schema:hasPart" resource="https://dokie.li/media/video/dokieli-citation.webm" src="https://dokie.li/media/video/dokieli-citation.webm" type="video/webm" typeof="fabio:Film" />
                                 </video>
@@ -544,25 +544,25 @@ table { font-size: 0.8em !important; }
 							Solid Words is a clientside game for learning new words in a foreign language; it delivers the player’s score for each round to their Inbox.
 							<cite><a href="https://apps.rhiaro.co.uk/onscreen">OnScreen</a></cite> is a (crude) generic consumer; as such, it can display notifications sent by both of the aforementioned senders (<a href="#figure-ldn-senders">figure 5</a>).</p>
 
-                            <figure id="figure-sloph-dokieli" rel="schema:hasPart" resource="#figure-sloph-dokieli">
+                            <figure id="figure-sloph-dokieli" inlist="" rel="schema:hasPart" resource="#figure-sloph-dokieli">
                                 <img src="media/images/screenshot-ldn-sloph-dokieli.jpg" alt="Screenshots of sloph and dokieli" />
                                 <figcaption property="schema:name">A <em>Like</em> notification created by sloph, displayed by dokieli.</figcaption>
                             </figure>
 
-                            <figure id="figure-ldn-senders" rel="schema:hasPart" resource="#figure-ldn-senders">
+                            <figure id="figure-ldn-senders" inlist="" rel="schema:hasPart" resource="#figure-ldn-senders">
                                 <img src="media/images/screenshot-ldn-senders.jpg" alt="Screenshots of Solid Words, Linked Edit Rules, and OnScreen" />
                                 <figcaption property="schema:name">A: Solid Words (a sender), B: Linked Edit Rules (a sender), C: OnScreen (a consumer) displaying notifications sent by A and B.</figcaption>
                             </figure>
                         </div>
                     </section>
 
-                    <section id="analysis-and-evaluation" rel="schema:hasPart" resource="#analysis-and-evaluation">
+                    <section id="analysis-and-evaluation" inlist="" rel="schema:hasPart" resource="#analysis-and-evaluation">
                         <h2 property="schema:name">Analysis and Evaluation</h2>
                         <div datatype="rdf:HTML" property="schema:description" typeof="deo:Evaluation">
                             <p>The LDN protocol describes the discovery of a resource’s Inbox whence notifications are sent or consumed, and the sending and exposure of those notifications. Here we analyse how well features of LDN achieve the <a href="#requirements-and-design-considerations">requirements</a> identified previously, and compare this to related work.</p>
                             <p>We have already examined <a href="#implementations">implementations</a> of the specification and described how they interoperate with each other; this can be further tested by running the <a href="https://linkedresearch.org/ldn/tests/">test suite</a>: https://linkedresearch.org/ldn/tests/. We can use this towards an evaluation of its feasibility and effectiveness at interoperability. Given the relatively early stage in the standardisation process (LDN entered Candidate Recommendation in 2016-11), the quantity of implementations and diversity of their sources is promising. Furthermore, during the development of the specification issues have been raised or discussed by 28 different people (excluding the authors; 21 outside of the Social Web Working Group, 7 within) and the specification has undergone formal review by internationalisation, accessibility, and security specialists. We also discuss in more depth particular challenges that were raised and resolved as part of this process.</p>
 
-                            <section id="comparison-summary" rel="schema:hasPart" resource="#comparison-summary">
+                            <section id="comparison-summary" inlist="" rel="schema:hasPart" resource="#comparison-summary">
                                 <h3 property="schema:name">Comparison summary</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
                                     <p>Here we compare existing notification mechanisms from related work. The criteria includes our <a href="#requirements-and-design-considerations">requirements and design considerations</a> (<em>Rx</em>) along with additional technical information which helps to capture some design differences (<em>Tx</em>).</p>
@@ -744,7 +744,7 @@ table { font-size: 0.8em !important; }
                                 </div>
                             </section>
 
-                            <section id="compatibility-with-existing-systems" rel="schema:hasPart" resource="#compatibility-with-existing-systems">
+                            <section id="compatibility-with-existing-systems" inlist="" rel="schema:hasPart" resource="#compatibility-with-existing-systems">
                                 <h3 property="schema:name">Compatibility with existing systems</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
                                     <p>Per <a about="#protocol" rel="dio:fulfillsRequirement" href="#modularity">R1</a> and <a about="#protocol" rel="dio:fulfillsRequirement" href="#adaptability">R4</a> we have tried to optimise LDN for use as a module of a larger system. The success of this is demonstrated by implementations which use LDN alongside existing protocols according to their specific needs.</p>
@@ -756,7 +756,7 @@ table { font-size: 0.8em !important; }
                                 </div>
                             </section>
 
-                            <section id="optimising-implementation" rel="schema:hasPart" resource="#optimising-implementation">
+                            <section id="optimising-implementation" inlist="" rel="schema:hasPart" resource="#optimising-implementation">
                                 <h3 property="schema:name">Optimising implementation</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
 
@@ -789,7 +789,7 @@ table { font-size: 0.8em !important; }
                                 </div>
                             </section>
 
-                            <section id="precision" rel="schema:hasPart" resource="#precision">
+                            <section id="precision" inlist="" rel="schema:hasPart" resource="#precision">
                                 <h3 property="schema:name">Precision</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
                                     <p>In placing no constraints on the contained information, LDN enables a sender to be precise and lossless with the data it is transmitting. Approaches which send only URLs rely on the receiver interpreting a third-party resource, which may or may not contain structured markup or be under the control of the sender. Approaches which offer additional guidance to aid the receiver in interpreting the source document(s) nonetheless still restricts the sender.
@@ -797,7 +797,7 @@ table { font-size: 0.8em !important; }
                                 </div>
                             </section>
 
-                            <section id="accommodating-different-targets" rel="schema:hasPart" resource="#accommodating-different-targets">
+                            <section id="accommodating-different-targets" inlist="" rel="schema:hasPart" resource="#accommodating-different-targets">
                                 <h3 property="schema:name">Accommodating different targets</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
 
