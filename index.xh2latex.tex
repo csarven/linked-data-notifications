@@ -1,36 +1,19 @@
 \documentclass[a4paper]{llncs}
-\usepackage{ifxetex}
-\ifxetex
-\usepackage{fontspec}
-\defaultfontfeatures{Ligatures=TeX}
-\else
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
-\fi
+\usepackage{lmodern}
+\usepackage[scaled=.8]{beramono}
+\usepackage{latexsym}
+\usepackage{textcomp}
 
 \usepackage{listings}
-\lstset{numbers=left, captionpos=b, frame=single, basicstyle=\ttfamily, stringstyle=\small, breaklines=true, extendedchars=true, showstringspaces=true, numberbychapter=false}
+%\lstset{numbers=left, captionpos=b, frame=single, basicstyle=\ttfamily, stringstyle=\small, breaklines=true, extendedchars=true, showstringspaces=true, numberbychapter=false}
 
-\usepackage{caption}
-\captionsetup{labelfont=bf}
-
-\usepackage{verbatim}
-
-
-\usepackage[numbers]{natbib}
-\usepackage{dcolumn}
-\usepackage[export]{adjustbox}
 \usepackage{graphicx}
-\usepackage[multidot]{grffile}
-\usepackage{url}
-\usepackage{xspace}
-\usepackage{color}
-\usepackage{float}
 \usepackage{multirow}
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{array}
-\usepackage{todonotes}
 \usepackage{hyperref}
 \usepackage{enumitem}
 \setlist[itemize,enumerate]{leftmargin=*}
@@ -38,57 +21,39 @@
 \def\sectionautorefname{Section}
 %\renewcommand{\bibname}{References}
 
-  \begin{document}
+\begin{document}
 
 
 
-                Linked Data Notifications: a resource-centric communication protocol
+\title{Linked Data Notifications: a resource-centric communication protocol}
 
+\author{Sarven Capadisli\inst{1}
+  \and Amy Guy\inst{2}
+  \and Christoph Lange\inst{1,3}
+  \and Sören Auer\inst{1,3}
+  \and Tim Berners-Lee\inst{4}}
+\institute{%
+  University of Bonn, Bonn, DE
+  \email{info@csarven.ca, \{langec,auer\}@cs.uni-bonn.de}
+  \and School of Informatics, University of Edinburgh, Edinburgh, UK
+  \email{amy@rhiaro.co.uk}
+  \and Fraunhofer IAIS, Sankt Augustin, DE
+  \and Decentralized Information Group, CSAIL, MIT, Cambridge, US
+  \email{timbl@w3.org}
+}
+\maketitle
 
-                    \begin{description}
-  \item[Authors] \empty Sarven Capadisli\empty 1\empty a\empty Amy Guy\empty 2\empty b\empty Christoph Lange\empty 1\empty c\empty Sören Auer\empty 1\empty d\empty Tim Berners-Lee\empty 3\empty e
-    \end{description}
-
-
-                    \begin{itemize}
-  \item 1Enterprise Information Systems Department, \empty University of Bonn, Bonn, DE\item 2School of Informatics, \empty University of Edinburgh, Edinburgh, UK\item 3Decentralized Information Group, CSAIL, \empty MIT, Cambridge, US
-    \end{itemize}
-
-
-                    \begin{itemize}
-  \item ✊\empty info@csarven.ca\item 🐦\empty amy@rhiaro.co.uk\item ∫\empty langec@cs.uni-bonn.de\item ⚛\empty auer@cs.uni-bonn.de\item 🕸\empty timbl@w3.org
-    \end{itemize}
-
-
-
-
-
-
-
-
-\par In this article we describe the Linked Data Notifications (LDN) protocol, which is a \empty W3C Candidate Recommendation. Notifications are sent over the Web for a variety of purposes, for example, by social applications. The information contained within a notification is structured arbitrarily, and typically only usable by the application which generated it in the first place. In the spirit of Linked Data, we propose that notifications should be reusable by multiple authorised applications. Through separating the concepts of {\em senders}, {\em receivers} and {\em consumers} of notifications, and leveraging Linked Data principles of shared vocabularies and URIs, LDN provides a building block for decentralised Web applications. This permits end users more freedom to switch between the online tools they use, as well as generating greater value when notifications from different sources can be used in combination. We situate LDN alongside related initiatives, and discuss additional considerations such as security and abuse prevention measures. We evaluate the protocol’s effectiveness by analysing multiple, independent implementations, which pass a suite of formal tests and can be demonstrated interoperating with each other. To experience the described features please open this document in your Web browser under its canonical URI: {\tt \href{http://csarven.ca/linked-data-notifications}{http://csarven.ca/linked-data-notifications}}.
-
-
-
-
-                        \section{Keywords}
-  \label{keywords}
-
-
-                            \begin{itemize}
-  \item \empty Communications protocol\item \empty Decentralisation\item \empty Linked Data\item \empty Social web
-    \end{itemize}
-
-
-
-
+\begin{abstract}
+  In this article we describe the Linked Data Notifications (LDN) protocol, which is a W3C Candidate Recommendation. Notifications are sent over the Web for a variety of purposes, for example, by social applications. The information contained within a notification is structured arbitrarily, and typically only usable by the application which generated it in the first place. In the spirit of Linked Data, we propose that notifications should be reusable by multiple authorised applications. Through separating the concepts of {\em senders}, {\em receivers} and {\em consumers} of notifications, and leveraging Linked Data principles of shared vocabularies and URIs, LDN provides a building block for decentralised Web applications. This permits end users more freedom to switch between the online tools they use, as well as generating greater value when notifications from different sources can be used in combination. We situate LDN alongside related initiatives, and discuss additional considerations such as security and abuse prevention measures. We evaluate the protocol’s effectiveness by analysing multiple, independent implementations, which pass a suite of formal tests and can be demonstrated interoperating with each other. To experience the described features please open this document in your Web browser under its canonical URI: {\tt \href{http://csarven.ca/linked-data-notifications}{http://csarven.ca/linked-data-notifications}}.
+  \keywords{Communications protocol, Decentralisation, Linked Data, Social web}
+\end{abstract}
 
                         \section{Introduction}
   \label{introduction}
 
 
 
-\par Notifications are sent over the Web for a variety of purposes, including social applications: ``You have been invited to a graduation party!'', ``Tim commented on your blog post!'', ``Liz tagged you in a photo''. The notification data may be displayed to a human to acknowledge, or used to trigger some other application-specific process (or both). In a decentralised architecture, notifications can be a key element for federation of information, and application integration. However in centralised systems which prevail today, this data is structured arbitrarily and typically only usable by the application that generated it in the first place. Current efforts towards {\em re-decentralising} the Web [\empty 1, \empty 2, \empty 3] are moving towards architectures in which data storage is decoupled from application logic, freeing end users to switch between applications, or to let multiple applications operate over the same data. So far, notifications are considered to be {\em ephemeral} resources which may disappear after transport, and thus are excluded from being designed for reuse.
+\par Notifications are sent over the Web for a variety of purposes, including social applications: ``You have been invited to a graduation party!'', ``Tim commented on your blog post!'', ``Liz tagged you in a photo''. The notification data may be displayed to a human to acknowledge, or used to trigger some other application-specific process (or both). In a decentralised architecture, notifications can be a key element for federation of information, and application integration. However in centralised systems which prevail today, this data is structured arbitrarily and typically only usable by the application that generated it in the first place. Current efforts towards {\em re-decentralising} the Web~\cite{ref-1,ref-2,ref-3} are moving towards architectures in which data storage is decoupled from application logic, freeing end users to switch between applications, or to let multiple applications operate over the same data. So far, notifications are considered to be {\em ephemeral} resources which may disappear after transport, and thus are excluded from being designed for reuse.
 
 
 \par We argue that notification data should not be locked into particular systems. We designed the {\em Linked Data Notifications (LDN)} protocol to support sharing and reuse of notifications {\em across} applications, regardless of how they were generated or what their contents are. We describe how the principles of identification, addressability and semantic representation can be applied to notifications on the Web. Specifying LDN as a formal protocol allows independently implemented, heterogeneous applications which generate and use notifications, to seamlessly work together. Thus, LDN supports the decentralisation of the Web as well as encourages the generation and consumption of Linked Data.
@@ -97,7 +62,7 @@
 \par We build on existing W3C standards and Linked Data principles. In particular, the storage of notifications is compatible with the Linked Data Platform standard; notifications are identified by HTTP URIs; and notification contents are available as JSON-LD. A key architectural decision is the separation of concerns between {\em senders}, {\em receivers}, and {\em consumers} of notifications. Implementations of the protocol can play one or more of these roles, and interoperate successfully with implementations playing the complementary roles. This means that notifications generated by one application can be reused by a completely different application, accessed via the store where the notification data resides, through shared Linked Data vocabularies. LDN also pushes the decentralised approach further by allowing any {\em target} resource to advertise its Inbox anywhere on the Web; that is, targets do not need to be coupled to or controlled by a receiver, and can make use of a third-party {\em Inbox as a service}.
 
 
-\par LDN is a W3C \empty Candidate Recommendation via the \empty Social Web Working Group [\empty 4]. The first two authors of this article are the co-editors of the specification.
+\par LDN is a W3C \empty Candidate Recommendation via the \empty Social Web Working Group~\cite{ref-4}. The first two authors of this article are the co-editors of the specification.
 
 
 \par Use cases for decentralised notifications are particularly evident in social networking (status updates, interactions, games); scholarly communication (reviews, citations); and changes of state of resources (datasets, versioning, sensor readings, experimental observations). We describe the requirements which guided the development of the protocol and discuss related work, including current alternative approaches and complementary protocols which can work alongside LDN. We summarise the protocol itself, and specific architectural considerations that were made. We built a test suite which can be used to confirm that implementations conform with the specification, and we describe 17 implementations which interoperate with each other.
@@ -127,16 +92,16 @@
 \par The contents of a notification is either: 1) URLs, indicating relations between Web resources, or 2) a ‘fat ping’ containing a blob of information. Semantic Pingback, Webmention, and Provenance Pingback follow the first form, and are also known as linkbacks, the suite of protocols that essentially allows Web documents to automatically reciprocate hyperlinks. This has the advantage that a verification mechanism can be tightly specified (the URL of the target must appear in the content of the source), but the disadvantage that notifications are only available for use cases involving Web publishing.
 
 
-\par \empty Semantic Pingback [\empty 2] and \empty Webmention [\empty 5] both update the original \empty Pingback [\empty 6] mechanism by replacing the XML-RPC transport mechanism by a {\tt x-www-form-urlencoded} request with two parameters ({\tt source} and {\tt target}). Resources which are the target for a notification advertise the respective receiving service or endpoint via a {\tt Link} relation, either in HTTP headers or HTML. Semantic Pingback additionally enables discovery of the Pingback service where target is available as RDF. While the content at source may indicate (in any convention or serialisation format) the type of relation between the source and target URLs, this information about the relation is not transmitted to the receiver’s endpoint; only the source and target URLs are sent. As such, there is also no way to distinguish between multiple potential mentions of the target at the source; this is left up to the receiver to interpret. Semantic Pingback does encourage generation of additional semantics about the relation(s) between the source and the target by processing the source as RDF if possible, and also defines specific ways for a receiving server to handle incoming pingback data in order to add the source data to an RDF knowledge base [\empty 2]. Beyond verifying that the source contains the URL of the target, Webmention does not specify any further requirements of the receiving server; nor is it expected that “mentions” are retrievable once they have been sent.
+\par \empty Semantic Pingback~\cite{ref-2} and \empty Webmention~\cite{ref-5} both update the original \empty Pingback~\cite{ref-6} mechanism by replacing the XML-RPC transport mechanism by a {\tt x-www-form-urlencoded} request with two parameters ({\tt source} and {\tt target}). Resources which are the target for a notification advertise the respective receiving service or endpoint via a {\tt Link} relation, either in HTTP headers or HTML. Semantic Pingback additionally enables discovery of the Pingback service where target is available as RDF. While the content at source may indicate (in any convention or serialisation format) the type of relation between the source and target URLs, this information about the relation is not transmitted to the receiver’s endpoint; only the source and target URLs are sent. As such, there is also no way to distinguish between multiple potential mentions of the target at the source; this is left up to the receiver to interpret. Semantic Pingback does encourage generation of additional semantics about the relation(s) between the source and the target by processing the source as RDF if possible, and also defines specific ways for a receiving server to handle incoming pingback data in order to add the source data to an RDF knowledge base~\cite{ref-2}. Beyond verifying that the source contains the URL of the target, Webmention does not specify any further requirements of the receiving server; nor is it expected that “mentions” are retrievable once they have been sent.
 
 
-\par A \empty Provenance Pingback endpoint is also advertised via the HTTP {\tt Link} header; it accepts a list of URIs for provenance records describing uses of the resource [\empty 7]. Provenance Pingback does not specify any further behaviour by the receiving server, but the contents at the URIs listed in the notification body must be semantic data.
+\par A \empty Provenance Pingback endpoint is also advertised via the HTTP {\tt Link} header; it accepts a list of URIs for provenance records describing uses of the resource~\cite{ref-7}. Provenance Pingback does not specify any further behaviour by the receiving server, but the contents at the URIs listed in the notification body must be semantic data.
 
 
 \par Other notification mechanisms send more information than just URLs in the notification body; due to each mechanism’s focused use case, the payload is restricted to a particular vocabulary.
 
 
-\par \empty DSNotify is a centralised service which crawls datasets and observes changes to links with the specific use case of preserving link integrity between Linked Open Data resources. Third-party applications can register with the sending service to receive notifications of changes in the form of a specific XML payload [\empty 8]. With the \empty sparqlPuSH service, users may input a SPARQL query, the results of which are the specific updates they are interested in. The query is run periodically by the service, and the results are converted to RSS and Atom feeds, which is sent to a \empty PubSubHubbub hub to which the user can subscribe [\empty 9]. The \empty ResourceSync Change Notification specification also sends update notifications via a PuSH hub, this time with an XML payload based on the Sitemap format [\empty 10]. Each of these mechanisms is triggered by subscription requests. That is, a user must actively solicit messages from a particular service, rather than having a way for a service to select a notification target and autonomously discover where to send notifications to.
+\par \empty DSNotify is a centralised service which crawls datasets and observes changes to links with the specific use case of preserving link integrity between Linked Open Data resources. Third-party applications can register with the sending service to receive notifications of changes in the form of a specific XML payload~\cite{ref-8}. With the \empty sparqlPuSH service, users may input a SPARQL query, the results of which are the specific updates they are interested in. The query is run periodically by the service, and the results are converted to RSS and Atom feeds, which is sent to a \empty PubSubHubbub hub to which the user can subscribe~\cite{ref-9}. The \empty ResourceSync Change Notification specification also sends update notifications via a PuSH hub, this time with an XML payload based on the Sitemap format~\cite{ref-10}. Each of these mechanisms is triggered by subscription requests. That is, a user must actively solicit messages from a particular service, rather than having a way for a service to select a notification target and autonomously discover where to send notifications to.
 
 
 
@@ -176,10 +141,10 @@
 
 
 
-\par There is a social expectation and technical arguments for ensuring the persistence of identifiers of Web resources [\empty 11]. This is inconsistent with the traditionally ephemeral nature of notifications. Applications may benefit from referring to or reusing notifications if the notifications are known to be available in the long term, or indicate their expected lifespan [\empty 12].
+\par There is a social expectation and technical arguments for ensuring the persistence of identifiers of Web resources~\cite{ref-11}. This is inconsistent with the traditionally ephemeral nature of notifications. Applications may benefit from referring to or reusing notifications if the notifications are known to be available in the long term, or indicate their expected lifespan~\cite{ref-12}.
 
 
-\par A {\em RESTful architecture} [\empty 13] is well suited for persistent notifications, as it involves organisation of atomic resources, their discovery and description, and a lightweight API for the CRUD (create, read, update, and delete) operations [\empty 14]. This enforces the notion that notifications are considered resources in their own right, with their own dereferencable URIs.
+\par A {\em RESTful architecture}~\cite{ref-13} is well suited for persistent notifications, as it involves organisation of atomic resources, their discovery and description, and a lightweight API for the CRUD (create, read, update, and delete) operations~\cite{ref-14}. This enforces the notion that notifications are considered resources in their own right, with their own dereferencable URIs.
 
 
 \par We need to consider both the needs of software systems and humans when large amounts of notification data are being generated and shared between diverse applications which may be operating without knowledge of each other. To organise and manage large amount of notifications over time, mechanisms should be in place to break representations of collections of notifications into multiple paged responses that may be easier to consume by applications.
@@ -210,7 +175,7 @@
 \par However from a receiver’s perspective, exposing itself to receive any blobs of RDF data from unknown senders may be problematic. Thus, R4-C: it should be possible for the receiver to enforce restrictions and accept only notifications that are acceptable according to its own criteria (deemed by e.g., user configuration; domain-specific receivers). This can be used as an anti-spam measure, a security protection, or for attaining application and data integrity.
 
 
-\par Rejecting notifications which do not match a specific pattern in their contents, or the {\em shape} of the data, is one way to filter. For example, if the Inbox owner knows that they will only ever use a consuming application which processes friend requests, they can configure their receiver to filter out anything that does not match the pattern for a friend request, helping their consumer to be more efficient. If the notification constraints are also advertised by the receiving service as structured descriptions, generation and consumption of the notifications can be further automated. Possible specifications for doing so are W3C \empty Shapes Constraint Language (SHACL) [\empty 15] or \empty ShEx.
+\par Rejecting notifications which do not match a specific pattern in their contents, or the {\em shape} of the data, is one way to filter. For example, if the Inbox owner knows that they will only ever use a consuming application which processes friend requests, they can configure their receiver to filter out anything that does not match the pattern for a friend request, helping their consumer to be more efficient. If the notification constraints are also advertised by the receiving service as structured descriptions, generation and consumption of the notifications can be further automated. Possible specifications for doing so are W3C \empty Shapes Constraint Language (SHACL)~\cite{ref-15} or \empty ShEx.
 
 
 \par Receivers may wish to filter notifications by verifying the sender, through for example a whitelist or a Web of trust. This requires an authentication mechanism and since different authentication mechanisms are appropriate for different applications, the notification protocol should ideally be usable alongside various methods such as clientside certificates, e.g., WebID+TLS, token-based, e.g., OAuth 2.0, or digital signatures.
@@ -235,7 +200,7 @@
 
 
 
-\par Given our adoption of Linked Data principles and a RESTful architecture, a further design decision was to ensure minimal compatibility with the \empty Linked Data Platform (LDP) specification [\empty 16]. LDP is a RESTful read-write API for RDF resources, which groups related resources together into constructs known as ``Containers''. Thus, existing LDP servers can be used to store notifications, as new notifications can be created by {\tt POST}ing RDF to a container.
+\par Given our adoption of Linked Data principles and a RESTful architecture, a further design decision was to ensure minimal compatibility with the \empty Linked Data Platform (LDP) specification~\cite{ref-16}. LDP is a RESTful read-write API for RDF resources, which groups related resources together into constructs known as ``Containers''. Thus, existing LDP servers can be used to store notifications, as new notifications can be created by {\tt POST}ing RDF to a container.
 
 
 
@@ -245,7 +210,7 @@
 
 
 
-\par The {\em Linked Data Notifications (LDN)} protocol describes how servers (receivers) can receive messages pushed to them by applications (senders), as well as how other applications (consumers) may retrieve those messages. Any resource can advertise a receiving endpoint (Inbox) for notification messages. Messages are expressed in RDF, and can contain arbitrary data. It is not dependent on a complete implementation of LDP, but comprises an easy-to-implement subset. LDN is a \empty W3C Candidate Recommendation [\empty 4].
+\par The {\em Linked Data Notifications (LDN)} protocol describes how servers (receivers) can receive messages pushed to them by applications (senders), as well as how other applications (consumers) may retrieve those messages. Any resource can advertise a receiving endpoint (Inbox) for notification messages. Messages are expressed in RDF, and can contain arbitrary data. It is not dependent on a complete implementation of LDP, but comprises an easy-to-implement subset. LDN is a \empty W3C Candidate Recommendation~\cite{ref-4}.
 
 
 
@@ -432,7 +397,7 @@
 
 
 
-\par We highlight social scholarly communication use cases with \empty dokieli, a clientside editor for decentralised scientific article publishing, annotations and social interactions [\empty 17]. dokieli uses LDN to send and consume notifications: When a reader comments on a fragment of text in an article, the application discovers the article’s Inbox and sends a notification about the annotation. dokieli also consumes notifications from this Inbox to fetch and display the annotation as marginalia (\empty figure 2). A reader can share a dokieli-enabled article with their contacts; dokieli discovers each contact’s Inbox and sends a notification there (\empty figure 3). When editing an article, the author can add a citation. If an Inbox is discovered in the cited article, dokieli sends a notification there to indicate what part of the article was cited by whom and where. dokieli-enabled articles also consume citation notifications to display these metrics for the author and other readers (\empty figure 4).
+\par We highlight social scholarly communication use cases with \empty dokieli, a clientside editor for decentralised scientific article publishing, annotations and social interactions~\cite{ref-17}. dokieli uses LDN to send and consume notifications: When a reader comments on a fragment of text in an article, the application discovers the article’s Inbox and sends a notification about the annotation. dokieli also consumes notifications from this Inbox to fetch and display the annotation as marginalia (\empty figure 2). A reader can share a dokieli-enabled article with their contacts; dokieli discovers each contact’s Inbox and sends a notification there (\empty figure 3). When editing an article, the author can add a citation. If an Inbox is discovered in the cited article, dokieli sends a notification there to indicate what part of the article was cited by whom and where. dokieli-enabled articles also consume citation notifications to display these metrics for the author and other readers (\empty figure 4).
 
 
 
@@ -459,7 +424,7 @@
 \par Further social use cases are demonstrated by \empty sloph, a personal publishing and quantified self platform which acts as a node in a decentralised social network. When new content is created on the server, sloph performs discovery on URLs it finds as values of particular properties of the new content, as well as any URLs in the body of the content, and sends notifications accordingly. For instance:
 
                             \begin{itemize}
-  \item If a {\em Like} activity is generated on the server, sloph uses the {\tt object} of the {\em Like} as the target for a notification. Since dokieli uses the same vocabulary for social interactions (\empty ActivityStreams 2.0 [\empty 18]), if the target is a dokieli article, this {\em Like} will be displayed (\empty figure 5).\item If the user publishes a blog post containing a link, which may be semantically annotated to indicate the reason for linking, sloph sends a notification to any Inbox discovered at that link.\item As a receiver, sloph accepts all incoming notifications, but holds for moderation (i.e. places behind access control) any that it cannot automatically verify refer to third-party content published on another domain. If an article written with dokieli publishes a citation of a blog post which advertises a sloph Inbox, sloph will fetch the article and verify whether the relation matches the contents of the notification before exposing the notification for re-use.
+  \item If a {\em Like} activity is generated on the server, sloph uses the {\tt object} of the {\em Like} as the target for a notification. Since dokieli uses the same vocabulary for social interactions (\empty ActivityStreams 2.0~\cite{ref-18}), if the target is a dokieli article, this {\em Like} will be displayed (\empty figure 5).\item If the user publishes a blog post containing a link, which may be semantically annotated to indicate the reason for linking, sloph sends a notification to any Inbox discovered at that link.\item As a receiver, sloph accepts all incoming notifications, but holds for moderation (i.e. places behind access control) any that it cannot automatically verify refer to third-party content published on another domain. If an article written with dokieli publishes a citation of a blog post which advertises a sloph Inbox, sloph will fetch the article and verify whether the relation matches the contents of the notification before exposing the notification for re-use.
     \end{itemize}
 
 
@@ -660,7 +625,7 @@
 \par Per \empty R1 and \empty R4 we have tried to optimise LDN for use as a module of a larger system. The success of this is demonstrated by implementations which use LDN alongside existing protocols according to their specific needs.
 
 
-\par The Solid suite of tools, Virtuoso+ODS-Briefcase, and dokieli use \empty Web Access Control along with an authentication mechanism to apply fine grained access controls to restrict who can send notifications, or who can retrieve notifications from the Inbox. sloph demonstrates an Inbox as a \empty Webhooks callback URL, for requesting notifications from APIs which post JSON-based payloads. \empty ActivityPub is a W3C CR for decentralised social media [\empty 19]. It uses LDN for delivery of notifications with the \empty ActivityStreams 2.0 (AS2) vocabulary, and specifies additional specialised receiver behaviour; also used by sloph. dokieli uses the \empty Web Annotation Protocol, an LDP-based mechanism for creating new content, which acts as a trigger for notifications to be sent to the Inbox of the annotation target. The \empty Fedora API Specification is in the process of being formalised (as an extension of LDP) by the Fedora community. The repository event stream draws upon the LDN specification, allowing LDN consumers and senders to react asynchronously to repository events.
+\par The Solid suite of tools, Virtuoso+ODS-Briefcase, and dokieli use \empty Web Access Control along with an authentication mechanism to apply fine grained access controls to restrict who can send notifications, or who can retrieve notifications from the Inbox. sloph demonstrates an Inbox as a \empty Webhooks callback URL, for requesting notifications from APIs which post JSON-based payloads. \empty ActivityPub is a W3C CR for decentralised social media~\cite{ref-19}. It uses LDN for delivery of notifications with the \empty ActivityStreams 2.0 (AS2) vocabulary, and specifies additional specialised receiver behaviour; also used by sloph. dokieli uses the \empty Web Annotation Protocol, an LDP-based mechanism for creating new content, which acts as a trigger for notifications to be sent to the Inbox of the annotation target. The \empty Fedora API Specification is in the process of being formalised (as an extension of LDP) by the Fedora community. The repository event stream draws upon the LDN specification, allowing LDN consumers and senders to react asynchronously to repository events.
 
 
 \par Any existing LDP implementation can serve as an LDN receiver. Simply advertising any {\tt ldp:Container} as the Inbox for a resource is sufficient. We confirmed this with four LDP servers which were developed independently with different code bases, prior to the LDN specification (CarbonLDP, Fedora Commons, Solid Server, Virtuoso).
@@ -701,7 +666,7 @@
 
                                         To address these issues, LDN requires all applications to create and understand the JSON-LD syntax, both for the contents of Inbox as well as for individual notifications. Choosing a single serialisation to {\em require} is necessary for consistent interoperability, as well as keeping processing requirements or external code dependencies minimal.
 
-                                        JSON-LD is advantageous in being familiar for developers who are \empty used to JSON-based APIs but not RDF [\empty 20], and it is compatible with existing JSON libraries or in some cases native programming language data structures.
+                                        JSON-LD is advantageous in being familiar for developers who are \empty used to JSON-based APIs but not RDF~\cite{ref-20}, and it is compatible with existing JSON libraries or in some cases native programming language data structures.
 
 
 
@@ -758,13 +723,27 @@
 
 
 
-                            \begin{enumerate}
-  \item Mansour, E., Sambra, A., Hawke, S., Zereba, M., Capadisli, S., Ghanem, A., Aboulnaga, A., Berners-Lee, T.: A Demonstration of the Solid Platform for Social Web Applications, WWW, Demo, 2016, \empty http://www2016.net/proceedings/companion/p223.pdf\item Tramp, S., Frischmuth, P., Ermilov, T., Shekarpour, S., Auer, S.: An Architecture of a Distributed Semantic Social Network, Semantic Web Journal, 2012, \empty \item Arndt, N., Junghanns, K., Meissner, R., Frischmuth, F., Radtke, N., Frommhold, M., Martin, M.: Structured Feedback, WWW, LDOW, 2016, \empty http://events.linkeddata.org/ldow2016/papers/LDOW2016\_paper\_02.pdf\item Capadisli, S., Guy, A.: Linked Data Notifications, W3C Candidate Recommendation, 2016, \empty https://www.w3.org/TR/ldn/\item Parecki, A.: Webmention, W3C Proposed Recommendation, 2016, \empty https://www.w3.org/TR/webmention/\item Langridge, S., Hickson, I.: Pingback 1.0, 2002, \empty http://www.hixie.ch/specs/pingback/pingback\item Klyne, G., Groth, P.: PROV-AQ: Provenance Access and Query,  W3C Note, 2013, \empty http://www.w3.org/TR/prov-aq/\item Haslhofer, B., Popitsch, N.: DSNotify – Detecting and Fixing Broken Links in Linked Data Sets, WWW, 2010, \empty http://eprints.cs.univie.ac.at/81/1/2010\_WWW\_DSNotify.pdf\item Passant, A., Mendes, P.N.: sparqlPuSH: Proactive notification of data updates in RDF stores using PubSubHubbub, SFSW, CEUR Workshop Proceedings, Vol. 699, 2010, \empty http://ceur-ws.org/Vol-699/Paper6.pdf\item Klein, M., Van de Sompel, H., Warner, S., Klyne, G., Haslhofer, B., Nelson, M., Lagoze, C., Sanderson, R.: ResourceSync Framework Specification – Change Notification, 2016, \empty http://www.openarchives.org/rs/notification/1.0/notification\item Berners-Lee, T.: Cool URIs don't change, W3C, 1998, \empty https://www.w3.org/Provider/Style/URI.html\item Archer, P., Loutas, N., Goedertier S., Kourtidis, S.: Study On Persistent URIs, 2012, \empty http://philarcher.org/diary/2013/uripersistence/\item Fielding, R. T.: Architectural Styles and the Design of Network-based Software Architectures. Doctoral dissertation, University of California, Irvine, 2000, \empty http://www.ics.uci.edu/\~fielding/pubs/dissertation/rest\_arch\_style.htm\item Page, K.R., De Roure, D.C., Martinez, K.: REST and Linked Data: a match made for domain driven development?, WWW, WS-REST, 2011, \empty http://ws-rest.org/2011/proc/a5-page.pdf\item Knublauch, H., Kontokostas, D.: Shapes Constraint Language, W3C Working Draft, 2016, \empty \item Speicher, S., Arwe, J., Malhotra, A.: Linked Data Platform, W3C Recommendation, 2015, \empty https://www.w3.org/TR/ldp/\item Capadisli, S., Guy, A., Auer S., Berners-Lee, T.: dokieli, 2016, \empty http://csarven.ca/dokieli\item Snell, J., Prodromou, E.: Activity Streams 2.0, W3C Candidate Recommendation, 2016, \empty https://www.w3.org/TR/activitystreams-core/\item Webber, C., Tallon, J.: ActivityPub, W3C Candidate Recommendation, 2016, \empty https://www.w3.org/TR/activitypub/\item Sporny, M.: JSON-LD and Why I Hate the Semantic Web, 2014, \empty http://manu.sporny.org/2014/json-ld-origins-2/
-    \end{enumerate}
+\begin{thebibliography}{99}
+  \bibitem{ref-1} Mansour, E., Sambra, A., Hawke, S., Zereba, M., Capadisli, S., Ghanem, A., Aboulnaga, A., Berners-Lee, T.: A Demonstration of the Solid Platform for Social Web Applications, WWW, Demo, 2016, \url{http://www2016.net/proceedings/companion/p223.pdf}
+  \bibitem{ref-2} Tramp, S., Frischmuth, P., Ermilov, T., Shekarpour, S., Auer, S.: An Architecture of a Distributed Semantic Social Network, Semantic Web Journal, 2012
+  \bibitem{ref-3} Arndt, N., Junghanns, K., Meissner, R., Frischmuth, F., Radtke, N., Frommhold, M., Martin, M.: Structured Feedback, WWW, LDOW, 2016, \url{http://events.linkeddata.org/ldow2016/papers/LDOW2016_paper_02.pdf}
+  \bibitem{ref-4} Capadisli, S., Guy, A.: Linked Data Notifications, W3C Candidate Recommendation, 2016, \url{https://www.w3.org/TR/ldn/}
+  \bibitem{ref-5} Parecki, A.: Webmention, W3C Proposed Recommendation, 2016,  \url{https://www.w3.org/TR/webmention/}
+  \bibitem{ref-6} Langridge, S., Hickson, I.: Pingback 1.0, 2002,  \url{http://www.hixie.ch/specs/pingback/pingback}
+  \bibitem{ref-7} Klyne, G., Groth, P.: PROV-AQ: Provenance Access and Query,  W3C Note, 2013, \url{http://www.w3.org/TR/prov-aq/}
+  \bibitem{ref-8} Haslhofer, B., Popitsch, N.: DSNotify – Detecting and Fixing Broken Links in Linked Data Sets, WWW, 2010, \url{http://eprints.cs.univie.ac.at/81/1/2010\_WWW\_DSNotify.pdf}
+  \bibitem{ref-9} Passant, A., Mendes, P.N.: sparqlPuSH: Proactive notification of data updates in RDF stores using PubSubHubbub, SFSW, CEUR Workshop Proceedings, Vol. 699, 2010, \url{http://ceur-ws.org/Vol-699/Paper6.pdf}
+  \bibitem{ref-10} Klein, M., Van de Sompel, H., Warner, S., Klyne, G., Haslhofer, B., Nelson, M., Lagoze, C., Sanderson, R.: ResourceSync Framework Specification – Change Notification, 2016,  \url{http://www.openarchives.org/rs/notification/1.0/notification}
+  \bibitem{ref-11} Berners-Lee, T.: Cool URIs don't change, W3C, 1998,  \url{https://www.w3.org/Provider/Style/URI.html}
+  \bibitem{ref-12} Archer, P., Loutas, N., Goedertier S., Kourtidis, S.: Study On Persistent URIs, 2012, \url{http://philarcher.org/diary/2013/uripersistence/}
+  \bibitem{ref-13} Fielding, R. T.: Architectural Styles and the Design of Network-based Software Architectures. Doctoral dissertation, University of California, Irvine, 2000,  \url{http://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm}
+  \bibitem{ref-14} Page, K.R., De Roure, D.C., Martinez, K.: REST and Linked Data: a match made for domain driven development?, WWW, WS-REST, 2011,  \url{http://ws-rest.org/2011/proc/a5-page.pdf}
+  \bibitem{ref-15} Knublauch, H., Kontokostas, D.: Shapes Constraint Language, W3C Working Draft, 2016
+  \bibitem{ref-16} Speicher, S., Arwe, J., Malhotra, A.: Linked Data Platform, W3C Recommendation, 2015, \url{https://www.w3.org/TR/ldp/}
+  \bibitem{ref-17} Capadisli, S., Guy, A., Auer S., Berners-Lee, T.: dokieli, 2016, \url{http://csarven.ca/dokieli}
+  \bibitem{ref-18} Snell, J., Prodromou, E.: Activity Streams 2.0, W3C Candidate Recommendation, 2016, \url{https://www.w3.org/TR/activitystreams-core/}
+  \bibitem{ref-19} Webber, C., Tallon, J.: ActivityPub, W3C Candidate Recommendation, 2016, \url{https://www.w3.org/TR/activitypub/}
+  \bibitem{ref-20} Sporny, M.: JSON-LD and Why I Hate the Semantic Web, 2014, \url{http://manu.sporny.org/2014/json-ld-origins-2/}
+\end{thebibliography}
 
-
-
-
-
-
-    \end{document}
+\end{document}
