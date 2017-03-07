@@ -152,7 +152,7 @@ table { font-size: 0.8em !important; }
 
                             <!-- <p>Using this article as the target for notifications, we welcome readers' feedback via LDN.</p> -->
                         </div>
-                    </section>         
+                    </section>
 
                     <section id="related-work" inlist="" rel="schema:hasPart" resource="#related-work">
                         <h2 property="schema:name">Related Work</h2>
@@ -255,7 +255,7 @@ table { font-size: 0.8em !important; }
                             <section id="sender-to-receiver" inlist="" rel="schema:hasPart" resource="#sender-to-receiver">
                                 <h3 property="schema:name">Sender to receiver interactions</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
-                                    <p>The following steps describe the interaction between sender and receiver:</p>
+                                    <p>The following steps (in order without skipping) describe the interaction between sender and receiver:</p>
 
                                     <p>(1) A sender is triggered, either by a human or an automatic process, to deliver a notification; (2) The sender chooses a target resource to send notifications to; (3) The sender discovers the location of the target’s <em>Inbox</em> through the <code>ldp:inbox</code> relation in the HTTP <code>Link</code> header or RDF body of the target resource; (4) The sender creates the body of the notification according to the needs of application; (5) The sender makes a <code>POST</code> to the Inbox URL, containing the body in JSON-LD or in another serialisation acceptable by the server; (6) The receiver optionally applies filtering rules, and sends the appropriate HTTP response code to accept or reject the notification; (7) The receiver exposes the notification data (according to appropriate access control) for use by consumers.</p>
                                 </div>
@@ -264,7 +264,7 @@ table { font-size: 0.8em !important; }
                             <section id="consumer-to-receiver" inlist="" rel="schema:hasPart" resource="#consumer-to-receiver">
                                 <h3 property="schema:name">Consumer to receiver interactions</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
-                                    <p>The following steps describe the interaction between consumer and receiver:</p>
+                                    <p>The following steps (in order without skipping) describe the interaction between consumer and receiver:</p>
 
                                     <p>(1) A consumer selects a target and discovers the location of its Inbox in the same way as the sender; (2) A receiver responds to <code>GET</code> requests made to the Inbox URL with a listing of the URLs of notifications that have previously been accepted, linked to the Inbox with the <code>ldp:contains</code> predicate; <span about="#protocol" rel="dio:fulfillsRequirement" resource="#persistence-and-retrievability">(3) The receiver responds to <code>GET</code> requests made to the individual notification URLs with JSON-LD (or optionally other serialisations);</span> <span about="#protocol" rel="dio:fulfillsRequirement" resource="#reusable-notifications">(4) Following the retrieval of notification listings or individual notifications, the consumer may perform further processing, combine with some other data, or simply present the results in a suitable human-readable way.</span></p>
                                 </div>
@@ -415,8 +415,7 @@ table { font-size: 0.8em !important; }
                                 </tbody>
                             </table>
 
-                            <p>We highlight social scholarly communication use cases with <cite><a href="https://dokie.li/">dokieli</a></cite>, a clientside editor for decentralised scientific article publishing, annotations and social interactions [<a class="ref" href="#ref-17">17</a>].
-							dokieli uses LDN to send and consume notifications: When a reader comments on a fragment of text in an article, the application discovers the article’s Inbox and sends a notification about the annotation. dokieli also consumes notifications from this Inbox to fetch and display the annotation as marginalia (<a href="#figure-dokieli-annotation">figure 2</a>). A reader can share a dokieli-enabled article with their contacts; dokieli discovers each contact’s Inbox and sends a notification there (<a href="#figure-dokieli-share">figure 3</a>). When editing an article, the author can add a citation. If an Inbox is discovered in the cited article, dokieli sends a notification there to indicate what part of the article was cited by whom and where. dokieli-enabled articles also consume citation notifications to display these metrics for the author and other readers (<a href="#figure-dokieli-citation">figure 4</a>).</p>
+                            <p>We highlight social scholarly communication use cases with <cite><a href="https://dokie.li/">dokieli</a></cite>, a clientside editor for decentralised scientific article publishing, annotations and social interactions [<a class="ref" href="#ref-17">17</a>]. dokieli uses LDN to send and consume notifications: When a reader comments on a fragment of text in an article, the application discovers the article’s Inbox and sends a notification about the annotation. dokieli also consumes notifications from this Inbox to fetch and display the annotation as marginalia (<a href="#figure-dokieli-annotation">figure 2</a>). A reader can share a dokieli-enabled article with their contacts; dokieli discovers each contact’s Inbox and sends a notification there (<a href="#figure-dokieli-share">figure 3</a>). When editing an article, the author can add a citation. If an Inbox is discovered in the cited article, dokieli sends a notification there to indicate what part of the article was cited by whom and where. dokieli-enabled articles also consume citation notifications to display these metrics for the author and other readers (<a href="#figure-dokieli-citation">figure 4</a>).</p>
 
                             <!-- <div class="figure-column-2"> -->
                             <figure id="figure-dokieli-annotation" inlist="" rel="schema:hasPart" resource="#figure-dokieli-annotation">
@@ -708,7 +707,7 @@ table { font-size: 0.8em !important; }
                                 <h3 property="schema:name">Accommodating different targets</h3>
                                 <div datatype="rdf:HTML" property="schema:description">
                                     <p>Per <em>R4 Adaptability</em>, we want LDN to be available for all resources in any publishing context. We consider lowering the bar for publishers of target resources to be a worthwhile trade-off against slightly increased complexity for senders and consumers. This is why we require that senders and consumers must be equipped to discover Inboxes through both HTTP headers and RDF content. </p>
- 
+
                                     <p>Since binary formats such as images and video cannot contain an RDF relation, the HTTP header is essential for including them. It also allows the inclusion of resources for which it is undesirable or impractical to add individual Inbox relations, such as to elements in a dataset; or circumstances where the developer responsible for the Inbox relation is unable to modify the content. Conversely, non-informational resources (represented with fragment URIs or 303 redirects) are unable to express HTTP headers. Their relation to an Inbox must be expressed in an RDF source. However, if a sender or consumer has a domain-specific requirement to <em>only</em> ever target non-informational resources, they are exempt from the requirement of discovery via HTTP headers.</p>
                                 </div>
                             </section>
