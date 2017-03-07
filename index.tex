@@ -1,3 +1,42 @@
+\documentclass[a4paper]{llncs}
+\usepackage{ifxetex}
+\ifxetex
+\usepackage{fontspec}
+\defaultfontfeatures{Ligatures=TeX}
+\else
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\fi
+
+\usepackage{listings}
+\lstset{numbers=left, captionpos=b, frame=single, basicstyle=\ttfamily, stringstyle=\small, breaklines=true, extendedchars=true, showstringspaces=true, numberbychapter=false}
+
+\usepackage{caption}
+\captionsetup{labelfont=bf}
+
+\usepackage{verbatim}
+
+
+\usepackage[numbers]{natbib}
+\usepackage{dcolumn}
+\usepackage[export]{adjustbox}
+\usepackage{graphicx}
+\usepackage[multidot]{grffile}
+\usepackage{url}
+\usepackage{xspace}
+\usepackage{color}
+\usepackage{float}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{todonotes}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\setlist[itemize,enumerate]{leftmargin=*}
+
+\def\sectionautorefname{Section}
+%\renewcommand{\bibname}{References}
 
   \begin{document}
   
@@ -7,7 +46,7 @@
 
                 
                     \begin{description}
-  \item[Authors] \empty Sarven Capadisli\empty 1\empty ✊\empty Amy Guy\empty 2\empty 🐦\empty Christoph Lange\empty 1\empty ∫\empty Sören Auer\empty 1\empty ⚛\empty Tim Berners-Lee\empty 3\empty 🕸
+  \item[Authors] \empty Sarven Capadisli\empty 1\empty a\empty Amy Guy\empty 2\empty b\empty Christoph Lange\empty 1\empty c\empty Sören Auer\empty 1\empty d\empty Tim Berners-Lee\empty 3\empty e
     \end{description}
   
 
@@ -17,7 +56,7 @@
   
 
                     \begin{itemize}
-  \item ✊\empty info@csarven.ca\item 🐦\empty amy@rhiaro.co.uk\item ∫\empty langec@cs.uni-bonn.de\item ⚛\empty auer@cs.uni-bonn.de\item 🕸\empty timbl@w3.org
+  \item a\empty info@csarven.ca\item b\empty amy@rhiaro.co.uk\item c\empty langec@cs.uni-bonn.de\item d\empty auer@cs.uni-bonn.de\item e\empty timbl@w3.org
     \end{itemize}
   
                 
