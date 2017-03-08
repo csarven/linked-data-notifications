@@ -7,12 +7,13 @@
 \usepackage{textcomp}
 
 \usepackage{listings}
-%\lstset{numbers=left, captionpos=b, frame=single, basicstyle=\ttfamily, stringstyle=\small, breaklines=true, extendedchars=true, showstringspaces=true, numberbychapter=false}
+\lstset{numbers=left, captionpos=b, frame=single, basicstyle=\ttfamily, stringstyle=\small, breaklines=true, extendedchars=true, showstringspaces=true, numberbychapter=false}
 
 \usepackage{graphicx}
 \usepackage{multirow}
 \usepackage{booktabs}
 \usepackage{tabularx}
+\usepackage{ctable}
 \usepackage{array}
 \usepackage{hyperref}
 \usepackage{enumitem}
@@ -210,13 +211,15 @@
 
 
 
-\par The {\em Linked Data Notifications (LDN)} protocol describes how servers (receivers) can receive messages pushed to them by applications (senders), as well as how other applications (consumers) may retrieve those messages. Any resource can advertise a receiving endpoint (Inbox) for notification messages. Messages are expressed in RDF, and can contain arbitrary data. It is not dependent on a complete implementation of LDP, but comprises an easy-to-implement subset. LDN is a \empty W3C Candidate Recommendation~\cite{ref-4}.
+\par The {\em Linked Data Notifications (LDN)} protocol describes how servers (receivers) can receive messages pushed to them by applications (senders), as well as how other applications (consumers) may retrieve those messages. Any resource can advertise a receiving endpoint (Inbox) for notification messages. Messages are expressed in RDF, and can contain arbitrary data. It is not dependent on a complete implementation of LDP, but comprises an easy-to-implement subset.
 
 
-
-
-                                Overview of Linked Data Notifications
-
+\begin{figure}
+  \centering
+  \includegraphics[trim=.2cm 10cm .5cm 10cm,clip,width=.6\textwidth]{media/images/{linked-data-notifications-overview.svg}.pdf}
+  \caption{Overview of Linked Data Notifications}
+  \label{fig:overview}
+\end{figure}
 
 
                                 \subsection{Sender to receiver interactions}
@@ -253,26 +256,28 @@
 \par For more example notification payloads, see the \empty LDN specification.
 
 
-                                        \begin{verbatim}{
-  "@context": { "sioc": "http://rdfs.org/sioc/ns#" }
+\begin{lstlisting}
+{ "@context": { "sioc": "http://rdfs.org/sioc/ns#" }
   "@id": "",
   "@type": "sioc:Comment",
   "sioc:content": "This is a great article!",
   "sioc:reply_of": { "@id": "http://example.org/article" },
-  "sioc:created_at": { "@value": "2015-12-23T16:44:21Z" }
-}\end{verbatim}
+  "sioc:created_at": { "@value": "2015-12-23T16:44:21Z" } }
+\end{lstlisting}
                                         A notification about a comment created by a user (JSON-LD).
 
 
 
-                                        \begin{verbatim}@prefix as: <https://www.w3.org/ns/activitystreams#> .
+\begin{lstlisting}
+@prefix as: <https://www.w3.org/ns/activitystreams#> .
 @prefix cito: <http://purl.org/spar/cito/> .
 <> a as:Announce
   as:object <https://linkedresearch.org/resources#r-903b83> ;
   as:target <http://csarven.ca/dokieli#architecture> .
 <https://linkedresearch.org/resources#r-903b83>
   cito:citesAsPotentialReading
-    <http://csarven.ca/linked-data-notifications#protocol> .\end{verbatim}
+    <http://csarven.ca/linked-data-notifications#protocol> .
+\end{lstlisting}
                                         An announcement of a specific citation relation between two entities (Turtle).
 
 
@@ -288,130 +293,120 @@
 
 \par Here we summarise the 17 LDN implementations we are aware of to date. They are built by 10 different teams or individuals using different tool stacks (5 clientside JavaScript, 3 PHP, 3 NodeJS, 3 Python, 1 Perl, 1 Virtuoso Server Pages, 1 Java) and have submitted \empty implementation reports as part of the W3C standardisation process. We note that any \empty LDP implementation is a conforming LDN receiver; we refer here to the ones we have tested. We discuss the value of these implementations further in the \empty Evaluation section.
 
-
-                                LDN Implementations
-
-
-                                        Implementation
-                                        Class\empty *
-                                        Description
-
-
-
-
-                                        \begin{description}
-  \item[*] Conformance classes: S – sender, C – consumer, R – receiver.\item[a] Implementations by the authors
-    \end{description}
-
-
-\par Source: \empty https://github.com/w3c/ldn/tree/master/implementations
+\ctable[
+  caption={LDN Implementations},
+  label = {tab:implementations}
+]{lll}{
+  \tnote[*]{Conformance classes: S – sender, C – consumer, R – receiver.}
+  \tnote[a]{Implementations by the authors}
+  \tnote[]{Source: \url{https://github.com/w3c/ldn/tree/master/implementations}}
+}{\FL
+  Implementation & Class\tmark[*] & Description
+  \ML
+                                        CarbonLDP &
+                                        R &
+                                        Data storage platform (LDP) \NN
 
 
+                                        dokieli\tmark[a] &
+                                        S,C &
+                                        Clientside editor and annotator \NN
 
 
-                                        \empty CarbonLDP
-                                        R
-                                        Data storage platform (LDP)
+                                        errol\tmark[a] &
+                                        S &
+                                        Generic message sending client \NN
 
 
-                                        \empty dokielia
-                                        S,C
-                                        Clientside editor and annotator
+                                        Fedora Commons &
+                                        R &
+                                        Open source repository platform (LDP) \NN
 
 
-                                        \empty errola
-                                        S
-                                        Generic message sending client
+                                        IndieAnndroid &
+                                        R &
+                                        Personal blogging platform \NN
 
 
-                                        \empty Fedora Commons
-                                        R
-                                        Open source repository platform (LDP)
+                                        Linked Edit Rules &
+                                        S &
+                                        Statistical dataset consistency checker \NN
 
 
-                                        \empty IndieAnndroid
-                                        R
-                                        Personal blogging platform
+                                        mayktso\tmark[a] &
+                                        R &
+                                        Personal data store (LDP) \NN
 
 
-                                        \empty Linked Edit Rules
-                                        S
-                                        Statistical dataset consistency checker
+                                        OnScreen\tmark[a] &
+                                        C &
+                                        Notifications display client \NN
 
 
-                                        \empty mayktsoa
-                                        R
-                                        Personal data store (LDP)
+                                        pyldn &
+                                        R &
+                                        Standalone Inbox \NN
 
 
-                                        \empty OnScreena
-                                        C
-                                        Notifications display client
+                                        RDF-LinkedData-Notifications &
+                                        R &
+                                        Standalone Inbox \NN
 
 
-                                        \empty pyldn
-                                        R
-                                        Standalone Inbox
+                                        sloph\tmark[a] &
+                                        S,R &
+                                        Social publishing \& quantified self \NN
 
 
-                                        \empty RDF-LinkedData-Notifications
-                                        R
-                                        Standalone Inbox
+                                        Solid Words &
+                                        S &
+                                        Foreign language learning app \NN
 
 
-                                        \empty slopha
-                                        S,R
-                                        Social publishing \& quantified self
+                                        solid-client &
+                                        S &
+                                        Clientside library for LDP \NN
 
 
-                                        \empty Solid Words
-                                        S
-                                        Foreign language learning app
+                                        solid-inbox &
+                                        C &
+                                        Clientside social message reader \NN
 
 
-                                        \empty solid-client
-                                        S
-                                        Clientside library for LDP
+                                        solid-notifications &
+                                        S,C &
+                                        Clientside library for LDN \NN
 
 
-                                        \empty solid-inbox
-                                        C
-                                        Clientside social message reader
+                                        solid-server &
+                                        R &
+                                        Personal data storage server (LDP) \NN
 
 
-                                        \empty solid-notifications
-                                        S,C
-                                        Clientside library for LDN
-
-
-                                        \empty solid-server
-                                        R
-                                        Personal data storage server (LDP)
-
-
-                                        \empty Virtuoso+\empty ODS Briefcase
-                                        R,C
-                                        Personal data storage server (LDP)
+                                        Virtuoso+ ODS Briefcase &
+                                        R,C &
+                                        Personal data storage server (LDP) \LL
+}
 
 
 
 
 
-\par We highlight social scholarly communication use cases with \empty dokieli, a clientside editor for decentralised scientific article publishing, annotations and social interactions~\cite{ref-17}. dokieli uses LDN to send and consume notifications: When a reader comments on a fragment of text in an article, the application discovers the article’s Inbox and sends a notification about the annotation. dokieli also consumes notifications from this Inbox to fetch and display the annotation as marginalia (\empty figure 2). A reader can share a dokieli-enabled article with their contacts; dokieli discovers each contact’s Inbox and sends a notification there (\empty figure 3). When editing an article, the author can add a citation. If an Inbox is discovered in the cited article, dokieli sends a notification there to indicate what part of the article was cited by whom and where. dokieli-enabled articles also consume citation notifications to display these metrics for the author and other readers (\empty figure 4).
+\par We highlight social scholarly communication use cases with \empty dokieli, a clientside editor for decentralised scientific article publishing, annotations and social interactions~\cite{ref-17}. dokieli uses LDN to send and consume notifications: When a reader comments on a fragment of text in an article, the application discovers the article’s Inbox and sends a notification about the annotation. dokieli also consumes notifications from this Inbox to fetch and display the annotation as marginalia (figure~\ref{fig:video-annotation}). A reader can share a dokieli-enabled article with their contacts; dokieli discovers each contact’s Inbox and sends a notification there (figure~\ref{fig:video-share}). When editing an article, the author can add a citation. If an Inbox is discovered in the cited article, dokieli sends a notification there to indicate what part of the article was cited by whom and where. dokieli-enabled articles also consume citation notifications to display these metrics for the author and other readers (figure~\ref{fig:like}).
 
-
-
-
-
-
-                                \empty Video of dokieli Web Annotation
-
-
-
-
-
-
-                                \empty Video of dokieli Share
+\begin{figure}
+  \begin{minipage}[b]{.49\textwidth}
+    \includegraphics[width=\textwidth]{media/images/dokieli-annotation}
+    \caption{Video of dokieli Web Annotation}
+    \label{fig:video-annotation}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{.49\textwidth}
+    \includegraphics[width=\textwidth]{media/images/dokieli-share}
+    \caption{Video of dokieli Share}
+    \label{fig:video-share}
+  \end{minipage}
+\end{figure}  
 
 
 
@@ -424,21 +419,29 @@
 \par Further social use cases are demonstrated by \empty sloph, a personal publishing and quantified self platform which acts as a node in a decentralised social network. When new content is created on the server, sloph performs discovery on URLs it finds as values of particular properties of the new content, as well as any URLs in the body of the content, and sends notifications accordingly. For instance:
 
                             \begin{itemize}
-  \item If a {\em Like} activity is generated on the server, sloph uses the {\tt object} of the {\em Like} as the target for a notification. Since dokieli uses the same vocabulary for social interactions (\empty ActivityStreams 2.0~\cite{ref-18}), if the target is a dokieli article, this {\em Like} will be displayed (\empty figure 5).\item If the user publishes a blog post containing a link, which may be semantically annotated to indicate the reason for linking, sloph sends a notification to any Inbox discovered at that link.\item As a receiver, sloph accepts all incoming notifications, but holds for moderation (i.e. places behind access control) any that it cannot automatically verify refer to third-party content published on another domain. If an article written with dokieli publishes a citation of a blog post which advertises a sloph Inbox, sloph will fetch the article and verify whether the relation matches the contents of the notification before exposing the notification for re-use.
+  \item If a {\em Like} activity is generated on the server, sloph uses the {\tt object} of the {\em Like} as the target for a notification. Since dokieli uses the same vocabulary for social interactions (\empty ActivityStreams 2.0~\cite{ref-18}), if the target is a dokieli article, this {\em Like} will be displayed (figure~\ref{fig:like}).\item If the user publishes a blog post containing a link, which may be semantically annotated to indicate the reason for linking, sloph sends a notification to any Inbox discovered at that link.\item As a receiver, sloph accepts all incoming notifications, but holds for moderation (i.e. places behind access control) any that it cannot automatically verify refer to third-party content published on another domain. If an article written with dokieli publishes a citation of a blog post which advertises a sloph Inbox, sloph will fetch the article and verify whether the relation matches the contents of the notification before exposing the notification for re-use.
     \end{itemize}
 
 
 
-\par \empty Linked Edit Rules and \empty Solid Words are specialised senders. Linked Edit Rules checks the consistency of statistical datasets against structured constraints, and delivers the consistency report as a notification to the user. Solid Words is a clientside game for learning new words in a foreign language; it delivers the player’s score for each round to their Inbox. \empty OnScreen is a (crude) generic consumer; as such, it can display notifications sent by both of the aforementioned senders (\empty figure 6).
+\par \empty Linked Edit Rules and \empty Solid Words are specialised senders. Linked Edit Rules checks the consistency of statistical datasets against structured constraints, and delivers the consistency report as a notification to the user. Solid Words is a clientside game for learning new words in a foreign language; it delivers the player’s score for each round to their Inbox. \empty OnScreen is a (crude) generic consumer; as such, it can display notifications sent by both of the aforementioned senders (figure~\ref{fig:notifications}).
+
+\begin{figure}
+  \includegraphics[width=\textwidth]{media/images/screenshot-ldn-sloph-dokieli}
+  \caption{A {\em Like} notification created by sloph, displayed by dokieli.}
+  \label{fig:like}
+
+  \includegraphics[width=\textwidth]{media/images/screenshot-ldn-senders}
+  \caption{A: Solid Words (a sender), B: Linked Edit Rules (a sender), C: OnScreen (a consumer) displaying notifications sent by A and B.}
+  \label{fig:notifications}
+\end{figure}
+
+                                
 
 
 
-                                A {\em Like} notification created by sloph, displayed by dokieli.
 
-
-
-
-                                A: Solid Words (a sender), B: Linked Edit Rules (a sender), C: OnScreen (a consumer) displaying notifications sent by A and B.
+                                
 
 
 
@@ -463,154 +466,164 @@
 \par Here we compare existing notification mechanisms from related work. The criteria includes our \empty requirements and design considerations ({\em Rx}) along with additional technical information which helps to capture some design differences ({\em Tx}).
 
 
-                                        Comparison of notification mechanisms
-
-
-                                                Mechanism
-                                                T1
-                                                T2
-                                                T3
-                                                R1
-                                                R2
-                                                R3
-                                                R4-A
-                                                R4-B
-                                                R4-Cp
-                                                R4-Cv
-                                                R4-Co
-                                                R5
-
-
-
-
-
-                                                    \begin{description}
-  \item[T1] Notification type\item[T2] Delivery method\item[T3] Dependencies\item[R1] Modularity (application classes: S Sender, R Receiver, C Consumer, U Subscriber/User)\item[R2] Reusability\item[R3] Persistence - required? how?\item[R4-A] Target representation\item[R4-B] Notification body\item[R4-Cp] Payload processing required?\item[R4-Cv] Verification - required? how?\item[R4-Co] Requirements for referenced resources?\item[R5] Subscription
-    \end{description}
-
-
-                                                    \begin{description}
-  \item[–] not applicable, out of scope\item[/] not specified, in scope\item[X] explicitly disallowed\item[app] application specific decision\item[!] required ({\em MUST})\item[+] recommended ({\em SHOULD})\item[O] optional ({\em MAY})\item[PuSH] PubSubHubbub
-    \end{description}
-
-
-                                                    \begin{description}
-  \item[h] HTML recommended\item[j] Alternate RDF formats can be negotiated\item[k] {\tt source} and {\tt target} key–value pairs is required\item[q] Provenance records with \empty PROV Ontology\item[r] RDF representation recommended\item[ra] SPARQL results transformed to RSS/Atom\item[s] \empty Sitemaps\item[t] Described in an RDF store or dataset
-    \end{description}
-
-
-
-
-
-
-
-                                                Semantic Pingback
-                                                Linkback
-                                                POST
-                                                RDF
-                                                S R
-                                                /
-                                                /
-                                                Anyr
-                                                form urlencodedk
-                                                !
-                                                ! parse source
-                                                Anyr
-                                                X
-
-
-                                                Webmention
-                                                Linkback
-                                                POST
-                                                HTML
-                                                S R
-                                                –
-                                                –
-                                                Anyh
-                                                form urlencodedk
-                                                !
-                                                ! parse source
-                                                Anyh
-                                                X
-
-
-                                                Provenance Pingback
-                                                Linkback
-                                                POST
-                                                RDF
-                                                S R
-                                                /
-                                                /
-                                                /
-                                                URI list
-                                                /
-                                                /
-                                                RDFq
-                                                X
-
-
-                                                DSNotify
-                                                Fat ping
-                                                POST, PUT
-                                                XML, PuSH
-                                                S U
-                                                /
-                                                –
-                                                –
-                                                XML
-                                                /
-                                                –
-                                                RDFt
-                                                !
-
-
-                                                sparqlPuSH
-                                                Fat ping
-                                                POST
-                                                XML, SPARQL, PuSH
-                                                S U
-                                                –
-                                                –
-                                                –
-                                                XMLra
-                                                /
-                                                –
-                                                RDFt
-                                                !
-
-
-                                                ResourceSync
-                                                Fat ping
-                                                POST
-                                                XML, PuSH
-                                                S U
-                                                /
-                                                –
-                                                –
-                                                XMLs
-                                                /
-                                                –
-                                                ?
-                                                !
-
-
-                                                Linked Data Notifications
-                                                Fat ping
-                                                POST
-                                                JSON-LD
-                                                S R C
-                                                !
-                                                ! URI
-                                                Any
-                                                JSON-LDj
-                                                + app
-                                                + app
-                                                –
-                                                O app
-
-
-
-
+\begin{table}
+  \caption{Comparison of notification mechanisms}
+  \label{tab:comparison}
+  \footnotesize
+  \begin{tabular}{% Mechanism
+    p{.15\textwidth}
+    % T1–T3
+    p{.07\textwidth}
+    p{.07\textwidth}
+    p{.09\textwidth}
+    % R1–R3
+    p{.03\textwidth}
+    p{.03\textwidth}
+    p{.05\textwidth}
+    % R4-A–R5
+    p{.06\textwidth}
+    p{.14\textwidth}
+    p{.045\textwidth}
+    p{.06\textwidth}
+    p{.06\textwidth}
+    p{.05\textwidth}
+    }\FL
+                                                Mechanism&
+                                                T1&
+                                                T2&
+                                                T3&
+                                                R1&
+                                                R2&
+                                                R3&
+                                                R4-A&
+                                                R4-B&
+                                                R4-C\textsuperscript{p}&
+                                                R4-C\textsuperscript{v}&
+                                                R4-C\textsuperscript{o}&
+                                                R5\ML
+                                                Semantic\newline Pingback&
+                                                Link-\newline back&
+                                                POST&
+                                                RDF&
+                                                S\newline R&
+                                                /&
+                                                /&
+                                                Any\textsuperscript{r}&
+                                                form\newline urlencoded\textsuperscript{k}&
+                                                !&
+                                                !\newline parse\newline source&
+                                                Any\textsuperscript{r}&
+                                                X\NN
+                                                Webmention&
+                                                Link-\newline back&
+                                                POST&
+                                                HTML&
+                                                S\newline R&
+                                                –&
+                                                –&
+                                                Any\textsuperscript{h}&
+                                                form\newline urlencoded\textsuperscript{k}&
+                                                !&
+                                                !\newline parse\newline source&
+                                                Any\textsuperscript{h}&
+                                                X\NN
+                                                Provenance\newline Pingback&
+                                                Link-\newline back&
+                                                POST&
+                                                RDF&
+                                                S\newline R&
+                                                /&
+                                                /&
+                                                /&
+                                                URI list&
+                                                /&
+                                                /&
+                                                RDF\textsuperscript{q}&
+                                                X\NN
+                                                DSNotify&
+                                                Fat\newline ping&
+                                                POST,\newline PUT&
+                                                XML,\newline PuSH&
+                                                S\newline U&
+                                                /&
+                                                –&
+                                                –&
+                                                XML&
+                                                /&
+                                                –&
+                                                RDF\textsuperscript{t}&
+                                                !\NN
+                                                sparqlPuSH&
+                                                Fat\newline ping&
+                                                POST&
+                                                XML,\newline SPARQL,\newline PuSH&
+                                                S\newline U&
+                                                –&
+                                                –&
+                                                –&
+                                                XML\textsuperscript{ra}&
+                                                /&
+                                                –&
+                                                RDF\textsuperscript{t}&
+                                                !\NN
+                                                ResourceSync&
+                                                Fat\newline ping&
+                                                POST&
+                                                XML,\newline PuSH&
+                                                S\newline U&
+                                                /&
+                                                –&
+                                                –&
+                                                XML\textsuperscript{s}&
+                                                /&
+                                                –&
+                                                ?&
+                                                !\NN
+                                                Linked Data\newline Notifications&
+                                                Fat\newline ping&
+                                                POST&
+                                                JSON-LD&
+                                                S\newline R\newline C&
+                                                !&
+                                                !\newline URI&
+                                                Any&
+                                                JSON-LD\textsuperscript{j}&
+                                                + app&
+                                                + app&
+                                                –&
+                                                O\newline app\LL
+  \end{tabular}\\
+  \begin{tabularx}{1.0\linewidth}{XX}\FL
+    \textbf{T1}: Notification type&
+    \textbf{R4-A}: Target representation\NN
+    \textbf{T2}: Delivery method&
+    \textbf{R4-B}: Notification body\NN
+    \textbf{T3}: Dependencies&
+    \textbf{R4-C\textsuperscript{p}}: Payload processing required?\NN
+    \textbf{R1}: Modularity (application classes: S Sender, R Receiver, C Consumer, U Subscriber/User)&
+    \textbf{R4-C\textsuperscript{v}}: Verification - required? how?\NN
+    \textbf{R2}: Reusability&
+    \textbf{R4-C\textsuperscript{o}}: Requirements for referenced resources?\NN
+    \textbf{R3}: Persistence - required? how?&
+    \textbf{R5}: Subscription\ML
+    \textbf{–}: not applicable, out of scope&
+    \textbf{!}: required ({\em MUST})\NN
+    \textbf{/}: not specified, in scope&
+    \textbf{+}: recommended ({\em SHOULD})\NN
+    \textbf{X}: explicitly disallowed&
+    \textbf{O}: optional ({\em MAY})\NN
+    \textbf{app}: application specific decision&
+    \textbf{PuSH}: PubSubHubbub\ML
+    \textbf{\textsuperscript{h}}: HTML recommended&
+    \textbf{\textsuperscript{r}}: RDF representation recommended\NN
+    \textbf{\textsuperscript{j}}: Alternate RDF formats can be negotiated&
+    \textbf{\textsuperscript{ra}}: SPARQL results transformed to RSS/Atom\NN
+    \textbf{\textsuperscript{k}}: {\tt source} and {\tt target} key–value pairs is required&
+    \textbf{\textsuperscript{s}}: \empty Sitemaps\NN
+    \textbf{\textsuperscript{q}}: Provenance records with \empty PROV Ontology&
+    \textbf{\textsuperscript{t}}: Described in an RDF store or dataset\LL
+  \end{tabularx}
+\end{table}
 
 \par Given that each application requires to follow the steps listed in ``\empty Sender to receiver interaction'' and ``\empty Consumer to receiver interactions'' the metrics are dependent on the performance of client and server to do HTTP requests and responses, and their respective payloads.
 
@@ -716,12 +729,8 @@
 \par We outlined design requirements, describe how LDN meets these, and compare this with related work. We consider LDN to have greater modularity and adaptability to different scenarios, as well as good conformance with Linked Data principles. This specification has potential to have high impact in increasing interoperability between decentralised Linked Data applications in related domains, as well as generating new discoverable content for the LOD Cloud. This is evidenced by 17 diverse implementations which can be shown to interoperate with each other, including generic libraries and datastores, and domain-specific applications. Being on the W3C standards track increases the likelihood of further adoption.
 
 
-
-
-
-
-
-
+\paragraph{Acknowledgements:}
+This research was supported in part by Massachusetts Institute of Technology and Qatar Computing Research Institute, HBKU through the Crosscloud project from 2015-10 to 2016-09, and by the DFG project “Opening Scholarly Communication in Social Sciences” (grant agreement AU 340/9-1).
 
 \begin{thebibliography}{99}
   \bibitem{ref-1} Mansour, E., Sambra, A., Hawke, S., Zereba, M., Capadisli, S., Ghanem, A., Aboulnaga, A., Berners-Lee, T.: A Demonstration of the Solid Platform for Social Web Applications, WWW, Demo, 2016, \url{http://www2016.net/proceedings/companion/p223.pdf}
