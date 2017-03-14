@@ -8,7 +8,7 @@ Author(s) Name(s): Sarven Capadisli, Amy Guy, Christoph Lange, Sören Auer, Tim 
 
 Corresponding Author’s Name, Address, Affiliation and Email: Sarven Capadisli, University of Bonn, Bonn, Germany, info@csarven.ca
 
-The authors provide a format of the contribution to Springer International Publishing AG, Cham (Springer) under the Creative Commons Attribution 4.0 International license (CC BY 4.0 https://creativecommons.org/licenses/by/4.0/) on 2017-03-17 under the following conditions:
+The authors provide a format of the contribution to Springer International Publishing AG, Cham (Springer) with the Creative Commons Attribution 4.0 International license (CC BY 4.0 https://creativecommons.org/licenses/by/4.0/) on 2017-03-17 under the following conditions:
 
 * the full article; content and media
 * immediately and permanently
