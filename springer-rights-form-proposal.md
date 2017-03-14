@@ -16,4 +16,4 @@ The authors provide the LaTeX format of the contribution to Springer Internation
   1. accessible for free of charge
   2. accessible immediately to anyone (humans and machines)
   3. permanently discoverable and accessible from their website(s) (and other services)
-  4. in full text
+  4. in full content and media
