@@ -10,7 +10,7 @@ Corresponding Author’s Name, Address, Affiliation and Email: Sarven Capadisli,
 
 The authors provide a format of the contribution to Springer International Publishing AG, Cham with the Creative Commons Attribution 4.0 International license (https://creativecommons.org/licenses/by/4.0/) under the following conditions:
 
-* the full article; content and media
+* the full article; text and media
 * immediately and permanently
 * discoverable and accessible from their services
 * to anyone (humans and machines)
