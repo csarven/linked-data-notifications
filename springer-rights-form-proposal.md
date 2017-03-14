@@ -12,4 +12,4 @@ The authors provide the LaTeX format of the contribution to Springer Internation
 
 * Springer agrees to comply with the CC-BY license to the fullest extent of international and national laws.
 * Springer is permitted to derive different formats from the LaTeX source where each format carries the CC-BY.
-* Springer agrees to publish the contents of the contribution for free of charge for anyone (humans and machines) to access throughout Springer's . Springer agrees to make the contribution discoverable (e.g., a hyperlink to it) from its website for anyone.
+* Springer agrees to publish the contents of the contribution for free of charge for anyone (humans and machines) to access throughout Springer's business operation. Springer agrees to make the contribution discoverable (e.g., a hyperlink to it) from its website for anyone.
