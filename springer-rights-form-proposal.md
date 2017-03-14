@@ -10,6 +10,10 @@ Corresponding Author’s Name, Address, Affiliation and Email: Sarven Capadisli,
 
 The authors provide the LaTeX format of the contribution to Springer International Publishing AG, Cham (Springer) under the Creative Commons Attribution 4.0 International license (CC BY 4.0 https://creativecommons.org/licenses/by/4.0/ ) on 2017-03-14 under the following conditions:
 
-* Springer agrees to comply with the CC-BY license to the fullest extent of international and national laws.
+* Springer agrees to comply with the CC BY license to the fullest extent of international and national laws.
 * Springer is permitted to derive different formats from the LaTeX source where each format carries the CC-BY.
-* Springer agrees to publish the contents of the contribution for free of charge for anyone (humans and machines) to access throughout Springer's business operation. Springer agrees to make the contribution discoverable (e.g., a hyperlink to it) from its website for anyone.
+* Springer agrees to publish the contents of the contribution:
+  1. accessible for free of charge
+  2. accessible immediately to anyone (humans and machines)
+  3. permanently discoverable and accessible from their website(s) (and other services)
+  4. in full text
